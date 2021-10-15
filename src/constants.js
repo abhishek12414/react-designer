@@ -7,12 +7,11 @@ const TYPE = 5;
 const EDIT_OBJECT = 6;
 
 export const modes = {
-  FREE,
-  DRAG,
-  SCALE,
-  ROTATE,
-  DRAW,
-  TYPE,
-  EDIT_OBJECT
+	FREE,
+	DRAG,
+	SCALE,
+	ROTATE,
+	DRAW,
+	TYPE,
+	EDIT_OBJECT,
 };
-
