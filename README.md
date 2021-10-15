@@ -1,5 +1,9 @@
+*This project is **back to being maintained**, redirect any new PRs and issues to [@wassgha](https://github.com/wassgha/)*
+
 React-designer
 ==============
+
+[![Join the chat at https://gitter.im/fatiherikli/react-designer](https://badges.gitter.im/fatiherikli/react-designer.svg)](https://gitter.im/fatiherikli/react-designer?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Easy to configure, lightweight, editable vector graphics in your react components.
 
@@ -8,19 +12,23 @@ Easy to configure, lightweight, editable vector graphics in your react component
 - Custom object types and custom panels
 
 
+Examples and demonstration:
+<https://react-designer.github.io/react-designer/>
+
+![bezier editor](http://i.imgur.com/cqTleWB.gif)
 
 ## Keymap
 
-| Parameter                  | Default                         | 
-| :-------------             |:------------------------------- 
-| `del` or `back`            | Removes the current object      | 
-| `arrows`                   | Move the current object by 1px  | 
-| `shift` + `arrows`         | Move the currnet object by 10px | 
-| `enter`                    | Close the drawing path          | 
+| Parameter                  | Default                         |
+| :-------------             |:-------------------------------
+| `del` or `back`            | Removes the current object      |
+| `arrows`                   | Move the current object by 1px  |
+| `shift` + `arrows`         | Move the currnet object by 10px |
+| `enter`                    | Close the drawing path          |
 
 
 ## Usage
-All the entities are pure react components in react-designer except action strategies. I have tried to explain that. I'm starting with components.
+All the entities are pure react components except action strategies in react-designer. I have tried to explain that. I'm starting with components.
 
 ### Component: Designer
 
@@ -69,7 +77,6 @@ The `Designer` component expects the following parameters:
 | rotator          | rotate({object, mouse})        | The rotating strategy of objects
 | scale            | scale({object, mouse})         | The scaling strategy of objects
 | drag             | drag({object, mouse})          | The dragging strategy of objects
-| backgroundImage  | null                           | The background image of the Designer canvas 
 
 
 Object types are pure react components which are derived from `Vector`.
@@ -110,7 +117,7 @@ class MyRectangle extends Vector {
 You can register this object type in your `Designer` instance.
 
 ```javascript
-<Designer 
+<Designer
     objectTypes={{rectangle: MyRectangle}}
     width={500}
     height={500}
@@ -132,48 +139,19 @@ static panels = [
 ];
 ```
 
-### Component: Panel
-
-You can extend this component to create different panels instead of builtins. 
-
-It's a pure React component. The component have `object` and `onUpdate` props. You could reach the current state with `object`, and change this state with `onChange` callback. Let's create a dummy panel.
-
-```javascript
-class MyPanel extends Panel {
-  render() {
-    let {object, onChange} = this.props;
-    return (
-      <PropertyGroup>
-          <Columns label="Colors">
-            <Column>
-              <Button onClick={() => {onChange('color', 'blue')}}>
-                Make blue
-              </Button>
-            </Column>
-            <Column>
-              <Button onClick={() => {onChange('color', 'yellow')}}>
-                Make Yellow
-              </Button>
-            </Column>
-          </Columns>
-      </PropertyGroup>
-    );
-  }
-}
-```
-
 ### Component: Preview
 
 You can use `Preview` component to disable editing tool set and controllers. This component just renders the SVG output of your data. It may be useful for presenting edited or created graphic, instead of building a SVG file.
 
-The parameters are same with Designer component, except the onUpdate callback is not necessarry.
+The parameters are same with Designer component, except for two: the onUpdate callback is not necessary and an additional `responsive` option can be added, which given the original `width` and `height` will expand the preview to cover the width and height of its parent component, scaling its SVG while keeping the original aspect ratio of elements. Note that the original `width` and `height` still need to be provided in order for the responsive `Preview` to work.
 
 ```javascript
-<Preview 
+<Preview
   objectTypes={{rectangle: MyRectangle}}
   objects={this.state.objects}
   height={500}
-  width={500} />
+  width={500}
+  responsive />
 ```
 
 ### Action strategies
@@ -185,7 +163,7 @@ The actions of `rotate`, `scale`, `drag` are pure functions. You can change this
   object, // the current object
   mouse, // mouse coordinates bundle. it have x and y attribtues
   startPoint, // starting points of mouse and object bundles.
-  objectIndex, // the index of the object in the documen, 
+  objectIndex, // the index of the object in the documen,
   objectRefs, // DOM references of objects in the document
 }
 ```
@@ -233,7 +211,7 @@ Changes the rotation as degree of object. This action may needs some improvement
 // rotate.js
 export default ({object, startPoint, mouse}) => {
   let angle = Math.atan2(
-    startPoint.objectX + (object.width || 0) / 2 - mouse.x, 
+    startPoint.objectX + (object.width || 0) / 2 - mouse.x,
     startPoint.objectY + (object.height || 0) / 2 - mouse.y
   );
 
@@ -248,73 +226,9 @@ export default ({object, startPoint, mouse}) => {
 ```
 
 
-### Action strategies
-
-The actions of `rotate`, `scale`, `drag` are pure functions. You can change this behaviours by passing your strategy. The action functions calling with the following object bundle.
-
-    {
-      object, // the current object
-      mouse, // mouse coordinates bundle. it have x and y attribtues
-      startPoint, // starting points of mouse and object bundles.
-      objectIndex, // the index of the object in the documen, 
-      objectRefs, // DOM references of objects in the document
-    } 
-
-Here are default action strategies:
-
-#### Dragger
-Moves the object to mouse bundle by the center of object.
-
-    // dragger.js
-    export default ({object, startPoint, mouse}) => {
-      return {
-        ...object,
-        x: mouse.x - (startPoint.clientX - startPoint.objectX),
-        y: mouse.y - (startPoint.clientY - startPoint.objectY)
-      };
-    };
-
-#### Scaler
-Scales the object by the difference with startPoint and current mouse bundle. If the difference lower than zero, changes the position of object.
-
-    // scale.js
-    export default ({object, startPoint, mouse}) => {
-      let {objectX, objectY, clientX, clientY} = startPoint;
-      let width = startPoint.width + mouse.x - clientX;
-      let height = startPoint.height + mouse.y - clientY;
-
-      return {
-        ...object,
-        x: width > 0 ? objectX: objectX + width,
-        y: height > 0 ? objectY: objectY + height,
-        width: Math.abs(width),
-        height: Math.abs(height)
-      };
-    };
-
-#### Rotator
-Changes the rotation as degree of object. This action may needs some improvement, I'm calculating with a base value (45 degree) because of the rotator anchor is on the upper right corner of object.
-
-    // rotate.js
-    export default ({object, startPoint, mouse}) => {
-      let angle = Math.atan2(
-        startPoint.objectX + (object.width || 0) / 2 - mouse.x, 
-        startPoint.objectY + (object.height || 0) / 2 - mouse.y
-      );
-
-      let asDegree = angle * 180 / Math.PI;
-      let rotation = (asDegree + 45) * -1;
-
-      return {
-        ...object,
-        rotate: rotation
-      };
-    };
-
-
 ### To-do
 
-I built this project to create user-designed areas in my side project. So, this was just a hobby project, there may be things missing for a svg editor. I'm open to pull requests and feedback, and I need help to maintain. 
+I built this project to create user-designed areas in my side project. So, this was just a hobby project, there may be things missing for a svg editor. I'm open to pull requests and feedback, and I need help to maintain.
 
 Here is a todo list that in my mind. You could extend this list.
 
@@ -335,3 +249,10 @@ Here is a todo list that in my mind. You could extend this list.
 
   - `Designer` component exported as default now.
   - Added `insertMenu` prop to `Designer` component.
+
+### Contributors (You can add your name here in your pull-request)
+
+- Fatih Erikli <fatiherikli@gmail.com> - [fatiherikli](https://github.com/fatiherikli/)
+- Wassim Gharbi <wassgha@gmail.com> - [wassgha](https://github.com/wassgha/)
+- [iamraffe](https://github.com/iamraffe/)
+- [thatneat](https://github.com/thatneat/)
