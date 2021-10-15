@@ -1,51 +1,51 @@
-var path = require('path');
-var webpack = require('webpack');
+/* eslint-disable */
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const htmlWebpackPlugin = new HtmlWebpackPlugin({
+	template: path.join(__dirname, 'examples/index.html'),
+	filename: './index.html',
+});
 
 module.exports = {
-  mode: 'development',
-  resolve: {
-    extensions: ['.js', '.jsx', '.js', '.css'],
-    mainFields: [
-      'webpack',
-      'browser',
-      'web',
-      'browserify',
-      ['jam', 'main'],
-      'main',
-      'index'
-    ]
-  },
-  devtool: 'eval',
-  entry: [
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server',
-    './examples'
-  ],
-  output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/dist/'
-  },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
-  module: {
-    rules: [
-      { test: /\.(png|svg)$/, loader: 'url-loader?limit=8192' },
-      {
-        test: /^((?!\.module).)*\.css$/,
-        loaders: ['style-loader', 'css-loader']
-      },
-      {
-        test: /\.module\.css$/,
-        loaders: [
-          'style-loader',
-          'css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]!'
-        ]
-      },
-      {
-        test: /\.js$/,
-        loaders: ['react-hot-loader/webpack', 'babel-loader'],
-        include: [path.join(__dirname, 'src'), path.join(__dirname, 'example')]
-      }
-    ]
-  }
+	entry: path.join(__dirname, 'examples/index.js'),
+	output: {
+		path: path.join(__dirname, 'examples/dist'),
+		filename: 'bundle.js',
+	},
+	plugins: [htmlWebpackPlugin],
+	resolve: {
+		extensions: ['.js', '.jsx'],
+	},
+	devtool: 'inline-source-map',
+	devServer: {
+		port: 4008,
+		hot: true,
+		open: true,
+		historyApiFallback: true,
+		client: {
+			overlay: true,
+			progress: true,
+		},
+	},
+	module: {
+		rules: [
+			{
+				test: /\.(js|jsx)$/i,
+				use: 'babel-loader',
+				exclude: /node_modules/,
+			},
+			{
+				test: /\.css$/i,
+				use: ['style-loader', 'css-loader'],
+			},
+			{
+				test: /\.(ico|gif|png|jpe?g|svg|)$/i,
+				loader: 'file-loader',
+				options: {
+					name: '[path][name].[ext]',
+				},
+			},
+		],
+	},
 };
