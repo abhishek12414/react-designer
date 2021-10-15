@@ -5,9 +5,9 @@ import _ from 'lodash';
 
 import Vector from './Vector';
 
-export default class Circle extends Vector {
+export default class Ellipse extends Vector {
 	static meta = {
-		icon: <Icon icon={'circle'} size={30} />,
+		icon: <Icon icon={'ellipse'} size={30} />,
 		initial: {
 			width: 5,
 			height: 5,

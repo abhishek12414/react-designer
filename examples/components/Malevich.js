@@ -9,7 +9,7 @@ export default class extends Component {
       "fill": "rgba(236, 181, 114, 1)",
       "strokeWidth": 0,
       "blendMode": "normal",
-      "type": "circle",
+      "type": "ellipse",
       "x": 116,
       "y": 34.5625,
       "height": null

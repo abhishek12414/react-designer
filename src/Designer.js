@@ -7,7 +7,7 @@ import SVGRenderer from './SVGRenderer';
 import Handler from './Handler';
 import { modes } from './constants';
 import * as actions from './actions';
-import { Text, Path, Rect, Circle, Image } from './objects';
+import { Text, Path, Rect, Ellipse, Image } from './objects';
 import PanelList from './panels/PanelList';
 
 class Designer extends Component {
@@ -15,7 +15,7 @@ class Designer extends Component {
 		objectTypes: {
 			text: Text,
 			rectangle: Rect,
-			circle: Circle,
+			ellipse: Ellipse,
 			polygon: Path,
 			image: Image,
 		},
