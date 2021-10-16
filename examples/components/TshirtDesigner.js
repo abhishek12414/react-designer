@@ -10,7 +10,7 @@ const priceMap = {
 
 const calculatePrice = (objects, initialCost = 5) =>
 	objects
-		.map(({ type, ...rest }) => priceMap[type](rest))
+		.map(({ elementType, ...rest }) => priceMap[elementType](rest))
 		.reduce((a, b) => a + b, initialCost);
 
 const Background = ({ style }) => (
@@ -56,7 +56,7 @@ export default class extends Component {
 				fill: 'rgba(11, 10, 10, 1)',
 				fontSize: '20',
 				fontFamily: 'Inconsolata',
-				type: 'text',
+				elementType: 'text',
 				x: 105,
 				y: 152,
 			},
@@ -69,7 +69,7 @@ export default class extends Component {
 				fill: 'rgba(0, 0, 0, 1)',
 				fontSize: '47',
 				fontFamily: 'Alegreya',
-				type: 'text',
+				elementType: 'text',
 				x: 106,
 				y: 184,
 			},
@@ -82,7 +82,7 @@ export default class extends Component {
 				fill: 'rgba(0, 0, 0, 1)',
 				fontSize: '25',
 				fontFamily: 'Inconsolata',
-				type: 'text',
+				elementType: 'text',
 				x: 211,
 				y: 219,
 			},

@@ -52,8 +52,8 @@ export default class App extends Component {
 		// class App() {
 		//   state = {
 		//     objects: [
-		//       {type: "text", x: 10, y: 20, text: "Hello!", fill: "red"},
-		//       {type: "rect", x: 50, y: 70, width: 30, height: 40, fill: "red"}
+		//       {elementType: "text", x: 10, y: 20, text: "Hello!", fill: "red"},
+		//       {elementType: "rect", x: 50, y: 70, width: 30, height: 40, fill: "red"}
 		//     ]
 		//   };
 
@@ -238,7 +238,7 @@ export default class App extends Component {
 
 		// const calculatePrice = (objects, initialCost = 5) => (
 		//   objects.map(
-		//     ({type, ...rest}) => priceMap[type](rest)
+		//     ({elementType, ...rest}) => priceMap[elementType](rest)
 		//   ).reduce(
 		//     (a, b) => a + b,
 		//     initialCost

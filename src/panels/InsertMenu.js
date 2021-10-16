@@ -19,12 +19,12 @@ class InsertMenu extends Component {
 		this.setState({ menuOpened: false });
 	};
 
-	hoverTool = (type) => {
-		this.setState({ hoveredTool: type });
+	hoverTool = (elementType) => {
+		this.setState({ hoveredTool: elementType });
 	};
 
-	unhoverTool = (type) => {
-		if (this.state.hoveredTool == type) {
+	unhoverTool = (elementType) => {
+		if (this.state.hoveredTool == elementType) {
 			this.setState({ hoveredTool: null });
 		}
 	};
@@ -51,21 +51,24 @@ class InsertMenu extends Component {
 					)}
 				</div>
 				<ul style={styles.toolBox}>
-					{keys.map((type, i) => (
-						<li
-							style={{
-								...styles.toolBoxItem,
-								...(currentTool === type ? styles.currentToolboxItem : {}),
-								...(hoveredTool === type ? styles.currentToolboxItem : {}),
-							}}
-							onMouseOver={() => this.hoverTool(type)}
-							onMouseOut={() => this.unhoverTool(type)}
-							onMouseDown={this.props.onSelect.bind(this, type)}
-							key={i}
-						>
-							{tools[type].meta.icon}
-						</li>
-					))}
+					{keys.map((elementType, i) => {
+						console.log('elementType -- ', elementType, currentTool);
+						return (
+							<li
+								style={{
+									...styles.toolBoxItem,
+									...(currentTool === elementType ? styles.currentToolboxItem : {}),
+									...(hoveredTool === elementType ? styles.currentToolboxItem : {}),
+								}}
+								onMouseOver={() => this.hoverTool(elementType)}
+								onMouseOut={() => this.unhoverTool(elementType)}
+								onMouseDown={this.props.onSelect.bind(this, elementType)}
+								key={i}
+							>
+								{tools[elementType].meta.icon}
+							</li>
+						);
+					})}
 				</ul>
 			</div>
 		);

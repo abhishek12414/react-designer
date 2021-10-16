@@ -172,7 +172,7 @@ export default class extends Component {
       "radius": 0,
       "blendMode": "normal",
       "text": "Login",
-      "type": "fieldset",
+      "elementType": "fieldset",
       "fontFamily": "Open Sans",
       "x": 40,
       "y": 55
@@ -185,7 +185,7 @@ export default class extends Component {
       "strokeWidth": 2,
       "radius": 0,
       "text": "Username",
-      "type": "input",
+      "elementType": "input",
       "fontFamily": "Open Sans",
       "x": 65,
       "y": 105
@@ -198,7 +198,7 @@ export default class extends Component {
       "strokeWidth": 2,
       "radius": 0,
       "text": "Password",
-      "type": "input",
+      "elementType": "input",
       "fontFamily": "Open Sans",
       "x": 65,
       "y": 175
@@ -212,7 +212,7 @@ export default class extends Component {
       "radius": 5,
       "text": "Login",
       "fontWeight": "normal",
-      "type": "button",
+      "elementType": "button",
       "fontFamily": "Open Sans",
       "x": 65,
       "y": 240
@@ -225,7 +225,7 @@ export default class extends Component {
       "fill": "blue",
       "fontSize": 15,
       "fontFamily": "Open Sans",
-      "type": "link",
+      "elementType": "link",
       "x": 145,
       "y": 300
     }, {
@@ -237,7 +237,7 @@ export default class extends Component {
       "fill": "blue",
       "fontSize": 15,
       "fontFamily": "Open Sans",
-      "type": "link",
+      "elementType": "link",
       "x": 95,
       "y": 330
     }]

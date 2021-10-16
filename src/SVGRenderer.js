@@ -5,14 +5,14 @@ class SVGRenderer extends Component {
 		onMouseOver() {},
 	};
 
-	getObjectComponent(type) {
+	getObjectComponent(elementType) {
 		let { objectTypes } = this.props;
-		return objectTypes[type];
+		return objectTypes[elementType];
 	}
 
 	renderObject(object, index) {
 		let { objectRefs, onMouseOver } = this.props;
-		let Renderer = this.getObjectComponent(object.type);
+		let Renderer = this.getObjectComponent(object.elementType);
 		return (
 			<Renderer
 				onRender={(ref) => (objectRefs[index] = ref)}

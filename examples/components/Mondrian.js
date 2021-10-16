@@ -11,7 +11,7 @@ export default class extends Component {
       "fill": "rgba(0, 123, 255, 1)",
       "radius": "0",
       "blendMode": "normal",
-      "type": "rectangle",
+      "elementType": "rectangle",
       "x": 17,
       "y": 15
     }, {
@@ -22,7 +22,7 @@ export default class extends Component {
       "fill": "rgba(255, 255, 255, 1)",
       "radius": "0",
       "blendMode": "normal",
-      "type": "rectangle",
+      "elementType": "rectangle",
       "x": 19,
       "y": 109
     }, {
@@ -33,7 +33,7 @@ export default class extends Component {
       "fill": "rgba(241, 97, 99, 1)",
       "radius": "0",
       "blendMode": "normal",
-      "type": "rectangle",
+      "elementType": "rectangle",
       "x": 100,
       "y": 110
     }, {
@@ -44,7 +44,7 @@ export default class extends Component {
       "fill": "rgba(0, 123, 255, 1)",
       "radius": "0",
       "blendMode": "normal",
-      "type": "rectangle",
+      "elementType": "rectangle",
       "x": 100,
       "y": 187
     }, {
@@ -55,7 +55,7 @@ export default class extends Component {
       "fill": "rgba(255, 241, 0, 1)",
       "radius": "0",
       "blendMode": "normal",
-      "type": "rectangle",
+      "elementType": "rectangle",
       "x": 19,
       "y": 265
     }, {
@@ -66,7 +66,7 @@ export default class extends Component {
       "fill": "rgba(241, 97, 99, 1)",
       "radius": "0",
       "blendMode": "normal",
-      "type": "rectangle",
+      "elementType": "rectangle",
       "x": 211,
       "y": 266
     }, {
@@ -77,7 +77,7 @@ export default class extends Component {
       "fill": "rgba(255, 255, 255, 1)",
       "radius": "0",
       "blendMode": "normal",
-      "type": "rectangle",
+      "elementType": "rectangle",
       "x": 120,
       "y": 333
     }, {
@@ -88,7 +88,7 @@ export default class extends Component {
       "fill": "rgba(241, 97, 99, 1)",
       "radius": "0",
       "blendMode": "normal",
-      "type": "rectangle",
+      "elementType": "rectangle",
       "x": 21,
       "y": 334
     }, {
@@ -99,7 +99,7 @@ export default class extends Component {
       "fill": "rgba(255, 241, 0, 1)",
       "radius": "0",
       "blendMode": "normal",
-      "type": "rectangle",
+      "elementType": "rectangle",
       "x": 190,
       "y": 16
     }]

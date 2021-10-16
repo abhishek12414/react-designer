@@ -47,7 +47,7 @@ export default class extends Component {
       }],
       "stroke": "gray",
       "strokeWidth": "0",
-      "type": "polygon",
+      "elementType": "polygon",
       "x": 20,
       "y": 126,
       "blendMode": "multiply"
@@ -95,7 +95,7 @@ export default class extends Component {
       }],
       "stroke": "gray",
       "strokeWidth": "0",
-      "type": "polygon",
+      "elementType": "polygon",
       "x": 33,
       "y": 117,
       "blendMode": "darken"
@@ -108,7 +108,7 @@ export default class extends Component {
       "fill": "rgba(249, 249, 138, 1)",
       "fontSize": "90",
       "fontFamily": "Helvetica",
-      "type": "text",
+      "elementType": "text",
       "x": 117,
       "y": 220,
       "blendMode": "normal"
@@ -121,7 +121,7 @@ export default class extends Component {
       "fill": "rgba(247, 247, 109, 1)",
       "fontSize": "50",
       "fontFamily": "Helvetica",
-      "type": "text",
+      "elementType": "text",
       "x": 79,
       "y": 281,
       "blendMode": "normal"
@@ -134,7 +134,7 @@ export default class extends Component {
       "fill": "rgba(255, 255, 121, 1)",
       "fontSize": "90",
       "fontFamily": "Helvetica",
-      "type": "text",
+      "elementType": "text",
       "x": 117,
       "y": 334,
       "blendMode": "normal"
@@ -147,7 +147,7 @@ export default class extends Component {
       "fill": "rgba(255, 255, 117, 1)",
       "fontSize": "40",
       "fontFamily": "Helvetica",
-      "type": "text",
+      "elementType": "text",
       "x": 87,
       "y": 159,
       "blendMode": "normal"
@@ -202,7 +202,7 @@ export default class extends Component {
       }],
       "stroke": "gray",
       "strokeWidth": "0",
-      "type": "polygon",
+      "elementType": "polygon",
       "x": 11,
       "y": 15,
       "blendMode": "multiply"
@@ -215,7 +215,7 @@ export default class extends Component {
       "fill": "rgba(26, 236, 255, 1)",
       "fontSize": "90",
       "fontFamily": "Helvetica",
-      "type": "text",
+      "elementType": "text",
       "x": 115,
       "y": 221,
       "blendMode": "multiply"
@@ -228,7 +228,7 @@ export default class extends Component {
       "fill": "red",
       "fontSize": "90",
       "fontFamily": "Helvetica",
-      "type": "text",
+      "elementType": "text",
       "x": 125,
       "y": 333,
       "blendMode": "difference"

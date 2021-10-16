@@ -9,7 +9,7 @@ export default {
 			'fill': 'black',
 			'fontSize': 20,
 			'fontFamily': 'Open Sans',
-			'type': 'text',
+			'elementType': 'text',
 			'x': 76,
 			'y': 65,
 			'uuid': '6e86e229-5250-42ec-8c64-f8c2251ca125'
@@ -22,7 +22,7 @@ export default {
 			'radius': 0,
 			'blendMode': 'normal',
 			'rotate': 0,
-			'type': 'rectangle',
+			'elementType': 'rectangle',
 			'x': 8,
 			'y': 103,
 			'uuid': '766c1161-de39-410e-8420-b651ecc327da'
@@ -34,7 +34,7 @@ export default {
 			'fill': 'yellow',
 			'strokeWidth': 0,
 			'blendMode': 'normal',
-			'type': 'ellipse',
+			'elementType': 'ellipse',
 			'x': 165,
 			'y': 127,
 			'uuid': 'f1009994-7e8e-47e3-864e-0261ab467f14'
@@ -145,7 +145,7 @@ export default {
 			],
 			'stroke': 'gray',
 			'strokeWidth': 1,
-			'type': 'polygon',
+			'elementType': 'polygon',
 			'x': 32,
 			'y': 274,
 			'uuid': '16876b0a-390f-41a0-9e06-7dd0f52441e5'
@@ -154,7 +154,7 @@ export default {
 			'width': 100,
 			'height': 100,
 			'xlinkHref': 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAhSURBVHgBtYmxDQAADII8lv9faBNH4yoJLAi4ppxgMZoPoxQrXYyeEfoAAAAASUVORK5CYII=',
-			'type': 'image',
+			'elementType': 'image',
 			'x': 177,
 			'y': 271,
 			'uuid': '4aed2380-b0d6-4b93-9e15-842f1f9c5ed8'

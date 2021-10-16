@@ -122,7 +122,7 @@ class Designer extends Component {
 		let { objects, onUpdate } = this.props;
 		let object = {
 			...meta.initial,
-			type: selectedTool,
+			elementType: selectedTool,
 			x: mouse.x,
 			y: mouse.y,
 		};
@@ -346,7 +346,7 @@ class Designer extends Component {
 
 		let { objects } = this.props,
 			currentObject = objects[selectedObjectIndex],
-			objectComponent = this.getObjectComponent(currentObject.type);
+			objectComponent = this.getObjectComponent(currentObject.elementType);
 
 		if (objectComponent.meta.editor) {
 			this.setState({
@@ -356,9 +356,9 @@ class Designer extends Component {
 		}
 	}
 
-	getObjectComponent(type) {
+	getObjectComponent(elementType) {
 		let { objectTypes } = this.props;
-		return objectTypes[type];
+		return objectTypes[elementType];
 	}
 
 	getCanvas() {
@@ -509,7 +509,7 @@ class Designer extends Component {
 
 		let objectComponent, objectWithInitial, ObjectEditor;
 		if (currentObject) {
-			objectComponent = this.getObjectComponent(currentObject.type);
+			objectComponent = this.getObjectComponent(currentObject.elementType);
 			objectWithInitial = {
 				...objectComponent.meta.initial,
 				...currentObject,
