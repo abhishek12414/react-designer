@@ -10,10 +10,10 @@ const CustomDesigner = () => {
 			<Designer
 				width={350}
 				height={400}
-				background={'#ece2be'}
+				// background={'#ece2be'}
 				objects={objects}
 				onUpdate={(value) => {
-					console.log(value);
+					// console.log(value);
 					setObjects(value);
 				}}
 			/>

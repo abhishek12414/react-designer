@@ -52,7 +52,6 @@ class InsertMenu extends Component {
 				</div>
 				<ul style={styles.toolBox}>
 					{keys.map((elementType, i) => {
-						console.log('elementType -- ', elementType, currentTool);
 						return (
 							<li
 								style={{

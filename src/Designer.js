@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
+import includes from 'lodash/includes';
+import mapValues from 'lodash/mapValues';
 import { HotKeys } from 'react-hotkeys';
 
 import InsertMenu from './panels/InsertMenu';
@@ -334,7 +335,7 @@ class Designer extends Component {
 			this.updateHandler(currentObjectIndex, object);
 		}
 
-		if (_.includes([modes.DRAG, modes.ROTATE, modes.SCALE], mode)) {
+		if (includes([modes.DRAG, modes.ROTATE, modes.SCALE], mode)) {
 			this.setState({
 				mode: modes.FREE,
 			});
@@ -487,7 +488,7 @@ class Designer extends Component {
 			closePath: () => this.setState({ mode: modes.FREE }),
 		};
 
-		return _.mapValues(handlers, (handler) => (event, key) => {
+		return mapValues(handlers, (handler) => (event, key) => {
 			if (event.target.tagName !== 'INPUT') {
 				event.preventDefault();
 				handler(event, key);

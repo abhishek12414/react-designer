@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
+import has from 'lodash/has';
 
 import styles from './styles';
 import PropertyGroup from './PropertyGroup';
 import SwitchState from './SwitchState';
 import Columns from './Columns';
 import Column from './Column';
-import ColorInput from './ColorInput';
 import Input from '../components/widgets/Input';
 import Select from '../components/widgets/Select';
 
@@ -34,19 +33,21 @@ export default class StylePanel extends Component {
 		let { object } = this.props;
 		return (
 			<PropertyGroup>
-				<Columns label="Fill" showIf={_.has(object, 'fill')}>
+				<Columns label="Fill" showIf={has(object, 'fill')}>
 					<Column>
-						<ColorInput
+						<Input
+							type="color"
 							value={object.fill}
-							onChange={this.props.onChange.bind(this, 'fill')}
+							onChange={(e) => this.props.onChange(e.target.value, 'fill')}
 						/>
 					</Column>
 				</Columns>
-				<Columns label="Stroke" showIf={_.has(object, 'stroke')}>
+				<Columns label="Stroke" showIf={has(object, 'stroke')}>
 					<Column>
-						<ColorInput
+						<Input
+							type="color"
 							value={object.stroke}
-							onChange={this.props.onChange.bind(this, 'stroke')}
+							onChange={(e) => this.props.onChange(e.target.value, 'stroke')}
 						/>
 					</Column>
 					<Column label="width">
@@ -58,7 +59,7 @@ export default class StylePanel extends Component {
 							value={object.strokeWidth}
 						/>
 					</Column>
-					<Column showIf={_.has(object, 'radius')} label="radius">
+					<Column showIf={has(object, 'radius')} label="radius">
 						<Input
 							style={{ ...styles.input, ...styles.integerInput, width: 30 }}
 							onChange={(e) => this.props.onChange('radius', e.target.value)}

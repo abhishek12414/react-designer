@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
+import has from 'lodash/has';
 
 import Icon from '../Icon';
 
@@ -14,16 +14,16 @@ export default class SizePanel extends Component {
 		let { object } = this.props;
 		return (
 			<PropertyGroup object={object}>
-				{_.has(object, 'width', 'height') && (
+				{has(object, 'width', 'height') && (
 					<Columns label="Size">
 						<Column
-							showIf={_.has(object, 'width')}
+							showIf={has(object, 'width')}
 							label="width"
 							value={object.width}
 							onChange={this.props.onChange.bind(this, 'width')}
 						/>
 						<Column
-							showIf={_.has(object, 'height')}
+							showIf={has(object, 'height')}
 							label="height"
 							value={object.height}
 							onChange={this.props.onChange.bind(this, 'height')}
@@ -32,19 +32,19 @@ export default class SizePanel extends Component {
 				)}
 				<Columns label="Position">
 					<Column
-						showIf={_.has(object, 'x')}
+						showIf={has(object, 'x')}
 						label="top"
 						value={object.x}
 						onChange={this.props.onChange.bind(this, 'x')}
 					/>
 					<Column
-						showIf={_.has(object, 'y')}
+						showIf={has(object, 'y')}
 						label="top"
 						value={object.y}
 						onChange={this.props.onChange.bind(this, 'y')}
 					/>
 				</Columns>
-				{_.has(object, 'rotate') && (
+				{has(object, 'rotate') && (
 					<Columns label="Rotation">
 						<Column
 							label="angle"

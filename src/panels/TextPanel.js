@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
+import has from 'lodash/has';
 
 import Icon from '../Icon';
 
@@ -73,10 +73,10 @@ export default class TextPanel extends Component {
 	render() {
 		let { object } = this.props;
 		return (
-			<PropertyGroup showIf={_.has(object, 'text')}>
+			<PropertyGroup showIf={has(object, 'text')}>
 				<div style={styles.columns}>
 					<Column style={{ float: 'right', marginRight: 15 }}>
-						{_.has(object, 'fontWeight') && (
+						{has(object, 'fontWeight') && (
 							<SwitchState
 								icon="format-bold"
 								defaultValue={'normal'}
@@ -85,7 +85,7 @@ export default class TextPanel extends Component {
 								onChange={this.props.onChange.bind(this, 'fontWeight')}
 							/>
 						)}
-						{_.has(object, 'fontStyle') && (
+						{has(object, 'fontStyle') && (
 							<SwitchState
 								icon="format-italic"
 								defaultValue={'normal'}
@@ -94,7 +94,7 @@ export default class TextPanel extends Component {
 								onChange={this.props.onChange.bind(this, 'fontStyle')}
 							/>
 						)}
-						{_.has(object, 'textDecoration') && (
+						{has(object, 'textDecoration') && (
 							<SwitchState
 								icon="format-underline"
 								defaultValue={'none'}
@@ -105,7 +105,7 @@ export default class TextPanel extends Component {
 						)}
 					</Column>
 					<Column style={{ float: 'right' }}>
-						{_.has(object, 'fontSize') && (
+						{has(object, 'fontSize') && (
 							<Input
 								style={{ ...styles.input, ...styles.integerInput, width: 35 }}
 								value={object.fontSize}

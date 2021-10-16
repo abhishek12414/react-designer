@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
+import has from 'lodash/has';
 
 import Icon from '../Icon';
 
@@ -30,7 +30,7 @@ export default class ImagePanel extends Component {
 	render() {
 		const { object } = this.props;
 		return (
-			<PropertyGroup object={object} showIf={_.has(object, 'xlinkHref')}>
+			<PropertyGroup object={object} showIf={has(object, 'xlinkHref')}>
 				<Columns label="Image">
 					<Column>
 						<Dropzone
