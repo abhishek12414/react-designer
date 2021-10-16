@@ -12,10 +12,12 @@ const CustomDesigner = () => {
 				height={400}
 				// background={'#ece2be'}
 				objects={objects}
+				clusterList={[]}
 				onUpdate={(value) => {
 					// console.log(value);
 					setObjects(value);
 				}}
+				onAddClusterClick={() => console.log('add new cluster')}
 			/>
 		</div>
 	);

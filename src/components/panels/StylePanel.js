@@ -7,51 +7,67 @@ import Columns from './Columns';
 import Column from './Column';
 import Input from '../widgets/Input';
 import Select from '../widgets/Select';
-import { blendModes } from '../../constants';
+import { blendModes, TYPES } from '../../constants';
 
-export default class StylePanel extends Component {
+export default class StylePanel extends React.Component {
 	render() {
 		let { object } = this.props;
+
+		if (object.elementType === TYPES.GATEWAY) {
+			return null;
+		}
+
 		return (
 			<PropertyGroup>
-				<Columns label="Fill" showIf={has(object, 'fill')}>
+				<Columns label="Fill">
 					<Column>
 						<Input
 							type="color"
 							value={object.fill}
-							onChange={(e) => this.props.onChange(e.target.value, 'fill')}
+							onChange={this.props.onChange.bind(this, 'fill')}
+						/>
+					</Column>
+					<Column label="Opacity">
+						<Input
+							value={object.fillOpacity}
+							style={{ width: 30 }}
+							className={[styles.input, styles.integerInput]}
+							onChange={(e) =>
+								this.props.onChange('fillOpacity', e.target.value)
+							}
 						/>
 					</Column>
 				</Columns>
-				<Columns label="Stroke" showIf={has(object, 'stroke')}>
+				<Columns label="Stroke">
 					<Column>
 						<Input
 							type="color"
 							value={object.stroke}
-							onChange={(e) => this.props.onChange(e.target.value, 'stroke')}
+							onChange={this.props.onChange.bind(this, 'stroke')}
 						/>
 					</Column>
 					<Column label="width">
 						<Input
-							style={{ ...styles.input, ...styles.integerInput, width: 30 }}
+							value={object.strokeWidth}
+							style={{ width: 30 }}
+							className={[styles.input, styles.integerInput]}
 							onChange={(e) =>
 								this.props.onChange('strokeWidth', e.target.value)
 							}
-							value={object.strokeWidth}
 						/>
 					</Column>
 					<Column showIf={has(object, 'radius')} label="radius">
 						<Input
-							style={{ ...styles.input, ...styles.integerInput, width: 30 }}
-							onChange={(e) => this.props.onChange('radius', e.target.value)}
 							value={object.radius}
+							style={[styles.input, styles.integerInput, { width: 30 }]}
+							onChange={(e) => this.props.onChange('radius', e.target.value)}
 						/>
 					</Column>
 				</Columns>
 				<Columns label="Blending">
 					<Column>
 						<Select
-							style={styles.select}
+							name="Blending"
 							value={object.blendMode}
 							options={blendModes}
 							onChange={(e) => this.props.onChange('blendMode', e.target.value)}

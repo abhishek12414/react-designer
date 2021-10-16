@@ -10,6 +10,7 @@ import PanelList from '../panels/PanelList';
 import Handler from '../Handler';
 import SVGRenderer from '../SVGRenderer';
 import InsertMenu from '../panels/InsertMenu';
+import ObjectList from '../panels/ObjectList';
 
 class Designer extends Component {
 	static defaultProps = {
@@ -496,6 +497,12 @@ class Designer extends Component {
 		});
 	}
 
+	updateSelectedObjectIndex(selectedObjectIndex) {
+		this.setState({
+			selectedObjectIndex,
+		});
+	}
+
 	render() {
 		let { showHandler, handler, mode, selectedObjectIndex, selectedTool } =
 			this.state;
@@ -581,7 +588,7 @@ class Designer extends Component {
 
 					{/* Right Panel: Displays text,
 					 styling and sizing tools */}
-					{showPropertyPanel && (
+					{/* {showPropertyPanel && (
 						<PanelList
 							offset={this.getOffset()}
 							object={objectWithInitial}
@@ -590,7 +597,29 @@ class Designer extends Component {
 							onDelete={this.removeCurrent.bind(this)}
 							objectComponent={objectComponent}
 						/>
-					)}
+					)}*/}
+					<div style={{ minWidth: 250 }}>
+						{showPropertyPanel ? (
+							<PanelList
+								offset={this.getOffset()}
+								object={objectWithInitial}
+								onArrange={this.handleArrange.bind(this)}
+								onChange={this.handleObjectChange.bind(this)}
+								onDelete={this.removeCurrent.bind(this)}
+								objectComponent={objectComponent}
+								onObjectSelect={this.updateSelectedObjectIndex.bind(this)}
+								objects={this.props.objects}
+							/>
+						) : (
+							<ObjectList
+								objects={this.props.objects}
+								onObjectSelect={this.updateSelectedObjectIndex.bind(this)}
+								clusterList={this.props.clusterList}
+								onChange={this.updateObject.bind(this)}
+								onAddClusterClick={this.props.onAddClusterClick}
+							/>
+						)}
+					</div>
 				</div>
 			</HotKeys>
 		);
