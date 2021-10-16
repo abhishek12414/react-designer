@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import Icon from '../Icon';
 
 import styles from './styles';
+import Input from '../components/widgets/Input';
 
 const Column = ({ showIf = true, ...props }) => {
 	if (!showIf) {
@@ -12,7 +12,7 @@ const Column = ({ showIf = true, ...props }) => {
 	return (
 		<div style={{ ...styles.column, ...props.style }}>
 			{props.children || (
-				<input
+				<Input
 					style={{ ...styles.input, ...styles.integerInput }}
 					value={props.value}
 					onChange={(e) => props.onChange(e.target.value)}

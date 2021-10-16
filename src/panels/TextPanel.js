@@ -5,11 +5,11 @@ import Icon from '../Icon';
 
 import styles from './styles';
 import PropertyGroup from './PropertyGroup';
-import Button from './Button';
 import SwitchState from './SwitchState';
-import Columns from './Columns';
 import Column from './Column';
 import WebFont from 'webfontloader';
+import Input from '../components/widgets/Input';
+import Select from '../components/widgets/Select';
 
 export default class TextPanel extends Component {
 	fontFamilies = [
@@ -106,7 +106,7 @@ export default class TextPanel extends Component {
 					</Column>
 					<Column style={{ float: 'right' }}>
 						{_.has(object, 'fontSize') && (
-							<input
+							<Input
 								style={{ ...styles.input, ...styles.integerInput, width: 35 }}
 								value={object.fontSize}
 								onChange={(e) =>
@@ -116,22 +116,20 @@ export default class TextPanel extends Component {
 						)}
 					</Column>
 					<Column style={{ float: 'right', marginRight: 10 }}>
-						<select
+						<Select
 							style={styles.select}
 							value={object.fontFamily}
-							onChange={this.handleFontFamilyChange}
-						>
-							{this.fontFamilies
+							options={this.fontFamilies
 								.sort(this.sortFonts)
-								.map(({ name, family }) => (
-									<option key={family} value={family}>
-										{name}
-									</option>
-								))}
-						</select>
+								.map(({ name, family }) => ({
+									label: name,
+									value: family,
+								}))}
+							onChange={this.handleFontFamilyChange}
+						/>
 					</Column>
 					<div style={{ ...styles.row, paddingTop: 25, paddingRight: 10 }}>
-						<input
+						<Input
 							style={{ ...styles.input, ...styles.textInput }}
 							onChange={(e) => this.props.onChange('text', e.target.value)}
 							value={object.text}

@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 
-import Icon from '../Icon';
-
 import styles from './styles';
 import PropertyGroup from './PropertyGroup';
-import Button from './Button';
 import SwitchState from './SwitchState';
 import Columns from './Columns';
 import Column from './Column';
 import ColorInput from './ColorInput';
+import Input from '../components/widgets/Input';
+import Select from '../components/widgets/Select';
 
 export default class StylePanel extends Component {
 	modes = [
@@ -51,7 +50,7 @@ export default class StylePanel extends Component {
 						/>
 					</Column>
 					<Column label="width">
-						<input
+						<Input
 							style={{ ...styles.input, ...styles.integerInput, width: 30 }}
 							onChange={(e) =>
 								this.props.onChange('strokeWidth', e.target.value)
@@ -60,7 +59,7 @@ export default class StylePanel extends Component {
 						/>
 					</Column>
 					<Column showIf={_.has(object, 'radius')} label="radius">
-						<input
+						<Input
 							style={{ ...styles.input, ...styles.integerInput, width: 30 }}
 							onChange={(e) => this.props.onChange('radius', e.target.value)}
 							value={object.radius}
@@ -69,17 +68,12 @@ export default class StylePanel extends Component {
 				</Columns>
 				<Columns label="Blending">
 					<Column>
-						<select
+						<Select
 							style={styles.select}
 							value={object.blendMode}
+							options={this.modes}
 							onChange={(e) => this.props.onChange('blendMode', e.target.value)}
-						>
-							{this.modes.map((mode) => (
-								<option key={mode} value={mode}>
-									{mode}
-								</option>
-							))}
-						</select>
+						/>
 					</Column>
 				</Columns>
 			</PropertyGroup>
