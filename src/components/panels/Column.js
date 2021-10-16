@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 
 import styles from './styles';
-import Input from '../components/widgets/Input';
+import Input from '../widgets/Input';
 
 const Column = ({ showIf = true, ...props }) => {
 	if (!showIf) {

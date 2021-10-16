@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { modes } from '../constants';
+import { modes } from '../../../constants';
 import Icon from '../Icon';
 import _ from 'lodash';
 
@@ -9,7 +9,7 @@ import {
 	StylePanel,
 	ArrangePanel,
 	ImagePanel,
-} from '../panels';
+} from '../../panels';
 
 export default class Vector extends Component {
 	static panels = [SizePanel, TextPanel, StylePanel, ImagePanel, ArrangePanel];

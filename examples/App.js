@@ -1,53 +1,53 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import ReactDOMServer from 'react-dom/server';
-import { Rect, Vector, Text } from '../src/objects';
-import classes from './App.module.css';
+// import ReactDOM from 'react-dom';
+// import ReactDOMServer from 'react-dom/server';
+// import { Rect, Vector, Text } from '../src/objects';
+// import classes from './App.module.css';
 
-import MondrianExample from './components/Mondrian';
-import MalevichExample from './components/Malevich';
-import SwissStyleExample from './components/SwissStyle';
-import MockupDesignerExample from './components/MockupDesigner';
-import TshirtDesignerExample from './components/TshirtDesigner';
+// import MondrianExample from './components/Mondrian';
+// import MalevichExample from './components/Malevich';
+// import SwissStyleExample from './components/SwissStyle';
+// import MockupDesignerExample from './components/MockupDesigner';
+// import TshirtDesignerExample from './components/TshirtDesigner';
 import CustomDesigner from './CustomDesigner';
 
 export default class App extends Component {
 	render() {
 		return (
-			<CustomDesigner/>
-		// 			<div className={classes.container}>
-		// 				<div className={classes.landing}>
-		// 					<h1>react-designer</h1>
-		// 					<h2>
-		// 						Easy to configure, lightweight, editable vector graphics in your
-		// 						react components.
-		// 					</h2>
-		// 					<ul className={classes.nav}>
-		// 						<li className={classes.current}>
-		// 							<a href="#">usage</a>
-		// 						</li>
-		// 						<li>
-		// 							<a href="#examples">examples</a>
-		// 						</li>
-		// 						<li>
-		// 							<a href="http://github.com/fatiherikli/react-designer">docs</a>
-		// 						</li>
-		// 						<li>
-		// 							<a href="http://github.com/fatiherikli/react-designer">
-		// 								show on github
-		// 							</a>
-		// 						</li>
-		// 					</ul>
-		// 				</div>
-		// 				<div className={classes.usage}>
-		// 					<h4 className={classes.mainTitle}>Usage</h4>
-		// 					<p>
-		// 						You should provide your objects and object types. The objects might
-		// 						be empty array if you want to create a blank canvas.
-		// 					</p>
-		// 					<pre className={classes.code}>
-		// 						{`
-		// import Designer, {Text, Rect} from 'react-designer';
+			<CustomDesigner />
+			// 			<div className={classes.container}>
+			// 				<div className={classes.landing}>
+			// 					<h1>react-designer</h1>
+			// 					<h2>
+			// 						Easy to configure, lightweight, editable vector graphics in your
+			// 						react components.
+			// 					</h2>
+			// 					<ul className={classes.nav}>
+			// 						<li className={classes.current}>
+			// 							<a href="#">usage</a>
+			// 						</li>
+			// 						<li>
+			// 							<a href="#examples">examples</a>
+			// 						</li>
+			// 						<li>
+			// 							<a href="http://github.com/fatiherikli/react-designer">docs</a>
+			// 						</li>
+			// 						<li>
+			// 							<a href="http://github.com/fatiherikli/react-designer">
+			// 								show on github
+			// 							</a>
+			// 						</li>
+			// 					</ul>
+			// 				</div>
+			// 				<div className={classes.usage}>
+			// 					<h4 className={classes.mainTitle}>Usage</h4>
+			// 					<p>
+			// 						You should provide your objects and object types. The objects might
+			// 						be empty array if you want to create a blank canvas.
+			// 					</p>
+			// 					<pre className={classes.code}>
+			// 						{`
+			// import Designer, {Text, Rect} from 'react-designer';
 
 		// class App() {
 		//   state = {

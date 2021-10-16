@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 import has from 'lodash/has';
-
-import Icon from '../Icon';
-
-import styles from './styles';
 import PropertyGroup from './PropertyGroup';
-import SwitchState from './SwitchState';
 import Columns from './Columns';
 import Column from './Column';
 import Dropzone from 'react-dropzone';
-import request from 'superagent';
 
 export default class ImagePanel extends Component {
 	onDrop(acceptedFiles) {

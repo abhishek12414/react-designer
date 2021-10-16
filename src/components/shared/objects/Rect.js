@@ -1,8 +1,5 @@
-import React, { Component } from 'react';
-import { modes } from '../constants';
+import React from 'react';
 import Icon from '../Icon';
-import _ from 'lodash';
-
 import Vector from './Vector';
 
 export default class Rect extends Vector {

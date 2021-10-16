@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Designer from '../src/Designer';
+import Designer from '../src/components/Designer';
 import data from './data';
 
 const CustomDesigner = () => {

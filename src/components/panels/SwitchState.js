@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import _ from 'lodash';
-import Icon from '../Icon';
+import React from 'react';
+import Icon from '../shared/Icon';
 
 const SwitchState = (props) => {
 	let selected = props.value !== props.defaultValue;

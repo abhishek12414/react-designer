@@ -3,13 +3,13 @@ import includes from 'lodash/includes';
 import mapValues from 'lodash/mapValues';
 import { HotKeys } from 'react-hotkeys';
 
-import InsertMenu from './panels/InsertMenu';
-import SVGRenderer from './SVGRenderer';
-import Handler from './Handler';
-import { modes } from './constants';
-import * as actions from './actions';
-import { Text, Path, Rect, Ellipse, Image } from './objects';
-import PanelList from './panels/PanelList';
+import { modes } from '../../constants';
+import * as actions from '../../actions';
+import { Text, Path, Rect, Ellipse, Image } from '../shared/objects';
+import PanelList from '../panels/PanelList';
+import Handler from '../Handler';
+import SVGRenderer from '../SVGRenderer';
+import InsertMenu from '../panels/InsertMenu';
 
 class Designer extends Component {
 	static defaultProps = {
@@ -579,7 +579,8 @@ class Designer extends Component {
 						{this.renderSVG()}
 					</div>
 
-					{/* Right Panel: Displays text, styling and sizing tools */}
+					{/* Right Panel: Displays text,
+					 styling and sizing tools */}
 					{showPropertyPanel && (
 						<PanelList
 							offset={this.getOffset()}
