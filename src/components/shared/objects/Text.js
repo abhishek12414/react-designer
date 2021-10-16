@@ -2,25 +2,25 @@ import React from 'react';
 import Icon from '../Icon';
 
 import Vector from './Vector';
-import WebFont from 'webfontloader';
 
 export default class Text extends Vector {
 	static meta = {
 		icon: <Icon icon={'text'} size={30} />,
 		initial: {
-			text: 'Type some text...',
+			text: 'Hello',
 			rotate: 0,
 			fontWeight: 'normal',
 			fontStyle: 'normal',
 			textDecoration: 'none',
 			fill: 'black',
-			fontSize: 20,
-			fontFamily: 'Open Sans',
+			fillOpacity: 1,
+			fontSize: 50,
+			fontFamily: 'Helvetica',
 		},
 	};
 
 	getStyle() {
-		let { object } = this.props;
+		let object = this.props.object;
 		return {
 			...super.getStyle(),
 			dominantBaseline: 'central',
@@ -37,22 +37,44 @@ export default class Text extends Vector {
 	}
 
 	render() {
-		let { object, index } = this.props;
-		WebFont.load({
-			google: {
-				families: [object.fontFamily],
-			},
-		});
-		const { rotate, ...restOfAttributes } = this.getObjectAttributes();
+		const {
+			text,
+			rotate,
+			fontWeight,
+			fontStyle,
+			textDecoration,
+			fill,
+			fillOpacity,
+			fontSize,
+			fontFamily,
+			elementType,
+			x,
+			y,
+			type,
+			transform,
+			ref,
+			onMouseOver,
+			index,
+		} = this.getObjectAttributes();
+
 		return (
 			<text
 				style={this.getStyle()}
-				{...restOfAttributes}
-				textAnchor="right"
-				fontSize={object.fontSize}
-				fontFamily={object.fontFamily}
+				textAnchor="middle"
+				fontSize={fontSize}
+				fontFamily={fontFamily}
+				x={x}
+				y={y}
+				// common props
+				rotate={rotate}
+				fill={fill}
+				fillOpacity={fillOpacity}
+				ref={ref}
+				onMouseOver={onMouseOver}
+				transform={transform}
+				index={index}
 			>
-				{object.text}
+				{text}
 			</text>
 		);
 	}

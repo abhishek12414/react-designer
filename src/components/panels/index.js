@@ -4,3 +4,4 @@ export StylePanel from './StylePanel';
 export SizePanel from './SizePanel';
 export InsertMenu from './InsertMenu';
 export ImagePanel from './ImagePanel';
+export GatewayPanel from './GatewayPanel';

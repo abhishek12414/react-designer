@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { modes } from '../../../constants';
 import Icon from '../Icon';
-import _ from 'lodash';
+import Label from './Label';
 
 import Vector from './Vector';
 import BezierEditor from '../editors/BezierEditor';
@@ -9,14 +9,17 @@ import BezierEditor from '../editors/BezierEditor';
 export default class Path extends Vector {
 	static meta = {
 		initial: {
-			fill: '#e3e3e3',
+			fill: '#000',
+			fillOpacity: 0.3,
+			strokeWidth: 1,
+			stroke: 'rgba(0,0,0,1)',
 			closed: false,
 			rotate: 0,
 			moveX: 0,
 			moveY: 0,
 			path: [],
-			stroke: 'gray',
 			strokeWidth: 1,
+			labelCoordinates: { x: 30, y: 30 },
 		},
 		mode: modes.DRAW_PATH,
 		icon: <Icon icon={'polygon'} size={30} />,
@@ -24,15 +27,28 @@ export default class Path extends Vector {
 	};
 
 	buildPath(object) {
-		let { path } = object;
+		let { path, moveX, moveY, closed } = object;
 
-		let curves = path.map(
-			({ x1, y1, x2, y2, x, y }, i) => `C ${x1} ${y1}, ${x2} ${y2}, ${x} ${y}`
-		);
+		if (!path) {
+			return ``;
+		}
 
-		let instructions = [`M ${object.moveX} ${object.moveY}`, ...curves];
+		let curves = path.map(({ x1, y1, x2, y2, x, y }, i) => {
+			x1 = x1 || x;
+			x2 = x2 || x;
+			y1 = y1 || y;
+			y2 = y2 || y;
 
-		if (object.closed) {
+			return `C ${x1} ${y1}, ${x2} ${y2}, ${x} ${y}`;
+		});
+
+		// let curves = path.map(
+		// 	({ x1, y1, x2, y2, x, y }, i) => `C ${x1} ${y1}, ${x2} ${y2}, ${x} ${y}`
+		// );
+
+		let instructions = [`M ${moveX} ${moveY}`, ...curves];
+
+		if (closed) {
 			instructions = [...instructions, 'Z'];
 		}
 
@@ -48,14 +64,45 @@ export default class Path extends Vector {
 
 	render() {
 		let { object } = this.props;
-		let fill = object.closed ? object.fill : 'transparent';
+		const {
+			fill,
+			fillOpacity,
+			strokeWidth,
+			stroke,
+			closed,
+			rotate,
+			moveX,
+			moveY,
+			path,
+			labelCoordinates,
+			elementType,
+			x,
+			y,
+			type,
+			transform,
+			ref,
+			onMouseOver,
+			index,
+		} = this.getObjectAttributes();
+
 		return (
-			<path
-				style={this.getStyle(object)}
-				{...this.getObjectAttributes()}
-				d={this.buildPath(object)}
-				fill={fill}
-			/>
+			<>
+				<path
+					style={this.getStyle(object)}
+					d={this.buildPath(object)}
+					// common props
+					fill={closed ? fill : 'none'}
+					fillOpacity={fillOpacity}
+					stroke={stroke}
+					strokeWidth={strokeWidth}
+					strokeDasharray={type == 'map' ? 0 : 4}
+					ref={ref}
+					onMouseOver={onMouseOver}
+					transform={transform}
+					index={index}
+				/>
+				<Label x={labelCoordinates.x} y={labelCoordinates.y} label={name} />
+			</>
 		);
 	}
 }

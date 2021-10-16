@@ -1,18 +1,21 @@
-import React, { Component } from 'react';
-import { modes } from '../../../constants';
-import Icon from '../Icon';
-import _ from 'lodash';
+import { Component } from 'react';
 
 import {
 	SizePanel,
 	TextPanel,
 	StylePanel,
 	ArrangePanel,
-	ImagePanel,
+	GatewayPanel,
 } from '../../panels';
 
 export default class Vector extends Component {
-	static panels = [SizePanel, TextPanel, StylePanel, ImagePanel, ArrangePanel];
+	static panels = [
+		SizePanel,
+		TextPanel,
+		StylePanel,
+		GatewayPanel,
+		ArrangePanel,
+	];
 
 	getStyle() {
 		let { object } = this.props;

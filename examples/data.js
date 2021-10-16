@@ -1,5 +1,6 @@
 export default {
-	dataSet1: [
+	dataSet1: [],
+	dataSet11: [
 		{
 			'text': 'Type some text...',
 			'rotate': 0,

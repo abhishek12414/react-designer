@@ -19,10 +19,10 @@ const Select = ({ style, options, name, value, onChange, ...rest }) => {
 		}
 
 		return (
-			<React.Fragment>
+			<>
 				<option value="">Select Option</option>
 				{clusterOptions}
-			</React.Fragment>
+			</>
 		);
 	};
 
