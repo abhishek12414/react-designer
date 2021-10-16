@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import Icon from '../Icon';
 
@@ -77,7 +76,6 @@ const styles = {
 	insertMenu: {
 		height: 40,
 		width: 40,
-		overflow: 'hidden',
 	},
 	insertMenuHover: {
 		background: '#eeeff5',

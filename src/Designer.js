@@ -107,22 +107,6 @@ class Designer extends Component {
 		});
 	}
 
-	generateUUID() {
-		var d = new Date().getTime();
-		if (window.performance && typeof window.performance.now === 'function') {
-			d += performance.now(); //use high-precision timer if available
-		}
-		var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
-			/[xy]/g,
-			function (c) {
-				var r = (d + Math.random() * 16) % 16 | 0;
-				d = Math.floor(d / 16);
-				return (c == 'x' ? r : (r & 0x3) | 0x8).toString(16);
-			}
-		);
-		return uuid;
-	}
-
 	newObject(event) {
 		let { mode, selectedTool } = this.state;
 
@@ -141,7 +125,6 @@ class Designer extends Component {
 			type: selectedTool,
 			x: mouse.x,
 			y: mouse.y,
-			uuid: this.generateUUID(),
 		};
 
 		onUpdate([...objects, object]);
@@ -296,7 +279,6 @@ class Designer extends Component {
 
 	detectOverlappedObjects(event) {
 		let { currentObjectIndex } = this.state;
-		let { objects } = this.props;
 		let mouse = this.getMouseCoords(event);
 
 		let refs = this.objectRefs,
@@ -329,7 +311,28 @@ class Designer extends Component {
 	}
 
 	stopDrag() {
-		let { mode } = this.state;
+		let { mode, currentObjectIndex } = this.state;
+
+		// Disables shape drag out of bounds
+		if (mode === modes.DRAG) {
+			let { objects } = this.props;
+			let object = objects[currentObjectIndex];
+			const offset = this.getOffset();
+			if (object.x < 0) {
+				object.x = 0;
+			}
+			if (object.y < 0) {
+				object.y = 0;
+			}
+			if (object.x + object.width > offset.width) {
+				object.x = offset.width - object.width;
+			}
+			if (object.y + object.height > offset.height) {
+				object.y = offset.height - object.height;
+			}
+			this.updateObject(currentObjectIndex, object);
+			this.updateHandler(currentObjectIndex, object);
+		}
 
 		if (_.includes([modes.DRAG, modes.ROTATE, modes.SCALE], mode)) {
 			this.setState({
@@ -373,15 +376,15 @@ class Designer extends Component {
 
 	renderSVG() {
 		let canvas = this.getCanvas();
-		let { width, height, canvasOffsetX, canvasOffsetY } = canvas;
-		let { background, objects, svgStyle, objectTypes } = this.props;
+		let { background, objects, objectTypes, backgroundImage } = this.props;
 
 		return (
 			<SVGRenderer
 				background={background}
-				width={width}
+				backgroundImage={backgroundImage}
+				width={canvas.width}
 				canvas={canvas}
-				height={height}
+				height={canvas.height}
 				objects={objects}
 				onMouseOver={this.showHandler.bind(this)}
 				objectTypes={objectTypes}
@@ -404,7 +407,6 @@ class Designer extends Component {
 
 	handleObjectChange(key, value) {
 		let { selectedObjectIndex } = this.state;
-		// console.log(this.state, key, value)
 		this.updateObject(selectedObjectIndex, {
 			[key]: value,
 		});
@@ -527,6 +529,8 @@ class Designer extends Component {
 						...styles.container,
 						...this.props.style,
 						padding: 0,
+						width: canvasWidth,
+						height: canvasHeight,
 					}}
 					onMouseMove={this.onDrag.bind(this)}
 					onMouseUp={this.stopDrag.bind(this)}
@@ -577,10 +581,11 @@ class Designer extends Component {
 					{/* Right Panel: Displays text, styling and sizing tools */}
 					{showPropertyPanel && (
 						<PanelList
-							id={this.props.id}
+							offset={this.getOffset()}
 							object={objectWithInitial}
 							onArrange={this.handleArrange.bind(this)}
 							onChange={this.handleObjectChange.bind(this)}
+							onDelete={this.removeCurrent.bind(this)}
 							objectComponent={objectComponent}
 						/>
 					)}
