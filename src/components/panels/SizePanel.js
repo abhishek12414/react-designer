@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import has from 'lodash/has';
 
 import PropertyGroup from './PropertyGroup';
@@ -6,7 +7,7 @@ import Columns from './Columns';
 import Column from './Column';
 import Button from '../widgets/Button';
 
-export default class SizePanel extends React.Component {
+class SizePanel extends Component {
 	onLabelPosChange(key, value) {
 		this.props.onChange('labelCoordinates', {
 			...this.props.object.labelCoordinates,
@@ -18,57 +19,68 @@ export default class SizePanel extends React.Component {
 		let { object } = this.props;
 		return (
 			<PropertyGroup object={object}>
-				<Columns label="Name">
+				<Columns label="Label Property">
 					<Column
-						label="Object Name"
+						label="Name"
 						value={object.name || ''}
 						inputStyle={{ width: '130px' }}
 						onChange={this.props.onChange.bind(this, 'name')}
 					/>
+					{has(object.labelCoordinates, 'x', 'y') && (
+						<div style={{ display: 'flex' }}>
+							<Column
+								label="X"
+								type="number"
+								showIf={has(object.labelCoordinates, 'x')}
+								value={object.labelCoordinates.x}
+								onChange={(value) => this.onLabelPosChange('x', value)}
+							/>
+							<Column
+								label="Y"
+								type="number"
+								showIf={has(object.labelCoordinates, 'y')}
+								value={object.labelCoordinates.y}
+								onChange={(value) => this.onLabelPosChange('y', value)}
+							/>
+						</div>
+					)}
 				</Columns>
-				{has(object.labelCoordinates, 'x', 'y') && (
-					<Columns label="Label Position">
-						<Column
-							showIf={has(object.labelCoordinates, 'x')}
-							label="x"
-							value={object.labelCoordinates.x}
-							onChange={(value) => this.onLabelPosChange('x', value)}
-						/>
-						<Column
-							showIf={has(object.labelCoordinates, 'y')}
-							label="y"
-							value={object.labelCoordinates.y}
-							onChange={(value) => this.onLabelPosChange('y', value)}
-						/>
-					</Columns>
-				)}
+
 				{has(object, 'width', 'height') && (
-					<Columns label="Size">
+					<Columns label="Size" inline>
 						<Column
+							disabled
+							label="W"
+							type="number"
 							showIf={has(object, 'width')}
-							label="width"
 							value={object.width}
 							onChange={this.props.onChange.bind(this, 'width')}
 						/>
 						<Column
+							disabled
+							label="H"
+							type="number"
 							showIf={has(object, 'height')}
-							label="height"
 							value={object.height}
 							onChange={this.props.onChange.bind(this, 'height')}
 						/>
 					</Columns>
 				)}
-				<Columns label="Position">
+				<Columns label="Position" inline>
 					<Column
+						disabled
+						label="X"
+						type="number"
 						showIf={has(object, 'x')}
-						label="top"
 						value={object.x}
 						readOnly={true}
 						onChange={this.props.onChange.bind(this, 'x')}
 					/>
 					<Column
+						disabled
+						label="Y"
+						type="number"
 						showIf={has(object, 'y')}
-						label="top"
 						value={object.y}
 						readOnly={true}
 						onChange={this.props.onChange.bind(this, 'y')}
@@ -84,20 +96,28 @@ export default class SizePanel extends React.Component {
             />
           </Columns>
         )} */}
-				<Columns label="Shape">
+				<Columns label="Shape" rowInline>
 					<p style={{ margin: 0, textTransform: 'capitalize' }}>
 						{object.elementType}
 					</p>
 				</Columns>
-				<Columns label="Type">
+				<Columns label="Type" rowInline>
 					<p style={{ margin: 0, textTransform: 'capitalize' }}>
 						{object.type}
 					</p>
 				</Columns>
-				<Columns label="Delete">
+				<Columns label="Delete" rowInline>
 					<Button onClick={this.props.onDelete}>Delete Shape</Button>
 				</Columns>
 			</PropertyGroup>
 		);
 	}
 }
+
+SizePanel.propTypes = {
+	object: PropTypes.object,
+	onChange: PropTypes.func,
+	onDelete: PropTypes.func,
+};
+
+export default SizePanel;

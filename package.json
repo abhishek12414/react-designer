@@ -47,6 +47,8 @@
 		"react-dropzone": "^11.4.2",
 		"react-hot-loader": "^4.13.0",
 		"rimraf": "^3.0.2",
+		"sass": "^1.43.2",
+		"sass-loader": "^12.2.0",
 		"style-loader": "^3.3.0",
 		"superagent": "*",
 		"svg-inline-loader": "^0.8.2",
@@ -64,10 +66,8 @@
 		"classnames": "^2.2.6",
 		"lodash": ">=4.17.11",
 		"prop-types": "^15.7.2",
-		"react-color": "^2.17.3",
 		"react-hotkeys": "^1.1.4",
 		"react-portal": "^4.2.0",
-		"superagent": "*",
 		"webfontloader": "^1.6.28"
 	},
 	"husky": {

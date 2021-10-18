@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import includes from 'lodash/includes';
-import mapValues from 'lodash/mapValues';
+import cx from 'classnames';
+import _ from 'lodash';
 import { HotKeys } from 'react-hotkeys';
+
+import './index.scss';
 
 import { modes } from '../../constants';
 import * as actions from '../../actions';
-import { Text, Path, Rect, Ellipse, Image } from '../shared/objects';
+import { Text, Path, Rect, Ellipse, Image, Gateway } from '../shared/objects';
 import PanelList from '../panels/PanelList';
 import Handler from '../Handler';
 import SVGRenderer from '../SVGRenderer';
@@ -20,6 +22,7 @@ class Designer extends Component {
 			ellipse: Ellipse,
 			polygon: Path,
 			image: Image,
+			gateway: Gateway,
 		},
 		snapToGrid: 1,
 		svgStyle: {},
@@ -38,6 +41,7 @@ class Designer extends Component {
 		currentObjectIndex: null,
 		selectedObjectIndex: null,
 		selectedTool: null,
+		type: 'map',
 	};
 
 	keyMap = {
@@ -336,7 +340,7 @@ class Designer extends Component {
 			this.updateHandler(currentObjectIndex, object);
 		}
 
-		if (includes([modes.DRAG, modes.ROTATE, modes.SCALE], mode)) {
+		if (_.includes([modes.DRAG, modes.ROTATE, modes.SCALE], mode)) {
 			this.setState({
 				mode: modes.FREE,
 			});
@@ -489,7 +493,7 @@ class Designer extends Component {
 			closePath: () => this.setState({ mode: modes.FREE }),
 		};
 
-		return mapValues(handlers, (handler) => (event, key) => {
+		return _.mapValues(handlers, (handler) => (event, key) => {
 			if (event.target.tagName !== 'INPUT') {
 				event.preventDefault();
 				handler(event, key);
@@ -503,10 +507,21 @@ class Designer extends Component {
 		});
 	}
 
-	render() {
-		let { showHandler, handler, mode, selectedObjectIndex, selectedTool } =
-			this.state;
+	onTypeChange(type) {
+		this.setState({ type });
+	}
 
+	render() {
+		let {
+			showHandler,
+			handler,
+			mode,
+			selectedObjectIndex,
+			selectedTool,
+			type,
+		} = this.state;
+
+		console.log('state ', this.state);
 		let { objects, objectTypes, insertMenu: InsertMenuComponent } = this.props;
 
 		let currentObject = objects[selectedObjectIndex],
@@ -526,102 +541,96 @@ class Designer extends Component {
 		}
 
 		return (
-			<HotKeys
-				keyMap={this.keyMap}
-				style={styles.keyboardManager}
-				handlers={this.getKeymapHandlers()}
-			>
-				<div
-					className={'container'}
-					style={{
-						...styles.container,
-						...this.props.style,
-						padding: 0,
-						width: canvasWidth,
-						height: canvasHeight,
-					}}
-					onMouseMove={this.onDrag.bind(this)}
-					onMouseUp={this.stopDrag.bind(this)}
+			<div className="designer">
+				<HotKeys
+					keyMap={this.keyMap}
+					className="keyboardManager"
+					handlers={this.getKeymapHandlers()}
 				>
-					{/* Left Panel: Displays insertion tools (shapes, images, etc.) */}
-					{InsertMenuComponent && (
-						<InsertMenuComponent
-							tools={objectTypes}
-							currentTool={selectedTool}
-							onSelect={this.selectTool.bind(this)}
-						/>
-					)}
-
-					{/* Center Panel: Displays the preview */}
-					<div style={styles.canvasContainer}>
-						{isEditMode && ObjectEditor && (
-							<ObjectEditor
-								object={currentObject}
-								offset={this.getOffset()}
-								onUpdate={(object) =>
-									this.updateObject(selectedObjectIndex, object)
-								}
-								onClose={() => this.setState({ mode: modes.FREE })}
-								width={width}
-								height={height}
+					<div
+						className={cx('container', this.props.className)}
+						onMouseMove={this.onDrag.bind(this)}
+						onMouseUp={this.stopDrag.bind(this)}
+					>
+						{/* Left Panel: Displays insertion tools (shapes, images, etc.) */}
+						{InsertMenuComponent && (
+							<InsertMenuComponent
+								type={type}
+								tools={objectTypes}
+								currentTool={selectedTool}
+								onSelect={this.selectTool.bind(this)}
+								onTypeChange={(value) => this.onTypeChange(value)}
 							/>
 						)}
 
-						{showHandler && (
-							<Handler
-								boundingBox={handler}
-								canResize={
-									_(currentObject).has('width') ||
-									_(currentObject).has('height')
-								}
-								canRotate={_(currentObject).has('rotate')}
-								onMouseLeave={this.hideHandler.bind(this)}
-								onDoubleClick={this.showEditor.bind(this)}
-								onDrag={this.startDrag.bind(this, modes.DRAG)}
-								onResize={this.startDrag.bind(this, modes.SCALE)}
-								onRotate={this.startDrag.bind(this, modes.ROTATE)}
-							/>
-						)}
+						{/* Center Panel: Displays the preview */}
+						<div
+							className={'canvasContainer'}
+							style={{
+								width: canvasWidth,
+								height: canvasHeight,
+							}}
+						>
+							{isEditMode && ObjectEditor && (
+								<ObjectEditor
+									object={currentObject}
+									offset={this.getOffset()}
+									onUpdate={(object) =>
+										this.updateObject(selectedObjectIndex, object)
+									}
+									onClose={() => this.setState({ mode: modes.FREE })}
+									width={width}
+									height={height}
+								/>
+							)}
 
-						{this.renderSVG()}
-					</div>
+							{showHandler && (
+								<Handler
+									boundingBox={handler}
+									canResize={
+										_(currentObject).has('width') ||
+										_(currentObject).has('height')
+									}
+									canRotate={_(currentObject).has('rotate')}
+									onMouseLeave={this.hideHandler.bind(this)}
+									onDoubleClick={this.showEditor.bind(this)}
+									onDrag={this.startDrag.bind(this, modes.DRAG)}
+									onResize={this.startDrag.bind(this, modes.SCALE)}
+									onRotate={this.startDrag.bind(this, modes.ROTATE)}
+								/>
+							)}
 
-					{/* Right Panel: Displays text,
+							{this.renderSVG()}
+						</div>
+
+						{/* Right Panel: Displays text,
 					 styling and sizing tools */}
-					{/* {showPropertyPanel && (
-						<PanelList
-							offset={this.getOffset()}
-							object={objectWithInitial}
-							onArrange={this.handleArrange.bind(this)}
-							onChange={this.handleObjectChange.bind(this)}
-							onDelete={this.removeCurrent.bind(this)}
-							objectComponent={objectComponent}
-						/>
-					)}*/}
-					<div style={{ minWidth: 250 }}>
-						{showPropertyPanel ? (
-							<PanelList
-								offset={this.getOffset()}
-								object={objectWithInitial}
-								onArrange={this.handleArrange.bind(this)}
-								onChange={this.handleObjectChange.bind(this)}
-								onDelete={this.removeCurrent.bind(this)}
-								objectComponent={objectComponent}
-								onObjectSelect={this.updateSelectedObjectIndex.bind(this)}
-								objects={this.props.objects}
-							/>
-						) : (
-							<ObjectList
-								objects={this.props.objects}
-								onObjectSelect={this.updateSelectedObjectIndex.bind(this)}
-								clusterList={this.props.clusterList}
-								onChange={this.updateObject.bind(this)}
-								onAddClusterClick={this.props.onAddClusterClick}
-							/>
-						)}
+
+						<div className="propertiesPanelContainer">
+							{showPropertyPanel ? (
+								<PanelList
+									offset={this.getOffset()}
+									object={objectWithInitial}
+									onArrange={this.handleArrange.bind(this)}
+									onChange={this.handleObjectChange.bind(this)}
+									onDelete={this.removeCurrent.bind(this)}
+									objectComponent={objectComponent}
+									onObjectSelect={this.updateSelectedObjectIndex.bind(this)}
+									objects={this.props.objects}
+								/>
+							) : (
+								<ObjectList
+									objects={this.props.objects}
+									onObjectSelect={this.updateSelectedObjectIndex.bind(this)}
+									clusterList={this.props.clusterList}
+									onChange={this.updateObject.bind(this)}
+									onAddClusterClick={this.props.onAddClusterClick}
+								/>
+							)}
+						</div>
 					</div>
-				</div>
-			</HotKeys>
+				</HotKeys>
+			</div>
 		);
 	}
 }

@@ -1,0 +1,45 @@
+.empty {
+	display: none;
+}
+
+.columns {
+	overflow: hidden;
+	margin-top: 10px;
+
+	&__title {
+		padding: 3px;
+		color: #333;
+		white-space: nowrap;
+		margin-bottom: 8px;
+		// width: 60px;
+		// overflow: hidden;
+		// text-overflow: ellipsis;
+	}
+
+	.inline {
+		display: flex;
+		margin-top: 8px;
+	}
+
+	.block {
+		margin-top: 8px;
+	}
+
+	&__inline {
+		display: flex;
+		align-items: center;
+
+		label {
+			margin-right: 12px;
+			margin-bottom: 0;
+		}
+
+		.inline {
+			margin-top: 0px;
+		}
+
+		.block {
+			margin-top: 0px;
+		}
+	}
+}

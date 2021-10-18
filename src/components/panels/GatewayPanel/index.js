@@ -1,4 +1,6 @@
 import React from 'react';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import has from 'lodash/has';
 
 import styles from './index.module.css';
@@ -8,10 +10,9 @@ import { clusterOptions, TYPES } from '../../../constants';
 import Column from '../Column';
 import Columns from '../Columns';
 import PropertyGroup from '../PropertyGroup';
-import Input from '../../widgets/Input';
 import Select from '../../widgets/Select';
 
-export default class GatewayPanel extends React.Component {
+class GatewayPanel extends React.Component {
 	onPlotValueChange(key, value) {
 		const { onChange, object } = this.props;
 		onChange('plot', {
@@ -37,15 +38,14 @@ export default class GatewayPanel extends React.Component {
 		return (
 			<PropertyGroup>
 				<Columns label="Mac ID">
-					<Column>
-						{has(object, 'macId') && (
-							<input
-								className={[styles.input, styles.gatewayInput]}
-								value={object.macId}
-								onChange={(e) => this.props.onChange('macId', e.target.value)}
-							/>
-						)}
-					</Column>
+					{has(object, 'macId') && (
+						<Column
+							label="Mac ID"
+							className={[styles.input, styles.gatewayInput]}
+							value={object.macId}
+							onChange={(e) => this.props.onChange('macId', e.target.value)}
+						/>
+					)}
 				</Columns>
 				<Columns label="Cluster Type">
 					<Column>
@@ -77,72 +77,71 @@ export default class GatewayPanel extends React.Component {
 					</Column>
 				</Columns>
 
-				<Columns label="Physical Coords">
-					<Column label="x (meters)" helperStyle={styles.coordsHelper}>
-						{has(object, 'x') && (
-							<Input
-								type="number"
-								className={styles.coordinateInput}
-								value={object.x}
-								onChange={(e) => this.props.onChange('x', e.target.value)}
-							/>
-						)}
-					</Column>
-					<Column label="y (meters)" helperStyle={styles.coordsHelper}>
-						{has(object, 'y') && (
-							<Input
-								type="number"
-								className={styles.coordinateInput}
-								value={object.y}
-								onChange={(e) => this.props.onChange('y', e.target.value)}
-							/>
-						)}
-					</Column>
-					<Column label="z (meters)" helperStyle={styles.coordsHelper}>
-						{has(object, 'z') && (
-							<Input
-								type="number"
-								className={styles.coordinateInput}
-								value={object.z}
-								onChange={(e) => this.props.onChange('z', e.target.value)}
-							/>
-						)}
-					</Column>
+				<Columns label="Physical Coords" inline>
+					{has(object, 'x') && (
+						<Column
+							disabled
+							label="x"
+							type="number"
+							value={object.x}
+							onChange={(value) => this.props.onChange('x', value)}
+						/>
+					)}
+					{has(object, 'y') && (
+						<Column
+							disabled
+							label="y"
+							type="number"
+							value={object.y}
+							onChange={(value) => this.props.onChange('y', value)}
+						/>
+					)}
+					{has(object, 'z') && (
+						<Column
+							disabled
+							label="z"
+							type="number"
+							value={object.z}
+							onChange={(value) => this.props.onChange('z', value)}
+						/>
+					)}
 				</Columns>
 
-				<Columns label="Plot Coords">
-					<Column label="x (meters)" helperStyle={styles.coordsHelper}>
-						{has(object.plot, 'x') && (
-							<Input
-								type="number"
-								className={styles.coordinateInput}
-								value={object.plot.x}
-								onChange={(e) => this.onPlotValueChange('x', e.target.value)}
-							/>
-						)}
-					</Column>
-					<Column label="y (meters)" helperStyle={styles.coordsHelper}>
-						{has(object.plot, 'y') && (
-							<Input
-								type="number"
-								className={styles.coordinateInput}
-								value={object.plot.y}
-								onChange={(e) => this.onPlotValueChange('y', e.target.value)}
-							/>
-						)}
-					</Column>
-					<Column label="z (meters)" helperStyle={styles.coordsHelper}>
-						{has(object.plot, 'z') && (
-							<Input
-								type="number"
-								className={styles.coordinateInput}
-								value={object.plot.z}
-								onChange={(e) => this.onPlotValueChange('z', e.target.value)}
-							/>
-						)}
-					</Column>
+				<Columns label="Plot Coords" inline>
+					{has(object.plot, 'x') && (
+						<Column
+							label="x"
+							type="number"
+							value={object.plot.x}
+							onChange={(value) => this.onPlotValueChange('x', value)}
+						/>
+					)}
+					{has(object.plot, 'y') && (
+						<Column
+							label="y"
+							type="number"
+							value={object.plot.y}
+							onChange={(value) => this.onPlotValueChange('y', value)}
+						/>
+					)}
+					{has(object.plot, 'z') && (
+						<Column
+							label="z"
+							type="number"
+							value={object.plot.z}
+							onChange={(value) => this.onPlotValueChange('z', value)}
+						/>
+					)}
 				</Columns>
 			</PropertyGroup>
 		);
 	}
 }
+
+GatewayPanel.propTypes = {
+	object: PropTypes.object,
+	objects: PropTypes.object,
+	onChange: PropTypes.func.isRequired,
+};
+
+export default GatewayPanel;

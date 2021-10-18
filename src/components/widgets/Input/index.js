@@ -1,21 +1,42 @@
 import React from 'react';
-import styles from './index.module.css';
+import cx from 'classnames';
+import PropTypes from 'prop-types';
 
-const Input = ({ type, style, name, value, onChange }) => {
+import './index.scss';
+
+const Input = ({ label, type, disabled, className, name, value, onChange }) => {
+	const onInputChange = (e) => {
+		!disabled && onChange(e);
+	};
+
 	return (
-		<input
-			name={name}
-			type={type}
-			value={value}
-			className={[styles.input, style]}
-			onChange={onChange}
-		/>
+		<label className="inputContainer">
+			{label && <span className="icon">{label}</span>}
+			<input
+				name={name}
+				type={type}
+				value={value}
+				className={cx('input', disabled && 'disabled', className)}
+				onChange={onInputChange}
+			/>
+		</label>
 	);
 };
 
 Input.defaultProps = {
 	type: 'text',
 	name: '',
+	disabled: false,
+};
+
+Input.propTypes = {
+	name: PropTypes.string,
+	type: PropTypes.string,
+	label: PropTypes.string,
+	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	disabled: PropTypes.bool,
+	className: PropTypes.string,
+	onChange: PropTypes.func.isRequired,
 };
 
 export default Input;

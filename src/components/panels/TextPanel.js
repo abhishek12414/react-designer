@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import has from 'lodash/has';
 
-
 import styles from './styles';
 import PropertyGroup from './PropertyGroup';
 import SwitchState from './SwitchState';
@@ -11,9 +10,7 @@ import Input from '../widgets/Input';
 import Select from '../widgets/Select';
 import { fontFamilies } from '../../constants';
 
-export default class TextPanel extends Component {
-
-
+class TextPanel extends Component {
 	handleFontFamilyChange = (e) => {
 		const value = e.target.value;
 		WebFont.load({
@@ -101,3 +98,5 @@ export default class TextPanel extends Component {
 		);
 	}
 }
+
+export default TextPanel;

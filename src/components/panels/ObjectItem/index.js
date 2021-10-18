@@ -81,9 +81,9 @@ const ObjectItem = ({
 
 ObjectItem.propTypes = {
 	name: PropTypes.string,
-	elementType: PropTypes.string,
+	elementType: PropTypes.string.isRequired,
 	type: PropTypes.string,
-	clusterList: PropTypes.array,
+	clusterList: PropTypes.array.isRequired,
 	clusterId: PropTypes.string,
 	onClick: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
