@@ -16,7 +16,7 @@ class SizePanel extends Component {
 	}
 
 	render() {
-		let { object } = this.props;
+		let { object, onChange } = this.props;
 		return (
 			<PropertyGroup object={object}>
 				<Columns label="Label Property">
@@ -24,7 +24,7 @@ class SizePanel extends Component {
 						label="Name"
 						value={object.name || ''}
 						inputStyle={{ width: '130px' }}
-						onChange={this.props.onChange.bind(this, 'name')}
+						onChange={onChange.bind(this, 'name')}
 					/>
 					{has(object.labelCoordinates, 'x', 'y') && (
 						<div style={{ display: 'flex' }}>
@@ -54,7 +54,7 @@ class SizePanel extends Component {
 							type="number"
 							showIf={has(object, 'width')}
 							value={object.width}
-							onChange={this.props.onChange.bind(this, 'width')}
+							onChange={onChange.bind(this, 'width')}
 						/>
 						<Column
 							disabled
@@ -62,7 +62,7 @@ class SizePanel extends Component {
 							type="number"
 							showIf={has(object, 'height')}
 							value={object.height}
-							onChange={this.props.onChange.bind(this, 'height')}
+							onChange={onChange.bind(this, 'height')}
 						/>
 					</Columns>
 				)}
@@ -74,7 +74,7 @@ class SizePanel extends Component {
 						showIf={has(object, 'x')}
 						value={object.x}
 						readOnly={true}
-						onChange={this.props.onChange.bind(this, 'x')}
+						onChange={onChange.bind(this, 'x')}
 					/>
 					<Column
 						disabled
@@ -83,7 +83,7 @@ class SizePanel extends Component {
 						showIf={has(object, 'y')}
 						value={object.y}
 						readOnly={true}
-						onChange={this.props.onChange.bind(this, 'y')}
+						onChange={onChange.bind(this, 'y')}
 					/>
 				</Columns>
 				{/* {has(object, "rotate") && (
@@ -92,7 +92,7 @@ class SizePanel extends Component {
               label="angle"
               value={object.rotate}
               readOnly={true}
-              onChange={this.props.onChange.bind(this, "rotate")}
+              onChange={onChange.bind(this, "rotate")}
             />
           </Columns>
         )} */}
@@ -116,8 +116,8 @@ class SizePanel extends Component {
 
 SizePanel.propTypes = {
 	object: PropTypes.object,
-	onChange: PropTypes.func,
-	onDelete: PropTypes.func,
+	onDelete: PropTypes.func.isRequired,
+	onChange: PropTypes.func.isRequired,
 };
 
 export default SizePanel;

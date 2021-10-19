@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import has from 'lodash/has';
 
-import styles from './styles';
 import PropertyGroup from './PropertyGroup';
 import SwitchState from './SwitchState';
 import Column from './Column';
@@ -9,6 +8,7 @@ import WebFont from 'webfontloader';
 import Input from '../widgets/Input';
 import Select from '../widgets/Select';
 import { fontFamilies } from '../../constants';
+import Columns from './Columns';
 
 class TextPanel extends Component {
 	handleFontFamilyChange = (e) => {
@@ -32,8 +32,8 @@ class TextPanel extends Component {
 		let { object } = this.props;
 		return (
 			<PropertyGroup showIf={has(object, 'text')}>
-				<div style={styles.columns}>
-					<Column style={{ float: 'right', marginRight: 15 }}>
+				<Columns label="Styles" rowInline>
+					<Column>
 						{has(object, 'fontWeight') && (
 							<SwitchState
 								icon="format-bold"
@@ -62,38 +62,31 @@ class TextPanel extends Component {
 							/>
 						)}
 					</Column>
-					<Column style={{ float: 'right' }}>
-						{has(object, 'fontSize') && (
-							<Input
-								style={{ ...styles.input, ...styles.integerInput, width: 35 }}
-								value={object.fontSize}
-								onChange={(e) =>
-									this.props.onChange('fontSize', e.target.value)
-								}
-							/>
-						)}
-					</Column>
-					<Column style={{ float: 'right', marginRight: 10 }}>
-						<Select
-							style={styles.select}
-							value={object.fontFamily}
-							options={fontFamilies
-								.sort(this.sortFonts)
-								.map(({ name, family }) => ({
-									label: name,
-									value: family,
-								}))}
-							onChange={this.handleFontFamilyChange}
-						/>
-					</Column>
-					<div style={{ ...styles.row, paddingTop: 25, paddingRight: 10 }}>
-						<Input
-							style={{ ...styles.input, ...styles.textInput }}
-							onChange={(e) => this.props.onChange('text', e.target.value)}
-							value={object.text}
-						/>
-					</div>
-				</div>
+				</Columns>
+				{has(object, 'fontSize') && (
+					<Column
+						label="Size"
+						value={object.fontSize}
+						onChange={(e) => this.props.onChange('fontSize', e.target.value)}
+					/>
+				)}
+				<Column
+					label="Text"
+					value={object.text}
+					onChange={(e) => this.props.onChange('text', e.target.value)}
+				/>
+				<Columns label="Font Family" rowInline>
+					<Select
+						value={object.fontFamily}
+						options={fontFamilies
+							.sort(this.sortFonts)
+							.map(({ name, family }) => ({
+								label: name,
+								value: family,
+							}))}
+						onChange={this.handleFontFamilyChange}
+					/>
+				</Columns>
 			</PropertyGroup>
 		);
 	}

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import has from 'lodash/has';
 import PropertyGroup from './PropertyGroup';
 import Columns from './Columns';
 import Column from './Column';
 import Dropzone from 'react-dropzone';
 
-export default class ImagePanel extends Component {
+class ImagePanel extends Component {
 	onDrop(acceptedFiles) {
 		if (acceptedFiles.length == 0) {
 			return;
@@ -60,3 +61,10 @@ export default class ImagePanel extends Component {
 		);
 	}
 }
+
+ImagePanel.propTypes = {
+	object: PropTypes.object.isRequired,
+	onChange: PropTypes.func.isRequired,
+};
+
+export default ImagePanel;

@@ -15,7 +15,7 @@ const PanelList = ({ id, objectComponent, ...rest }) => {
 
 PanelList.propTypes = {
 	id: PropTypes.string,
-	objectComponent: PropTypes.object,
+	objectComponent: PropTypes.func,
 };
 
 export default PanelList;

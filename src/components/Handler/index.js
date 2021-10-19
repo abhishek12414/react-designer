@@ -1,48 +1,59 @@
 import React, { Component, useState } from 'react';
+import cx from 'classnames';
+import PropTypes from 'prop-types';
 
-function ScaleAnchor(props) {
-	let { boundingBox } = props;
+import './index.scss';
+
+function ScaleAnchor({ boundingBox, onMouseDown }) {
 	let style = {
 		marginTop: boundingBox.height + 5,
 		marginLeft: boundingBox.width + 5,
 	};
+
 	let [anchorHovered, setAnchorHovered] = useState(false);
+
 	return (
 		<div
+			className={cx('anchor', anchorHovered && 'anchorHovered', 'scaleAnchor')}
 			style={{
-				...styles.anchor,
-				...(anchorHovered ? styles.anchorHovered : {}),
-				...styles.scaleAnchor,
 				...style,
 			}}
-			className={'resize-anchor'}
 			onMouseOver={() => setAnchorHovered(true)}
 			onMouseOut={() => setAnchorHovered(false)}
-			onMouseDown={props.onMouseDown}
+			onMouseDown={onMouseDown}
 		/>
 	);
 }
 
-function RotateAnchor(props) {
+ScaleAnchor.propTypes = {
+	boundingBox: PropTypes.object.isRequired,
+	onMouseDown: PropTypes.func.isRequired,
+};
+
+function RotateAnchor({ boundingBox, onMouseDown }) {
 	let style = {
-		marginLeft: props.boundingBox.width + 5,
+		marginLeft: boundingBox.width + 5,
 	};
+
 	let [anchorHovered, setAnchorHovered] = useState(false);
+
 	return (
 		<div
+			className={cx('anchor', anchorHovered && 'anchorHovered', 'rotateAnchor')}
 			style={{
-				...styles.anchor,
-				...(anchorHovered ? styles.anchorHovered : {}),
-				...styles.rotateAnchor,
 				...style,
 			}}
-			className={'rotate-anchor'}
 			onMouseOver={() => setAnchorHovered(true)}
 			onMouseOut={() => setAnchorHovered(false)}
-			onMouseDown={props.onMouseDown}
+			onMouseDown={onMouseDown}
 		/>
 	);
 }
+
+RotateAnchor.propTypes = {
+	boundingBox: PropTypes.object.isRequired,
+	onMouseDown: PropTypes.func.isRequired,
+};
 
 class Handler extends Component {
 	onMouseDown(event) {
@@ -54,11 +65,17 @@ class Handler extends Component {
 	}
 
 	render() {
-		let { props } = this;
-		let { boundingBox } = props;
+		let {
+			boundingBox,
+			canRotate,
+			canResize,
+			onMouseLeave,
+			onDoubleClick,
+			onResize,
+			onRotate,
+		} = this.props;
 
 		let handlerStyle = {
-			...styles.handler,
 			...boundingBox,
 			width: boundingBox.width + 10,
 			height: boundingBox.height + 10,
@@ -71,52 +88,30 @@ class Handler extends Component {
 			<div
 				className={'handler'}
 				style={handlerStyle}
-				onMouseLeave={props.onMouseLeave}
-				onDoubleClick={props.onDoubleClick}
+				onMouseLeave={onMouseLeave}
+				onDoubleClick={onDoubleClick}
 				onMouseDown={this.onMouseDown.bind(this)}
 			>
-				{props.canRotate && (
-					<RotateAnchor
-						onMouseDown={props.onRotate}
-						boundingBox={boundingBox}
-					/>
+				{canRotate && (
+					<RotateAnchor onMouseDown={onRotate} boundingBox={boundingBox} />
 				)}
-				{props.canResize && (
-					<ScaleAnchor onMouseDown={props.onResize} boundingBox={boundingBox} />
+				{canResize && (
+					<ScaleAnchor onMouseDown={onResize} boundingBox={boundingBox} />
 				)}
 			</div>
 		);
 	}
 }
 
-const styles = {
-	handler: {
-		position: 'absolute',
-		border: '2px solid #dedede',
-		zIndex: 999999,
-	},
-	anchor: {
-		width: 10,
-		height: 10,
-	},
-	anchorHovered: {
-		borderColor: 'gray',
-	},
-	scaleAnchor: {
-		marginTop: -3,
-		borderRight: '2px solid #dedede',
-		borderBottom: '2px solid #dedede',
-		position: 'absolute',
-		zIndex: -1,
-	},
-	rotateAnchor: {
-		marginTop: -8,
-		borderRight: '2px solid #dedede',
-		borderTop: '2px solid #dedede',
-		position: 'absolute',
-		borderTopRightRadius: 3,
-		zIndex: -1,
-	},
+Handler.propTypes = {
+	canRotate: PropTypes.bool,
+	canResize: PropTypes.bool,
+	boundingBox: PropTypes.object.isRequired,
+	onDrag: PropTypes.func.isRequired,
+	onResize: PropTypes.func.isRequired,
+	onRotate: PropTypes.func,
+	onMouseLeave: PropTypes.func.isRequired,
+	onDoubleClick: PropTypes.func.isRequired,
 };
 
 export default Handler;

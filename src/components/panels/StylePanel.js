@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import has from 'lodash/has';
 
-import styles from './styles';
 import PropertyGroup from './PropertyGroup';
 import Columns from './Columns';
 import Column from './Column';
@@ -11,7 +10,7 @@ import { blendModes, TYPES } from '../../constants';
 
 class StylePanel extends Component {
 	render() {
-		let { object } = this.props;
+		let { object, onChange } = this.props;
 
 		if (object.elementType === TYPES.GATEWAY) {
 			return null;
@@ -23,38 +22,35 @@ class StylePanel extends Component {
 					<Column
 						type="color"
 						value={object.fill}
-						onChange={this.props.onChange.bind(this, 'fill')}
+						onChange={onChange.bind(this, 'fill')}
 					/>
 					<Column
 						type="number"
 						label="Opacity"
 						value={object.fillOpacity}
 						style={{ width: 30 }}
-						className={[styles.input, styles.integerInput]}
-						onChange={(e) => this.props.onChange('fillOpacity', e.target.value)}
+						onChange={onChange.bind(this, 'fillOpacity')}
 					/>
 				</Columns>
 				<Columns label="Stroke" inline>
 					<Column
 						type="color"
 						value={object.stroke}
-						onChange={this.props.onChange.bind(this, 'stroke')}
+						onChange={onChange.bind(this, 'stroke')}
 					/>
 					<Column
 						label="width"
 						type="number"
 						value={object.strokeWidth}
 						style={{ width: 30 }}
-						className={[styles.input, styles.integerInput]}
-						onChange={(e) => this.props.onChange('strokeWidth', e.target.value)}
+						onChange={onChange.bind(this, 'strokeWidth')}
 					/>
 					<Column
 						showIf={has(object, 'radius')}
 						label="radius"
 						type="number"
 						value={object.radius}
-						style={[styles.input, styles.integerInput, { width: 30 }]}
-						onChange={(e) => this.props.onChange('radius', e.target.value)}
+						onChange={onChange.bind(this, 'radius')}
 					/>
 				</Columns>
 				<Columns label="Blending" rowInline>
@@ -62,7 +58,7 @@ class StylePanel extends Component {
 						name="Blending"
 						value={object.blendMode}
 						options={blendModes}
-						onChange={(e) => this.props.onChange('blendMode', e.target.value)}
+						onChange={(e) => onChange('blendMode', e.target.value)}
 					/>
 				</Columns>
 			</PropertyGroup>

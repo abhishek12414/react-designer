@@ -1,5 +1,12 @@
 export Preview from './Preview';
-export { Vector, Path, Rect, Ellipse, Text, Image } from './components/shared/objects';
+export {
+	Vector,
+	Path,
+	Rect,
+	Ellipse,
+	Text,
+	Image,
+} from './components/shared/objects';
 export {
 	TextPanel,
 	SizePanel,

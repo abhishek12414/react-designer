@@ -17,10 +17,11 @@ const Columns = ({ rowInline, inline, showIf, label, children }) => {
 };
 
 Columns.propTypes = {
-	showIf: PropTypes.bool,
-	children: PropTypes.node,
 	label: PropTypes.string,
+	showIf: PropTypes.bool,
 	inline: PropTypes.bool,
+	children: PropTypes.node,
+	rowInline: PropTypes.bool,
 };
 
 Columns.defaultProps = {

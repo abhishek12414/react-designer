@@ -136,7 +136,7 @@ class GatewayPanel extends React.Component {
 
 GatewayPanel.propTypes = {
 	object: PropTypes.object,
-	objects: PropTypes.object,
+	objects: PropTypes.array,
 	onChange: PropTypes.func.isRequired,
 };
 

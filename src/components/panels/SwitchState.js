@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Icon from '../shared/Icon';
 
 const SwitchState = (props) => {
@@ -11,6 +12,14 @@ const SwitchState = (props) => {
 			onClick={() => props.onChange(newValue)}
 		/>
 	);
+};
+
+SwitchState.propTypes = {
+	icon: PropTypes.string,
+	value: PropTypes.string,
+	nextState: PropTypes.string,
+	defaultValue: PropTypes.string,
+	onChange: PropTypes.func.isRequired,
 };
 
 export default SwitchState;

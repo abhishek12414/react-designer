@@ -9,14 +9,14 @@ import { SHAPES } from '../../../constants';
 class InsertMenu extends Component {
 	getKeys(type, tools) {
 		switch (type) {
-		case TYPES.MAP:
-			return Object.keys(tools).filter((i) => i !== SHAPES.gateway);
-		case TYPES.TRACK:
-			return Object.keys(tools).filter((i) => i === SHAPES.polygon);
-		case TYPES.GATEWAY:
-			return Object.keys(tools).filter((i) => i === SHAPES.gateway);
-		default:
-			return [];
+			case TYPES.MAP:
+				return Object.keys(tools).filter((i) => i !== SHAPES.gateway);
+			case TYPES.TRACK:
+				return Object.keys(tools).filter((i) => i === SHAPES.polygon);
+			case TYPES.GATEWAY:
+				return Object.keys(tools).filter((i) => i === SHAPES.gateway);
+			default:
+				return [];
 		}
 	}
 
@@ -37,7 +37,6 @@ class InsertMenu extends Component {
 					))}
 				</div>
 				<ul className="toolBox">
-					{console.log(type, tools, this.getKeys(type, tools))}
 					{this.getKeys(type, tools).map((elementType, i) => (
 						<li
 							className={cx(

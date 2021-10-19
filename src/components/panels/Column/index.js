@@ -38,11 +38,12 @@ const Column = ({
 Column.propTypes = {
 	showIf: PropTypes.bool,
 	type: PropTypes.string,
-	className: PropTypes.string,
+	disabled: PropTypes.bool,
 	children: PropTypes.node,
+	className: PropTypes.string,
 	value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	label: PropTypes.string,
-	onChange: PropTypes.func.isRequired,
+	onChange: PropTypes.func,
 };
 
 Column.defaultProps = {

@@ -114,7 +114,7 @@ class Designer extends Component {
 	}
 
 	newObject(event) {
-		let { mode, selectedTool } = this.state;
+		let { mode, selectedTool, type } = this.state;
 
 		this.resetSelection(event);
 
@@ -131,6 +131,7 @@ class Designer extends Component {
 			elementType: selectedTool,
 			x: mouse.x,
 			y: mouse.y,
+			type,
 		};
 
 		onUpdate([...objects, object]);
@@ -521,7 +522,6 @@ class Designer extends Component {
 			type,
 		} = this.state;
 
-		console.log('state ', this.state);
 		let { objects, objectTypes, insertMenu: InsertMenuComponent } = this.props;
 
 		let currentObject = objects[selectedObjectIndex],
