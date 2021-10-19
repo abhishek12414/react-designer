@@ -70,6 +70,7 @@ export default class Path extends Vector {
 			strokeWidth,
 			stroke,
 			closed,
+			name,
 			rotate,
 			moveX,
 			moveY,
