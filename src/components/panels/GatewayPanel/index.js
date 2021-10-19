@@ -1,9 +1,6 @@
 import React from 'react';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import has from 'lodash/has';
-
-import styles from './index.module.css';
 
 import { clusterOptions, TYPES } from '../../../constants';
 
@@ -41,13 +38,12 @@ class GatewayPanel extends React.Component {
 					{has(object, 'macId') && (
 						<Column
 							label="Mac ID"
-							className={[styles.input, styles.gatewayInput]}
 							value={object.macId}
 							onChange={(e) => this.props.onChange('macId', e.target.value)}
 						/>
 					)}
 				</Columns>
-				<Columns label="Cluster Type">
+				<Columns label="Cluster Type" rowInline>
 					<Column>
 						{has(object, 'gatewayClusterType') && (
 							<Select
@@ -62,7 +58,7 @@ class GatewayPanel extends React.Component {
 					</Column>
 				</Columns>
 
-				<Columns label="Cluster">
+				<Columns label="Cluster" rowInline>
 					<Column>
 						{has(object, 'clusterId') && (
 							<Select

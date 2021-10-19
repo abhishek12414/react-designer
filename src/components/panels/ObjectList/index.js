@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import './index.scss';
+
 import ObjectItem from '../ObjectItem';
-import styles from './index.module.css';
 
 const ObjectList = ({ objects, onChange, onObjectSelect, ...rest }) => {
 	return (
-		<div>
-			<div className={styles.panelHeader}>
-				<strong className={styles.propertyTitle}>Object List</strong>
+		<div className="objectList">
+			<div className={'panelHeader'}>
+				<strong className={'propertyTitle'}>Object List</strong>
 			</div>
 			<div style={{ height: '100vh', overflowY: 'scroll' }}>
 				{objects.map((obj, index) => (

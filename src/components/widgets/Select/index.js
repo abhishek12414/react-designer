@@ -1,7 +1,10 @@
 import React from 'react';
-import styles from './index.module.css';
+import cx from 'classnames';
+import PropTypes from 'prop-types';
 
-const Select = ({ style, options, name, value, onChange, ...rest }) => {
+import './index.scss';
+
+const Select = ({ className, options, name, value, onChange, ...rest }) => {
 	const getOptions = () => {
 		let clusterOptions = [];
 		if (typeof options[0] === 'string') {
@@ -29,7 +32,7 @@ const Select = ({ style, options, name, value, onChange, ...rest }) => {
 	return (
 		<select
 			name={name}
-			className={[styles.select, style]}
+			className={cx('select', className)}
 			value={value}
 			onChange={onChange}
 			{...rest}
@@ -37,6 +40,14 @@ const Select = ({ style, options, name, value, onChange, ...rest }) => {
 			{getOptions()}
 		</select>
 	);
+};
+
+Select.propTypes = {
+	name: PropTypes.string,
+	value: PropTypes.string,
+	options: PropTypes.array,
+	className: PropTypes.string,
+	onChange: PropTypes.func.isRequired,
 };
 
 Select.defaultProps = {

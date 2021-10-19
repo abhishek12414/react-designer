@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import './index.scss';
+
 import PropertyGroup from '../PropertyGroup';
 import Columns from '../Columns';
 import Column from '../Column';
 import Button from '../../widgets/Button';
-import styles from './index.module.css';
 import Icon from '../../shared/Icon';
 
 const ObjectItem = ({
@@ -32,15 +34,15 @@ const ObjectItem = ({
 	);
 
 	return (
-		<PropertyGroup>
-			<Columns label="Label">
+		<PropertyGroup className="propertyGroup">
+			<Columns label="Label" rowInline>
 				<Column name>
 					<p style={{ margin: 0, textTransform: 'capitalize' }}>
 						{name || elementType}
 					</p>
 				</Column>
 			</Columns>
-			<Columns label="Type">
+			<Columns label="Type" rowInline>
 				{type ? (
 					<div style={{ display: 'flex', alignItems: 'center' }}>
 						<Column>{type}</Column>
@@ -50,17 +52,17 @@ const ObjectItem = ({
 					</div>
 				) : null}
 			</Columns>
-			<Columns label="Shape">
+			<Columns label="Shape" rowInline>
 				<Column name>
 					<p style={{ margin: 0, textTransform: 'capitalize' }}>
 						{elementType}
 					</p>
 				</Column>
 			</Columns>
-			<Columns label="Cluster">
+			<Columns label="Cluster" rowInline>
 				<Column>
 					<div style={{ display: 'flex' }}>
-						<Button style={styles.fabButton} onClick={onAddClusterClick}>
+						<Button style={'fabButton'} onClick={onAddClusterClick}>
 							+
 						</Button>
 						<select
@@ -72,8 +74,10 @@ const ObjectItem = ({
 					</div>
 				</Column>
 			</Columns>
-			<Columns label="Edit">
-				<Button onClick={onClick}>Edit</Button>
+			<Columns label="Edit" rowInline>
+				<Column>
+					<Button onClick={onClick}>Edit</Button>
+				</Column>
 			</Columns>
 		</PropertyGroup>
 	);
