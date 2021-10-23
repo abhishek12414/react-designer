@@ -1,0 +1,16 @@
+.designer .keyboardManager {
+	outline: none;
+}
+.designer .container {
+	padding: 0;
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+	flex-direction: row;
+}
+.designer .container .canvasContainer {
+	position: relative;
+}
+.designer .container .propertiesPanelContainer {
+	width: 300;
+}
