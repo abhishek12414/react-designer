@@ -4,11 +4,11 @@
 	"description": "Easy to configure, lightweight, editable vector graphics in your react components.",
 	"main": "dist/index.js",
 	"scripts": {
-		"start": "webpack-dev-server --mode development",
+		"start": "webpack-dev-server --config webpack.dev.js",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"transpile": "babel src -d dist --copy-files",
 		"prePublishOnly": "npm run transpile",
-		"build": "webpack --mode production",
+		"build": "webpack --config webpack.production.js ",
 		"deploy": "gh-pages -d examples/dist",
 		"publish-demo": "npm run build && npm run deploy",
 		"format": "prettier --write \"src/**/*.js\"",
@@ -42,19 +42,21 @@
 		"husky": "^7.0.2",
 		"prettier": "2.4.1",
 		"react": "^16.8.0",
-		"react-dom": "^16.8.0",
-		"style-loader": "^3.3.0",
-		"webpack": "^5.58.1",
-		"webpack-cli": "^4.9.0",
-		"webpack-dev-server": "^4.3.1",
 		"react-autocomplete": "1.8.1",
+		"react-dom": "^16.8.0",
 		"react-dropzone": "^11.4.2",
 		"react-hot-loader": "^4.13.0",
 		"rimraf": "^3.0.2",
+		"sass": "^1.43.2",
+		"sass-loader": "^12.2.0",
+		"style-loader": "^3.3.0",
 		"superagent": "*",
 		"svg-inline-loader": "^0.8.2",
 		"url-loader": "^4.1.1",
-		"webfontloader": "^1.6.28"
+		"webfontloader": "^1.6.28",
+		"webpack": "^5.58.1",
+		"webpack-cli": "^4.9.0",
+		"webpack-dev-server": "^4.3.1"
 	},
 	"peerDependencies": {
 		"react": "^16.8.0",
@@ -63,10 +65,9 @@
 	"dependencies": {
 		"classnames": "^2.2.6",
 		"lodash": ">=4.17.11",
-		"react-color": "^2.17.3",
+		"prop-types": "^15.7.2",
 		"react-hotkeys": "^1.1.4",
 		"react-portal": "^4.2.0",
-		"superagent": "*",
 		"webfontloader": "^1.6.28"
 	},
 	"husky": {

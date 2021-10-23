@@ -1,10 +1,19 @@
+import Designer from './components/Designer';
 export Preview from './Preview';
-export { Vector, Path, Rect, Circle, Text, Image } from './objects';
+export {
+	Vector,
+	Path,
+	Rect,
+	Ellipse,
+	Text,
+	Image,
+} from './components/shared/objects';
 export {
 	TextPanel,
 	SizePanel,
 	StylePanel,
 	ArrangePanel,
 	ImagePanel,
-} from './panels';
-export default from './Designer';
+} from './components/panels';
+
+export default Designer;

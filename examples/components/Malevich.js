@@ -9,7 +9,7 @@ export default class extends Component {
       "fill": "rgba(236, 181, 114, 1)",
       "strokeWidth": 0,
       "blendMode": "normal",
-      "type": "circle",
+      "elementType": "ellipse",
       "x": 116,
       "y": 34.5625,
       "height": null
@@ -36,7 +36,7 @@ export default class extends Component {
       }],
       "stroke": "gray",
       "strokeWidth": "0",
-      "type": "polygon",
+      "elementType": "polygon",
       "x": 47,
       "y": 65.5625
     }, {
@@ -62,7 +62,7 @@ export default class extends Component {
       }],
       "stroke": "gray",
       "strokeWidth": "0",
-      "type": "polygon",
+      "elementType": "polygon",
       "x": 22,
       "y": 259.5625
     }, {
@@ -88,7 +88,7 @@ export default class extends Component {
       }],
       "stroke": "gray",
       "strokeWidth": "0",
-      "type": "polygon",
+      "elementType": "polygon",
       "x": 48,
       "y": 212.5625
     }, {
@@ -114,7 +114,7 @@ export default class extends Component {
       }],
       "stroke": "gray",
       "strokeWidth": "0",
-      "type": "polygon",
+      "elementType": "polygon",
       "x": 71,
       "y": 183.5625
     }, {
@@ -140,7 +140,7 @@ export default class extends Component {
       }],
       "stroke": "gray",
       "strokeWidth": "0",
-      "type": "polygon",
+      "elementType": "polygon",
       "x": 77,
       "y": 314.5625
     }, {
@@ -166,7 +166,7 @@ export default class extends Component {
       }],
       "stroke": "gray",
       "strokeWidth": "0",
-      "type": "polygon",
+      "elementType": "polygon",
       "x": 176,
       "y": 381.5625
     }, {
@@ -192,7 +192,7 @@ export default class extends Component {
       }],
       "stroke": "gray",
       "strokeWidth": "0",
-      "type": "polygon",
+      "elementType": "polygon",
       "x": 96,
       "y": 6.5625
     }, {
@@ -218,7 +218,7 @@ export default class extends Component {
       }],
       "stroke": "gray",
       "strokeWidth": "0",
-      "type": "polygon",
+      "elementType": "polygon",
       "x": 70,
       "y": 39.5625
     }, {
@@ -244,7 +244,7 @@ export default class extends Component {
       }],
       "stroke": "gray",
       "strokeWidth": "0",
-      "type": "polygon",
+      "elementType": "polygon",
       "x": 86,
       "y": 51.5625
     }, {
@@ -270,7 +270,7 @@ export default class extends Component {
       }],
       "stroke": "gray",
       "strokeWidth": "0",
-      "type": "polygon",
+      "elementType": "polygon",
       "x": 123,
       "y": 168.5625
     }, {
@@ -296,7 +296,7 @@ export default class extends Component {
       }],
       "stroke": "gray",
       "strokeWidth": "0",
-      "type": "polygon",
+      "elementType": "polygon",
       "x": 135,
       "y": 120.5625
     }, {
@@ -322,7 +322,7 @@ export default class extends Component {
       }],
       "stroke": "gray",
       "strokeWidth": "0",
-      "type": "polygon",
+      "elementType": "polygon",
       "x": 337,
       "y": 78.5625
     }, {
@@ -348,7 +348,7 @@ export default class extends Component {
       }],
       "stroke": "gray",
       "strokeWidth": "0",
-      "type": "polygon",
+      "elementType": "polygon",
       "x": 138,
       "y": 51.5625
     }, {
@@ -374,7 +374,7 @@ export default class extends Component {
       }],
       "stroke": "gray",
       "strokeWidth": "0",
-      "type": "polygon",
+      "elementType": "polygon",
       "x": 8,
       "y": 292.5625
     }, {
@@ -400,7 +400,7 @@ export default class extends Component {
       }],
       "stroke": "gray",
       "strokeWidth": "0",
-      "type": "polygon",
+      "elementType": "polygon",
       "x": 316,
       "y": -7.4375
     }]
