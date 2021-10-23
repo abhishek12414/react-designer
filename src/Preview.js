@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import SVGRenderer from './SVGRenderer';
+import SVGRenderer from './components/SVGRenderer';
 
-import { Text, Path, Rect, Ellipse, Image } from './objects';
+import { Text, Path, Rect, Ellipse, Image } from './components/shared/objects';
 
 class Preview extends Component {
 	static defaultProps = {

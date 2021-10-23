@@ -1,3 +1,4 @@
+import Designer from './components/Designer';
 export Preview from './Preview';
 export {
 	Vector,
@@ -14,4 +15,5 @@ export {
 	ArrangePanel,
 	ImagePanel,
 } from './components/panels';
-export default from './components/Designer';
+
+export default Designer;
