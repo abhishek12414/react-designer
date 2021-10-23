@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 
-import './index.scss';
+import './index.css';
 
 const Button = ({ className, name, onClick, ...props }) => {
 	let _onClick = (e, ...args) => {

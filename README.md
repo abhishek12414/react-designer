@@ -121,9 +121,12 @@ You can register this object type in your `Designer` instance.
     objectTypes={{rectangle: MyRectangle}}
     width={500}
     height={500}
+    objects={[]}
+    clusterList={[]}
     onUpdate={...}
-    objects={...}
-    onUpdate={...} />
+    onDelete={...}
+    onAddClusterClick={...}
+  />
 ```
 
 Apart from meta options, the vectors have `panels` static definition which contains the available panels of their.

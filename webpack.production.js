@@ -8,16 +8,17 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({
 });
 
 module.exports = {
+	mode: 'production',
 	entry: path.join(__dirname, 'examples/index.js'),
 	output: {
-		path: path.join(__dirname, 'examples/dist'),
-		filename: 'bundle.js',
+		path: path.join(__dirname, 'dist'),
+		filename: 'index.js',
 	},
 	plugins: [htmlWebpackPlugin],
 	resolve: {
 		extensions: ['.js', '.jsx'],
 	},
-	devtool: 'inline-source-map',
+	// devtool: 'source-map',
 	devServer: {
 		port: 4008,
 		hot: true,

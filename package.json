@@ -4,11 +4,11 @@
 	"description": "Easy to configure, lightweight, editable vector graphics in your react components.",
 	"main": "dist/index.js",
 	"scripts": {
-		"start": "webpack-dev-server --mode development",
+		"start": "webpack-dev-server --config webpack.dev.js",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"transpile": "babel src -d dist --copy-files",
 		"prePublishOnly": "npm run transpile",
-		"build": "webpack --mode production",
+		"build": "webpack --config webpack.production.js ",
 		"deploy": "gh-pages -d examples/dist",
 		"publish-demo": "npm run build && npm run deploy",
 		"format": "prettier --write \"src/**/*.js\"",

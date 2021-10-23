@@ -3,16 +3,14 @@
 	z-index: 999999;
 	position: absolute;
 }
-
 .anchor {
 	width: 10;
 	height: 10;
-	&:active,
-	&:hover {
-		border-color: #4b4848;
-	}
 }
-
+.anchor:active,
+.anchor:hover {
+	border-color: #4b4848;
+}
 .scaleAnchor {
 	z-index: -1;
 	position: absolute;
@@ -20,7 +18,6 @@
 	border-right: 2px solid #dedede;
 	border-bottom: 2px solid #dedede;
 }
-
 .rotateAnchor {
 	z-index: -1;
 	position: absolute;

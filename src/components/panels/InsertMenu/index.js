@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import './index.scss';
+import './index.css';
 
 import { TYPES } from '../../../constants';
 import { SHAPES } from '../../../constants';
@@ -9,14 +9,14 @@ import { SHAPES } from '../../../constants';
 class InsertMenu extends Component {
 	getKeys(type, tools) {
 		switch (type) {
-			case TYPES.MAP:
-				return Object.keys(tools).filter((i) => i !== SHAPES.gateway);
-			case TYPES.TRACK:
-				return Object.keys(tools).filter((i) => i === SHAPES.polygon);
-			case TYPES.GATEWAY:
-				return Object.keys(tools).filter((i) => i === SHAPES.gateway);
-			default:
-				return [];
+		case TYPES.MAP:
+			return Object.keys(tools).filter((i) => i !== SHAPES.gateway);
+		case TYPES.TRACK:
+			return Object.keys(tools).filter((i) => i === SHAPES.polygon);
+		case TYPES.GATEWAY:
+			return Object.keys(tools).filter((i) => i === SHAPES.gateway);
+		default:
+			return [];
 		}
 	}
 

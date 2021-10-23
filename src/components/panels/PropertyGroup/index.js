@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import './index.scss';
+import './index.css';
 
 const PropertyGroup = ({ className, showIf, ...props }) => {
 	if (!showIf) {

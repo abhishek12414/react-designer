@@ -3,7 +3,7 @@ import cx from 'classnames';
 import _ from 'lodash';
 import { HotKeys } from 'react-hotkeys';
 
-import './index.scss';
+import './index.css';
 
 import { modes } from '../../constants';
 import * as actions from '../../actions';

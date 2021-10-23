@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 
-import './index.scss';
+import './index.css';
 
 const Input = ({ label, type, disabled, className, name, value, onChange }) => {
 	const onInputChange = (e) => {

@@ -2,7 +2,7 @@ import React, { Component, useState } from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 
-import './index.scss';
+import './index.css';
 
 function ScaleAnchor({ boundingBox, onMouseDown }) {
 	let style = {
