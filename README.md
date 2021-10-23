@@ -54,8 +54,11 @@ class App() {
           'text': Text,
           'rect': Rect
         }}
-        onUpdate={(objects) => this.setState({objects})}
-        objects={this.state.objects} />
+        objects={this.state.objects}
+        clusterList={[]}
+        onDelete={() => {}}
+        onAddClusterClick={() => {}}
+        onUpdate={(objects) => this.setState({objects})} />
     )
   }
 }
