@@ -21,12 +21,6 @@ Object.defineProperty(exports, "Image", {
     return _objects.Image;
   }
 });
-Object.defineProperty(exports, "ImagePanel", {
-  enumerable: true,
-  get: function get() {
-    return _panels.ImagePanel;
-  }
-});
 Object.defineProperty(exports, "Path", {
   enumerable: true,
   get: function get() {

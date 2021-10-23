@@ -13,7 +13,7 @@ export {
 	SizePanel,
 	StylePanel,
 	ArrangePanel,
-	ImagePanel,
+	// ImagePanel,
 } from './components/panels';
 
 export default Designer;
