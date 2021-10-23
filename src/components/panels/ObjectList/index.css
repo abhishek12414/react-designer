@@ -1,13 +1,10 @@
-.objectList {
-	.panelHeader {
-		display: flex;
-		align-items: center;
-		margin-bottom: 5;
-		min-height: 24;
-	}
-
-	.propertyTitle {
-		font-size: 18;
-		font-weight: 300;
-	}
+.objectList .panelHeader {
+	display: flex;
+	align-items: center;
+	margin-bottom: 5;
+	min-height: 24;
+}
+.objectList .propertyTitle {
+	font-size: 18;
+	font-weight: 300;
 }
