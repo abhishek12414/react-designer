@@ -1,11 +1,11 @@
 .handler {
 	border: 2px solid #dedede;
-	z-index: 999999;
+	z-index: 999;
 	position: absolute;
 }
 .anchor {
-	width: 10;
-	height: 10;
+	width: 10px;
+	height: 10px;
 }
 .anchor:active,
 .anchor:hover {
@@ -14,15 +14,15 @@
 .scaleAnchor {
 	z-index: -1;
 	position: absolute;
-	margin-top: -3;
+	margin-top: -3px;
 	border-right: 2px solid #dedede;
 	border-bottom: 2px solid #dedede;
 }
 .rotateAnchor {
 	z-index: -1;
 	position: absolute;
-	margin-top: -8;
+	margin-top: -8px;
 	border-top: 2px solid #dedede;
 	border-right: 2px solid #dedede;
-	border-top-right-radius: 3;
+	border-top-right-radius: 3px;
 }

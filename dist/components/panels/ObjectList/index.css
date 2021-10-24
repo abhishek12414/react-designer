@@ -1,10 +1,10 @@
 .objectList .panelHeader {
 	display: flex;
 	align-items: center;
-	margin-bottom: 5;
-	min-height: 24;
+	margin-bottom: 5px;
+	min-height: 24px;
 }
 .objectList .propertyTitle {
-	font-size: 18;
+	font-size: 18px;
 	font-weight: 300;
 }
