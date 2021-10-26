@@ -20,7 +20,7 @@ const Column = ({
 	}
 
 	return (
-		<div className={cx('column', className)}>
+		<div className={cx('rdColumn', className)}>
 			{children || (
 				<Input
 					type={type}

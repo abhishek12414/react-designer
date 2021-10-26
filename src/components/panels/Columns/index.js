@@ -9,8 +9,8 @@ const Columns = ({ rowInline, inline, showIf, label, children }) => {
 	}
 
 	return (
-		<div className={cx('columns', rowInline && 'columns__inline')}>
-			<label className="columns__title">{label}</label>
+		<div className={cx('rdColumns', rowInline && 'rdColumns__inline')}>
+			<label className="rdColumns__title">{label}</label>
 			<div className={cx(inline ? 'inline' : 'block')}>{children}</div>
 		</div>
 	);

@@ -1,7 +1,7 @@
 .empty {
 	display: none;
 }
-.column {
+.rdColumn {
 	margin-right: 5px;
 	flex: 1;
 }

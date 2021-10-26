@@ -1,35 +1,35 @@
 .empty {
 	display: none;
 }
-.columns {
+.rdColumns {
 	overflow: hidden;
 	margin-top: 10px;
 }
-.columns__title {
+.rdColumns__title {
 	padding: 3px;
 	color: #333;
 	white-space: nowrap;
 	margin-bottom: 8px;
 }
-.columns .inline {
+.rdColumns .inline {
 	display: flex;
 	margin-top: 8px;
 }
-.columns .block {
+.rdColumns .block {
 	margin-top: 8px;
 }
-.columns__inline {
+.rdColumns__inline {
 	display: flex;
 	align-items: center;
 }
-.columns__inline label {
+.rdColumns__inline label {
 	margin-right: 12px;
 	margin-bottom: 0;
 	min-width: 50px;
 }
-.columns__inline .inline {
+.rdColumns__inline .inline {
 	margin-top: 0px;
 }
-.columns__inline .block {
+.rdColumns__inline .block {
 	margin-top: 0px;
 }

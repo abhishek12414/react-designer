@@ -34,7 +34,7 @@ var Column = function Column(_ref) {
   }
 
   return /*#__PURE__*/_react["default"].createElement("div", {
-    className: (0, _classnames["default"])('column', className)
+    className: (0, _classnames["default"])('rdColumn', className)
   }, children || /*#__PURE__*/_react["default"].createElement(_Input["default"], {
     type: type,
     label: label,

@@ -541,14 +541,14 @@ class Designer extends Component {
 		}
 
 		return (
-			<div className="designer">
+			<div className="reactDesigner">
 				<HotKeys
 					keyMap={this.keyMap}
 					className="keyboardManager"
 					handlers={this.getKeymapHandlers()}
 				>
 					<div
-						className={cx('container', this.props.className)}
+						className={cx('rdContainer', this.props.className)}
 						onMouseMove={this.onDrag.bind(this)}
 						onMouseUp={this.stopDrag.bind(this)}
 					>

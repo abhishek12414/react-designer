@@ -688,13 +688,13 @@ var Designer = /*#__PURE__*/function (_Component) {
       }
 
       return /*#__PURE__*/_react["default"].createElement("div", {
-        className: "designer"
+        className: "reactDesigner"
       }, /*#__PURE__*/_react["default"].createElement(_reactHotkeys.HotKeys, {
         keyMap: this.keyMap,
         className: "keyboardManager",
         handlers: this.getKeymapHandlers()
       }, /*#__PURE__*/_react["default"].createElement("div", {
-        className: (0, _classnames["default"])('container', this.props.className),
+        className: (0, _classnames["default"])('rdContainer', this.props.className),
         onMouseMove: this.onDrag.bind(this),
         onMouseUp: this.stopDrag.bind(this)
       }, InsertMenuComponent && /*#__PURE__*/_react["default"].createElement(InsertMenuComponent, {
@@ -726,13 +726,13 @@ var Designer = /*#__PURE__*/function (_Component) {
         height: height
       }), showHandler && /*#__PURE__*/_react["default"].createElement(_Handler["default"], {
         boundingBox: handler,
-        canResize: (0, _lodash["default"])(currentObject).has('width') || (0, _lodash["default"])(currentObject).has('height'),
-        canRotate: (0, _lodash["default"])(currentObject).has('rotate'),
+        canResize: (0, _lodash["default"])(currentObject).has('width') || (0, _lodash["default"])(currentObject).has('height') // canRotate={_(currentObject).has('rotate')}
+        ,
         onMouseLeave: this.hideHandler.bind(this),
         onDoubleClick: this.showEditor.bind(this),
         onDrag: this.startDrag.bind(this, _constants.modes.DRAG),
-        onResize: this.startDrag.bind(this, _constants.modes.SCALE),
-        onRotate: this.startDrag.bind(this, _constants.modes.ROTATE)
+        onResize: this.startDrag.bind(this, _constants.modes.SCALE) // onRotate={this.startDrag.bind(this, modes.ROTATE)}
+
       }), this.renderSVG()), /*#__PURE__*/_react["default"].createElement("div", {
         className: "propertiesPanelContainer"
       }, showPropertyPanel ? /*#__PURE__*/_react["default"].createElement(_PanelList["default"], {

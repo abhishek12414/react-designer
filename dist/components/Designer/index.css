@@ -1,16 +1,62 @@
-.designer .keyboardManager {
+.reactDesigner .keyboardManager {
 	outline: none;
 }
-.designer .container {
+.reactDesigner .rdContainer {
 	padding: 0;
 	display: flex;
 	justify-content: space-between;
 	position: relative;
 	flex-direction: row;
 }
-.designer .container .canvasContainer {
+.reactDesigner .rdContainer .canvasContainer {
 	position: relative;
 }
-.designer .container .propertiesPanelContainer {
+.reactDesigner .rdContainer .propertiesPanelContainer {
 	width: 300px;
+	height: 100vh;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
+
+.reactDesigner .rdContainer .propertiesPanelContainer::-webkit-scrollbar {
+	/* display: none; */
+	height: 8px;
+	overflow: auto;
+	width: 8px;
+}
+
+.reactDesigner .rdContainer .propertiesPanelContainer::-webkit-scrollbar-button {
+	height: 0px;
+	width: 0px;
+}
+
+.reactDesigner .rdContainer .propertiesPanelContainer::-webkit-scrollbar-corner {
+	background: transparent;
+}
+
+.reactDesigner .rdContainer .propertiesPanelContainer::-webkit-scrollbar-thumb {
+	border-style: solid;
+	border-color: transparent;
+	border-width: 4px;
+	background-color: rgb(218, 220, 224);
+	border-radius: 8px;
+	box-shadow: none;
+}
+
+.reactDesigner .rdContainer .propertiesPanelContainer::-webkit-scrollbar-track {
+	box-shadow: none;
+	margin: 0px 4px;
+}
+
+.reactDesigner .rdContainer .propertiesPanelContainer::-webkit-scrollbar-track {
+	background-clip: padding-box;
+	border-style: solid;
+	border-color: transparent;
+	border-width: 0px 0px 0px 4px;
+}
+/*
+::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+	background-color: hsla(0, 0%, 100%, 0.4);
+	box-shadow: 0 0 1px rgb(0 0 0 / 40%);
+} */

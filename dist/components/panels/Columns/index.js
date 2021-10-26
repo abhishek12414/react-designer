@@ -29,9 +29,9 @@ var Columns = function Columns(_ref) {
   }
 
   return /*#__PURE__*/_react["default"].createElement("div", {
-    className: (0, _classnames["default"])('columns', rowInline && 'columns__inline')
+    className: (0, _classnames["default"])('rdColumns', rowInline && 'rdColumns__inline')
   }, /*#__PURE__*/_react["default"].createElement("label", {
-    className: "columns__title"
+    className: "rdColumns__title"
   }, label), /*#__PURE__*/_react["default"].createElement("div", {
     className: (0, _classnames["default"])(inline ? 'inline' : 'block')
   }, children));

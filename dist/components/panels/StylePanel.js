@@ -73,14 +73,16 @@ var StylePanel = /*#__PURE__*/function (_Component) {
 
       return /*#__PURE__*/_react["default"].createElement(_PropertyGroup["default"], null, /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
         label: "Fill",
-        inline: true
+        rowInline: true
       }, /*#__PURE__*/_react["default"].createElement(_Column["default"], {
         type: "color",
         value: object.fill,
         onChange: _onChange.bind(this, 'fill')
-      }), /*#__PURE__*/_react["default"].createElement(_Column["default"], {
-        type: "number",
+      })), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
         label: "Opacity",
+        rowInline: true
+      }, /*#__PURE__*/_react["default"].createElement(_Column["default"], {
+        type: "number",
         value: object.fillOpacity,
         style: {
           width: 30

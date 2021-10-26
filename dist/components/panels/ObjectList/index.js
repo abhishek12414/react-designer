@@ -31,15 +31,6 @@ var ObjectList = function ObjectList(_ref) {
 
   return /*#__PURE__*/_react["default"].createElement("div", {
     className: "objectList"
-  }, /*#__PURE__*/_react["default"].createElement("div", {
-    className: 'panelHeader'
-  }, /*#__PURE__*/_react["default"].createElement("strong", {
-    className: 'propertyTitle'
-  }, "Object List")), /*#__PURE__*/_react["default"].createElement("div", {
-    style: {
-      height: '100vh',
-      overflowY: 'scroll'
-    }
   }, objects.map(function (obj, index) {
     return /*#__PURE__*/_react["default"].createElement(_ObjectItem["default"], _extends({
       key: index
@@ -51,7 +42,7 @@ var ObjectList = function ObjectList(_ref) {
         return _onChange(index, data);
       }
     }));
-  })));
+  }));
 };
 
 ObjectList.propTypes = {
