@@ -759,11 +759,11 @@ var Designer = /*#__PURE__*/function (_Component) {
 
 _defineProperty(Designer, "defaultProps", {
   objectTypes: {
-    text: _objects.Text,
+    // text: Text,
     rectangle: _objects.Rect,
     ellipse: _objects.Ellipse,
     polygon: _objects.Path,
-    image: _objects.Image,
+    // image: Image,
     gateway: _objects.Gateway
   },
   snapToGrid: 1,

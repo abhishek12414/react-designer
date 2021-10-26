@@ -17,11 +17,11 @@ import ObjectList from '../panels/ObjectList';
 class Designer extends Component {
 	static defaultProps = {
 		objectTypes: {
-			text: Text,
+			// text: Text,
 			rectangle: Rect,
 			ellipse: Ellipse,
 			polygon: Path,
-			image: Image,
+			// image: Image,
 			gateway: Gateway,
 		},
 		snapToGrid: 1,
