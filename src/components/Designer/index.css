@@ -13,4 +13,50 @@
 }
 .designer .container .propertiesPanelContainer {
 	width: 300px;
+	height: 100vh;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
+
+.designer .container .propertiesPanelContainer::-webkit-scrollbar {
+	/* display: none; */
+	height: 8px;
+	overflow: auto;
+	width: 8px;
+}
+
+.designer .container .propertiesPanelContainer::-webkit-scrollbar-button {
+	height: 0px;
+	width: 0px;
+}
+
+.designer .container .propertiesPanelContainer::-webkit-scrollbar-corner {
+	background: transparent;
+}
+
+.designer .container .propertiesPanelContainer::-webkit-scrollbar-thumb {
+	border-style: solid;
+	border-color: transparent;
+	border-width: 4px;
+	background-color: rgb(218, 220, 224);
+	border-radius: 8px;
+	box-shadow: none;
+}
+
+.designer .container .propertiesPanelContainer::-webkit-scrollbar-track {
+	box-shadow: none;
+	margin: 0px 4px;
+}
+
+.designer .container .propertiesPanelContainer::-webkit-scrollbar-track {
+	background-clip: padding-box;
+	border-style: solid;
+	border-color: transparent;
+	border-width: 0px 0px 0px 4px;
+}
+/*
+::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+	background-color: hsla(0, 0%, 100%, 0.4);
+	box-shadow: 0 0 1px rgb(0 0 0 / 40%);
+} */

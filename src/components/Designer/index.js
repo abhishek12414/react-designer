@@ -591,12 +591,12 @@ class Designer extends Component {
 										_(currentObject).has('width') ||
 										_(currentObject).has('height')
 									}
-									canRotate={_(currentObject).has('rotate')}
+									// canRotate={_(currentObject).has('rotate')}
 									onMouseLeave={this.hideHandler.bind(this)}
 									onDoubleClick={this.showEditor.bind(this)}
 									onDrag={this.startDrag.bind(this, modes.DRAG)}
 									onResize={this.startDrag.bind(this, modes.SCALE)}
-									onRotate={this.startDrag.bind(this, modes.ROTATE)}
+									// onRotate={this.startDrag.bind(this, modes.ROTATE)}
 								/>
 							)}
 

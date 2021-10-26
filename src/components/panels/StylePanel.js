@@ -18,15 +18,16 @@ class StylePanel extends Component {
 
 		return (
 			<PropertyGroup>
-				<Columns label="Fill" inline>
+				<Columns label="Fill" rowInline>
 					<Column
 						type="color"
 						value={object.fill}
 						onChange={onChange.bind(this, 'fill')}
 					/>
+				</Columns>
+				<Columns label="Opacity" rowInline>
 					<Column
 						type="number"
-						label="Opacity"
 						value={object.fillOpacity}
 						style={{ width: 30 }}
 						onChange={onChange.bind(this, 'fillOpacity')}

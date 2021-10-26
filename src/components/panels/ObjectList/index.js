@@ -8,20 +8,15 @@ import ObjectItem from '../ObjectItem';
 const ObjectList = ({ objects, onChange, onObjectSelect, ...rest }) => {
 	return (
 		<div className="objectList">
-			<div className={'panelHeader'}>
-				<strong className={'propertyTitle'}>Object List</strong>
-			</div>
-			<div style={{ height: '100vh', overflowY: 'scroll' }}>
-				{objects.map((obj, index) => (
-					<ObjectItem
-						key={index}
-						{...obj}
-						{...rest}
-						onClick={() => onObjectSelect(index)}
-						onChange={(data) => onChange(index, data)}
-					/>
-				))}
-			</div>
+			{objects.map((obj, index) => (
+				<ObjectItem
+					key={index}
+					{...obj}
+					{...rest}
+					onClick={() => onObjectSelect(index)}
+					onChange={(data) => onChange(index, data)}
+				/>
+			))}
 		</div>
 	);
 };
