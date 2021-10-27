@@ -20,6 +20,7 @@ const CustomDesigner = () => {
 					// console.log(value);
 					setObjects(value);
 				}}
+				onDelete={(obj) => console.log('deleteObject', obj)}
 				onAddClusterClick={() => console.log('add new cluster')}
 			/>
 		</div>

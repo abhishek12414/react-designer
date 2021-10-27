@@ -458,6 +458,7 @@ class Designer extends Component {
 	removeCurrent() {
 		let { selectedObjectIndex } = this.state;
 		let { objects } = this.props;
+		const deleteObj = objects[selectedObjectIndex];
 
 		let rest = objects.filter((object, index) => selectedObjectIndex !== index);
 
@@ -471,6 +472,7 @@ class Designer extends Component {
 			() => {
 				this.objectRefs = {};
 				this.props.onUpdate(rest);
+				this.props.onDelete(deleteObj);
 			}
 		);
 	}

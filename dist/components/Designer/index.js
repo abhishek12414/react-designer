@@ -587,6 +587,7 @@ var Designer = /*#__PURE__*/function (_Component) {
 
       var selectedObjectIndex = this.state.selectedObjectIndex;
       var objects = this.props.objects;
+      var deleteObj = objects[selectedObjectIndex];
       var rest = objects.filter(function (object, index) {
         return selectedObjectIndex !== index;
       });
@@ -599,6 +600,8 @@ var Designer = /*#__PURE__*/function (_Component) {
         _this6.objectRefs = {};
 
         _this6.props.onUpdate(rest);
+
+        _this6.props.onDelete(deleteObj);
       });
     }
   }, {
