@@ -760,7 +760,7 @@ var Designer = /*#__PURE__*/function (_Component) {
 _defineProperty(Designer, "defaultProps", {
   objectTypes: {
     // text: Text,
-    rectangle: _objects.Rect,
+    rect: _objects.Rect,
     ellipse: _objects.Ellipse,
     polygon: _objects.Path,
     // image: Image,

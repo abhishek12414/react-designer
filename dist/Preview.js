@@ -121,7 +121,7 @@ var Preview = /*#__PURE__*/function (_Component) {
 _defineProperty(Preview, "defaultProps", {
   objectTypes: {
     text: _objects.Text,
-    rectangle: _objects.Rect,
+    rect: _objects.Rect,
     ellipse: _objects.Ellipse,
     polygon: _objects.Path,
     image: _objects.Image

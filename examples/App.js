@@ -232,7 +232,7 @@ export default class App extends Component {
 		// 					>{`
 		// const priceMap = {
 		//   'text': ({text, fontSize}) => text.length * fontSize * 0.01,
-		//   'rectangle': ({width, height}) => width * height * 0.001,
+		//   'rect': ({width, height}) => width * height * 0.001,
 		//   'ellipse': ({width, height}) => width * (height || width) * 0.001
 		// };
 

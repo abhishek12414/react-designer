@@ -4,7 +4,7 @@ import { styles as canvasStyles } from '../../src/SVGRenderer';
 
 const priceMap = {
 	text: ({ text, fontSize }) => text.length * fontSize * 0.01,
-	rectangle: ({ width, height }) => width * height * 0.001,
+	rect: ({ width, height }) => width * height * 0.001,
 	ellipse: ({ width, height }) => width * (height || width) * 0.001,
 };
 
@@ -108,7 +108,7 @@ export default class extends Component {
 					height={400}
 					objectTypes={{
 						text: Text,
-						rectangle: Rect,
+						rect: Rect,
 						ellipse: Ellipse,
 					}}
 					background={'transparent'}

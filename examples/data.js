@@ -23,7 +23,7 @@ export default {
 			'radius': 0,
 			'blendMode': 'normal',
 			'rotate': 0,
-			'elementType': 'rectangle',
+			'elementType': 'rect',
 			'x': 8,
 			'y': 103,
 			'uuid': '766c1161-de39-410e-8420-b651ecc327da'
