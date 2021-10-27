@@ -524,7 +524,7 @@ class Designer extends Component {
 
 		let { objects, objectTypes, insertMenu: InsertMenuComponent } = this.props;
 
-		let currentObject = objects[selectedObjectIndex],
+		let currentObject = objects?.[selectedObjectIndex],
 			isEditMode = mode === modes.EDIT_OBJECT,
 			showPropertyPanel = selectedObjectIndex !== null;
 

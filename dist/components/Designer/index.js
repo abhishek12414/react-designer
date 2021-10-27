@@ -669,7 +669,7 @@ var Designer = /*#__PURE__*/function (_Component) {
           objects = _this$props6.objects,
           objectTypes = _this$props6.objectTypes,
           InsertMenuComponent = _this$props6.insertMenu;
-      var currentObject = objects[selectedObjectIndex],
+      var currentObject = objects === null || objects === void 0 ? void 0 : objects[selectedObjectIndex],
           isEditMode = mode === _constants.modes.EDIT_OBJECT,
           showPropertyPanel = selectedObjectIndex !== null;
 
