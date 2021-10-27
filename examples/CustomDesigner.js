@@ -11,6 +11,9 @@ const CustomDesigner = () => {
 				width={350}
 				height={400}
 				// background={'#ece2be'}
+				backgroundImage="https://miro.medium.com/max/1000/1*P4Z6NIm0dHypW2NnXqinqg.jpeg"
+				backgroundSize="contain"
+				backgroundRepeat="no-repeat"
 				objects={objects}
 				clusterList={[]}
 				onUpdate={(value) => {

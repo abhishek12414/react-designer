@@ -5,7 +5,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styles = exports["default"] = void 0;
+exports["default"] = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -78,6 +78,9 @@ var SVGRenderer = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this$props2 = this.props,
           background = _this$props2.background,
+          backgroundImage = _this$props2.backgroundImage,
+          backgroundSize = _this$props2.backgroundSize,
+          backgroundRepeat = _this$props2.backgroundRepeat,
           objects = _this$props2.objects,
           svgStyle = _this$props2.svgStyle,
           canvas = _this$props2.canvas,
@@ -88,9 +91,9 @@ var SVGRenderer = /*#__PURE__*/function (_Component) {
           canvasOffsetX = canvas.canvasOffsetX,
           canvasOffsetY = canvas.canvasOffsetY;
 
-      var style = _objectSpread(_objectSpread(_objectSpread({}, styles.canvas), background ? {
+      var style = _objectSpread(_objectSpread({}, background ? {
         backgroundColor: background
-      } : styles.grid), _objectSpread(_objectSpread({}, svgStyle), {}, {
+      } : getBackgroundImage(backgroundImage, backgroundSize, backgroundRepeat)), _objectSpread(_objectSpread({}, svgStyle), {}, {
         marginTop: canvasOffsetY,
         marginLeft: canvasOffsetX
       }));
@@ -113,15 +116,16 @@ _defineProperty(SVGRenderer, "defaultProps", {
   onMouseOver: function onMouseOver() {}
 });
 
-var styles = {
-  canvas: {
-    backgroundSize: 400
-  },
-  grid: {
-    backgroundImage: 'url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5' + 'vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0' + 'PSIyMCIgZmlsbD0iI2ZmZiI+PC9yZWN0Pgo8cmVjdCB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIGZpbGw9I' + 'iNGN0Y3RjciPjwvcmVjdD4KPHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIG' + 'ZpbGw9IiNGN0Y3RjciPjwvcmVjdD4KPC9zdmc+)',
-    backgroundSize: 'auto'
-  }
+var getBackgroundImage = function getBackgroundImage() {
+  var backgroundImage = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  var backgroundSize = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'auto';
+  var backgroundRepeat = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'repeat';
+  return {
+    backgroundImage: backgroundImage ? "url(".concat(backgroundImage, ")") : 'url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5' + 'vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0' + 'PSIyMCIgZmlsbD0iI2ZmZiI+PC9yZWN0Pgo8cmVjdCB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIGZpbGw9I' + 'iNGN0Y3RjciPjwvcmVjdD4KPHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIG' + 'ZpbGw9IiNGN0Y3RjciPjwvcmVjdD4KPC9zdmc+)',
+    backgroundSize: backgroundSize,
+    backgroundRepeat: backgroundRepeat
+  };
 };
-exports.styles = styles;
+
 var _default = SVGRenderer;
 exports["default"] = _default;

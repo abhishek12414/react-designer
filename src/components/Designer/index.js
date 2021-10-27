@@ -383,12 +383,21 @@ class Designer extends Component {
 
 	renderSVG() {
 		let canvas = this.getCanvas();
-		let { background, objects, objectTypes, backgroundImage } = this.props;
+		let {
+			background,
+			objects,
+			objectTypes,
+			backgroundImage,
+			backgroundSize,
+			backgroundRepeat,
+		} = this.props;
 
 		return (
 			<SVGRenderer
 				background={background}
+				backgroundSize={backgroundSize}
 				backgroundImage={backgroundImage}
+				backgroundRepeat={backgroundRepeat}
 				width={canvas.width}
 				canvas={canvas}
 				height={canvas.height}

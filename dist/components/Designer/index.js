@@ -506,10 +506,14 @@ var Designer = /*#__PURE__*/function (_Component) {
           background = _this$props5.background,
           objects = _this$props5.objects,
           objectTypes = _this$props5.objectTypes,
-          backgroundImage = _this$props5.backgroundImage;
+          backgroundImage = _this$props5.backgroundImage,
+          backgroundSize = _this$props5.backgroundSize,
+          backgroundRepeat = _this$props5.backgroundRepeat;
       return /*#__PURE__*/_react["default"].createElement(_SVGRenderer["default"], {
         background: background,
+        backgroundSize: backgroundSize,
         backgroundImage: backgroundImage,
+        backgroundRepeat: backgroundRepeat,
         width: canvas.width,
         canvas: canvas,
         height: canvas.height,

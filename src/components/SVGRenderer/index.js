@@ -25,17 +25,29 @@ class SVGRenderer extends Component {
 	}
 
 	render() {
-		let { background, objects, svgStyle, canvas, onMouseDown, onRender } =
-			this.props;
+		let {
+			background,
+			backgroundImage,
+			backgroundSize,
+			backgroundRepeat,
+			objects,
+			svgStyle,
+			canvas,
+			onMouseDown,
+			onRender,
+		} = this.props;
 		let { width, height, canvasOffsetX, canvasOffsetY } = canvas;
 
 		let style = {
-			...styles.canvas,
 			...(background
 				? {
 						backgroundColor: background,
 				  }
-				: styles.grid),
+				: getBackgroundImage(
+						backgroundImage,
+						backgroundSize,
+						backgroundRepeat
+				  )),
 			...{
 				...svgStyle,
 				marginTop: canvasOffsetY,
@@ -58,19 +70,20 @@ class SVGRenderer extends Component {
 	}
 }
 
-export const styles = {
-	canvas: {
-		backgroundSize: 400,
-	},
-	grid: {
-		backgroundImage:
-			'url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5' +
-			'vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0' +
-			'PSIyMCIgZmlsbD0iI2ZmZiI+PC9yZWN0Pgo8cmVjdCB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIGZpbGw9I' +
-			'iNGN0Y3RjciPjwvcmVjdD4KPHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIG' +
-			'ZpbGw9IiNGN0Y3RjciPjwvcmVjdD4KPC9zdmc+)',
-		backgroundSize: 'auto',
-	},
-};
+const getBackgroundImage = (
+	backgroundImage = null,
+	backgroundSize = 'auto',
+	backgroundRepeat = 'repeat'
+) => ({
+	backgroundImage: backgroundImage
+		? `url(${backgroundImage})`
+		: 'url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5' +
+		  'vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+CjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0' +
+		  'PSIyMCIgZmlsbD0iI2ZmZiI+PC9yZWN0Pgo8cmVjdCB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIGZpbGw9I' +
+		  'iNGN0Y3RjciPjwvcmVjdD4KPHJlY3QgeD0iMTAiIHk9IjEwIiB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIG' +
+		  'ZpbGw9IiNGN0Y3RjciPjwvcmVjdD4KPC9zdmc+)',
+	backgroundSize: backgroundSize,
+	backgroundRepeat: backgroundRepeat,
+});
 
 export default SVGRenderer;
