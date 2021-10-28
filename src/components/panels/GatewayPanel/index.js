@@ -39,7 +39,7 @@ class GatewayPanel extends React.Component {
 						<Column
 							label="Mac ID"
 							value={object.macId}
-							onChange={(e) => this.props.onChange('macId', e.target.value)}
+							onChange={(value) => this.props.onChange('macId', value)}
 						/>
 					)}
 				</Columns>
@@ -52,21 +52,6 @@ class GatewayPanel extends React.Component {
 								options={clusterOptions}
 								onChange={(e) =>
 									this.props.onChange('gatewayClusterType', e.target.value)
-								}
-							/>
-						)}
-					</Column>
-				</Columns>
-
-				<Columns label="Cluster" rowInline>
-					<Column>
-						{has(object, 'clusterId') && (
-							<Select
-								name="clusterId"
-								options={this.getMapCluster()}
-								value={object.clusterId}
-								onChange={(e) =>
-									this.props.onChange('clusterId', e.target.value)
 								}
 							/>
 						)}

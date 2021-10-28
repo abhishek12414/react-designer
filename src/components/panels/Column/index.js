@@ -48,6 +48,7 @@ Column.propTypes = {
 
 Column.defaultProps = {
 	showIf: true,
+	type: 'text',
 };
 
 export default Column;

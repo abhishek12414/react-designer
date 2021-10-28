@@ -103,8 +103,8 @@ var GatewayPanel = /*#__PURE__*/function (_React$Component) {
       }, (0, _has["default"])(object, 'macId') && /*#__PURE__*/_react["default"].createElement(_Column["default"], {
         label: "Mac ID",
         value: object.macId,
-        onChange: function onChange(e) {
-          return _this.props.onChange('macId', e.target.value);
+        onChange: function onChange(value) {
+          return _this.props.onChange('macId', value);
         }
       })), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
         label: "Cluster Type",
@@ -115,16 +115,6 @@ var GatewayPanel = /*#__PURE__*/function (_React$Component) {
         options: _constants.clusterOptions,
         onChange: function onChange(e) {
           return _this.props.onChange('gatewayClusterType', e.target.value);
-        }
-      }))), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
-        label: "Cluster",
-        rowInline: true
-      }, /*#__PURE__*/_react["default"].createElement(_Column["default"], null, (0, _has["default"])(object, 'clusterId') && /*#__PURE__*/_react["default"].createElement(_Select["default"], {
-        name: "clusterId",
-        options: this.getMapCluster(),
-        value: object.clusterId,
-        onChange: function onChange(e) {
-          return _this.props.onChange('clusterId', e.target.value);
         }
       }))), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
         label: "Physical Coords",

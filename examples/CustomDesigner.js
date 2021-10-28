@@ -15,9 +15,12 @@ const CustomDesigner = () => {
 				backgroundSize="contain"
 				backgroundRepeat="no-repeat"
 				objects={objects}
-				clusterList={[]}
+				clusterList={[
+					{ label: 'a', value: 'a' },
+					{ label: 'b', value: 'b' },
+				]}
 				onUpdate={(value) => {
-					// console.log(value);
+					console.log(value);
 					setObjects(value);
 				}}
 				onDelete={(obj) => console.log('deleteObject', obj)}

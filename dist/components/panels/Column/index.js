@@ -57,7 +57,8 @@ Column.propTypes = {
   onChange: _propTypes["default"].func
 };
 Column.defaultProps = {
-  showIf: true
+  showIf: true,
+  type: 'text'
 };
 var _default = Column;
 exports["default"] = _default;
