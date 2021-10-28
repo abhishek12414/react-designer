@@ -111,10 +111,10 @@ _defineProperty(Rect, "meta", {
   initial: {
     width: 5,
     height: 5,
-    fill: '#000',
-    fillOpacity: 0.3,
+    fill: '#ffffff',
+    fillOpacity: 0,
     strokeWidth: 1,
-    stroke: 'rgba(0,0,0,1)',
+    stroke: '#000000',
     radius: 0,
     blendMode: 'normal',
     rotate: 0,

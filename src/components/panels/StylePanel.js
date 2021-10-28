@@ -54,14 +54,14 @@ class StylePanel extends Component {
 						onChange={onChange.bind(this, 'radius')}
 					/>
 				</Columns>
-				<Columns label="Blending" rowInline>
+				{/* <Columns label="Blending" rowInline>
 					<Select
 						name="Blending"
 						value={object.blendMode}
 						options={blendModes}
 						onChange={(e) => onChange('blendMode', e.target.value)}
 					/>
-				</Columns>
+				</Columns> */}
 			</PropertyGroup>
 		);
 	}

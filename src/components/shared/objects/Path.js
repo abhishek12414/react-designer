@@ -9,10 +9,10 @@ import BezierEditor from '../editors/BezierEditor';
 export default class Path extends Vector {
 	static meta = {
 		initial: {
-			fill: '#000',
-			fillOpacity: 0.3,
+			fill: '#ffffff',
+			fillOpacity: 0,
 			strokeWidth: 1,
-			stroke: 'rgba(0,0,0,1)',
+			stroke: '#000000',
 			closed: false,
 			rotate: 0,
 			moveX: 0,

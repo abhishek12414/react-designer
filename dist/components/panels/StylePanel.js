@@ -65,7 +65,7 @@ var StylePanel = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this$props = this.props,
           object = _this$props.object,
-          _onChange = _this$props.onChange;
+          onChange = _this$props.onChange;
 
       if (object.elementType === _constants.TYPES.GATEWAY) {
         return null;
@@ -77,7 +77,7 @@ var StylePanel = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/_react["default"].createElement(_Column["default"], {
         type: "color",
         value: object.fill,
-        onChange: _onChange.bind(this, 'fill')
+        onChange: onChange.bind(this, 'fill')
       })), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
         label: "Opacity",
         rowInline: true
@@ -87,14 +87,14 @@ var StylePanel = /*#__PURE__*/function (_Component) {
         style: {
           width: 30
         },
-        onChange: _onChange.bind(this, 'fillOpacity')
+        onChange: onChange.bind(this, 'fillOpacity')
       })), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
         label: "Stroke",
         inline: true
       }, /*#__PURE__*/_react["default"].createElement(_Column["default"], {
         type: "color",
         value: object.stroke,
-        onChange: _onChange.bind(this, 'stroke')
+        onChange: onChange.bind(this, 'stroke')
       }), /*#__PURE__*/_react["default"].createElement(_Column["default"], {
         label: "width",
         type: "number",
@@ -102,23 +102,13 @@ var StylePanel = /*#__PURE__*/function (_Component) {
         style: {
           width: 30
         },
-        onChange: _onChange.bind(this, 'strokeWidth')
+        onChange: onChange.bind(this, 'strokeWidth')
       }), /*#__PURE__*/_react["default"].createElement(_Column["default"], {
         showIf: (0, _has["default"])(object, 'radius'),
         label: "radius",
         type: "number",
         value: object.radius,
-        onChange: _onChange.bind(this, 'radius')
-      })), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
-        label: "Blending",
-        rowInline: true
-      }, /*#__PURE__*/_react["default"].createElement(_Select["default"], {
-        name: "Blending",
-        value: object.blendMode,
-        options: _constants.blendModes,
-        onChange: function onChange(e) {
-          return _onChange('blendMode', e.target.value);
-        }
+        onChange: onChange.bind(this, 'radius')
       })));
     }
   }]);

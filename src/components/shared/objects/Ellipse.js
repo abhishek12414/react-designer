@@ -8,13 +8,13 @@ export default class Ellipse extends Vector {
 	static meta = {
 		icon: <Icon icon={'ellipse'} size={30} />,
 		initial: {
+			fill: '#ffffff',
+			fillOpacity: 0,
+			strokeWidth: 1,
+			stroke: '#000000',
 			width: 5,
 			height: 5,
 			rotate: 0,
-			fill: '#000',
-			fillOpacity: 0.3,
-			strokeWidth: 1,
-			stroke: 'rgba(0,0,0,1)',
 			blendMode: 'normal',
 			labelCoordinates: { x: 30, y: 30 },
 		},
