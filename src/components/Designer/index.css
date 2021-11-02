@@ -8,7 +8,18 @@
 	position: relative;
 	flex-direction: row;
 }
-.reactDesigner .rdContainer .canvasContainer {
+.reactDesigner .rdContainer .drawingContainer {
+	flex: 1;
+	display: flex;
+	position: relative;
+	justify-content: center;
+}
+.reactDesigner .rdContainer .drawingContainer .zoomContainer {
+	position: absolute;
+	top: 10;
+	left: 10;
+}
+.reactDesigner .rdContainer .drawingContainer .canvasContainer {
 	position: relative;
 }
 .reactDesigner .rdContainer .propertiesPanelContainer {

@@ -13,6 +13,8 @@ import Handler from '../Handler';
 import SVGRenderer from '../SVGRenderer';
 import InsertMenu from '../panels/InsertMenu';
 import ObjectList from '../panels/ObjectList';
+import ZoomContainer from '../ZoomContainer';
+import zoomTransform from '../../utils/zoomTransform';
 
 class Designer extends Component {
 	static defaultProps = {
@@ -523,6 +525,12 @@ class Designer extends Component {
 		this.setState({ type });
 	}
 
+	onZoomButtonClick(type) {
+		let { objects, scale } = this.props;
+
+		zoomTransform(objects, scale);
+	}
+
 	render() {
 		let {
 			showHandler,
@@ -575,45 +583,50 @@ class Designer extends Component {
 						)}
 
 						{/* Center Panel: Displays the preview */}
-						<div
-							className={'canvasContainer'}
-							style={{
-								width: canvasWidth,
-								height: canvasHeight,
-							}}
-						>
-							{isEditMode && ObjectEditor && (
-								<ObjectEditor
-									object={currentObject}
-									offset={this.getOffset()}
-									onUpdate={(object) =>
-										this.updateObject(selectedObjectIndex, object)
-									}
-									onClose={() => this.setState({ mode: modes.FREE })}
-									width={width}
-									height={height}
-								/>
-							)}
+						<div className="drawingContainer">
+							<ZoomContainer
+								className="zoomContainer"
+								onClick={this.onZoomButtonClick.bind(this)}
+							/>
+							<div
+								className={'canvasContainer'}
+								style={{
+									width: canvasWidth,
+									height: canvasHeight,
+								}}
+							>
+								{isEditMode && ObjectEditor && (
+									<ObjectEditor
+										object={currentObject}
+										offset={this.getOffset()}
+										onUpdate={(object) =>
+											this.updateObject(selectedObjectIndex, object)
+										}
+										onClose={() => this.setState({ mode: modes.FREE })}
+										width={width}
+										height={height}
+									/>
+								)}
 
-							{showHandler && (
-								<Handler
-									boundingBox={handler}
-									canResize={
-										_(currentObject).has('width') ||
-										_(currentObject).has('height')
-									}
-									// canRotate={_(currentObject).has('rotate')}
-									onMouseLeave={this.hideHandler.bind(this)}
-									onDoubleClick={this.showEditor.bind(this)}
-									onDrag={this.startDrag.bind(this, modes.DRAG)}
-									onResize={this.startDrag.bind(this, modes.SCALE)}
-									// onRotate={this.startDrag.bind(this, modes.ROTATE)}
-								/>
-							)}
+								{showHandler && (
+									<Handler
+										boundingBox={handler}
+										canResize={
+											_(currentObject).has('width') ||
+											_(currentObject).has('height')
+										}
+										// canRotate={_(currentObject).has('rotate')}
+										onMouseLeave={this.hideHandler.bind(this)}
+										onDoubleClick={this.showEditor.bind(this)}
+										onDrag={this.startDrag.bind(this, modes.DRAG)}
+										onResize={this.startDrag.bind(this, modes.SCALE)}
+										// onRotate={this.startDrag.bind(this, modes.ROTATE)}
+									/>
+								)}
 
-							{this.renderSVG()}
+								{this.renderSVG()}
+							</div>
 						</div>
-
 						{/* Right Panel: Displays text,
 					 styling and sizing tools */}
 
@@ -645,19 +658,5 @@ class Designer extends Component {
 		);
 	}
 }
-
-export const styles = {
-	container: {
-		position: 'relative',
-		display: 'flex',
-		flexDirection: 'row',
-	},
-	canvasContainer: {
-		position: 'relative',
-	},
-	keyboardManager: {
-		outline: 'none',
-	},
-};
 
 export default Designer;

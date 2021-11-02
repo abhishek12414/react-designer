@@ -1,0 +1,31 @@
+.zoomContainer {
+	border: 2px solid rgba(0, 0, 0, 0.2);
+	border-radius: 4px;
+	box-shadow: none;
+}
+.zoomContainer .zoomButton {
+	width: 30px;
+	height: 30px;
+	border-radius: 2px;
+	line-height: 30px;
+	font-size: 22px;
+	display: block;
+	text-align: center;
+	cursor: pointer;
+	background-color: #fff;
+	border: none;
+	border-bottom: 1px solid #ccc;
+	user-select: none;
+	font-weight: bold;
+}
+.zoomContainer .zoomButton:last-child {
+	border-bottom: none;
+}
+.zoomContainer .zoomButton:hover {
+	background-color: #f4f4f4;
+}
+.zoomButton.zoomButton-disabled {
+	cursor: default;
+	background-color: #f4f4f4;
+	color: #bbb;
+}

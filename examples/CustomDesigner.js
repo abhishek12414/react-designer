@@ -4,6 +4,7 @@ import data from './data';
 
 const CustomDesigner = () => {
 	const [objects, setObjects] = useState(data.dataSet1);
+	const [scale, setScale] = useState(1);
 
 	return (
 		<div>
@@ -11,10 +12,12 @@ const CustomDesigner = () => {
 				width={350}
 				height={400}
 				// background={'#ece2be'}
-				backgroundImage="https://miro.medium.com/max/1000/1*P4Z6NIm0dHypW2NnXqinqg.jpeg"
-				backgroundSize="contain"
-				backgroundRepeat="no-repeat"
+				// backgroundImage="https://miro.medium.com/max/1000/1*P4Z6NIm0dHypW2NnXqinqg.jpeg"
+				// backgroundSize="contain"
+				// backgroundRepeat="no-repeat"
 				objects={objects}
+				scale={scale}
+				onScaleChange={(value) => setScale(value)}
 				clusterList={[
 					{ label: 'a', value: 'a' },
 					{ label: 'b', value: 'b' },
