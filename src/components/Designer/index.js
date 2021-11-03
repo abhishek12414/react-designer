@@ -21,7 +21,7 @@ class Designer extends Component {
 			rect: Rect,
 			ellipse: Ellipse,
 			polygon: Path,
-			// image: Image,
+			image: Image,
 			gateway: Gateway,
 		},
 		snapToGrid: 1,
