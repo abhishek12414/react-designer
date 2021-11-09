@@ -37,9 +37,7 @@ const ObjectItem = ({
 		<PropertyGroup className="propertyGroup">
 			<Columns label="Label" rowInline>
 				<Column name>
-					<p style={{ margin: 0, textTransform: 'capitalize' }}>
-						{name || elementType}
-					</p>
+					<p style={{ margin: 0, textTransform: 'capitalize' }}>{name ?? ''}</p>
 				</Column>
 			</Columns>
 			<Columns label="Type" rowInline>

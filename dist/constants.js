@@ -34,7 +34,8 @@ var SHAPES = Object.freeze({
   polygon: 'polygon',
   polyline: 'polyline',
   rect: 'rect',
-  gateway: 'gateway'
+  gateway: 'gateway',
+  image: 'image'
 });
 exports.SHAPES = SHAPES;
 var buildingBlock = Object.freeze({

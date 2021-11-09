@@ -12,7 +12,7 @@ export default class Rect extends Vector {
 			height: 5,
 			fill: '#ffffff',
 			fillOpacity: 0,
-			strokeWidth: 1,
+			strokeWidth: 2,
 			stroke: '#000000',
 			radius: 0,
 			blendMode: 'normal',
@@ -22,6 +22,7 @@ export default class Rect extends Vector {
 	};
 
 	render() {
+		const { isSelected } = this.props;
 		const {
 			width,
 			height,
@@ -46,6 +47,24 @@ export default class Rect extends Vector {
 
 		return (
 			<>
+				{isSelected && (
+					<rect
+						style={this.getStyle()}
+						x={x}
+						y={y}
+						width={width}
+						height={height}
+						// common props
+						transform={transform}
+						fill={fill}
+						fillOpacity={fillOpacity}
+						stroke={'rgb(138, 180, 248)'}
+						strokeWidth={+strokeWidth + 2}
+						strokeOpacity={0.6}
+						strokeLinecap="square"
+						strokeMiterlimit={8}
+					/>
+				)}
 				<rect
 					style={this.getStyle()}
 					x={x}
@@ -53,15 +72,15 @@ export default class Rect extends Vector {
 					width={width}
 					height={height}
 					// common props
+					ref={ref}
+					index={index}
+					transform={transform}
 					fill={fill}
 					fillOpacity={fillOpacity}
 					stroke={stroke}
 					strokeWidth={strokeWidth}
 					strokeDasharray={type == 'map' ? 0 : 4}
-					ref={ref}
 					onMouseOver={onMouseOver}
-					transform={transform}
-					index={index}
 				/>
 				<Label
 					x={labelCoordinates.x}

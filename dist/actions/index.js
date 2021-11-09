@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -27,5 +29,3 @@ var _Scaler = _interopRequireDefault(require("./Scaler"));
 var _Dragger = _interopRequireDefault(require("./Dragger"));
 
 var _Rotator = _interopRequireDefault(require("./Rotator"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }

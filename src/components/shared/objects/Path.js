@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { modes } from '../../../constants';
 import Icon from '../Icon';
 import Label from './Label';
@@ -11,7 +11,7 @@ export default class Path extends Vector {
 		initial: {
 			fill: '#ffffff',
 			fillOpacity: 0,
-			strokeWidth: 1,
+			strokeWidth: 2,
 			stroke: '#000000',
 			closed: false,
 			rotate: 0,
@@ -63,7 +63,7 @@ export default class Path extends Vector {
 	}
 
 	render() {
-		let { object } = this.props;
+		let { object, isSelected } = this.props;
 		const {
 			fill,
 			fillOpacity,
@@ -88,19 +88,34 @@ export default class Path extends Vector {
 
 		return (
 			<>
+				{isSelected && (
+					<path
+						style={this.getStyle(object)}
+						d={this.buildPath(object)}
+						// common props
+						fill={fill}
+						fillOpacity={fillOpacity}
+						stroke={'rgb(138, 180, 248)'}
+						strokeWidth={+strokeWidth + 2}
+						strokeOpacity={0.6}
+						transform={transform}
+						strokeLinecap="square"
+						strokeMiterlimit={8}
+					/>
+				)}
 				<path
 					style={this.getStyle(object)}
 					d={this.buildPath(object)}
 					// common props
+					ref={ref}
+					index={index}
+					transform={transform}
 					fill={closed ? fill : 'none'}
 					fillOpacity={fillOpacity}
 					stroke={stroke}
 					strokeWidth={strokeWidth}
 					strokeDasharray={type == 'map' ? 0 : 4}
-					ref={ref}
 					onMouseOver={onMouseOver}
-					transform={transform}
-					index={index}
 				/>
 				<Label x={labelCoordinates.x} y={labelCoordinates.y} label={name} />
 			</>

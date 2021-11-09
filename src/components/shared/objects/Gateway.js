@@ -38,16 +38,9 @@ export default class Gateway extends Vector {
 
 	render() {
 		const {
-			width,
-			height,
 			rotate,
 			x,
 			y,
-			z,
-			name,
-			macId,
-			gatewayClusterType,
-			clusterId,
 			plot,
 			elementType,
 			type,
@@ -60,8 +53,8 @@ export default class Gateway extends Vector {
 		return (
 			<>
 				<image
-					width={width}
-					height={height}
+					width={18}
+					height={18}
 					href={gatewaySVG}
 					style={this.getStyle()}
 					x={x}

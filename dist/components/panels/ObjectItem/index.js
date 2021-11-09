@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -20,8 +22,6 @@ var _Column = _interopRequireDefault(require("../Column"));
 var _Button = _interopRequireDefault(require("../../widgets/Button"));
 
 var _Icon = _interopRequireDefault(require("../../shared/Icon"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var ObjectItem = function ObjectItem(_ref) {
   var name = _ref.name,
@@ -55,7 +55,7 @@ var ObjectItem = function ObjectItem(_ref) {
       margin: 0,
       textTransform: 'capitalize'
     }
-  }, name || elementType))), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
+  }, name !== null && name !== void 0 ? name : ''))), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
     label: "Type",
     rowInline: true
   }, type ? /*#__PURE__*/_react["default"].createElement("div", {

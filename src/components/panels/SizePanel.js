@@ -16,9 +16,12 @@ class SizePanel extends Component {
 	}
 
 	render() {
-		let { object, onChange } = this.props;
+		let { object, onChange, resetCurrentSelection } = this.props;
 		return (
 			<PropertyGroup object={object}>
+				<Columns label="Editor" rowInline spaceBetween>
+					<Button onClick={() => resetCurrentSelection()}>Back</Button>
+				</Columns>
 				<Columns label="Label Property">
 					<Column
 						label="Name"
@@ -118,6 +121,7 @@ SizePanel.propTypes = {
 	object: PropTypes.object,
 	onDelete: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
+	resetCurrentSelection: PropTypes.func.isRequired
 };
 
 export default SizePanel;
