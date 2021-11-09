@@ -18,7 +18,7 @@ module.exports = {
 	resolve: {
 		extensions: ['.js', '.jsx'],
 	},
-	// devtool: 'source-map',
+	devtool: 'source-map',
 	devServer: {
 		port: 4008,
 		hot: true,

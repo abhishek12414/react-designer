@@ -3,25 +3,34 @@ import cx from 'classnames';
 import PropTypes from 'prop-types';
 import './index.css';
 
-import { TYPES } from '../../../constants';
-import { SHAPES } from '../../../constants';
+import { TYPES, SHAPES } from '../../../constants';
 
 class InsertMenu extends Component {
 	getKeys(type, tools) {
 		switch (type) {
-		case TYPES.MAP:
-			return Object.keys(tools).filter((i) => i !== SHAPES.gateway);
-		case TYPES.TRACK:
-			return Object.keys(tools).filter((i) => i === SHAPES.polygon);
-		case TYPES.GATEWAY:
-			return Object.keys(tools).filter((i) => i === SHAPES.gateway);
-		default:
-			return [];
+			case TYPES.MAP:
+				return Object.keys(tools).filter((i) => i !== SHAPES.gateway);
+			case TYPES.TRACK:
+				return Object.keys(tools).filter((i) => i === SHAPES.polygon);
+			case TYPES.GATEWAY:
+				return Object.keys(tools).filter((i) => i === SHAPES.gateway);
+			default:
+				return [];
 		}
 	}
 
 	render() {
 		let { currentTool, tools, onSelect, type, onTypeChange } = this.props;
+
+		tools = Object.keys(tools).reduce((acc, key) => {
+			if (key === SHAPES.image) {
+				return acc;
+			} else {
+				return { ...acc, [key]: tools[key] };
+			}
+		}, {});
+		// delete tools.image;
+		console.log('>>> ', type, tools);
 
 		return (
 			<div className="insertMenu">

@@ -10,7 +10,7 @@ export default class Ellipse extends Vector {
 		initial: {
 			fill: '#ffffff',
 			fillOpacity: 0,
-			strokeWidth: 1,
+			strokeWidth: 2,
 			stroke: '#000000',
 			width: 5,
 			height: 5,
@@ -21,6 +21,7 @@ export default class Ellipse extends Vector {
 	};
 
 	render() {
+		const { isSelected } = this.props;
 		const {
 			width,
 			height,
@@ -44,6 +45,24 @@ export default class Ellipse extends Vector {
 
 		return (
 			<>
+				{isSelected && (
+					<ellipse
+						style={this.getStyle()}
+						rx={width / 2}
+						ry={height / 2}
+						cx={x + width / 2}
+						cy={y + height / 2}
+						// common props
+						fill={fill}
+						fillOpacity={fillOpacity}
+						stroke={'rgb(138, 180, 248)'}
+						strokeWidth={+strokeWidth + 2}
+						strokeOpacity={0.6}
+						transform={transform}
+						strokeLinecap="square"
+						strokeMiterlimit={8}
+					/>
+				)}
 				<ellipse
 					style={this.getStyle()}
 					rx={width / 2}
@@ -51,15 +70,15 @@ export default class Ellipse extends Vector {
 					cx={x + width / 2}
 					cy={y + height / 2}
 					// common props
+					ref={ref}
+					index={index}
+					transform={transform}
 					fill={fill}
 					fillOpacity={fillOpacity}
 					stroke={stroke}
 					strokeWidth={strokeWidth}
 					strokeDasharray={type == 'map' ? 0 : 4}
-					ref={ref}
 					onMouseOver={onMouseOver}
-					transform={transform}
-					index={index}
 				/>
 				<Label x={labelCoordinates.x} y={labelCoordinates.y} label={name} />
 			</>

@@ -18,42 +18,54 @@ class StylePanel extends Component {
 
 		return (
 			<PropertyGroup>
-				<Columns label="Fill" rowInline>
-					<Column
-						type="color"
-						value={object.fill}
-						onChange={onChange.bind(this, 'fill')}
-					/>
-				</Columns>
-				<Columns label="Opacity" rowInline>
-					<Column
-						type="number"
-						value={object.fillOpacity}
-						style={{ width: 30 }}
-						onChange={onChange.bind(this, 'fillOpacity')}
-					/>
-				</Columns>
-				<Columns label="Stroke" inline>
-					<Column
-						type="color"
-						value={object.stroke}
-						onChange={onChange.bind(this, 'stroke')}
-					/>
-					<Column
-						label="width"
-						type="number"
-						value={object.strokeWidth}
-						style={{ width: 30 }}
-						onChange={onChange.bind(this, 'strokeWidth')}
-					/>
-					<Column
-						showIf={has(object, 'radius')}
-						label="radius"
-						type="number"
-						value={object.radius}
-						onChange={onChange.bind(this, 'radius')}
-					/>
-				</Columns>
+				{has(object, 'fill') && (
+					<Columns label="Fill" rowInline>
+						<Column
+							type="color"
+							value={object.fill}
+							onChange={onChange.bind(this, 'fill')}
+						/>
+					</Columns>
+				)}
+				{has(object, 'fillOpacity') && (
+					<Columns label="Opacity" rowInline>
+						<Column
+							type="number"
+							value={object.fillOpacity}
+							style={{ width: 30 }}
+							onChange={onChange.bind(this, 'fillOpacity')}
+						/>
+					</Columns>
+				)}
+				{has(object, 'stroke', 'width') && (
+					<Columns label="Stroke" inline>
+						{has(object, 'stroke') && (
+							<Column
+								type="color"
+								value={object.stroke}
+								onChange={onChange.bind(this, 'stroke')}
+							/>
+						)}
+						{has(object, 'strokeWidth') && (
+							<Column
+								label="width"
+								type="number"
+								value={object.strokeWidth}
+								style={{ width: 30 }}
+								onChange={onChange.bind(this, 'strokeWidth')}
+							/>
+						)}
+						{has(object, 'radius') && (
+							<Column
+								showIf={has(object, 'radius')}
+								label="radius"
+								type="number"
+								value={object.radius}
+								onChange={onChange.bind(this, 'radius')}
+							/>
+						)}
+					</Columns>
+				)}
 				{/* <Columns label="Blending" rowInline>
 					<Select
 						name="Blending"

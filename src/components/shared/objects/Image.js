@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Icon from '../Icon';
 
 import Vector from './Vector';
@@ -9,6 +9,7 @@ export default class Image extends Vector {
 		initial: {
 			width: 100,
 			height: 100,
+			fillOpacity: 1,
 			// Just a simple base64-encoded outline
 			xlinkHref:
 				'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAhSURBVHgBtYmxDQAADII8lv9faBNH4yoJLAi4ppxgMZoPoxQrXYyeEfoAAAAASUVORK5CYII=',
@@ -16,13 +17,28 @@ export default class Image extends Vector {
 	};
 
 	render() {
-		let { object, index } = this.props;
+		const {
+			xlinkHref,
+			width,
+			height,
+			elementType,
+			x,
+			y,
+			transform,
+			ref,
+			onMouseOver,
+			fillOpacity
+		} = this.getObjectAttributes();
+
 		return (
 			<image
-				xlinkHref={object.xlinkHref}
-				{...this.getObjectAttributes()}
-				width={object.width}
-				height={object.height}
+				ref={ref}
+				width={width}
+				height={height}
+				opacity={fillOpacity}
+				transform={transform}
+				xlinkHref={xlinkHref}
+				onMouseOver={onMouseOver}
 			/>
 		);
 	}

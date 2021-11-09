@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -14,8 +16,6 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 require("./index.css");
 
 var _Input = _interopRequireDefault(require("../../widgets/Input"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var Column = function Column(_ref) {
   var showIf = _ref.showIf,

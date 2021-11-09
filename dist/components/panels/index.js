@@ -1,5 +1,7 @@
 "use strict";
 
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -13,6 +15,12 @@ Object.defineProperty(exports, "GatewayPanel", {
   enumerable: true,
   get: function get() {
     return _GatewayPanel2["default"];
+  }
+});
+Object.defineProperty(exports, "ImagePanel", {
+  enumerable: true,
+  get: function get() {
+    return _ImagePanel2["default"];
   }
 });
 Object.defineProperty(exports, "InsertMenu", {
@@ -50,6 +58,6 @@ var _SizePanel2 = _interopRequireDefault(require("./SizePanel"));
 
 var _InsertMenu2 = _interopRequireDefault(require("./InsertMenu"));
 
-var _GatewayPanel2 = _interopRequireDefault(require("./GatewayPanel"));
+var _ImagePanel2 = _interopRequireDefault(require("./ImagePanel"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var _GatewayPanel2 = _interopRequireDefault(require("./GatewayPanel"));

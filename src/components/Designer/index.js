@@ -113,6 +113,14 @@ class Designer extends Component {
 		});
 	}
 
+	resetCurrentSelection() {
+		this.setState({
+			selectedObjectIndex: null,
+			currentObjectIndex: null,
+			showHandler: false,
+		});
+	}
+
 	newObject(event) {
 		let { mode, selectedTool, type } = this.state;
 
@@ -381,36 +389,6 @@ class Designer extends Component {
 		};
 	}
 
-	renderSVG() {
-		let canvas = this.getCanvas();
-		let {
-			background,
-			objects,
-			objectTypes,
-			backgroundImage,
-			backgroundSize,
-			backgroundRepeat,
-		} = this.props;
-
-		return (
-			<SVGRenderer
-				background={background}
-				backgroundSize={backgroundSize}
-				backgroundImage={backgroundImage}
-				backgroundRepeat={backgroundRepeat}
-				width={canvas.width}
-				canvas={canvas}
-				height={canvas.height}
-				objects={objects}
-				onMouseOver={this.showHandler.bind(this)}
-				objectTypes={objectTypes}
-				objectRefs={this.objectRefs}
-				onRender={(ref) => (this.svgElement = ref)}
-				onMouseDown={this.newObject.bind(this)}
-			/>
-		);
-	}
-
 	selectTool(tool) {
 		this.setState({
 			selectedTool: tool,
@@ -523,6 +501,37 @@ class Designer extends Component {
 		this.setState({ type });
 	}
 
+	renderSVG() {
+		let canvas = this.getCanvas();
+		let {
+			background,
+			objects,
+			objectTypes,
+			backgroundImage,
+			backgroundSize,
+			backgroundRepeat,
+		} = this.props;
+
+		return (
+			<SVGRenderer
+				background={background}
+				backgroundSize={backgroundSize}
+				backgroundImage={backgroundImage}
+				backgroundRepeat={backgroundRepeat}
+				width={canvas.width}
+				canvas={canvas}
+				height={canvas.height}
+				objects={objects}
+				onMouseOver={this.showHandler.bind(this)}
+				objectTypes={objectTypes}
+				objectRefs={this.objectRefs}
+				onRender={(ref) => (this.svgElement = ref)}
+				onMouseDown={this.newObject.bind(this)}
+				selectedObjectIndex={this.state.selectedObjectIndex}
+			/>
+		);
+	}
+
 	render() {
 		let {
 			showHandler,
@@ -551,6 +560,11 @@ class Designer extends Component {
 			ObjectEditor = objectComponent.meta.editor;
 		}
 
+		console.log(
+			'>>> ',
+			this.state.selectedObjectIndex,
+			this.state.currentObjectIndex
+		);
 		return (
 			<div className="reactDesigner">
 				<HotKeys
@@ -628,6 +642,7 @@ class Designer extends Component {
 									objectComponent={objectComponent}
 									onObjectSelect={this.updateSelectedObjectIndex.bind(this)}
 									objects={this.props.objects}
+									resetCurrentSelection={this.resetCurrentSelection.bind(this)}
 								/>
 							) : (
 								<ObjectList

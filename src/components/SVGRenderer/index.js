@@ -11,15 +11,16 @@ class SVGRenderer extends Component {
 	}
 
 	renderObject(object, index) {
-		let { objectRefs, onMouseOver } = this.props;
+		let { objectRefs, onMouseOver, selectedObjectIndex } = this.props;
 		let Renderer = this.getObjectComponent(object.elementType);
 		return (
 			<Renderer
-				onRender={(ref) => (objectRefs[index] = ref)}
-				onMouseOver={onMouseOver.bind(this, index)}
-				object={object}
 				key={index}
 				index={index}
+				object={object}
+				isSelected={index === selectedObjectIndex}
+				onRender={(ref) => (objectRefs[index] = ref)}
+				onMouseOver={onMouseOver.bind(this, index)}
 			/>
 		);
 	}

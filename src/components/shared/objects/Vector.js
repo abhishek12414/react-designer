@@ -6,7 +6,6 @@ import {
 	StylePanel,
 	ArrangePanel,
 	GatewayPanel,
-	ImagePanel
 } from '../../panels';
 
 export default class Vector extends Component {
@@ -16,7 +15,6 @@ export default class Vector extends Component {
 		StylePanel,
 		GatewayPanel,
 		ArrangePanel,
-		ImagePanel
 	];
 
 	getStyle() {

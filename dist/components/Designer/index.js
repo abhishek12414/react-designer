@@ -1,11 +1,31 @@
 "use strict";
 
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _typeof = require("@babel/runtime/helpers/typeof");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.styles = exports["default"] = void 0;
+
+var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
+
+var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/toConsumableArray"));
+
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
+
+var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
+
+var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
+
+var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime/helpers/possibleConstructorReturn"));
+
+var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
+
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -33,75 +53,34 @@ var _InsertMenu = _interopRequireDefault(require("../panels/InsertMenu"));
 
 var _ObjectList = _interopRequireDefault(require("../panels/ObjectList"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 var Designer = /*#__PURE__*/function (_Component) {
-  _inherits(Designer, _Component);
+  (0, _inherits2["default"])(Designer, _Component);
 
   var _super = _createSuper(Designer);
 
   function Designer() {
     var _this;
 
-    _classCallCheck(this, Designer);
+    (0, _classCallCheck2["default"])(this, Designer);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
     _this = _super.call.apply(_super, [this].concat(args));
-
-    _defineProperty(_assertThisInitialized(_this), "state", {
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "state", {
       mode: _constants.modes.FREE,
       handler: {
         top: 200,
@@ -115,8 +94,7 @@ var Designer = /*#__PURE__*/function (_Component) {
       selectedTool: null,
       type: 'map'
     });
-
-    _defineProperty(_assertThisInitialized(_this), "keyMap", {
+    (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "keyMap", {
       removeObject: ['del', 'backspace'],
       moveLeft: ['left', 'shift+left'],
       moveRight: ['right', 'shift+right'],
@@ -124,11 +102,10 @@ var Designer = /*#__PURE__*/function (_Component) {
       moveDown: ['down', 'shift+down'],
       closePath: ['enter']
     });
-
     return _this;
   }
 
-  _createClass(Designer, [{
+  (0, _createClass2["default"])(Designer, [{
     key: "componentWillMount",
     value: function componentWillMount() {
       this.objectRefs = {};
@@ -196,6 +173,15 @@ var Designer = /*#__PURE__*/function (_Component) {
       });
     }
   }, {
+    key: "resetCurrentSelection",
+    value: function resetCurrentSelection() {
+      this.setState({
+        selectedObjectIndex: null,
+        currentObjectIndex: null,
+        showHandler: false
+      });
+    }
+  }, {
     key: "newObject",
     value: function newObject(event) {
       var _this$state = this.state,
@@ -223,7 +209,7 @@ var Designer = /*#__PURE__*/function (_Component) {
         type: type
       });
 
-      onUpdate([].concat(_toConsumableArray(objects), [object]));
+      onUpdate([].concat((0, _toConsumableArray2["default"])(objects), [object]));
       this.setState({
         currentObjectIndex: objects.length,
         selectedObjectIndex: objects.length,
@@ -370,7 +356,7 @@ var Designer = /*#__PURE__*/function (_Component) {
       var scale = actions.scale,
           rotate = actions.rotate,
           drag = actions.drag;
-      var map = (_map = {}, _defineProperty(_map, _constants.modes.SCALE, scale), _defineProperty(_map, _constants.modes.ROTATE, rotate), _defineProperty(_map, _constants.modes.DRAG, drag), _map);
+      var map = (_map = {}, (0, _defineProperty2["default"])(_map, _constants.modes.SCALE, scale), (0, _defineProperty2["default"])(_map, _constants.modes.ROTATE, rotate), (0, _defineProperty2["default"])(_map, _constants.modes.DRAG, drag), _map);
       var action = map[mode];
 
       if (action) {
@@ -497,37 +483,6 @@ var Designer = /*#__PURE__*/function (_Component) {
       };
     }
   }, {
-    key: "renderSVG",
-    value: function renderSVG() {
-      var _this4 = this;
-
-      var canvas = this.getCanvas();
-      var _this$props5 = this.props,
-          background = _this$props5.background,
-          objects = _this$props5.objects,
-          objectTypes = _this$props5.objectTypes,
-          backgroundImage = _this$props5.backgroundImage,
-          backgroundSize = _this$props5.backgroundSize,
-          backgroundRepeat = _this$props5.backgroundRepeat;
-      return /*#__PURE__*/_react["default"].createElement(_SVGRenderer["default"], {
-        background: background,
-        backgroundSize: backgroundSize,
-        backgroundImage: backgroundImage,
-        backgroundRepeat: backgroundRepeat,
-        width: canvas.width,
-        canvas: canvas,
-        height: canvas.height,
-        objects: objects,
-        onMouseOver: this.showHandler.bind(this),
-        objectTypes: objectTypes,
-        objectRefs: this.objectRefs,
-        onRender: function onRender(ref) {
-          return _this4.svgElement = ref;
-        },
-        onMouseDown: this.newObject.bind(this)
-      });
-    }
-  }, {
     key: "selectTool",
     value: function selectTool(tool) {
       this.setState({
@@ -542,22 +497,22 @@ var Designer = /*#__PURE__*/function (_Component) {
     key: "handleObjectChange",
     value: function handleObjectChange(key, value) {
       var selectedObjectIndex = this.state.selectedObjectIndex;
-      this.updateObject(selectedObjectIndex, _defineProperty({}, key, value));
+      this.updateObject(selectedObjectIndex, (0, _defineProperty2["default"])({}, key, value));
     }
   }, {
     key: "handleArrange",
     value: function handleArrange(arrange) {
-      var _this5 = this;
+      var _this4 = this;
 
       var selectedObjectIndex = this.state.selectedObjectIndex;
       var objects = this.props.objects;
       var object = objects[selectedObjectIndex];
       var arrangers = {
         front: function front(rest, object) {
-          return [[].concat(_toConsumableArray(rest), [object]), rest.length];
+          return [[].concat((0, _toConsumableArray2["default"])(rest), [object]), rest.length];
         },
         back: function back(rest, object) {
-          return [[object].concat(_toConsumableArray(rest)), 0];
+          return [[object].concat((0, _toConsumableArray2["default"])(rest)), 0];
         }
       };
       var rest = objects.filter(function (object, index) {
@@ -569,13 +524,13 @@ var Designer = /*#__PURE__*/function (_Component) {
         var arranger = arrangers[arrange];
 
         var _arranger = arranger(rest, object),
-            _arranger2 = _slicedToArray(_arranger, 2),
+            _arranger2 = (0, _slicedToArray2["default"])(_arranger, 2),
             arranged = _arranger2[0],
             newIndex = _arranger2[1];
 
-        _this5.props.onUpdate(arranged);
+        _this4.props.onUpdate(arranged);
 
-        _this5.setState({
+        _this4.setState({
           selectedObjectIndex: newIndex
         });
       });
@@ -583,7 +538,7 @@ var Designer = /*#__PURE__*/function (_Component) {
   }, {
     key: "removeCurrent",
     value: function removeCurrent() {
-      var _this6 = this;
+      var _this5 = this;
 
       var selectedObjectIndex = this.state.selectedObjectIndex;
       var objects = this.props.objects;
@@ -597,11 +552,11 @@ var Designer = /*#__PURE__*/function (_Component) {
         showHandler: false,
         handler: null
       }, function () {
-        _this6.objectRefs = {};
+        _this5.objectRefs = {};
 
-        _this6.props.onUpdate(rest);
+        _this5.props.onUpdate(rest);
 
-        _this6.props.onDelete(deleteObj);
+        _this5.props.onDelete(deleteObj);
       });
     }
   }, {
@@ -615,7 +570,7 @@ var Designer = /*#__PURE__*/function (_Component) {
         points *= 10;
       }
 
-      var changes = _objectSpread(_objectSpread({}, object), {}, _defineProperty({}, attr, object[attr] + points));
+      var changes = _objectSpread(_objectSpread({}, object), {}, (0, _defineProperty2["default"])({}, attr, object[attr] + points));
 
       this.updateObject(selectedObjectIndex, changes);
       this.updateHandler(selectedObjectIndex, changes);
@@ -623,7 +578,7 @@ var Designer = /*#__PURE__*/function (_Component) {
   }, {
     key: "getKeymapHandlers",
     value: function getKeymapHandlers() {
-      var _this7 = this;
+      var _this6 = this;
 
       var handlers = {
         removeObject: this.removeCurrent.bind(this),
@@ -632,7 +587,7 @@ var Designer = /*#__PURE__*/function (_Component) {
         moveUp: this.moveSelectedObject.bind(this, 'y', -1),
         moveDown: this.moveSelectedObject.bind(this, 'y', 1),
         closePath: function closePath() {
-          return _this7.setState({
+          return _this6.setState({
             mode: _constants.modes.FREE
           });
         }
@@ -658,6 +613,38 @@ var Designer = /*#__PURE__*/function (_Component) {
     value: function onTypeChange(type) {
       this.setState({
         type: type
+      });
+    }
+  }, {
+    key: "renderSVG",
+    value: function renderSVG() {
+      var _this7 = this;
+
+      var canvas = this.getCanvas();
+      var _this$props5 = this.props,
+          background = _this$props5.background,
+          objects = _this$props5.objects,
+          objectTypes = _this$props5.objectTypes,
+          backgroundImage = _this$props5.backgroundImage,
+          backgroundSize = _this$props5.backgroundSize,
+          backgroundRepeat = _this$props5.backgroundRepeat;
+      return /*#__PURE__*/_react["default"].createElement(_SVGRenderer["default"], {
+        background: background,
+        backgroundSize: backgroundSize,
+        backgroundImage: backgroundImage,
+        backgroundRepeat: backgroundRepeat,
+        width: canvas.width,
+        canvas: canvas,
+        height: canvas.height,
+        objects: objects,
+        onMouseOver: this.showHandler.bind(this),
+        objectTypes: objectTypes,
+        objectRefs: this.objectRefs,
+        onRender: function onRender(ref) {
+          return _this7.svgElement = ref;
+        },
+        onMouseDown: this.newObject.bind(this),
+        selectedObjectIndex: this.state.selectedObjectIndex
       });
     }
   }, {
@@ -694,6 +681,7 @@ var Designer = /*#__PURE__*/function (_Component) {
         ObjectEditor = objectComponent.meta.editor;
       }
 
+      console.log('>>> ', this.state.selectedObjectIndex, this.state.currentObjectIndex);
       return /*#__PURE__*/_react["default"].createElement("div", {
         className: "reactDesigner"
       }, /*#__PURE__*/_react["default"].createElement(_reactHotkeys.HotKeys, {
@@ -750,7 +738,8 @@ var Designer = /*#__PURE__*/function (_Component) {
         onDelete: this.removeCurrent.bind(this),
         objectComponent: objectComponent,
         onObjectSelect: this.updateSelectedObjectIndex.bind(this),
-        objects: this.props.objects
+        objects: this.props.objects,
+        resetCurrentSelection: this.resetCurrentSelection.bind(this)
       }) : /*#__PURE__*/_react["default"].createElement(_ObjectList["default"], {
         objects: this.props.objects,
         onObjectSelect: this.updateSelectedObjectIndex.bind(this),
@@ -760,24 +749,22 @@ var Designer = /*#__PURE__*/function (_Component) {
       })))));
     }
   }]);
-
   return Designer;
 }(_react.Component);
 
-_defineProperty(Designer, "defaultProps", {
+(0, _defineProperty2["default"])(Designer, "defaultProps", {
   objectTypes: {
     // text: Text,
     rect: _objects.Rect,
     ellipse: _objects.Ellipse,
     polygon: _objects.Path,
-    // image: Image,
+    image: _objects.Image,
     gateway: _objects.Gateway
   },
   snapToGrid: 1,
   svgStyle: {},
   insertMenu: _InsertMenu["default"]
 });
-
 var styles = {
   container: {
     position: 'relative',

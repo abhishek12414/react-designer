@@ -30,6 +30,7 @@ export const SHAPES = Object.freeze({
 	polyline: 'polyline',
 	rect: 'rect',
 	gateway: 'gateway',
+	image: 'image',
 });
 
 export const buildingBlock = Object.freeze({
