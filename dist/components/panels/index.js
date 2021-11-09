@@ -17,12 +17,6 @@ Object.defineProperty(exports, "GatewayPanel", {
     return _GatewayPanel2["default"];
   }
 });
-Object.defineProperty(exports, "ImagePanel", {
-  enumerable: true,
-  get: function get() {
-    return _ImagePanel2["default"];
-  }
-});
 Object.defineProperty(exports, "InsertMenu", {
   enumerable: true,
   get: function get() {
@@ -57,7 +51,5 @@ var _StylePanel2 = _interopRequireDefault(require("./StylePanel"));
 var _SizePanel2 = _interopRequireDefault(require("./SizePanel"));
 
 var _InsertMenu2 = _interopRequireDefault(require("./InsertMenu"));
-
-var _ImagePanel2 = _interopRequireDefault(require("./ImagePanel"));
 
 var _GatewayPanel2 = _interopRequireDefault(require("./GatewayPanel"));
