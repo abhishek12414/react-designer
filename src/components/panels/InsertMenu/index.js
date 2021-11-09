@@ -22,6 +22,7 @@ class InsertMenu extends Component {
 	render() {
 		let { currentTool, tools, onSelect, type, onTypeChange } = this.props;
 
+		// hide tools.image;
 		tools = Object.keys(tools).reduce((acc, key) => {
 			if (key === SHAPES.image) {
 				return acc;
@@ -29,8 +30,6 @@ class InsertMenu extends Component {
 				return { ...acc, [key]: tools[key] };
 			}
 		}, {});
-		// delete tools.image;
-		console.log('>>> ', type, tools);
 
 		return (
 			<div className="insertMenu">

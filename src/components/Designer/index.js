@@ -560,11 +560,6 @@ class Designer extends Component {
 			ObjectEditor = objectComponent.meta.editor;
 		}
 
-		console.log(
-			'>>> ',
-			this.state.selectedObjectIndex,
-			this.state.currentObjectIndex
-		);
 		return (
 			<div className="reactDesigner">
 				<HotKeys

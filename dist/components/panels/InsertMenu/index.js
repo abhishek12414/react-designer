@@ -86,16 +86,15 @@ var InsertMenu = /*#__PURE__*/function (_Component) {
           tools = _this$props.tools,
           onSelect = _this$props.onSelect,
           type = _this$props.type,
-          onTypeChange = _this$props.onTypeChange;
+          onTypeChange = _this$props.onTypeChange; // hide tools.image;
+
       tools = Object.keys(tools).reduce(function (acc, key) {
         if (key === _constants.SHAPES.image) {
           return acc;
         } else {
           return _objectSpread(_objectSpread({}, acc), {}, (0, _defineProperty2["default"])({}, key, tools[key]));
         }
-      }, {}); // delete tools.image;
-
-      console.log('>>> ', type, tools);
+      }, {});
       return /*#__PURE__*/_react["default"].createElement("div", {
         className: "insertMenu"
       }, /*#__PURE__*/_react["default"].createElement("div", {

@@ -681,7 +681,6 @@ var Designer = /*#__PURE__*/function (_Component) {
         ObjectEditor = objectComponent.meta.editor;
       }
 
-      console.log('>>> ', this.state.selectedObjectIndex, this.state.currentObjectIndex);
       return /*#__PURE__*/_react["default"].createElement("div", {
         className: "reactDesigner"
       }, /*#__PURE__*/_react["default"].createElement(_reactHotkeys.HotKeys, {
