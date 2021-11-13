@@ -1,6 +1,6 @@
 .insertMenu {
-	width: 200px;
 	padding: 20px;
+	min-width: 200px;
 	text-transform: capitalize;
 	background-color: #ebebeb;
 }
@@ -8,7 +8,7 @@
 	display: flex;
 }
 .insertMenu .tabWrapper .tabBar {
-	flex:1;
+	flex: 1;
 	text-align: center;
 	cursor: pointer;
 	padding: 4px 8px;
