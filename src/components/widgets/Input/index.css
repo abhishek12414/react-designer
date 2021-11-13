@@ -9,7 +9,6 @@
 }
 .inputContainer:focus-within {
 	border: 1px solid #18a0fb;
-	outline: 1px solid #18a0fb;
 }
 .inputContainer .icon {
 	min-width: 32px;

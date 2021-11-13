@@ -62,7 +62,7 @@ var ImagePanel = /*#__PURE__*/function (_Component) {
       var fr = new FileReader();
 
       var setImage = function (e) {
-        this.props.onChange('xlinkHref', e.target.result);
+        this.props.onChange('href', e.target.result);
       }.bind(this);
 
       fr.onload = setImage;
@@ -74,7 +74,7 @@ var ImagePanel = /*#__PURE__*/function (_Component) {
       var object = this.props.object;
       return /*#__PURE__*/_react["default"].createElement(_PropertyGroup["default"], {
         object: object,
-        showIf: (0, _has["default"])(object, 'xlinkHref')
+        showIf: (0, _has["default"])(object, 'href')
       }, /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
         label: "Image"
       }, /*#__PURE__*/_react["default"].createElement(_Column["default"], null, /*#__PURE__*/_react["default"].createElement(_reactDropzone["default"], {

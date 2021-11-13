@@ -62,7 +62,7 @@ class Designer extends Component {
 		let { objects } = this.props;
 		let object = objects[index];
 
-		if (mode !== modes.FREE) {
+		if (mode !== modes.FREE || object.elementType === 'image') {
 			return;
 		}
 
@@ -518,9 +518,7 @@ class Designer extends Component {
 				backgroundSize={backgroundSize}
 				backgroundImage={backgroundImage}
 				backgroundRepeat={backgroundRepeat}
-				width={canvas.width}
 				canvas={canvas}
-				height={canvas.height}
 				objects={objects}
 				onMouseOver={this.showHandler.bind(this)}
 				objectTypes={objectTypes}
@@ -584,43 +582,45 @@ class Designer extends Component {
 						)}
 
 						{/* Center Panel: Displays the preview */}
-						<div
-							className={'canvasContainer'}
-							style={{
-								width: canvasWidth,
-								height: canvasHeight,
-							}}
-						>
-							{isEditMode && ObjectEditor && (
-								<ObjectEditor
-									object={currentObject}
-									offset={this.getOffset()}
-									onUpdate={(object) =>
-										this.updateObject(selectedObjectIndex, object)
-									}
-									onClose={() => this.setState({ mode: modes.FREE })}
-									width={width}
-									height={height}
-								/>
-							)}
+						<div className="drawingContainer">
+							<div
+								className={'canvasContainer'}
+								style={{
+									width: canvasWidth,
+									height: canvasHeight,
+								}}
+							>
+								{isEditMode && ObjectEditor && (
+									<ObjectEditor
+										object={currentObject}
+										offset={this.getOffset()}
+										onUpdate={(object) =>
+											this.updateObject(selectedObjectIndex, object)
+										}
+										onClose={() => this.setState({ mode: modes.FREE })}
+										width={width}
+										height={height}
+									/>
+								)}
 
-							{showHandler && (
-								<Handler
-									boundingBox={handler}
-									canResize={
-										_(currentObject).has('width') ||
-										_(currentObject).has('height')
-									}
-									// canRotate={_(currentObject).has('rotate')}
-									onMouseLeave={this.hideHandler.bind(this)}
-									onDoubleClick={this.showEditor.bind(this)}
-									onDrag={this.startDrag.bind(this, modes.DRAG)}
-									onResize={this.startDrag.bind(this, modes.SCALE)}
-									// onRotate={this.startDrag.bind(this, modes.ROTATE)}
-								/>
-							)}
+								{showHandler && (
+									<Handler
+										boundingBox={handler}
+										canResize={
+											_(currentObject).has('width') ||
+											_(currentObject).has('height')
+										}
+										// canRotate={_(currentObject).has('rotate')}
+										onMouseLeave={this.hideHandler.bind(this)}
+										onDoubleClick={this.showEditor.bind(this)}
+										onDrag={this.startDrag.bind(this, modes.DRAG)}
+										onResize={this.startDrag.bind(this, modes.SCALE)}
+										// onRotate={this.startDrag.bind(this, modes.ROTATE)}
+									/>
+								)}
 
-							{this.renderSVG()}
+								{this.renderSVG()}
+							</div>
 						</div>
 
 						{/* Right Panel: Displays text,

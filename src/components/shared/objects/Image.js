@@ -11,14 +11,13 @@ export default class Image extends Vector {
 			height: 100,
 			fillOpacity: 1,
 			// Just a simple base64-encoded outline
-			xlinkHref:
-				'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAhSURBVHgBtYmxDQAADII8lv9faBNH4yoJLAi4ppxgMZoPoxQrXYyeEfoAAAAASUVORK5CYII=',
+			href: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAhSURBVHgBtYmxDQAADII8lv9faBNH4yoJLAi4ppxgMZoPoxQrXYyeEfoAAAAASUVORK5CYII=',
 		},
 	};
 
 	render() {
 		const {
-			xlinkHref,
+			href,
 			width,
 			height,
 			elementType,
@@ -27,17 +26,17 @@ export default class Image extends Vector {
 			transform,
 			ref,
 			onMouseOver,
-			fillOpacity
+			fillOpacity,
 		} = this.getObjectAttributes();
 
 		return (
 			<image
 				ref={ref}
+				href={href}
 				width={width}
 				height={height}
 				opacity={fillOpacity}
 				transform={transform}
-				xlinkHref={xlinkHref}
 				onMouseOver={onMouseOver}
 			/>
 		);
