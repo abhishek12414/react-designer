@@ -43,7 +43,7 @@ var Image = /*#__PURE__*/function (_Vector) {
     key: "render",
     value: function render() {
       var _this$getObjectAttrib = this.getObjectAttributes(),
-          xlinkHref = _this$getObjectAttrib.xlinkHref,
+          href = _this$getObjectAttrib.href,
           width = _this$getObjectAttrib.width,
           height = _this$getObjectAttrib.height,
           elementType = _this$getObjectAttrib.elementType,
@@ -56,11 +56,11 @@ var Image = /*#__PURE__*/function (_Vector) {
 
       return /*#__PURE__*/_react["default"].createElement("image", {
         ref: ref,
+        href: href,
         width: width,
         height: height,
         opacity: fillOpacity,
         transform: transform,
-        xlinkHref: xlinkHref,
         onMouseOver: onMouseOver
       });
     }
@@ -79,6 +79,6 @@ exports["default"] = Image;
     height: 100,
     fillOpacity: 1,
     // Just a simple base64-encoded outline
-    xlinkHref: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAhSURBVHgBtYmxDQAADII8lv9faBNH4yoJLAi4ppxgMZoPoxQrXYyeEfoAAAAASUVORK5CYII='
+    href: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAhSURBVHgBtYmxDQAADII8lv9faBNH4yoJLAi4ppxgMZoPoxQrXYyeEfoAAAAASUVORK5CYII='
   }
 });
