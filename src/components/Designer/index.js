@@ -638,6 +638,8 @@ class Designer extends Component {
 									onObjectSelect={this.updateSelectedObjectIndex.bind(this)}
 									objects={this.props.objects}
 									resetCurrentSelection={this.resetCurrentSelection.bind(this)}
+									clusterList={this.props.clusterList}
+									onAddClusterClick={this.props.onAddClusterClick}
 								/>
 							) : (
 								<ObjectList

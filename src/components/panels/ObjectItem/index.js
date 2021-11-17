@@ -35,21 +35,25 @@ const ObjectItem = ({
 
 	return (
 		<PropertyGroup className="propertyGroup">
-			<Columns label="Label" rowInline>
-				<Column name>
-					<p style={{ margin: 0, textTransform: 'capitalize' }}>{name ?? ''}</p>
-				</Column>
-			</Columns>
-			<Columns label="Type" rowInline>
-				{type ? (
+			{elementType !== 'image' && (
+				<Columns label="Label" rowInline>
+					<Column name>
+						<p style={{ margin: 0, textTransform: 'capitalize' }}>
+							{name ?? ''}
+						</p>
+					</Column>
+				</Columns>
+			)}
+			{type ? (
+				<Columns label="Type" rowInline>
 					<div style={{ display: 'flex', alignItems: 'center' }}>
 						<Column>{type}</Column>
 						<Column>
 							<Icon icon={type} size={24} />
 						</Column>
 					</div>
-				) : null}
-			</Columns>
+				</Columns>
+			) : null}
 			<Columns label="Shape" rowInline>
 				<Column name>
 					<p style={{ margin: 0, textTransform: 'capitalize' }}>
@@ -57,21 +61,23 @@ const ObjectItem = ({
 					</p>
 				</Column>
 			</Columns>
-			<Columns label="Cluster" rowInline>
-				<Column>
-					<div style={{ display: 'flex' }}>
-						<Button style={'fabButton'} onClick={onAddClusterClick}>
-							+
-						</Button>
-						<select
-							value={clusterId}
-							onChange={(e) => onChange({ clusterId: e.target.value })}
-						>
-							{clusterOptions}
-						</select>
-					</div>
-				</Column>
-			</Columns>
+			{elementType !== 'image' && (
+				<Columns label="Cluster" rowInline>
+					<Column>
+						<div style={{ display: 'flex' }}>
+							<Button style={'fabButton'} onClick={onAddClusterClick}>
+								+
+							</Button>
+							<select
+								value={clusterId}
+								onChange={(e) => onChange({ clusterId: e.target.value })}
+							>
+								{clusterOptions}
+							</select>
+						</div>
+					</Column>
+				</Columns>
+			)}
 			<Columns label="Edit" rowInline>
 				<Column>
 					<Button onClick={onClick}>Edit</Button>

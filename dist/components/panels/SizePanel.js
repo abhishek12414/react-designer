@@ -63,6 +63,18 @@ var SizePanel = /*#__PURE__*/function (_Component) {
       this.props.onChange('labelCoordinates', _objectSpread(_objectSpread({}, this.props.object.labelCoordinates), {}, (0, _defineProperty2["default"])({}, key, value)));
     }
   }, {
+    key: "clusterOptions",
+    value: function clusterOptions() {
+      return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("option", {
+        value: ""
+      }, "Select Cluster"), ",", this.props.clusterList.map(function (i) {
+        return /*#__PURE__*/_react["default"].createElement("option", {
+          key: i.value,
+          value: i.value
+        }, i.label);
+      }));
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this = this;
@@ -81,7 +93,24 @@ var SizePanel = /*#__PURE__*/function (_Component) {
         onClick: function onClick() {
           return resetCurrentSelection();
         }
-      }, "Back")), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
+      }, "Back")), object.elementType === 'image' ? /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, (0, _has["default"])(object, 'width', 'height') && /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
+        label: "Size",
+        inline: true
+      }, /*#__PURE__*/_react["default"].createElement(_Column["default"], {
+        disabled: true,
+        label: "W",
+        type: "number",
+        showIf: (0, _has["default"])(object, 'width'),
+        value: object.width,
+        onChange: onChange.bind(this, 'width')
+      }), /*#__PURE__*/_react["default"].createElement(_Column["default"], {
+        disabled: true,
+        label: "H",
+        type: "number",
+        showIf: (0, _has["default"])(object, 'height'),
+        value: object.height,
+        onChange: onChange.bind(this, 'height')
+      }))) : /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
         label: "Label Property"
       }, /*#__PURE__*/_react["default"].createElement(_Column["default"], {
         label: "Name",
@@ -167,7 +196,22 @@ var SizePanel = /*#__PURE__*/function (_Component) {
         rowInline: true
       }, /*#__PURE__*/_react["default"].createElement(_Button["default"], {
         onClick: this.props.onDelete
-      }, "Delete Shape")));
+      }, "Delete Shape")), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
+        label: "Cluster",
+        rowInline: true
+      }, /*#__PURE__*/_react["default"].createElement(_Column["default"], null, /*#__PURE__*/_react["default"].createElement("div", {
+        style: {
+          display: 'flex'
+        }
+      }, /*#__PURE__*/_react["default"].createElement(_Button["default"], {
+        style: 'fabButton',
+        onClick: this.props.onAddClusterClick
+      }, "+"), /*#__PURE__*/_react["default"].createElement("select", {
+        value: (object === null || object === void 0 ? void 0 : object.clusterId) || '',
+        onChange: function onChange(e) {
+          return _this.props.onChange('clusterId', e.target.value);
+        }
+      }, this.clusterOptions()))))));
     }
   }]);
   return SizePanel;
@@ -177,7 +221,12 @@ SizePanel.propTypes = {
   object: _propTypes["default"].object,
   onDelete: _propTypes["default"].func.isRequired,
   onChange: _propTypes["default"].func.isRequired,
+  clusterList: _propTypes["default"].array,
+  onAddClusterClick: _propTypes["default"].func.isRequired,
   resetCurrentSelection: _propTypes["default"].func.isRequired
+};
+SizePanel.defaultProps = {
+  clusterList: []
 };
 var _default = SizePanel;
 exports["default"] = _default;

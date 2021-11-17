@@ -14,7 +14,7 @@ export default class Rect extends Vector {
 			fillOpacity: 0,
 			strokeWidth: 2,
 			stroke: '#000000',
-			radius: 0,
+			// radius: 0,
 			blendMode: 'normal',
 			rotate: 0,
 			labelCoordinates: { x: 30, y: 30 },
