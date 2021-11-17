@@ -738,7 +738,9 @@ var Designer = /*#__PURE__*/function (_Component) {
         objectComponent: objectComponent,
         onObjectSelect: this.updateSelectedObjectIndex.bind(this),
         objects: this.props.objects,
-        resetCurrentSelection: this.resetCurrentSelection.bind(this)
+        resetCurrentSelection: this.resetCurrentSelection.bind(this),
+        clusterList: this.props.clusterList,
+        onAddClusterClick: this.props.onAddClusterClick
       }) : /*#__PURE__*/_react["default"].createElement(_ObjectList["default"], {
         objects: this.props.objects,
         onObjectSelect: this.updateSelectedObjectIndex.bind(this),

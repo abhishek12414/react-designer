@@ -45,7 +45,7 @@ var ObjectItem = function ObjectItem(_ref) {
 
   return /*#__PURE__*/_react["default"].createElement(_PropertyGroup["default"], {
     className: "propertyGroup"
-  }, /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
+  }, elementType !== 'image' && /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
     label: "Label",
     rowInline: true
   }, /*#__PURE__*/_react["default"].createElement(_Column["default"], {
@@ -55,10 +55,10 @@ var ObjectItem = function ObjectItem(_ref) {
       margin: 0,
       textTransform: 'capitalize'
     }
-  }, name !== null && name !== void 0 ? name : ''))), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
+  }, name !== null && name !== void 0 ? name : ''))), type ? /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
     label: "Type",
     rowInline: true
-  }, type ? /*#__PURE__*/_react["default"].createElement("div", {
+  }, /*#__PURE__*/_react["default"].createElement("div", {
     style: {
       display: 'flex',
       alignItems: 'center'
@@ -66,7 +66,7 @@ var ObjectItem = function ObjectItem(_ref) {
   }, /*#__PURE__*/_react["default"].createElement(_Column["default"], null, type), /*#__PURE__*/_react["default"].createElement(_Column["default"], null, /*#__PURE__*/_react["default"].createElement(_Icon["default"], {
     icon: type,
     size: 24
-  }))) : null), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
+  })))) : null, /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
     label: "Shape",
     rowInline: true
   }, /*#__PURE__*/_react["default"].createElement(_Column["default"], {
@@ -76,7 +76,7 @@ var ObjectItem = function ObjectItem(_ref) {
       margin: 0,
       textTransform: 'capitalize'
     }
-  }, elementType))), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
+  }, elementType))), elementType !== 'image' && /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
     label: "Cluster",
     rowInline: true
   }, /*#__PURE__*/_react["default"].createElement(_Column["default"], null, /*#__PURE__*/_react["default"].createElement("div", {
