@@ -20,12 +20,14 @@ require("./index.css");
 var _excluded = ["id", "objectComponent"];
 
 var PanelList = function PanelList(_ref) {
+  var _objectComponent$pane;
+
   var id = _ref.id,
       objectComponent = _ref.objectComponent,
       rest = (0, _objectWithoutProperties2["default"])(_ref, _excluded);
   return /*#__PURE__*/_react["default"].createElement("div", {
     className: "panelList"
-  }, objectComponent.panels.map(function (Panel, i) {
+  }, objectComponent === null || objectComponent === void 0 ? void 0 : (_objectComponent$pane = objectComponent.panels) === null || _objectComponent$pane === void 0 ? void 0 : _objectComponent$pane.map(function (Panel, i) {
     return /*#__PURE__*/_react["default"].createElement(Panel, (0, _extends2["default"])({
       key: i,
       id: id
