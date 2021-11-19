@@ -6,7 +6,7 @@ import './index.css';
 const PanelList = ({ id, objectComponent, ...rest }) => {
 	return (
 		<div className="panelList">
-			{objectComponent.panels.map((Panel, i) => (
+			{objectComponent?.panels?.map((Panel, i) => (
 				<Panel key={i} id={id} {...rest} />
 			))}
 		</div>

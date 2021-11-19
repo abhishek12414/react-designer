@@ -1,107 +1,54 @@
-import React, { Component, useState } from 'react';
-import cx from 'classnames';
+import React from 'react';
 import PropTypes from 'prop-types';
+
+import ScaleAnchor from './ScaleAnchor';
+import RotateAnchor from './RotateAnchor';
 
 import './index.css';
 
-function ScaleAnchor({ boundingBox, onMouseDown }) {
-	let style = {
-		marginTop: boundingBox.height + 5,
-		marginLeft: boundingBox.width + 5,
-	};
-
-	let [anchorHovered, setAnchorHovered] = useState(false);
-
-	return (
-		<div
-			className={cx('anchor', anchorHovered && 'anchorHovered', 'scaleAnchor')}
-			style={{
-				...style,
-			}}
-			onMouseOver={() => setAnchorHovered(true)}
-			onMouseOut={() => setAnchorHovered(false)}
-			onMouseDown={onMouseDown}
-		/>
-	);
-}
-
-ScaleAnchor.propTypes = {
-	boundingBox: PropTypes.object.isRequired,
-	onMouseDown: PropTypes.func.isRequired,
-};
-
-function RotateAnchor({ boundingBox, onMouseDown }) {
-	let style = {
-		marginLeft: boundingBox.width + 5,
-	};
-
-	let [anchorHovered, setAnchorHovered] = useState(false);
-
-	return (
-		<div
-			className={cx('anchor', anchorHovered && 'anchorHovered', 'rotateAnchor')}
-			style={{
-				...style,
-			}}
-			onMouseOver={() => setAnchorHovered(true)}
-			onMouseOut={() => setAnchorHovered(false)}
-			onMouseDown={onMouseDown}
-		/>
-	);
-}
-
-RotateAnchor.propTypes = {
-	boundingBox: PropTypes.object.isRequired,
-	onMouseDown: PropTypes.func.isRequired,
-};
-
-class Handler extends Component {
-	onMouseDown(event) {
+const Handler = ({
+	boundingBox,
+	canRotate,
+	canResize,
+	onMouseLeave,
+	onDoubleClick,
+	onResize,
+	onRotate,
+	onDrag,
+}) => {
+	const onMouseDown = (event) => {
 		// event.preventDefault();
-
 		if (event.target.classList.contains('handler')) {
-			this.props.onDrag(event);
+			onDrag(event);
 		}
-	}
+	};
 
-	render() {
-		let {
-			boundingBox,
-			canRotate,
-			canResize,
-			onMouseLeave,
-			onDoubleClick,
-			onResize,
-			onRotate,
-		} = this.props;
+	let handlerStyle = {
+		...boundingBox,
+		top: boundingBox.top - 5,
+		left: boundingBox.left - 5,
+		width: boundingBox.width + 10,
+		height: boundingBox.height + 10,
+		transform: `rotate(${boundingBox.rotate}deg)`,
+	};
 
-		let handlerStyle = {
-			...boundingBox,
-			width: boundingBox.width + 10,
-			height: boundingBox.height + 10,
-			left: boundingBox.left - 5,
-			top: boundingBox.top - 5,
-			transform: `rotate(${boundingBox.rotate}deg)`,
-		};
-
-		return (
-			<div
-				className={'handler'}
-				style={handlerStyle}
-				onMouseLeave={onMouseLeave}
-				onDoubleClick={onDoubleClick}
-				onMouseDown={this.onMouseDown.bind(this)}
-			>
-				{canRotate && (
-					<RotateAnchor onMouseDown={onRotate} boundingBox={boundingBox} />
-				)}
-				{canResize && (
-					<ScaleAnchor onMouseDown={onResize} boundingBox={boundingBox} />
-				)}
-			</div>
-		);
-	}
-}
+	return (
+		<div
+			className="handler"
+			style={handlerStyle}
+			onMouseDown={onMouseDown}
+			onMouseLeave={onMouseLeave}
+			onDoubleClick={onDoubleClick}
+		>
+			{canRotate && (
+				<RotateAnchor boundingBox={boundingBox} onMouseDown={onRotate} />
+			)}
+			{canResize && (
+				<ScaleAnchor boundingBox={boundingBox} onMouseDown={onResize} />
+			)}
+		</div>
+	);
+};
 
 Handler.propTypes = {
 	canRotate: PropTypes.bool,
