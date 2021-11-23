@@ -90,41 +90,37 @@ class SizePanel extends Component {
 						{has(object, 'width', 'height') && (
 							<Columns label="Size" inline>
 								<Column
-									disabled
 									label="W"
 									type="number"
 									showIf={has(object, 'width')}
 									value={object.width}
-									onChange={onChange.bind(this, 'width')}
+									onChange={(value) => this.props.onChange('width', +value)}
 								/>
 								<Column
-									disabled
 									label="H"
 									type="number"
 									showIf={has(object, 'height')}
 									value={object.height}
-									onChange={onChange.bind(this, 'height')}
+									onChange={(value) => this.props.onChange('height', +value)}
 								/>
 							</Columns>
 						)}
 						<Columns label="Position" inline>
 							<Column
-								disabled
 								label="X"
 								type="number"
 								showIf={has(object, 'x')}
 								value={object.x}
 								readOnly={true}
-								onChange={onChange.bind(this, 'x')}
+								onChange={(value) => this.props.onChange('x', +value)}
 							/>
 							<Column
-								disabled
 								label="Y"
 								type="number"
 								showIf={has(object, 'y')}
 								value={object.y}
 								readOnly={true}
-								onChange={onChange.bind(this, 'y')}
+								onChange={(value) => this.props.onChange('y', +value)}
 							/>
 						</Columns>
 						{/* {has(object, 'rotate') && (
