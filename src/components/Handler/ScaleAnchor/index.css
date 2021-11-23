@@ -1,0 +1,14 @@
+.scaleAnchor {
+	width: 10px;
+	height: 10px;
+	z-index: -1;
+	position: absolute;
+	margin-top: -3px;
+	border-right: 2px solid #dedede;
+	border-bottom: 2px solid #dedede;
+}
+
+.scaleAnchor:active,
+.scaleAnchor:hover {
+	border-color: #4b4848;
+}

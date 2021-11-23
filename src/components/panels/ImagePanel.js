@@ -16,7 +16,7 @@ class ImagePanel extends Component {
 		const fr = new FileReader();
 
 		const setImage = function (e) {
-			this.props.onChange('xlinkHref', e.target.result);
+			this.props.onChange('href', e.target.result);
 		}.bind(this);
 		fr.onload = setImage;
 		fr.readAsDataURL(file);
@@ -25,7 +25,7 @@ class ImagePanel extends Component {
 	render() {
 		const { object } = this.props;
 		return (
-			<PropertyGroup object={object} showIf={has(object, 'xlinkHref')}>
+			<PropertyGroup object={object} showIf={has(object, 'href')}>
 				<Columns label="Image">
 					<Column>
 						<Dropzone

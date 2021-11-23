@@ -7,8 +7,8 @@ const layout = {
 	height: 400,
 };
 const imgObj = {
-	xlinkHref: 'http://localhost:3000/api/v2/file/6188e225c4e0e7005b77ffab',
-	// xlinkHref: 'https://miro.medium.com/max/1000/1*P4Z6NIm0dHypW2NnXqinqg.jpeg',
+	href: 'http://localhost:3000/api/v2/file/6188e225c4e0e7005b77ffab',
+	// href: 'https://miro.medium.com/max/1000/1*P4Z6NIm0dHypW2NnXqinqg.jpeg',
 	width: layout.width,
 	height: layout.height,
 	elementType: 'image',

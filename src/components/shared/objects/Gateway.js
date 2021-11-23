@@ -8,8 +8,6 @@ export default class Gateway extends Vector {
 	static meta = {
 		icon: <Icon icon={'wifi'} size={30} />,
 		initial: {
-			width: 18,
-			height: 18,
 			rotate: 0,
 			x: 0,
 			y: 0,
@@ -65,7 +63,7 @@ export default class Gateway extends Vector {
 					transform={transform}
 					index={index}
 				/>
-				<image width="18" height="18" href={trackSvg} x={plot.x} y={plot.y} />
+				<image width={18} height={18} href={trackSvg} x={plot.x} y={plot.y} />
 			</>
 		);
 	}

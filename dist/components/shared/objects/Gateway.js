@@ -90,8 +90,8 @@ var Gateway = /*#__PURE__*/function (_Vector) {
         transform: transform,
         index: index
       }), /*#__PURE__*/_react["default"].createElement("image", {
-        width: "18",
-        height: "18",
+        width: 18,
+        height: 18,
         href: _track["default"],
         x: plot.x,
         y: plot.y
@@ -108,8 +108,6 @@ exports["default"] = Gateway;
     size: 30
   }),
   initial: {
-    width: 18,
-    height: 18,
     rotate: 0,
     x: 0,
     y: 0,

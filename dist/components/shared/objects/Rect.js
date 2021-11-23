@@ -121,7 +121,7 @@ exports["default"] = Rect;
     fillOpacity: 0,
     strokeWidth: 2,
     stroke: '#000000',
-    radius: 0,
+    // radius: 0,
     blendMode: 'normal',
     rotate: 0,
     labelCoordinates: {

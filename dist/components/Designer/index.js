@@ -117,7 +117,7 @@ var Designer = /*#__PURE__*/function (_Component) {
       var objects = this.props.objects;
       var object = objects[index];
 
-      if (mode !== _constants.modes.FREE) {
+      if (mode !== _constants.modes.FREE || object.elementType === 'image') {
         return;
       }
 
@@ -633,9 +633,7 @@ var Designer = /*#__PURE__*/function (_Component) {
         backgroundSize: backgroundSize,
         backgroundImage: backgroundImage,
         backgroundRepeat: backgroundRepeat,
-        width: canvas.width,
         canvas: canvas,
-        height: canvas.height,
         objects: objects,
         onMouseOver: this.showHandler.bind(this),
         objectTypes: objectTypes,
@@ -700,6 +698,8 @@ var Designer = /*#__PURE__*/function (_Component) {
           return _this8.onTypeChange(value);
         }
       }), /*#__PURE__*/_react["default"].createElement("div", {
+        className: "drawingContainer"
+      }, /*#__PURE__*/_react["default"].createElement("div", {
         className: 'canvasContainer',
         style: {
           width: canvasWidth,
@@ -727,7 +727,7 @@ var Designer = /*#__PURE__*/function (_Component) {
         onDrag: this.startDrag.bind(this, _constants.modes.DRAG),
         onResize: this.startDrag.bind(this, _constants.modes.SCALE) // onRotate={this.startDrag.bind(this, modes.ROTATE)}
 
-      }), this.renderSVG()), /*#__PURE__*/_react["default"].createElement("div", {
+      }), this.renderSVG())), /*#__PURE__*/_react["default"].createElement("div", {
         className: "propertiesPanelContainer"
       }, showPropertyPanel ? /*#__PURE__*/_react["default"].createElement(_PanelList["default"], {
         offset: this.getOffset(),
@@ -738,7 +738,9 @@ var Designer = /*#__PURE__*/function (_Component) {
         objectComponent: objectComponent,
         onObjectSelect: this.updateSelectedObjectIndex.bind(this),
         objects: this.props.objects,
-        resetCurrentSelection: this.resetCurrentSelection.bind(this)
+        resetCurrentSelection: this.resetCurrentSelection.bind(this),
+        clusterList: this.props.clusterList,
+        onAddClusterClick: this.props.onAddClusterClick
       }) : /*#__PURE__*/_react["default"].createElement(_ObjectList["default"], {
         objects: this.props.objects,
         onObjectSelect: this.updateSelectedObjectIndex.bind(this),

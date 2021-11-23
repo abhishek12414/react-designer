@@ -15,6 +15,19 @@ class SizePanel extends Component {
 		});
 	}
 
+	clusterOptions() {
+		return (
+			<React.Fragment>
+				<option value="">Select Cluster</option>,
+				{this.props.clusterList.map((i) => (
+					<option key={i.value} value={i.value}>
+						{i.label}
+					</option>
+				))}
+			</React.Fragment>
+		);
+	}
+
 	render() {
 		let { object, onChange, resetCurrentSelection } = this.props;
 		return (
@@ -22,96 +35,143 @@ class SizePanel extends Component {
 				<Columns label="Editor" rowInline spaceBetween>
 					<Button onClick={() => resetCurrentSelection()}>Back</Button>
 				</Columns>
-				<Columns label="Label Property">
-					<Column
-						label="Name"
-						value={object.name || ''}
-						inputStyle={{ width: '130px' }}
-						onChange={onChange.bind(this, 'name')}
-					/>
-					{has(object.labelCoordinates, 'x', 'y') && (
-						<div style={{ display: 'flex' }}>
+				{object.elementType === 'image' ? (
+					<>
+						{has(object, 'width', 'height') && (
+							<Columns label="Size" inline>
+								<Column
+									disabled
+									label="W"
+									type="number"
+									showIf={has(object, 'width')}
+									value={object.width}
+									onChange={onChange.bind(this, 'width')}
+								/>
+								<Column
+									disabled
+									label="H"
+									type="number"
+									showIf={has(object, 'height')}
+									value={object.height}
+									onChange={onChange.bind(this, 'height')}
+								/>
+							</Columns>
+						)}
+					</>
+				) : (
+					<>
+						<Columns label="Label Property">
 							<Column
+								label="Name"
+								value={object.name || ''}
+								inputStyle={{ width: '130px' }}
+								onChange={onChange.bind(this, 'name')}
+							/>
+							{has(object.labelCoordinates, 'x', 'y') && (
+								<div style={{ display: 'flex' }}>
+									<Column
+										label="X"
+										type="number"
+										showIf={has(object.labelCoordinates, 'x')}
+										value={object.labelCoordinates.x}
+										onChange={(value) => this.onLabelPosChange('x', value)}
+									/>
+									<Column
+										label="Y"
+										type="number"
+										showIf={has(object.labelCoordinates, 'y')}
+										value={object.labelCoordinates.y}
+										onChange={(value) => this.onLabelPosChange('y', value)}
+									/>
+								</div>
+							)}
+						</Columns>
+
+						{has(object, 'width', 'height') && (
+							<Columns label="Size" inline>
+								<Column
+									disabled
+									label="W"
+									type="number"
+									showIf={has(object, 'width')}
+									value={object.width}
+									onChange={onChange.bind(this, 'width')}
+								/>
+								<Column
+									disabled
+									label="H"
+									type="number"
+									showIf={has(object, 'height')}
+									value={object.height}
+									onChange={onChange.bind(this, 'height')}
+								/>
+							</Columns>
+						)}
+						<Columns label="Position" inline>
+							<Column
+								disabled
 								label="X"
 								type="number"
-								showIf={has(object.labelCoordinates, 'x')}
-								value={object.labelCoordinates.x}
-								onChange={(value) => this.onLabelPosChange('x', value)}
+								showIf={has(object, 'x')}
+								value={object.x}
+								readOnly={true}
+								onChange={onChange.bind(this, 'x')}
 							/>
 							<Column
+								disabled
 								label="Y"
 								type="number"
-								showIf={has(object.labelCoordinates, 'y')}
-								value={object.labelCoordinates.y}
-								onChange={(value) => this.onLabelPosChange('y', value)}
+								showIf={has(object, 'y')}
+								value={object.y}
+								readOnly={true}
+								onChange={onChange.bind(this, 'y')}
 							/>
-						</div>
-					)}
-				</Columns>
-
-				{has(object, 'width', 'height') && (
-					<Columns label="Size" inline>
-						<Column
-							disabled
-							label="W"
-							type="number"
-							showIf={has(object, 'width')}
-							value={object.width}
-							onChange={onChange.bind(this, 'width')}
-						/>
-						<Column
-							disabled
-							label="H"
-							type="number"
-							showIf={has(object, 'height')}
-							value={object.height}
-							onChange={onChange.bind(this, 'height')}
-						/>
-					</Columns>
+						</Columns>
+						{/* {has(object, 'rotate') && (
+							<Columns label="Rotation">
+								<Column
+									label="angle"
+									value={object.rotate}
+									readOnly={true}
+									onChange={onChange.bind(this, 'rotate')}
+								/>
+							</Columns>
+						)} */}
+						<Columns label="Shape" rowInline>
+							<p style={{ margin: 0, textTransform: 'capitalize' }}>
+								{object.elementType}
+							</p>
+						</Columns>
+						<Columns label="Type" rowInline>
+							<p style={{ margin: 0, textTransform: 'capitalize' }}>
+								{object.type}
+							</p>
+						</Columns>
+						<Columns label="Delete" rowInline>
+							<Button onClick={this.props.onDelete}>Delete Shape</Button>
+						</Columns>
+						<Columns label="Cluster" rowInline>
+							<Column>
+								<div style={{ display: 'flex' }}>
+									<Button
+										style={'fabButton'}
+										onClick={this.props.onAddClusterClick}
+									>
+										+
+									</Button>
+									<select
+										value={object?.clusterId || ''}
+										onChange={(e) =>
+											this.props.onChange('clusterId', e.target.value)
+										}
+									>
+										{this.clusterOptions()}
+									</select>
+								</div>
+							</Column>
+						</Columns>
+					</>
 				)}
-				<Columns label="Position" inline>
-					<Column
-						disabled
-						label="X"
-						type="number"
-						showIf={has(object, 'x')}
-						value={object.x}
-						readOnly={true}
-						onChange={onChange.bind(this, 'x')}
-					/>
-					<Column
-						disabled
-						label="Y"
-						type="number"
-						showIf={has(object, 'y')}
-						value={object.y}
-						readOnly={true}
-						onChange={onChange.bind(this, 'y')}
-					/>
-				</Columns>
-				{/* {has(object, "rotate") && (
-          <Columns label="Rotation">
-            <Column
-              label="angle"
-              value={object.rotate}
-              readOnly={true}
-              onChange={onChange.bind(this, "rotate")}
-            />
-          </Columns>
-        )} */}
-				<Columns label="Shape" rowInline>
-					<p style={{ margin: 0, textTransform: 'capitalize' }}>
-						{object.elementType}
-					</p>
-				</Columns>
-				<Columns label="Type" rowInline>
-					<p style={{ margin: 0, textTransform: 'capitalize' }}>
-						{object.type}
-					</p>
-				</Columns>
-				<Columns label="Delete" rowInline>
-					<Button onClick={this.props.onDelete}>Delete Shape</Button>
-				</Columns>
 			</PropertyGroup>
 		);
 	}
@@ -121,7 +181,13 @@ SizePanel.propTypes = {
 	object: PropTypes.object,
 	onDelete: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
-	resetCurrentSelection: PropTypes.func.isRequired
+	clusterList: PropTypes.array,
+	onAddClusterClick: PropTypes.func.isRequired,
+	resetCurrentSelection: PropTypes.func.isRequired,
+};
+
+SizePanel.defaultProps = {
+	clusterList: [],
 };
 
 export default SizePanel;
