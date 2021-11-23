@@ -49,7 +49,7 @@ const ObjectItem = ({
 					<div style={{ display: 'flex', alignItems: 'center' }}>
 						<Column>{type}</Column>
 						<Column>
-							<Icon icon={type} size={24} />
+							<Icon icon={type} size={24} style={{ width: 18, height: 18 }} />
 						</Column>
 					</div>
 				</Columns>
@@ -79,7 +79,12 @@ const ObjectItem = ({
 				</Columns>
 			)}
 			<Columns label="Hide in map" rowInline>
-				<Checkbox name="isHidden" value={isHidden} onChange={onChange} />
+				<Checkbox
+					hasIconSwitch
+					name="isHidden"
+					value={isHidden}
+					onChange={onChange}
+				/>
 			</Columns>
 			<Columns label="Edit" rowInline>
 				<Column>
