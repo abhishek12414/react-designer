@@ -45,15 +45,12 @@ export default class Ellipse extends Vector {
 			index,
 		} = this.getObjectAttributes();
 
-		if (isHidden) {
-			return null;
-		}
-
 		return (
 			<>
 				{isSelected && (
 					<ellipse
 						style={this.getStyle()}
+						className={isHidden ? 'hidden' : ''}
 						rx={width / 2}
 						ry={height / 2}
 						cx={x + width / 2}
@@ -71,6 +68,7 @@ export default class Ellipse extends Vector {
 				)}
 				<ellipse
 					style={this.getStyle()}
+					className={isHidden ? 'hidden' : ''}
 					rx={width / 2}
 					ry={height / 2}
 					cx={x + width / 2}
@@ -86,7 +84,12 @@ export default class Ellipse extends Vector {
 					strokeDasharray={type == 'map' ? 0 : 4}
 					onMouseOver={onMouseOver}
 				/>
-				<Label x={labelCoordinates.x} y={labelCoordinates.y} label={name} />
+				<Label
+					className={isHidden ? 'hidden' : ''}
+					x={labelCoordinates.x}
+					y={labelCoordinates.y}
+					label={name}
+				/>
 			</>
 		);
 	}

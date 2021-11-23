@@ -50,17 +50,14 @@ export default class Gateway extends Vector {
 			isHidden,
 		} = this.getObjectAttributes();
 
-		if (isHidden) {
-			return null;
-		}
-
 		return (
 			<>
 				<image
+					style={this.getStyle()}
+					className={isHidden ? 'hidden' : ''}
 					width={18}
 					height={18}
 					href={gatewaySVG}
-					style={this.getStyle()}
 					x={x}
 					y={y}
 					// common props
@@ -69,7 +66,14 @@ export default class Gateway extends Vector {
 					transform={transform}
 					index={index}
 				/>
-				<image width={18} height={18} href={trackSvg} x={plot.x} y={plot.y} />
+				<image
+					className={isHidden ? 'hidden' : ''}
+					width={18}
+					height={18}
+					href={trackSvg}
+					x={plot.x}
+					y={plot.y}
+				/>
 			</>
 		);
 	}

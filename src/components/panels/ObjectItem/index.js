@@ -96,6 +96,7 @@ ObjectItem.propTypes = {
 	type: PropTypes.string,
 	clusterList: PropTypes.array.isRequired,
 	clusterId: PropTypes.string,
+	isHidden: PropTypes.bool,
 	onClick: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
 	onAddClusterClick: PropTypes.func.isRequired,

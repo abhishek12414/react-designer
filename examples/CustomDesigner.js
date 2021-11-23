@@ -31,7 +31,7 @@ const CustomDesigner = () => {
 					{ label: 'b', value: 'b' },
 				]}
 				onUpdate={(value) => {
-					console.log(value);
+					// console.log(value);
 					setObjects(value);
 				}}
 				onDelete={(obj) => console.log('deleteObject', obj)}

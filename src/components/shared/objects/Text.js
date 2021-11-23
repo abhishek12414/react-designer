@@ -59,13 +59,10 @@ export default class Text extends Vector {
 			isHidden,
 		} = this.getObjectAttributes();
 
-		if (isHidden) {
-			return null;
-		}
-
 		return (
 			<text
 				style={this.getStyle()}
+				className={isHidden ? 'hidden' : ''}
 				textAnchor="middle"
 				fontSize={fontSize}
 				fontFamily={fontFamily}

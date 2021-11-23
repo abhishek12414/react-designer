@@ -31,12 +31,9 @@ export default class Image extends Vector {
 			isHidden,
 		} = this.getObjectAttributes();
 
-		if (isHidden) {
-			return null;
-		}
-
 		return (
 			<image
+				className={isHidden ? 'hidden' : ''}
 				ref={ref}
 				href={href}
 				width={width}

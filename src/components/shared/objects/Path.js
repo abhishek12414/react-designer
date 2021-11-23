@@ -88,15 +88,12 @@ export default class Path extends Vector {
 			isHidden,
 		} = this.getObjectAttributes();
 
-		if (isHidden) {
-			return null;
-		}
-
 		return (
 			<>
 				{isSelected && (
 					<path
 						style={this.getStyle(object)}
+						className={isHidden ? 'hidden' : ''}
 						d={this.buildPath(object)}
 						// common props
 						fill={fill}
@@ -111,6 +108,7 @@ export default class Path extends Vector {
 				)}
 				<path
 					style={this.getStyle(object)}
+					className={isHidden ? 'hidden' : ''}
 					d={this.buildPath(object)}
 					// common props
 					ref={ref}
@@ -123,7 +121,12 @@ export default class Path extends Vector {
 					strokeDasharray={type == 'map' ? 0 : 4}
 					onMouseOver={onMouseOver}
 				/>
-				<Label x={labelCoordinates.x} y={labelCoordinates.y} label={name} />
+				<Label
+					className={isHidden ? 'hidden' : ''}
+					x={labelCoordinates.x}
+					y={labelCoordinates.y}
+					label={name}
+				/>
 			</>
 		);
 	}

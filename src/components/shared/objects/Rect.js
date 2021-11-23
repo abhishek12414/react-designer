@@ -47,15 +47,12 @@ export default class Rect extends Vector {
 			isHidden,
 		} = this.getObjectAttributes();
 
-		if (isHidden) {
-			return null;
-		}
-
 		return (
 			<>
 				{isSelected && (
 					<rect
 						style={this.getStyle()}
+						className={isHidden ? 'hidden' : ''}
 						x={x}
 						y={y}
 						width={width}
@@ -73,6 +70,7 @@ export default class Rect extends Vector {
 				)}
 				<rect
 					style={this.getStyle()}
+					className={isHidden ? 'hidden' : ''}
 					x={x}
 					y={y}
 					width={width}
@@ -89,6 +87,7 @@ export default class Rect extends Vector {
 					onMouseOver={onMouseOver}
 				/>
 				<Label
+					className={isHidden ? 'hidden' : ''}
 					x={labelCoordinates.x}
 					y={labelCoordinates.y}
 					label={name || ''}
