@@ -6,7 +6,7 @@ import gatewaySVG from '../../../assets/svg/wifi.svg';
 
 export default class Gateway extends Vector {
 	static meta = {
-		icon: <Icon icon={'wifi'} size={30} />,
+		icon: <Icon icon={'wifi'} size={24} />,
 		initial: {
 			isHidden: false,
 			rotate: 0,

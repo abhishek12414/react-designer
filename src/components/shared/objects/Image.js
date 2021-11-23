@@ -5,7 +5,7 @@ import Vector from './Vector';
 
 export default class Image extends Vector {
 	static meta = {
-		icon: <Icon icon={'image'} size={30} />,
+		icon: <Icon icon={'image'} size={24} />,
 		initial: {
 			width: 100,
 			height: 100,

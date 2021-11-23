@@ -38,15 +38,19 @@ const ObjectItem = ({
 			{elementType !== 'image' && (
 				<Columns label="Label" rowInline>
 					<Column name>
-						<p style={{ margin: 0, textTransform: 'capitalize' }}>
-							{name ?? ''}
-						</p>
+						<p style={{ margin: 0 }}>{name ?? ''}</p>
 					</Column>
 				</Columns>
 			)}
 			{type ? (
 				<Columns label="Type" rowInline>
-					<div style={{ display: 'flex', alignItems: 'center' }}>
+					<div
+						style={{
+							display: 'flex',
+							alignItems: 'center',
+							textTransform: 'capitalize',
+						}}
+					>
 						<Column>{type}</Column>
 						<Column>
 							<Icon icon={type} size={24} style={{ width: 18, height: 18 }} />

@@ -6,7 +6,7 @@ import Vector from './Vector';
 
 export default class Rect extends Vector {
 	static meta = {
-		icon: <Icon icon={'rect'} size={30} />,
+		icon: <Icon icon={'rect'} size={24} />,
 		initial: {
 			width: 5,
 			height: 5,

@@ -14,13 +14,21 @@ const ArrangePanel = ({ onArrange }) => {
 			<Columns label="Arrange" inline>
 				<Column>
 					<Button onClick={() => onArrange('back')}>
-						<Icon icon="send-to-back" />
+						<Icon
+							icon="send-to-back"
+							size={24}
+							style={{ width: 16, height: 16 }}
+						/>
 						<span>send to back</span>
 					</Button>
 				</Column>
 				<Column>
 					<Button onClick={() => onArrange('front')}>
-						<Icon icon="bring-to-front" />
+						<Icon
+							icon="bring-to-front"
+							size={24}
+							style={{ width: 16, height: 16 }}
+						/>
 						<span>bring to front</span>
 					</Button>
 				</Column>

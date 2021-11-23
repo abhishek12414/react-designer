@@ -8,6 +8,9 @@ import BezierEditor from '../editors/BezierEditor';
 
 export default class Path extends Vector {
 	static meta = {
+		icon: <Icon icon={'polygon'} size={24} />,
+		mode: modes.DRAW_PATH,
+		editor: BezierEditor,
 		initial: {
 			fill: '#ffffff',
 			fillOpacity: 0,
@@ -22,9 +25,6 @@ export default class Path extends Vector {
 			strokeWidth: 1,
 			labelCoordinates: { x: 30, y: 30 },
 		},
-		mode: modes.DRAW_PATH,
-		icon: <Icon icon={'polygon'} size={30} />,
-		editor: BezierEditor,
 	};
 
 	buildPath(object) {

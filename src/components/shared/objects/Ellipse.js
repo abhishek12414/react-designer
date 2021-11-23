@@ -6,7 +6,7 @@ import Vector from './Vector';
 
 export default class Ellipse extends Vector {
 	static meta = {
-		icon: <Icon icon={'ellipse'} size={30} />,
+		icon: <Icon icon={'ellipse'} size={24} />,
 		initial: {
 			fill: '#ffffff',
 			fillOpacity: 0,

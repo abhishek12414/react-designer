@@ -5,7 +5,7 @@ import Vector from './Vector';
 
 export default class Text extends Vector {
 	static meta = {
-		icon: <Icon icon={'text'} size={30} />,
+		icon: <Icon icon={'text'} size={24} />,
 		initial: {
 			text: 'Hello',
 			rotate: 0,
