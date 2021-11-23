@@ -12,6 +12,7 @@ export default class Ellipse extends Vector {
 			fillOpacity: 0,
 			strokeWidth: 2,
 			stroke: '#000000',
+			isHidden: false,
 			width: 5,
 			height: 5,
 			rotate: 0,
@@ -31,6 +32,7 @@ export default class Ellipse extends Vector {
 			strokeWidth,
 			stroke,
 			blendMode,
+			isHidden,
 			labelCoordinates,
 			elementType,
 			name,
@@ -42,6 +44,10 @@ export default class Ellipse extends Vector {
 			onMouseOver,
 			index,
 		} = this.getObjectAttributes();
+
+		if (isHidden) {
+			return null;
+		}
 
 		return (
 			<>

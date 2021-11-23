@@ -8,6 +8,7 @@ export default class Gateway extends Vector {
 	static meta = {
 		icon: <Icon icon={'wifi'} size={30} />,
 		initial: {
+			isHidden: false,
 			rotate: 0,
 			x: 0,
 			y: 0,
@@ -46,7 +47,12 @@ export default class Gateway extends Vector {
 			ref,
 			onMouseOver,
 			index,
+			isHidden,
 		} = this.getObjectAttributes();
+
+		if (isHidden) {
+			return null;
+		}
 
 		return (
 			<>

@@ -121,7 +121,12 @@ var Path = /*#__PURE__*/function (_Vector) {
           transform = _this$getObjectAttrib.transform,
           ref = _this$getObjectAttrib.ref,
           onMouseOver = _this$getObjectAttrib.onMouseOver,
-          index = _this$getObjectAttrib.index;
+          index = _this$getObjectAttrib.index,
+          isHidden = _this$getObjectAttrib.isHidden;
+
+      if (isHidden) {
+        return null;
+      }
 
       return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, isSelected && /*#__PURE__*/_react["default"].createElement("path", {
         style: this.getStyle(object),
@@ -166,6 +171,7 @@ exports["default"] = Path;
     strokeWidth: 2,
     stroke: '#000000',
     closed: false,
+    isHidden: false,
     rotate: 0,
     moveX: 0,
     moveY: 0,

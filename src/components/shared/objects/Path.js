@@ -14,6 +14,7 @@ export default class Path extends Vector {
 			strokeWidth: 2,
 			stroke: '#000000',
 			closed: false,
+			isHidden: false,
 			rotate: 0,
 			moveX: 0,
 			moveY: 0,
@@ -84,7 +85,12 @@ export default class Path extends Vector {
 			ref,
 			onMouseOver,
 			index,
+			isHidden,
 		} = this.getObjectAttributes();
+
+		if (isHidden) {
+			return null;
+		}
 
 		return (
 			<>

@@ -65,7 +65,12 @@ var Rect = /*#__PURE__*/function (_Vector) {
           transform = _this$getObjectAttrib.transform,
           ref = _this$getObjectAttrib.ref,
           onMouseOver = _this$getObjectAttrib.onMouseOver,
-          index = _this$getObjectAttrib.index;
+          index = _this$getObjectAttrib.index,
+          isHidden = _this$getObjectAttrib.isHidden;
+
+      if (isHidden) {
+        return null;
+      }
 
       return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, isSelected && /*#__PURE__*/_react["default"].createElement("rect", {
         style: this.getStyle(),
@@ -121,6 +126,7 @@ exports["default"] = Rect;
     fillOpacity: 0,
     strokeWidth: 2,
     stroke: '#000000',
+    isHidden: false,
     // radius: 0,
     blendMode: 'normal',
     rotate: 0,

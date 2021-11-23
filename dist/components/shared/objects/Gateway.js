@@ -75,7 +75,12 @@ var Gateway = /*#__PURE__*/function (_Vector) {
           transform = _this$getObjectAttrib.transform,
           ref = _this$getObjectAttrib.ref,
           onMouseOver = _this$getObjectAttrib.onMouseOver,
-          index = _this$getObjectAttrib.index;
+          index = _this$getObjectAttrib.index,
+          isHidden = _this$getObjectAttrib.isHidden;
+
+      if (isHidden) {
+        return null;
+      }
 
       return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("image", {
         width: 18,
@@ -108,6 +113,7 @@ exports["default"] = Gateway;
     size: 30
   }),
   initial: {
+    isHidden: false,
     rotate: 0,
     x: 0,
     y: 0,

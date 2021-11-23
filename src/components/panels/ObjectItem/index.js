@@ -6,8 +6,9 @@ import './index.css';
 import PropertyGroup from '../PropertyGroup';
 import Columns from '../Columns';
 import Column from '../Column';
-import Button from '../../widgets/Button';
 import Icon from '../../shared/Icon';
+import Button from '../../widgets/Button';
+import Checkbox from '../../widgets/Checkbox';
 
 const ObjectItem = ({
 	name,
@@ -18,9 +19,8 @@ const ObjectItem = ({
 	onClick,
 	onChange,
 	onAddClusterClick,
+	isHidden,
 }) => {
-	// const { name, elementType, type, clusterList, clusterId } = props;
-
 	const clusterOptions = (
 		<React.Fragment>
 			<option value="">Select Cluster</option>,
@@ -78,6 +78,9 @@ const ObjectItem = ({
 					</Column>
 				</Columns>
 			)}
+			<Columns label="Hide in map" rowInline>
+				<Checkbox name="isHidden" value={isHidden} onChange={onChange} />
+			</Columns>
 			<Columns label="Edit" rowInline>
 				<Column>
 					<Button onClick={onClick}>Edit</Button>

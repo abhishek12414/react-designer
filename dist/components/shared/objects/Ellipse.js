@@ -55,6 +55,7 @@ var Ellipse = /*#__PURE__*/function (_Vector) {
           strokeWidth = _this$getObjectAttrib.strokeWidth,
           stroke = _this$getObjectAttrib.stroke,
           blendMode = _this$getObjectAttrib.blendMode,
+          isHidden = _this$getObjectAttrib.isHidden,
           labelCoordinates = _this$getObjectAttrib.labelCoordinates,
           elementType = _this$getObjectAttrib.elementType,
           name = _this$getObjectAttrib.name,
@@ -65,6 +66,10 @@ var Ellipse = /*#__PURE__*/function (_Vector) {
           ref = _this$getObjectAttrib.ref,
           onMouseOver = _this$getObjectAttrib.onMouseOver,
           index = _this$getObjectAttrib.index;
+
+      if (isHidden) {
+        return null;
+      }
 
       return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, isSelected && /*#__PURE__*/_react["default"].createElement("ellipse", {
         style: this.getStyle(),
@@ -118,6 +123,7 @@ exports["default"] = Ellipse;
     fillOpacity: 0,
     strokeWidth: 2,
     stroke: '#000000',
+    isHidden: false,
     width: 5,
     height: 5,
     rotate: 0,

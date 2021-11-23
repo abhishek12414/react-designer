@@ -19,9 +19,11 @@ var _Columns = _interopRequireDefault(require("../Columns"));
 
 var _Column = _interopRequireDefault(require("../Column"));
 
+var _Icon = _interopRequireDefault(require("../../shared/Icon"));
+
 var _Button = _interopRequireDefault(require("../../widgets/Button"));
 
-var _Icon = _interopRequireDefault(require("../../shared/Icon"));
+var _Checkbox = _interopRequireDefault(require("../../widgets/Checkbox"));
 
 var ObjectItem = function ObjectItem(_ref) {
   var name = _ref.name,
@@ -31,9 +33,9 @@ var ObjectItem = function ObjectItem(_ref) {
       clusterId = _ref.clusterId,
       onClick = _ref.onClick,
       _onChange = _ref.onChange,
-      onAddClusterClick = _ref.onAddClusterClick;
+      onAddClusterClick = _ref.onAddClusterClick,
+      isHidden = _ref.isHidden;
 
-  // const { name, elementType, type, clusterList, clusterId } = props;
   var clusterOptions = /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("option", {
     value: ""
   }, "Select Cluster"), ",", clusterList.map(function (i) {
@@ -94,6 +96,13 @@ var ObjectItem = function ObjectItem(_ref) {
       });
     }
   }, clusterOptions)))), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
+    label: "Hide in map",
+    rowInline: true
+  }, /*#__PURE__*/_react["default"].createElement(_Checkbox["default"], {
+    name: "isHidden",
+    value: isHidden,
+    onChange: _onChange
+  })), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
     label: "Edit",
     rowInline: true
   }, /*#__PURE__*/_react["default"].createElement(_Column["default"], null, /*#__PURE__*/_react["default"].createElement(_Button["default"], {

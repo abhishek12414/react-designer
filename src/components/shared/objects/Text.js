@@ -16,6 +16,7 @@ export default class Text extends Vector {
 			fillOpacity: 1,
 			fontSize: 50,
 			fontFamily: 'Helvetica',
+			isHidden: false,
 		},
 	};
 
@@ -55,7 +56,12 @@ export default class Text extends Vector {
 			ref,
 			onMouseOver,
 			index,
+			isHidden,
 		} = this.getObjectAttributes();
+
+		if (isHidden) {
+			return null;
+		}
 
 		return (
 			<text

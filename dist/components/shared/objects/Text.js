@@ -86,7 +86,12 @@ var Text = /*#__PURE__*/function (_Vector) {
           transform = _this$getObjectAttrib.transform,
           ref = _this$getObjectAttrib.ref,
           onMouseOver = _this$getObjectAttrib.onMouseOver,
-          index = _this$getObjectAttrib.index;
+          index = _this$getObjectAttrib.index,
+          isHidden = _this$getObjectAttrib.isHidden;
+
+      if (isHidden) {
+        return null;
+      }
 
       return /*#__PURE__*/_react["default"].createElement("text", {
         style: this.getStyle(),
@@ -124,6 +129,7 @@ exports["default"] = Text;
     fill: 'black',
     fillOpacity: 1,
     fontSize: 50,
-    fontFamily: 'Helvetica'
+    fontFamily: 'Helvetica',
+    isHidden: false
   }
 });
