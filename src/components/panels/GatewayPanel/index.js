@@ -61,7 +61,6 @@ class GatewayPanel extends React.Component {
 				<Columns label="Physical Coords" inline>
 					{has(object, 'x') && (
 						<Column
-							disabled
 							label="x"
 							type="number"
 							value={object.x}
@@ -70,7 +69,6 @@ class GatewayPanel extends React.Component {
 					)}
 					{has(object, 'y') && (
 						<Column
-							disabled
 							label="y"
 							type="number"
 							value={object.y}
@@ -79,7 +77,6 @@ class GatewayPanel extends React.Component {
 					)}
 					{has(object, 'z') && (
 						<Column
-							disabled
 							label="z"
 							type="number"
 							value={object.z}

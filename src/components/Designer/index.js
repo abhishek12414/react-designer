@@ -53,6 +53,7 @@ class Designer extends Component {
 		selectedObjectIndex: null,
 		selectedTool: null,
 		type: 'map',
+		objectFilter: 'all',
 	};
 
 	keyMap = {
@@ -151,6 +152,7 @@ class Designer extends Component {
 			x: mouse.x,
 			y: mouse.y,
 			type,
+			idx: objects.length + 1,
 		};
 
 		onUpdate([...objects, object]);
@@ -556,6 +558,7 @@ class Designer extends Component {
 			selectedObjectIndex,
 			selectedTool,
 			type,
+			objectFilter,
 		} = this.state;
 
 		let { objects, objectTypes, insertMenu: InsertMenuComponent } = this.props;
@@ -664,11 +667,15 @@ class Designer extends Component {
 								/>
 							) : (
 								<ObjectList
+									objectFilter={objectFilter}
+									onObjectFilterChange={(objectFilter) =>
+										this.setState({ objectFilter })
+									}
 									objects={this.props.objects}
-									onObjectSelect={this.updateSelectedObjectIndex.bind(this)}
 									clusterList={this.props.clusterList}
 									onChange={this.updateObject.bind(this)}
 									onAddClusterClick={this.props.onAddClusterClick}
+									onObjectSelect={this.updateSelectedObjectIndex.bind(this)}
 								/>
 							)}
 						</div>

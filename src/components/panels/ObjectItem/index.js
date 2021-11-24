@@ -16,7 +16,7 @@ const ObjectItem = ({
 	type,
 	clusterList,
 	clusterId,
-	onClick,
+	onEditObject,
 	onChange,
 	onAddClusterClick,
 	isHidden,
@@ -92,7 +92,7 @@ const ObjectItem = ({
 			</Columns>
 			<Columns label="Edit" rowInline>
 				<Column>
-					<Button onClick={onClick}>Edit</Button>
+					<Button onClick={onEditObject}>Edit</Button>
 				</Column>
 			</Columns>
 		</PropertyGroup>
@@ -106,7 +106,7 @@ ObjectItem.propTypes = {
 	clusterList: PropTypes.array.isRequired,
 	clusterId: PropTypes.string,
 	isHidden: PropTypes.bool,
-	onClick: PropTypes.func.isRequired,
+	onEditObject: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
 	onAddClusterClick: PropTypes.func.isRequired,
 };

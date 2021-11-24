@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './index.css';
 
 import { TYPES, SHAPES } from '../../../constants';
+import Tab from '../../widgets/Tab';
 
 class InsertMenu extends Component {
 	getKeys(type, tools) {
@@ -33,23 +34,17 @@ class InsertMenu extends Component {
 
 		return (
 			<div className="insertMenu">
-				<div className="tabWrapper">
-					{Object.values(TYPES).map((key) => (
-						<div
-							key={key}
-							className={cx('tabBar', type === key && 'activeTab')}
-							onClick={() => onTypeChange(key)}
-						>
-							{key}
-						</div>
-					))}
-				</div>
+				<Tab
+					options={Object.values(TYPES)}
+					activeValue={type}
+					onSelect={(value) => onTypeChange(value)}
+				/>
 				<ul className="toolBox">
 					{this.getKeys(type, tools).map((elementType, i) => (
 						<li
 							className={cx(
 								'toolBoxItem',
-								currentTool === elementType && 'insertmenuactive'
+								currentTool === elementType && 'insertMenuActive'
 							)}
 							onMouseDown={onSelect.bind(this, elementType)}
 							key={i}
