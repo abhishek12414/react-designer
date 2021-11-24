@@ -3,8 +3,18 @@
 	position: relative;
 	display: inline-block;
 	width: 34px;
-    min-width: 34px !important;
+	min-width: 34px !important;
 	height: 19px;
+	cursor: pointer;
+}
+.iconSwitch {
+	display: flex;
+	align-items: baseline;
+	justify-content: center;
+}
+.iconSwitch:hover {
+	border-radius: 4px;
+	background-color: rgba(0, 0, 0, 0.06);
 }
 
 /* Hide default HTML checkbox */

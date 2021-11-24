@@ -23,14 +23,14 @@ const ObjectList = ({
 			: objects?.filter((obj) => obj.type === objectFilter);
 	};
 
-	const onEditObject = (selectedObj, index) => {
+	const getObjectIndex = (selectedObj, index) => {
 		let objIndex = index;
 		if (selectedObj?._id) {
 			objIndex = objects?.findIndex((obj) => obj._id === selectedObj._id);
 		} else if (selectedObj?.idx) {
 			objIndex = objects.findIndex((obj) => obj.idx === selectedObj.idx);
 		}
-		onObjectSelect(objIndex);
+		return objIndex;
 	};
 
 	return (
@@ -42,11 +42,11 @@ const ObjectList = ({
 			/>
 			{getObjects()?.map((obj, index) => (
 				<ObjectItem
-					key={index}
+					key={obj?._id ?? obj?.idx ?? index}
 					{...obj}
 					{...rest}
-					onEditObject={() => onEditObject(obj, index)}
-					onChange={(data) => onChange(index, data)}
+					onEditObject={() => onObjectSelect(getObjectIndex(obj, index))}
+					onChange={(data) => onChange(getObjectIndex(obj, index), data)}
 				/>
 			))}
 		</div>

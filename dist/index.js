@@ -11,6 +11,12 @@ Object.defineProperty(exports, "ArrangePanel", {
     return _panels.ArrangePanel;
   }
 });
+Object.defineProperty(exports, "BasicPropertyPanel", {
+  enumerable: true,
+  get: function get() {
+    return _panels.BasicPropertyPanel;
+  }
+});
 Object.defineProperty(exports, "Ellipse", {
   enumerable: true,
   get: function get() {

@@ -31,7 +31,11 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _classnames = _interopRequireDefault(require("classnames"));
 
-var _lodash = _interopRequireDefault(require("lodash"));
+var _has = _interopRequireDefault(require("lodash/has"));
+
+var _includes = _interopRequireDefault(require("lodash/includes"));
+
+var _mapValues = _interopRequireDefault(require("lodash/mapValues"));
 
 var _reactHotkeys = require("react-hotkeys");
 
@@ -92,7 +96,8 @@ var Designer = /*#__PURE__*/function (_Component) {
       currentObjectIndex: null,
       selectedObjectIndex: null,
       selectedTool: null,
-      type: 'map'
+      type: 'map',
+      objectFilter: 'all'
     });
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "keyMap", {
       removeObject: ['del', 'backspace'],
@@ -206,7 +211,8 @@ var Designer = /*#__PURE__*/function (_Component) {
         elementType: selectedTool,
         x: mouse.x,
         y: mouse.y,
-        type: type
+        type: type,
+        idx: objects.length + 1
       });
 
       onUpdate([].concat((0, _toConsumableArray2["default"])(objects), [object]));
@@ -237,7 +243,13 @@ var Designer = /*#__PURE__*/function (_Component) {
           x2: diffX + x2,
           y2: diffY + y2,
           x: diffX + x,
-          y: diffY + y
+          y: diffY + y // x1: diffX + x,
+          // y1: diffY + y,
+          // x2: diffX + x,
+          // y2: diffY + y,
+          // x: diffX + x,
+          // y: diffY + y,
+
         };
       });
       return _objectSpread(_objectSpread({}, object), {}, {
@@ -435,7 +447,7 @@ var Designer = /*#__PURE__*/function (_Component) {
         this.updateHandler(currentObjectIndex, object);
       }
 
-      if (_lodash["default"].includes([_constants.modes.DRAG, _constants.modes.ROTATE, _constants.modes.SCALE], mode)) {
+      if ((0, _includes["default"])([_constants.modes.DRAG, _constants.modes.ROTATE, _constants.modes.SCALE], mode)) {
         this.setState({
           mode: _constants.modes.FREE
         });
@@ -592,7 +604,7 @@ var Designer = /*#__PURE__*/function (_Component) {
           });
         }
       };
-      return _lodash["default"].mapValues(handlers, function (handler) {
+      return (0, _mapValues["default"])(handlers, function (handler) {
         return function (event, key) {
           if (event.target.tagName !== 'INPUT') {
             event.preventDefault();
@@ -656,7 +668,8 @@ var Designer = /*#__PURE__*/function (_Component) {
           mode = _this$state4.mode,
           selectedObjectIndex = _this$state4.selectedObjectIndex,
           selectedTool = _this$state4.selectedTool,
-          type = _this$state4.type;
+          type = _this$state4.type,
+          objectFilter = _this$state4.objectFilter;
       var _this$props6 = this.props,
           objects = _this$props6.objects,
           objectTypes = _this$props6.objectTypes,
@@ -720,7 +733,7 @@ var Designer = /*#__PURE__*/function (_Component) {
         height: height
       }), showHandler && /*#__PURE__*/_react["default"].createElement(_Handler["default"], {
         boundingBox: handler,
-        canResize: (0, _lodash["default"])(currentObject).has('width') || (0, _lodash["default"])(currentObject).has('height') // canRotate={_(currentObject).has('rotate')}
+        canResize: (0, _has["default"])(currentObject, 'width') || (0, _has["default"])(currentObject, 'height') // canRotate={has(currentObject, 'rotate')}
         ,
         onMouseLeave: this.hideHandler.bind(this),
         onDoubleClick: this.showEditor.bind(this),
@@ -730,6 +743,10 @@ var Designer = /*#__PURE__*/function (_Component) {
       }), this.renderSVG())), /*#__PURE__*/_react["default"].createElement("div", {
         className: "propertiesPanelContainer"
       }, showPropertyPanel ? /*#__PURE__*/_react["default"].createElement(_PanelList["default"], {
+        layoutDimension: {
+          width: this.props.width,
+          height: this.props.height
+        },
         offset: this.getOffset(),
         object: objectWithInitial,
         onArrange: this.handleArrange.bind(this),
@@ -742,11 +759,17 @@ var Designer = /*#__PURE__*/function (_Component) {
         clusterList: this.props.clusterList,
         onAddClusterClick: this.props.onAddClusterClick
       }) : /*#__PURE__*/_react["default"].createElement(_ObjectList["default"], {
+        objectFilter: objectFilter,
+        onObjectFilterChange: function onObjectFilterChange(objectFilter) {
+          return _this8.setState({
+            objectFilter: objectFilter
+          });
+        },
         objects: this.props.objects,
-        onObjectSelect: this.updateSelectedObjectIndex.bind(this),
         clusterList: this.props.clusterList,
         onChange: this.updateObject.bind(this),
-        onAddClusterClick: this.props.onAddClusterClick
+        onAddClusterClick: this.props.onAddClusterClick,
+        onObjectSelect: this.updateSelectedObjectIndex.bind(this)
       })))));
     }
   }]);
@@ -760,7 +783,8 @@ var Designer = /*#__PURE__*/function (_Component) {
     ellipse: _objects.Ellipse,
     polygon: _objects.Path,
     image: _objects.Image,
-    gateway: _objects.Gateway
+    gateway: _objects.Gateway,
+    circle: _objects.Circle
   },
   snapToGrid: 1,
   svgStyle: {},

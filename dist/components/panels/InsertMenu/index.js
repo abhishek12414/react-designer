@@ -31,6 +31,8 @@ require("./index.css");
 
 var _constants = require("../../../constants");
 
+var _Tab = _interopRequireDefault(require("../../widgets/Tab"));
+
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -97,21 +99,17 @@ var InsertMenu = /*#__PURE__*/function (_Component) {
       }, {});
       return /*#__PURE__*/_react["default"].createElement("div", {
         className: "insertMenu"
-      }, /*#__PURE__*/_react["default"].createElement("div", {
-        className: "tabWrapper"
-      }, Object.values(_constants.TYPES).map(function (key) {
-        return /*#__PURE__*/_react["default"].createElement("div", {
-          key: key,
-          className: (0, _classnames["default"])('tabBar', type === key && 'activeTab'),
-          onClick: function onClick() {
-            return onTypeChange(key);
-          }
-        }, key);
-      })), /*#__PURE__*/_react["default"].createElement("ul", {
+      }, /*#__PURE__*/_react["default"].createElement(_Tab["default"], {
+        options: Object.values(_constants.TYPES),
+        activeValue: type,
+        onSelect: function onSelect(value) {
+          return onTypeChange(value);
+        }
+      }), /*#__PURE__*/_react["default"].createElement("ul", {
         className: "toolBox"
       }, this.getKeys(type, tools).map(function (elementType, i) {
         return /*#__PURE__*/_react["default"].createElement("li", {
-          className: (0, _classnames["default"])('toolBoxItem', currentTool === elementType && 'insertmenuactive'),
+          className: (0, _classnames["default"])('toolBoxItem', currentTool === elementType && 'insertMenuActive'),
           onMouseDown: onSelect.bind(_this, elementType),
           key: i
         }, /*#__PURE__*/_react["default"].createElement("span", {

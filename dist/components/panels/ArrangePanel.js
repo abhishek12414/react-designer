@@ -31,13 +31,23 @@ var ArrangePanel = function ArrangePanel(_ref) {
       return onArrange('back');
     }
   }, /*#__PURE__*/_react["default"].createElement(_Icon["default"], {
-    icon: "send-to-back"
+    icon: "send-to-back",
+    size: 24,
+    style: {
+      width: 16,
+      height: 16
+    }
   }), /*#__PURE__*/_react["default"].createElement("span", null, "send to back"))), /*#__PURE__*/_react["default"].createElement(_Column["default"], null, /*#__PURE__*/_react["default"].createElement(_Button["default"], {
     onClick: function onClick() {
       return onArrange('front');
     }
   }, /*#__PURE__*/_react["default"].createElement(_Icon["default"], {
-    icon: "bring-to-front"
+    icon: "bring-to-front",
+    size: 24,
+    style: {
+      width: 16,
+      height: 16
+    }
   }), /*#__PURE__*/_react["default"].createElement("span", null, "bring to front")))));
 };
 

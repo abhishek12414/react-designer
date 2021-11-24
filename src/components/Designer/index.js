@@ -172,19 +172,19 @@ class Designer extends Component {
 		let diffY = object.y - object.moveY;
 
 		let newPath = path.map(({ x1, y1, x2, y2, x, y }) => ({
-			// x1: diffX + x1,
-			// y1: diffY + y1,
-			// x2: diffX + x2,
-			// y2: diffY + y2,
-			// x: diffX + x,
-			// y: diffY + y,
-
-			x1: diffX + x,
-			y1: diffY + y,
-			x2: diffX + x,
-			y2: diffY + y,
+			x1: diffX + x1,
+			y1: diffY + y1,
+			x2: diffX + x2,
+			y2: diffY + y2,
 			x: diffX + x,
 			y: diffY + y,
+
+			// x1: diffX + x,
+			// y1: diffY + y,
+			// x2: diffX + x,
+			// y2: diffY + y,
+			// x: diffX + x,
+			// y: diffY + y,
 		}));
 
 		return {

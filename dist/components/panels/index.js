@@ -11,6 +11,12 @@ Object.defineProperty(exports, "ArrangePanel", {
     return _ArrangePanel2["default"];
   }
 });
+Object.defineProperty(exports, "BasicPropertyPanel", {
+  enumerable: true,
+  get: function get() {
+    return _BasicPropertyPanel2["default"];
+  }
+});
 Object.defineProperty(exports, "GatewayPanel", {
   enumerable: true,
   get: function get() {
@@ -49,6 +55,8 @@ var _ArrangePanel2 = _interopRequireDefault(require("./ArrangePanel"));
 var _StylePanel2 = _interopRequireDefault(require("./StylePanel"));
 
 var _SizePanel2 = _interopRequireDefault(require("./SizePanel"));
+
+var _BasicPropertyPanel2 = _interopRequireDefault(require("./BasicPropertyPanel"));
 
 var _InsertMenu2 = _interopRequireDefault(require("./InsertMenu"));
 

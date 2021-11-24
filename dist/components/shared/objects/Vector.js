@@ -85,4 +85,4 @@ var Vector = /*#__PURE__*/function (_Component) {
 }(_react.Component);
 
 exports["default"] = Vector;
-(0, _defineProperty2["default"])(Vector, "panels", [_panels.SizePanel, _panels.TextPanel, _panels.StylePanel, _panels.GatewayPanel, _panels.ArrangePanel]);
+(0, _defineProperty2["default"])(Vector, "panels", [_panels.BasicPropertyPanel, _panels.SizePanel, _panels.TextPanel, _panels.StylePanel, _panels.GatewayPanel, _panels.ArrangePanel]);

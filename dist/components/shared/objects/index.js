@@ -5,6 +5,12 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+Object.defineProperty(exports, "Circle", {
+  enumerable: true,
+  get: function get() {
+    return _Circle2["default"];
+  }
+});
 Object.defineProperty(exports, "Ellipse", {
   enumerable: true,
   get: function get() {
@@ -55,6 +61,8 @@ var _Path2 = _interopRequireDefault(require("./Path"));
 var _Rect2 = _interopRequireDefault(require("./Rect"));
 
 var _Ellipse2 = _interopRequireDefault(require("./Ellipse"));
+
+var _Circle2 = _interopRequireDefault(require("./Circle"));
 
 var _Text2 = _interopRequireDefault(require("./Text"));
 

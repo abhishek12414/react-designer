@@ -31,7 +31,7 @@ var ObjectItem = function ObjectItem(_ref) {
       type = _ref.type,
       clusterList = _ref.clusterList,
       clusterId = _ref.clusterId,
-      onClick = _ref.onClick,
+      onEditObject = _ref.onEditObject,
       _onChange = _ref.onChange,
       onAddClusterClick = _ref.onAddClusterClick,
       isHidden = _ref.isHidden;
@@ -54,8 +54,7 @@ var ObjectItem = function ObjectItem(_ref) {
     name: true
   }, /*#__PURE__*/_react["default"].createElement("p", {
     style: {
-      margin: 0,
-      textTransform: 'capitalize'
+      margin: 0
     }
   }, name !== null && name !== void 0 ? name : ''))), type ? /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
     label: "Type",
@@ -63,11 +62,16 @@ var ObjectItem = function ObjectItem(_ref) {
   }, /*#__PURE__*/_react["default"].createElement("div", {
     style: {
       display: 'flex',
-      alignItems: 'center'
+      alignItems: 'center',
+      textTransform: 'capitalize'
     }
   }, /*#__PURE__*/_react["default"].createElement(_Column["default"], null, type), /*#__PURE__*/_react["default"].createElement(_Column["default"], null, /*#__PURE__*/_react["default"].createElement(_Icon["default"], {
     icon: type,
-    size: 24
+    size: 24,
+    style: {
+      width: 18,
+      height: 18
+    }
   })))) : null, /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
     label: "Shape",
     rowInline: true
@@ -99,6 +103,7 @@ var ObjectItem = function ObjectItem(_ref) {
     label: "Hide in map",
     rowInline: true
   }, /*#__PURE__*/_react["default"].createElement(_Checkbox["default"], {
+    hasIconSwitch: true,
     name: "isHidden",
     value: isHidden,
     onChange: _onChange
@@ -106,7 +111,7 @@ var ObjectItem = function ObjectItem(_ref) {
     label: "Edit",
     rowInline: true
   }, /*#__PURE__*/_react["default"].createElement(_Column["default"], null, /*#__PURE__*/_react["default"].createElement(_Button["default"], {
-    onClick: onClick
+    onClick: onEditObject
   }, "Edit"))));
 };
 
@@ -116,7 +121,8 @@ ObjectItem.propTypes = {
   type: _propTypes["default"].string,
   clusterList: _propTypes["default"].array.isRequired,
   clusterId: _propTypes["default"].string,
-  onClick: _propTypes["default"].func.isRequired,
+  isHidden: _propTypes["default"].bool,
+  onEditObject: _propTypes["default"].func.isRequired,
   onChange: _propTypes["default"].func.isRequired,
   onAddClusterClick: _propTypes["default"].func.isRequired
 };

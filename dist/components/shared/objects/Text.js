@@ -89,12 +89,9 @@ var Text = /*#__PURE__*/function (_Vector) {
           index = _this$getObjectAttrib.index,
           isHidden = _this$getObjectAttrib.isHidden;
 
-      if (isHidden) {
-        return null;
-      }
-
       return /*#__PURE__*/_react["default"].createElement("text", {
         style: this.getStyle(),
+        className: isHidden ? 'hidden' : '',
         textAnchor: "middle",
         fontSize: fontSize,
         fontFamily: fontFamily,
@@ -118,7 +115,7 @@ exports["default"] = Text;
 (0, _defineProperty2["default"])(Text, "meta", {
   icon: /*#__PURE__*/_react["default"].createElement(_Icon["default"], {
     icon: 'text',
-    size: 30
+    size: 24
   }),
   initial: {
     text: 'Hello',
