@@ -17,7 +17,6 @@ const SizePanel = ({ object, onChange }) => {
 	const onPlotChange = (key, index, value) => {
 		let path = deepClone(object.path);
 		path[index][key] = value;
-		console.log('>>> ', object);
 		onChange('path', path);
 	};
 
@@ -60,17 +59,25 @@ const SizePanel = ({ object, onChange }) => {
 						onChange={(value) => onChange('y', +value)}
 					/>
 				</Columns>
-				{/* {has(object, 'rotate') && (
-					<Columns label="Rotation">
+				{has(object, 'rotate') && (
+					<Columns label="Rotation" rowInline>
 						<Column
 							type="number"
-							label="angle"
 							value={object.rotate}
 							readOnly={true}
 							onChange={(value) => onChange('rotate', +value)}
 						/>
 					</Columns>
-				)} */}
+				)}
+				{has(object, 'radius') && (
+					<Columns label="Radius" rowInline>
+						<Column
+							type="number"
+							value={object.radius}
+							onChange={(value) => onChange('radius', +value)}
+						/>
+					</Columns>
+				)}
 				{has(object, 'path') && (
 					<Columns label="Paths">
 						{object?.path?.map((cordsObj, index) => {

@@ -7,7 +7,7 @@ import './index.css';
 
 import { modes } from '../../constants';
 import * as actions from '../../actions';
-import { Text, Path, Rect, Ellipse, Image, Gateway } from '../shared/objects';
+import { Text, Path, Rect, Ellipse, Image, Gateway, Circle } from '../shared/objects';
 import PanelList from '../panels/PanelList';
 import Handler from '../Handler';
 import SVGRenderer from '../SVGRenderer';
@@ -23,6 +23,7 @@ class Designer extends Component {
 			polygon: Path,
 			image: Image,
 			gateway: Gateway,
+			circle: Circle
 		},
 		snapToGrid: 1,
 		svgStyle: {},
