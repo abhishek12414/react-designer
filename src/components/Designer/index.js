@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
 import cx from 'classnames';
-import _ from 'lodash';
+import has from 'lodash/has';
+import includes from 'lodash/includes';
+import mapValues from 'lodash/mapValues';
 import { HotKeys } from 'react-hotkeys';
 
 import './index.css';
 
 import { modes } from '../../constants';
 import * as actions from '../../actions';
-import { Text, Path, Rect, Ellipse, Image, Gateway, Circle } from '../shared/objects';
+import {
+	Text,
+	Path,
+	Rect,
+	Ellipse,
+	Image,
+	Gateway,
+	Circle,
+} from '../shared/objects';
 import PanelList from '../panels/PanelList';
 import Handler from '../Handler';
 import SVGRenderer from '../SVGRenderer';
@@ -23,7 +33,7 @@ class Designer extends Component {
 			polygon: Path,
 			image: Image,
 			gateway: Gateway,
-			circle: Circle
+			circle: Circle,
 		},
 		snapToGrid: 1,
 		svgStyle: {},
@@ -357,7 +367,7 @@ class Designer extends Component {
 			this.updateHandler(currentObjectIndex, object);
 		}
 
-		if (_.includes([modes.DRAG, modes.ROTATE, modes.SCALE], mode)) {
+		if (includes([modes.DRAG, modes.ROTATE, modes.SCALE], mode)) {
 			this.setState({
 				mode: modes.FREE,
 			});
@@ -491,7 +501,7 @@ class Designer extends Component {
 			closePath: () => this.setState({ mode: modes.FREE }),
 		};
 
-		return _.mapValues(handlers, (handler) => (event, key) => {
+		return mapValues(handlers, (handler) => (event, key) => {
 			if (event.target.tagName !== 'INPUT') {
 				event.preventDefault();
 				handler(event, key);
@@ -615,10 +625,10 @@ class Designer extends Component {
 									<Handler
 										boundingBox={handler}
 										canResize={
-											_(currentObject).has('width') ||
-											_(currentObject).has('height')
+											has(currentObject, 'width') ||
+											has(currentObject, 'height')
 										}
-										// canRotate={_(currentObject).has('rotate')}
+										// canRotate={has(currentObject, 'rotate')}
 										onMouseLeave={this.hideHandler.bind(this)}
 										onDoubleClick={this.showEditor.bind(this)}
 										onDrag={this.startDrag.bind(this, modes.DRAG)}
@@ -631,12 +641,15 @@ class Designer extends Component {
 							</div>
 						</div>
 
-						{/* Right Panel: Displays text,
-					 styling and sizing tools */}
+						{/* Right Panel: Displays text, styling and sizing tools */}
 
 						<div className="propertiesPanelContainer">
 							{showPropertyPanel ? (
 								<PanelList
+									layoutDimension={{
+										width: this.props.width,
+										height: this.props.height,
+									}}
 									offset={this.getOffset()}
 									object={objectWithInitial}
 									onArrange={this.handleArrange.bind(this)}
