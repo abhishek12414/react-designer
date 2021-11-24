@@ -34,21 +34,23 @@ const ObjectList = ({
 	};
 
 	return (
-		<div className="objectList">
+		<div className="rdObjectListContainer">
 			<Tab
 				options={OPTIONS}
 				activeValue={objectFilter}
 				onSelect={onObjectFilterChange}
 			/>
-			{getObjects()?.map((obj, index) => (
-				<ObjectItem
-					key={obj?._id ?? obj?.idx ?? index}
-					{...obj}
-					{...rest}
-					onEditObject={() => onObjectSelect(getObjectIndex(obj, index))}
-					onChange={(data) => onChange(getObjectIndex(obj, index), data)}
-				/>
-			))}
+			<div className="objectList">
+				{getObjects()?.map((obj, index) => (
+					<ObjectItem
+						key={obj?._id ?? obj?.idx ?? index}
+						{...obj}
+						{...rest}
+						onEditObject={() => onObjectSelect(getObjectIndex(obj, index))}
+						onChange={(data) => onChange(getObjectIndex(obj, index), data)}
+					/>
+				))}
+			</div>
 		</div>
 	);
 };

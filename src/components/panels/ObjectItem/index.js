@@ -69,9 +69,7 @@ const ObjectItem = ({
 				<Columns label="Cluster" rowInline>
 					<Column>
 						<div style={{ display: 'flex' }}>
-							<Button style={'fabButton'} onClick={onAddClusterClick}>
-								+
-							</Button>
+							<Button onClick={onAddClusterClick}>+</Button>
 							<select
 								value={clusterId}
 								onChange={(e) => onChange({ clusterId: e.target.value })}
@@ -92,7 +90,13 @@ const ObjectItem = ({
 			</Columns>
 			<Columns label="Edit" rowInline>
 				<Column>
-					<Button onClick={onEditObject}>Edit</Button>
+					<Button title="Edit" onClick={onEditObject}>
+						<Icon
+							icon="pencil"
+							size={24}
+							style={{ width: 16, height: 16, fill: 'black' }}
+						/>
+					</Button>
 				</Column>
 			</Columns>
 		</PropertyGroup>

@@ -1,5 +1,55 @@
-.panelList {
+.rdPanelListContainer {
 	width: initial;
 	font-size: 14px;
-	font-family: "Lucida Grande", sans-serif;
+	font-family: 'Lucida Grande', sans-serif;
+}
+.rdPanelListContainer .columns {
+	margin-top: 0;
+	background-color: #f1f1f1;
+	border-bottom: 2px solid #fff;
+	padding: 6px 5px;
+}
+.rdPanelListContainer .panelList {
+	height: calc(100vh - 32px);
+	overflow-y: auto;
+}
+
+.rdPanelListContainer .panelList::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+	overflow: auto;
+}
+
+.reactDesigner
+	.rdContainer
+	.propertiesPanelContainer::-webkit-scrollbar-button {
+	width: 0px;
+	height: 0px;
+}
+
+.reactDesigner
+	.rdContainer
+	.propertiesPanelContainer::-webkit-scrollbar-corner {
+	background: transparent;
+}
+
+.rdPanelListContainer .panelList::-webkit-scrollbar-thumb {
+	box-shadow: none;
+	border-style: solid;
+	border-color: transparent;
+	border-width: 4px;
+	border-radius: 8px;
+	background-color: rgb(218, 220, 224);
+}
+
+.rdPanelListContainer .panelList::-webkit-scrollbar-track {
+	margin: 0px 4px;
+	box-shadow: none;
+}
+
+.rdPanelListContainer .panelList::-webkit-scrollbar-track {
+	border-style: solid;
+	border-color: transparent;
+	border-width: 0px 0px 0px 4px;
+	background-clip: padding-box;
 }

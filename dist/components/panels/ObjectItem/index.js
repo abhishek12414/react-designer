@@ -90,7 +90,6 @@ var ObjectItem = function ObjectItem(_ref) {
       display: 'flex'
     }
   }, /*#__PURE__*/_react["default"].createElement(_Button["default"], {
-    style: 'fabButton',
     onClick: onAddClusterClick
   }, "+"), /*#__PURE__*/_react["default"].createElement("select", {
     value: clusterId,
@@ -111,8 +110,17 @@ var ObjectItem = function ObjectItem(_ref) {
     label: "Edit",
     rowInline: true
   }, /*#__PURE__*/_react["default"].createElement(_Column["default"], null, /*#__PURE__*/_react["default"].createElement(_Button["default"], {
+    title: "Edit",
     onClick: onEditObject
-  }, "Edit"))));
+  }, /*#__PURE__*/_react["default"].createElement(_Icon["default"], {
+    icon: "pencil",
+    size: 24,
+    style: {
+      width: 16,
+      height: 16,
+      fill: 'black'
+    }
+  })))));
 };
 
 ObjectItem.propTypes = {

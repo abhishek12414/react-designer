@@ -4,21 +4,28 @@ import PropTypes from 'prop-types';
 
 import './index.css';
 
-const Button = ({ className, name, onClick, ...props }) => {
+const Button = ({ className, children, name, onClick, style, ...props }) => {
 	let _onClick = (e, ...args) => {
 		e.preventDefault();
 		onClick(...args);
 	};
 
 	return (
-		<button name={name} className={cx('button', className)} onClick={_onClick}>
-			{props.children}
+		<button
+			name={name}
+			className={cx('button', className)}
+			onClick={_onClick}
+			style={style}
+			{...props}
+		>
+			{children}
 		</button>
 	);
 };
 
 Button.propTypes = {
 	name: PropTypes.string,
+	style: PropTypes.object,
 	className: PropTypes.string,
 	children: PropTypes.any,
 	onClick: PropTypes.func,

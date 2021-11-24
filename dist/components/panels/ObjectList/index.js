@@ -61,12 +61,14 @@ var ObjectList = function ObjectList(_ref) {
   };
 
   return /*#__PURE__*/_react["default"].createElement("div", {
-    className: "objectList"
+    className: "rdObjectListContainer"
   }, /*#__PURE__*/_react["default"].createElement(_Tab["default"], {
     options: OPTIONS,
     activeValue: objectFilter,
     onSelect: onObjectFilterChange
-  }), (_getObjects = getObjects()) === null || _getObjects === void 0 ? void 0 : _getObjects.map(function (obj, index) {
+  }), /*#__PURE__*/_react["default"].createElement("div", {
+    className: "objectList"
+  }, (_getObjects = getObjects()) === null || _getObjects === void 0 ? void 0 : _getObjects.map(function (obj, index) {
     var _ref2, _obj$_id;
 
     return /*#__PURE__*/_react["default"].createElement(_ObjectItem["default"], (0, _extends2["default"])({
@@ -79,7 +81,7 @@ var ObjectList = function ObjectList(_ref) {
         return _onChange(getObjectIndex(obj, index), data);
       }
     }));
-  }));
+  })));
 };
 
 ObjectList.propTypes = {
