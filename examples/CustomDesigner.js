@@ -17,7 +17,7 @@ const imgObj = {
 	fillOpacity: 1,
 };
 const CustomDesigner = () => {
-	const [objects, setObjects] = useState([...data.dataSet1, imgObj]);
+	const [objects, setObjects] = useState([imgObj, ...data.dataSet1]);
 
 	return (
 		<div>

@@ -19,8 +19,6 @@
 }
 .reactDesigner .rdContainer .propertiesPanelContainer {
 	width: 260px;
-	overflow-x: hidden;
-	overflow-y: scroll;
 }
 
 .reactDesigner .rdContainer .propertiesPanelContainer::-webkit-scrollbar {
