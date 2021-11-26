@@ -10,7 +10,7 @@ import Button from '../widgets/Button';
 import { blendModes, TYPES } from '../../constants';
 import Icon from '../shared/Icon';
 
-const StylePanel = ({ object, onChange }) => {
+const StylePanel = ({ object, onChange, onDelete, onImageEditClick }) => {
 	if (object.elementType === TYPES.GATEWAY) {
 		return null;
 	}
@@ -38,7 +38,7 @@ const StylePanel = ({ object, onChange }) => {
 			)}
 			{has(object, 'href') && (
 				<Columns label="Action" rowInline inline>
-					<Button title="Edit" onClick={() => {}}>
+					<Button title="Edit" onClick={() => onImageEditClick()}>
 						<Icon
 							icon="pencil"
 							size={24}
@@ -46,7 +46,11 @@ const StylePanel = ({ object, onChange }) => {
 						/>
 					</Button>
 
-					<Button title="Delete" style={{ marginLeft: 8 }} onClick={() => {}}>
+					<Button
+						title="Delete"
+						style={{ marginLeft: 8 }}
+						onClick={() => onDelete()}
+					>
 						<Icon
 							icon="delete"
 							size={24}
@@ -99,6 +103,8 @@ const StylePanel = ({ object, onChange }) => {
 StylePanel.propTypes = {
 	object: PropTypes.object,
 	onChange: PropTypes.func.isRequired,
+	onDelete: PropTypes.func.isRequired,
+	onImageEditClick: PropTypes.func,
 };
 
 export default StylePanel;

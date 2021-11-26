@@ -69,7 +69,7 @@ const BasicPropertyPanel = ({
 						size={24}
 						style={{ width: 16, height: 16, fill: 'black' }}
 					/>
-				</Button>{' '}
+				</Button>
 			</Columns>
 			<Columns label="Cluster" rowInline>
 				<Column>

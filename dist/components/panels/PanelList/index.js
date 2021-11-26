@@ -23,13 +23,14 @@ var _Button = _interopRequireDefault(require("../../widgets/Button"));
 
 var _Icon = _interopRequireDefault(require("../../shared/Icon"));
 
-var _excluded = ["id", "objectComponent"];
+var _excluded = ["id", "objectComponent", "resetCurrentSelection"];
 
 var PanelList = function PanelList(_ref) {
   var _objectComponent$pane;
 
   var id = _ref.id,
       objectComponent = _ref.objectComponent,
+      resetCurrentSelection = _ref.resetCurrentSelection,
       rest = (0, _objectWithoutProperties2["default"])(_ref, _excluded);
   return /*#__PURE__*/_react["default"].createElement("div", {
     className: "rdPanelListContainer"
@@ -41,7 +42,7 @@ var PanelList = function PanelList(_ref) {
   }, /*#__PURE__*/_react["default"].createElement(_Button["default"], {
     title: "Back to list",
     onClick: function onClick() {
-      return rest.resetCurrentSelection();
+      return resetCurrentSelection();
     }
   }, /*#__PURE__*/_react["default"].createElement(_Icon["default"], {
     icon: "back",
@@ -63,7 +64,8 @@ var PanelList = function PanelList(_ref) {
 
 PanelList.propTypes = {
   id: _propTypes["default"].string,
-  objectComponent: _propTypes["default"].func
+  objectComponent: _propTypes["default"].func,
+  resetCurrentSelection: _propTypes["default"].func.isRequired
 };
 var _default = PanelList;
 exports["default"] = _default;

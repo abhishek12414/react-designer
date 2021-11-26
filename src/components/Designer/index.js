@@ -7,7 +7,7 @@ import { HotKeys } from 'react-hotkeys';
 
 import './index.css';
 
-import { modes } from '../../constants';
+import { modes, SHAPES } from '../../constants';
 import * as actions from '../../actions';
 import {
 	Text,
@@ -579,6 +579,10 @@ class Designer extends Component {
 			ObjectEditor = objectComponent.meta.editor;
 		}
 
+		const hasImage = !!objects?.filter(
+			({ elementType }) => elementType === SHAPES.image
+		)?.[0];
+
 		return (
 			<div className="reactDesigner">
 				<HotKeys
@@ -596,9 +600,11 @@ class Designer extends Component {
 							<InsertMenuComponent
 								type={type}
 								tools={objectTypes}
+								hasImage={hasImage}
 								currentTool={selectedTool}
 								onSelect={this.selectTool.bind(this)}
 								onTypeChange={(value) => this.onTypeChange(value)}
+								onAddImageClick={this.props.onAddImageClick}
 							/>
 						)}
 
@@ -655,15 +661,16 @@ class Designer extends Component {
 									}}
 									offset={this.getOffset()}
 									object={objectWithInitial}
+									objects={this.props.objects}
+									clusterList={this.props.clusterList}
 									onArrange={this.handleArrange.bind(this)}
 									onChange={this.handleObjectChange.bind(this)}
 									onDelete={this.removeCurrent.bind(this)}
 									objectComponent={objectComponent}
 									onObjectSelect={this.updateSelectedObjectIndex.bind(this)}
-									objects={this.props.objects}
 									resetCurrentSelection={this.resetCurrentSelection.bind(this)}
-									clusterList={this.props.clusterList}
 									onAddClusterClick={this.props.onAddClusterClick}
+									onImageEditClick={this.props.onImageEditClick}
 								/>
 							) : (
 								<ObjectList

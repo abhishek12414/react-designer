@@ -660,7 +660,8 @@ var Designer = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this8 = this;
+      var _objects$filter,
+          _this8 = this;
 
       var _this$state4 = this.state,
           showHandler = _this$state4.showHandler,
@@ -692,6 +693,10 @@ var Designer = /*#__PURE__*/function (_Component) {
         ObjectEditor = objectComponent.meta.editor;
       }
 
+      var hasImage = !!(objects !== null && objects !== void 0 && (_objects$filter = objects.filter(function (_ref4) {
+        var elementType = _ref4.elementType;
+        return elementType === _constants.SHAPES.image;
+      })) !== null && _objects$filter !== void 0 && _objects$filter[0]);
       return /*#__PURE__*/_react["default"].createElement("div", {
         className: "reactDesigner"
       }, /*#__PURE__*/_react["default"].createElement(_reactHotkeys.HotKeys, {
@@ -705,11 +710,13 @@ var Designer = /*#__PURE__*/function (_Component) {
       }, InsertMenuComponent && /*#__PURE__*/_react["default"].createElement(InsertMenuComponent, {
         type: type,
         tools: objectTypes,
+        hasImage: hasImage,
         currentTool: selectedTool,
         onSelect: this.selectTool.bind(this),
         onTypeChange: function onTypeChange(value) {
           return _this8.onTypeChange(value);
-        }
+        },
+        onAddImageClick: this.props.onAddImageClick
       }), /*#__PURE__*/_react["default"].createElement("div", {
         className: "drawingContainer"
       }, /*#__PURE__*/_react["default"].createElement("div", {
@@ -749,15 +756,16 @@ var Designer = /*#__PURE__*/function (_Component) {
         },
         offset: this.getOffset(),
         object: objectWithInitial,
+        objects: this.props.objects,
+        clusterList: this.props.clusterList,
         onArrange: this.handleArrange.bind(this),
         onChange: this.handleObjectChange.bind(this),
         onDelete: this.removeCurrent.bind(this),
         objectComponent: objectComponent,
         onObjectSelect: this.updateSelectedObjectIndex.bind(this),
-        objects: this.props.objects,
         resetCurrentSelection: this.resetCurrentSelection.bind(this),
-        clusterList: this.props.clusterList,
-        onAddClusterClick: this.props.onAddClusterClick
+        onAddClusterClick: this.props.onAddClusterClick,
+        onImageEditClick: this.props.onImageEditClick
       }) : /*#__PURE__*/_react["default"].createElement(_ObjectList["default"], {
         objectFilter: objectFilter,
         onObjectFilterChange: function onObjectFilterChange(objectFilter) {

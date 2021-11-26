@@ -35,7 +35,9 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 var StylePanel = function StylePanel(_ref) {
   var object = _ref.object,
-      _onChange = _ref.onChange;
+      _onChange = _ref.onChange,
+      onDelete = _ref.onDelete,
+      onImageEditClick = _ref.onImageEditClick;
 
   if (object.elementType === _constants.TYPES.GATEWAY) {
     return null;
@@ -68,7 +70,9 @@ var StylePanel = function StylePanel(_ref) {
     inline: true
   }, /*#__PURE__*/_react["default"].createElement(_Button["default"], {
     title: "Edit",
-    onClick: function onClick() {}
+    onClick: function onClick() {
+      return onImageEditClick();
+    }
   }, /*#__PURE__*/_react["default"].createElement(_Icon["default"], {
     icon: "pencil",
     size: 24,
@@ -82,7 +86,9 @@ var StylePanel = function StylePanel(_ref) {
     style: {
       marginLeft: 8
     },
-    onClick: function onClick() {}
+    onClick: function onClick() {
+      return onDelete();
+    }
   }, /*#__PURE__*/_react["default"].createElement(_Icon["default"], {
     icon: "delete",
     size: 24,
@@ -123,7 +129,9 @@ var StylePanel = function StylePanel(_ref) {
 
 StylePanel.propTypes = {
   object: _propTypes["default"].object,
-  onChange: _propTypes["default"].func.isRequired
+  onChange: _propTypes["default"].func.isRequired,
+  onDelete: _propTypes["default"].func.isRequired,
+  onImageEditClick: _propTypes["default"].func
 };
 var _default = StylePanel;
 exports["default"] = _default;

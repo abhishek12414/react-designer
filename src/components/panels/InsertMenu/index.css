@@ -7,6 +7,7 @@
 .insertMenu .toolBox {
 	margin: 0;
 	padding: 12px 0 0;
+	min-height: 172px;
 }
 .insertMenu .toolBox .toolBoxItem {
 	list-style-type: none;

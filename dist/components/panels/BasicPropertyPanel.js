@@ -106,7 +106,7 @@ var BasicPropertyPanel = function BasicPropertyPanel(_ref) {
       height: 16,
       fill: 'black'
     }
-  })), ' '), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
+  }))), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
     label: "Cluster",
     rowInline: true
   }, /*#__PURE__*/_react["default"].createElement(_Column["default"], null, /*#__PURE__*/_react["default"].createElement("div", {

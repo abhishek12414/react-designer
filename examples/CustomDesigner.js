@@ -36,6 +36,8 @@ const CustomDesigner = () => {
 				}}
 				onDelete={(obj) => console.log('deleteObject', obj)}
 				onAddClusterClick={() => console.log('add new cluster')}
+				onImageEditClick={() => console.log('onImageEditClick')}
+				onAddImageClick={() => console.log('onAddImageClick')}
 			/>
 		</div>
 	);

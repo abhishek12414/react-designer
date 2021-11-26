@@ -1,6 +1,6 @@
 .rdObjectListContainer .objectList {
 	height: calc(100vh - 31px);
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 
 .rdObjectListContainer .objectList::-webkit-scrollbar {

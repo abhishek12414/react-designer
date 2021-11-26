@@ -24,8 +24,6 @@ var _deepClone = _interopRequireDefault(require("../../../utils/deepClone"));
 require("./index.css");
 
 var SizePanel = function SizePanel(_ref) {
-  var _object$path;
-
   var object = _ref.object,
       _onChange = _ref.onChange;
 
@@ -83,16 +81,6 @@ var SizePanel = function SizePanel(_ref) {
     onChange: function onChange(value) {
       return _onChange('y', +value);
     }
-  })), (0, _has["default"])(object, 'rotate') && /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
-    label: "Rotation",
-    rowInline: true
-  }, /*#__PURE__*/_react["default"].createElement(_Column["default"], {
-    type: "number",
-    value: object.rotate,
-    readOnly: true,
-    onChange: function onChange(value) {
-      return _onChange('rotate', +value);
-    }
   })), (0, _has["default"])(object, 'radius') && /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
     label: "Radius",
     rowInline: true
@@ -102,28 +90,6 @@ var SizePanel = function SizePanel(_ref) {
     onChange: function onChange(value) {
       return _onChange('radius', +value);
     }
-  })), (0, _has["default"])(object, 'path') && /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
-    label: "Paths"
-  }, object === null || object === void 0 ? void 0 : (_object$path = object.path) === null || _object$path === void 0 ? void 0 : _object$path.map(function (cordsObj, index) {
-    return /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
-      key: index,
-      inline: true,
-      className: "plotItemWrapper"
-    }, /*#__PURE__*/_react["default"].createElement(_Column["default"], {
-      type: "number",
-      label: "X",
-      value: cordsObj.x,
-      onChange: function onChange(value) {
-        return onPlotChange('x', index, +value);
-      }
-    }), /*#__PURE__*/_react["default"].createElement(_Column["default"], {
-      type: "number",
-      label: "Y",
-      value: cordsObj.y,
-      onChange: function onChange(value) {
-        return onPlotChange('y', index, +value);
-      }
-    }));
   }))));
 };
 

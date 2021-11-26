@@ -6,14 +6,11 @@ import Columns from '../Columns';
 import Button from '../../widgets/Button';
 import Icon from '../../shared/Icon';
 
-const PanelList = ({ id, objectComponent, ...rest }) => {
+const PanelList = ({ id, objectComponent, resetCurrentSelection, ...rest }) => {
 	return (
 		<div className="rdPanelListContainer">
 			<Columns className="columns" label="Editor" rowInline spaceBetween>
-				<Button
-					title="Back to list"
-					onClick={() => rest.resetCurrentSelection()}
-				>
+				<Button title="Back to list" onClick={() => resetCurrentSelection()}>
 					<Icon
 						icon="back"
 						size={24}
@@ -33,6 +30,7 @@ const PanelList = ({ id, objectComponent, ...rest }) => {
 PanelList.propTypes = {
 	id: PropTypes.string,
 	objectComponent: PropTypes.func,
+	resetCurrentSelection: PropTypes.func.isRequired,
 };
 
 export default PanelList;

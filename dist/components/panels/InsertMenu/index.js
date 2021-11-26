@@ -31,7 +31,13 @@ require("./index.css");
 
 var _constants = require("../../../constants");
 
+var _Icon = _interopRequireDefault(require("../../shared/Icon"));
+
 var _Tab = _interopRequireDefault(require("../../widgets/Tab"));
+
+var _Button = _interopRequireDefault(require("../../widgets/Button"));
+
+var _Columns = _interopRequireDefault(require("../Columns"));
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -84,11 +90,13 @@ var InsertMenu = /*#__PURE__*/function (_Component) {
       var _this = this;
 
       var _this$props = this.props,
+          hasImage = _this$props.hasImage,
           currentTool = _this$props.currentTool,
           tools = _this$props.tools,
           onSelect = _this$props.onSelect,
           type = _this$props.type,
-          onTypeChange = _this$props.onTypeChange; // hide tools.image;
+          onTypeChange = _this$props.onTypeChange,
+          onAddImageClick = _this$props.onAddImageClick; // hide tools.image;
 
       tools = Object.keys(tools).reduce(function (acc, key) {
         if (key === _constants.SHAPES.image) {
@@ -97,6 +105,15 @@ var InsertMenu = /*#__PURE__*/function (_Component) {
           return _objectSpread(_objectSpread({}, acc), {}, (0, _defineProperty2["default"])({}, key, tools[key]));
         }
       }, {});
+      var iconStyle = {
+        width: '18px',
+        height: '18px'
+      };
+
+      if (!hasImage) {
+        iconStyle.fill = 'black';
+      }
+
       return /*#__PURE__*/_react["default"].createElement("div", {
         className: "insertMenu"
       }, /*#__PURE__*/_react["default"].createElement(_Tab["default"], {
@@ -115,7 +132,19 @@ var InsertMenu = /*#__PURE__*/function (_Component) {
         }, /*#__PURE__*/_react["default"].createElement("span", {
           className: "mainIcon"
         }, tools[elementType].meta.icon), elementType);
-      })));
+      })), /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
+        label: "Image",
+        rowInline: true
+      }, /*#__PURE__*/_react["default"].createElement(_Button["default"], {
+        onClick: function onClick() {
+          return onAddImageClick();
+        },
+        disabled: hasImage
+      }, /*#__PURE__*/_react["default"].createElement(_Icon["default"], {
+        size: 24,
+        icon: "add",
+        style: iconStyle
+      })))));
     }
   }]);
   return InsertMenu;
@@ -124,9 +153,11 @@ var InsertMenu = /*#__PURE__*/function (_Component) {
 InsertMenu.propTypes = {
   type: _propTypes["default"].string,
   tools: _propTypes["default"].object,
+  hasImage: _propTypes["default"].bool,
   currentTool: _propTypes["default"].string,
   onTypeChange: _propTypes["default"].func,
-  onSelect: _propTypes["default"].func.isRequired
+  onSelect: _propTypes["default"].func.isRequired,
+  onAddImageClick: _propTypes["default"].func.isRequired
 };
 var _default = InsertMenu;
 exports["default"] = _default;

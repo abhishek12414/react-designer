@@ -59,16 +59,6 @@ const SizePanel = ({ object, onChange }) => {
 						onChange={(value) => onChange('y', +value)}
 					/>
 				</Columns>
-				{has(object, 'rotate') && (
-					<Columns label="Rotation" rowInline>
-						<Column
-							type="number"
-							value={object.rotate}
-							readOnly={true}
-							onChange={(value) => onChange('rotate', +value)}
-						/>
-					</Columns>
-				)}
 				{has(object, 'radius') && (
 					<Columns label="Radius" rowInline>
 						<Column
@@ -78,7 +68,17 @@ const SizePanel = ({ object, onChange }) => {
 						/>
 					</Columns>
 				)}
-				{has(object, 'path') && (
+				{/* {has(object, 'rotate') && (
+					<Columns label="Rotation" rowInline>
+						<Column
+							type="number"
+							value={object.rotate}
+							readOnly={true}
+							onChange={(value) => onChange('rotate', +value)}
+						/>
+					</Columns>
+				)} */}
+				{/* {has(object, 'path') && (
 					<Columns label="Paths">
 						{object?.path?.map((cordsObj, index) => {
 							return (
@@ -99,7 +99,7 @@ const SizePanel = ({ object, onChange }) => {
 							);
 						})}
 					</Columns>
-				)}
+				)} */}
 			</>
 		</PropertyGroup>
 	);
