@@ -86,10 +86,12 @@ var Text = /*#__PURE__*/function (_Vector) {
           transform = _this$getObjectAttrib.transform,
           ref = _this$getObjectAttrib.ref,
           onMouseOver = _this$getObjectAttrib.onMouseOver,
-          index = _this$getObjectAttrib.index;
+          index = _this$getObjectAttrib.index,
+          isHidden = _this$getObjectAttrib.isHidden;
 
       return /*#__PURE__*/_react["default"].createElement("text", {
         style: this.getStyle(),
+        className: isHidden ? 'hidden' : '',
         textAnchor: "middle",
         fontSize: fontSize,
         fontFamily: fontFamily,
@@ -113,7 +115,7 @@ exports["default"] = Text;
 (0, _defineProperty2["default"])(Text, "meta", {
   icon: /*#__PURE__*/_react["default"].createElement(_Icon["default"], {
     icon: 'text',
-    size: 30
+    size: 24
   }),
   initial: {
     text: 'Hello',
@@ -124,6 +126,7 @@ exports["default"] = Text;
     fill: 'black',
     fillOpacity: 1,
     fontSize: 50,
-    fontFamily: 'Helvetica'
+    fontFamily: 'Helvetica',
+    isHidden: false
   }
 });

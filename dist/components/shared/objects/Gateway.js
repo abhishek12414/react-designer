@@ -75,13 +75,15 @@ var Gateway = /*#__PURE__*/function (_Vector) {
           transform = _this$getObjectAttrib.transform,
           ref = _this$getObjectAttrib.ref,
           onMouseOver = _this$getObjectAttrib.onMouseOver,
-          index = _this$getObjectAttrib.index;
+          index = _this$getObjectAttrib.index,
+          isHidden = _this$getObjectAttrib.isHidden;
 
       return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("image", {
+        style: this.getStyle(),
+        className: isHidden ? 'hidden' : '',
         width: 18,
         height: 18,
         href: _wifi["default"],
-        style: this.getStyle(),
         x: x,
         y: y // common props
         ,
@@ -90,6 +92,7 @@ var Gateway = /*#__PURE__*/function (_Vector) {
         transform: transform,
         index: index
       }), /*#__PURE__*/_react["default"].createElement("image", {
+        className: isHidden ? 'hidden' : '',
         width: 18,
         height: 18,
         href: _track["default"],
@@ -105,9 +108,10 @@ exports["default"] = Gateway;
 (0, _defineProperty2["default"])(Gateway, "meta", {
   icon: /*#__PURE__*/_react["default"].createElement(_Icon["default"], {
     icon: 'wifi',
-    size: 30
+    size: 24
   }),
   initial: {
+    isHidden: false,
     rotate: 0,
     x: 0,
     y: 0,

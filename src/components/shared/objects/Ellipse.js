@@ -6,12 +6,13 @@ import Vector from './Vector';
 
 export default class Ellipse extends Vector {
 	static meta = {
-		icon: <Icon icon={'ellipse'} size={30} />,
+		icon: <Icon icon={'ellipse'} size={24} />,
 		initial: {
 			fill: '#ffffff',
 			fillOpacity: 0,
 			strokeWidth: 2,
 			stroke: '#000000',
+			isHidden: false,
 			width: 5,
 			height: 5,
 			rotate: 0,
@@ -31,6 +32,7 @@ export default class Ellipse extends Vector {
 			strokeWidth,
 			stroke,
 			blendMode,
+			isHidden,
 			labelCoordinates,
 			elementType,
 			name,
@@ -48,6 +50,7 @@ export default class Ellipse extends Vector {
 				{isSelected && (
 					<ellipse
 						style={this.getStyle()}
+						className={isHidden ? 'hidden' : ''}
 						rx={width / 2}
 						ry={height / 2}
 						cx={x + width / 2}
@@ -65,6 +68,7 @@ export default class Ellipse extends Vector {
 				)}
 				<ellipse
 					style={this.getStyle()}
+					className={isHidden ? 'hidden' : ''}
 					rx={width / 2}
 					ry={height / 2}
 					cx={x + width / 2}
@@ -80,7 +84,12 @@ export default class Ellipse extends Vector {
 					strokeDasharray={type == 'map' ? 0 : 4}
 					onMouseOver={onMouseOver}
 				/>
-				<Label x={labelCoordinates.x} y={labelCoordinates.y} label={name} />
+				<Label
+					className={isHidden ? 'hidden' : ''}
+					x={labelCoordinates.x}
+					y={labelCoordinates.y}
+					label={name}
+				/>
 			</>
 		);
 	}

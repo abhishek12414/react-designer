@@ -65,10 +65,12 @@ var Rect = /*#__PURE__*/function (_Vector) {
           transform = _this$getObjectAttrib.transform,
           ref = _this$getObjectAttrib.ref,
           onMouseOver = _this$getObjectAttrib.onMouseOver,
-          index = _this$getObjectAttrib.index;
+          index = _this$getObjectAttrib.index,
+          isHidden = _this$getObjectAttrib.isHidden;
 
       return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, isSelected && /*#__PURE__*/_react["default"].createElement("rect", {
         style: this.getStyle(),
+        className: isHidden ? 'hidden' : '',
         x: x,
         y: y,
         width: width,
@@ -84,6 +86,7 @@ var Rect = /*#__PURE__*/function (_Vector) {
         strokeMiterlimit: 8
       }), /*#__PURE__*/_react["default"].createElement("rect", {
         style: this.getStyle(),
+        className: isHidden ? 'hidden' : '',
         x: x,
         y: y,
         width: width,
@@ -99,6 +102,7 @@ var Rect = /*#__PURE__*/function (_Vector) {
         strokeDasharray: type == 'map' ? 0 : 4,
         onMouseOver: onMouseOver
       }), /*#__PURE__*/_react["default"].createElement(_Label["default"], {
+        className: isHidden ? 'hidden' : '',
         x: labelCoordinates.x,
         y: labelCoordinates.y,
         label: name || ''
@@ -112,7 +116,7 @@ exports["default"] = Rect;
 (0, _defineProperty2["default"])(Rect, "meta", {
   icon: /*#__PURE__*/_react["default"].createElement(_Icon["default"], {
     icon: 'rect',
-    size: 30
+    size: 24
   }),
   initial: {
     width: 5,
@@ -121,6 +125,7 @@ exports["default"] = Rect;
     fillOpacity: 0,
     strokeWidth: 2,
     stroke: '#000000',
+    isHidden: false,
     // radius: 0,
     blendMode: 'normal',
     rotate: 0,

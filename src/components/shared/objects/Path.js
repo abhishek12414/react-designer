@@ -8,12 +8,16 @@ import BezierEditor from '../editors/BezierEditor';
 
 export default class Path extends Vector {
 	static meta = {
+		icon: <Icon icon={'polygon'} size={24} />,
+		mode: modes.DRAW_PATH,
+		editor: BezierEditor,
 		initial: {
 			fill: '#ffffff',
 			fillOpacity: 0,
 			strokeWidth: 2,
 			stroke: '#000000',
 			closed: false,
+			isHidden: false,
 			rotate: 0,
 			moveX: 0,
 			moveY: 0,
@@ -21,9 +25,6 @@ export default class Path extends Vector {
 			strokeWidth: 1,
 			labelCoordinates: { x: 30, y: 30 },
 		},
-		mode: modes.DRAW_PATH,
-		icon: <Icon icon={'polygon'} size={30} />,
-		editor: BezierEditor,
 	};
 
 	buildPath(object) {
@@ -84,6 +85,7 @@ export default class Path extends Vector {
 			ref,
 			onMouseOver,
 			index,
+			isHidden,
 		} = this.getObjectAttributes();
 
 		return (
@@ -91,6 +93,7 @@ export default class Path extends Vector {
 				{isSelected && (
 					<path
 						style={this.getStyle(object)}
+						className={isHidden ? 'hidden' : ''}
 						d={this.buildPath(object)}
 						// common props
 						fill={fill}
@@ -105,6 +108,7 @@ export default class Path extends Vector {
 				)}
 				<path
 					style={this.getStyle(object)}
+					className={isHidden ? 'hidden' : ''}
 					d={this.buildPath(object)}
 					// common props
 					ref={ref}
@@ -117,7 +121,12 @@ export default class Path extends Vector {
 					strokeDasharray={type == 'map' ? 0 : 4}
 					onMouseOver={onMouseOver}
 				/>
-				<Label x={labelCoordinates.x} y={labelCoordinates.y} label={name} />
+				<Label
+					className={isHidden ? 'hidden' : ''}
+					x={labelCoordinates.x}
+					y={labelCoordinates.y}
+					label={name}
+				/>
 			</>
 		);
 	}

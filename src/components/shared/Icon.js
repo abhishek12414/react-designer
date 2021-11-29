@@ -1,12 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class Icon extends Component {
-	static defaultProps = {
-		size: 16,
-	};
-
-	renderGraphic() {
-		switch (this.props.icon) {
+const Icon = ({ active, className, icon, size, style, onClick }) => {
+	const renderGraphic = () => {
+		switch (icon) {
 			case 'image':
 				return (
 					<g>
@@ -192,38 +189,87 @@ export default class Icon extends Component {
 				);
 			case 'back':
 				return (
-					<path
-						xmlns="http://www.w3.org/2000/svg"
-						d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
-					/>
+					<path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
 				);
 			case 'wifi':
 			case 'gateway':
 				return (
 					<path d="m1 9 2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8 3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4 2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z" />
 				);
+			case 'eye-on':
+				return (
+					<g>
+						<path
+							d="M8 10c1.105 0 2-.895 2-2 0-1.105-.895-2-2-2-1.104 0-2 .895-2 2 0 1.105.896 2 2 2z"
+							fillRule="nonzero"
+							fillOpacity="1"
+							fill="#000"
+							stroke="none"
+						/>
+						<path
+							d="M8 4c2.878 0 5.378 1.621 6.635 4-1.257 2.379-3.757 4-6.635 4-2.878 0-5.377-1.621-6.635-4C2.623 5.621 5.122 4 8 4zm0 7c-2.3 0-4.322-1.194-5.478-3C3.678 6.194 5.7 5 8 5c2.3 0 4.322 1.194 5.479 3C12.322 9.806 10.3 11 8 11z"
+							fillRule="evenodd"
+							fillOpacity="1"
+							fill="#000"
+							stroke="none"
+						/>
+					</g>
+				);
+			case 'eye-off':
+				return (
+					<path
+						d="M13.508 7.801c.556-.527 1.036-1.134 1.422-1.801h-1.185C12.48 7.814 10.378 9 8 9 5.622 9 3.52 7.814 2.254 6H1.07c.386.667.866 1.274 1.421 1.801L.896 9.396l.708.707L3.26 8.446c.71.523 1.511.932 2.374 1.199l-.617 2.221.964.268.626-2.255C7.06 9.96 7.525 10 8 10c.475 0 .94-.041 1.392-.12l.626 2.254.964-.268-.617-2.221c.863-.267 1.663-.676 2.374-1.2l1.657 1.658.708-.707-1.595-1.595z"
+						fillRule="nonzero"
+						fillOpacity="1"
+						fill="#000"
+						stroke="none"
+					/>
+				);
+			case 'pencil':
+				return (
+					<path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75zM20.71 5.63l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41z" />
+				);
+			case 'delete':
+				return (
+					<path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5-1-1h-5l-1 1H5v2h14V4z" />
+				);
 			default:
 				return <g />;
 		}
-	}
+	};
 
-	render() {
-		let styles = {
-			fill: this.props.active ? 'black' : '#b5b5b5',
-			verticalAlign: 'middle',
-			width: this.props.size,
-			height: this.props.size,
-		};
-		return (
-			<svg
-				// fit={true}
-				viewBox="0 0 24 24"
-				preserveAspectRatio="xMidYMid meet"
-				style={{ ...styles, ...this.props.style }}
-				onClick={this.props.onClick}
-			>
-				{this.renderGraphic()}
-			</svg>
-		);
-	}
-}
+	let styles = {
+		fill: active ? 'black' : '#b5b5b5',
+		verticalAlign: 'middle',
+		width: size,
+		height: size,
+	};
+
+	return (
+		<svg
+			// fit={true}
+			className={className}
+			viewBox={size ? `0 0 ${size} ${size} ` : '0 0 24 24'}
+			preserveAspectRatio="xMidYMid meet"
+			style={{ ...styles, ...style }}
+			onClick={onClick}
+		>
+			{renderGraphic()}
+		</svg>
+	);
+};
+
+Icon.propTypes = {
+	icon: PropTypes.string.isRequired,
+	size: PropTypes.number,
+	style: PropTypes.object,
+	active: PropTypes.bool,
+	className: PropTypes.string,
+	onClick: PropTypes.func,
+};
+
+Icon.defaultProps = {
+	size: 16,
+};
+
+export default Icon;

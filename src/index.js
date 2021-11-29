@@ -10,6 +10,7 @@ export {
 } from './components/shared/objects';
 export {
 	TextPanel,
+	BasicPropertyPanel,
 	SizePanel,
 	StylePanel,
 	ArrangePanel,

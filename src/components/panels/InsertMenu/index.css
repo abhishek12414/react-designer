@@ -4,30 +4,10 @@
 	text-transform: capitalize;
 	background-color: #ebebeb;
 }
-.insertMenu .tabWrapper {
-	display: flex;
-}
-.insertMenu .tabWrapper .tabBar {
-	flex: 1;
-	text-align: center;
-	cursor: pointer;
-	padding: 4px 8px;
-	font-size: 12px;
-	font-weight: 600;
-	line-height: 1.75;
-	border-bottom: 2px solid #1b1c1d;
-	letter-spacing: 0.02857em;
-	text-transform: capitalize;
-	border-top-right-radius: 4px;
-	border-top-left-radius: 4px;
-}
-.insertMenu .tabWrapper .activeTab {
-	background-color: #1b1c1d;
-	color: #fff;
-}
 .insertMenu .toolBox {
 	margin: 0;
 	padding: 12px 0 0;
+	min-height: 172px;
 }
 .insertMenu .toolBox .toolBoxItem {
 	list-style-type: none;
@@ -41,7 +21,7 @@
 .insertMenu .toolBox .toolBoxItem:hover {
 	background: #dcd8d8;
 }
-.insertMenu .toolBox .insertmenuactive {
+.insertMenu .toolBox .insertMenuActive {
 	background: #dcd8d8;
 }
 .insertMenu .toolBox .currentToolboxItem {

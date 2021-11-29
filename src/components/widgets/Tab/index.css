@@ -1,0 +1,21 @@
+.rdTab {
+	display: flex;
+}
+.rdTab .tabBar {
+	flex: 1;
+	text-align: center;
+	cursor: pointer;
+	padding: 4px 8px;
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 1.75;
+	border-bottom: 2px solid #1b1c1d;
+	letter-spacing: 0.02857em;
+	text-transform: capitalize;
+	border-top-right-radius: 4px;
+	border-top-left-radius: 4px;
+}
+.rdTab .activeTab {
+	background-color: #1b1c1d;
+	color: #fff;
+}

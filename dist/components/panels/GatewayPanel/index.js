@@ -111,7 +111,6 @@ var GatewayPanel = /*#__PURE__*/function (_React$Component) {
         label: "Physical Coords",
         inline: true
       }, (0, _has["default"])(object, 'x') && /*#__PURE__*/_react["default"].createElement(_Column["default"], {
-        disabled: true,
         label: "x",
         type: "number",
         value: object.x,
@@ -119,7 +118,6 @@ var GatewayPanel = /*#__PURE__*/function (_React$Component) {
           return _this.props.onChange('x', value);
         }
       }), (0, _has["default"])(object, 'y') && /*#__PURE__*/_react["default"].createElement(_Column["default"], {
-        disabled: true,
         label: "y",
         type: "number",
         value: object.y,
@@ -127,7 +125,6 @@ var GatewayPanel = /*#__PURE__*/function (_React$Component) {
           return _this.props.onChange('y', value);
         }
       }), (0, _has["default"])(object, 'z') && /*#__PURE__*/_react["default"].createElement(_Column["default"], {
-        disabled: true,
         label: "z",
         type: "number",
         value: object.z,

@@ -21,7 +21,8 @@ var Columns = function Columns(_ref) {
       showIf = _ref.showIf,
       label = _ref.label,
       children = _ref.children,
-      spaceBetween = _ref.spaceBetween;
+      spaceBetween = _ref.spaceBetween,
+      className = _ref.className;
 
   if (!showIf) {
     return /*#__PURE__*/_react["default"].createElement("div", {
@@ -30,8 +31,8 @@ var Columns = function Columns(_ref) {
   }
 
   return /*#__PURE__*/_react["default"].createElement("div", {
-    className: (0, _classnames["default"])('rdColumns', rowInline && 'rdColumns__inline', spaceBetween && 'rdColumns__spaceBetween')
-  }, /*#__PURE__*/_react["default"].createElement("label", {
+    className: (0, _classnames["default"])('rdColumns', rowInline && 'rdColumns__inline', spaceBetween && 'rdColumns__spaceBetween', className)
+  }, label && /*#__PURE__*/_react["default"].createElement("label", {
     className: "rdColumns__title"
   }, label), /*#__PURE__*/_react["default"].createElement("div", {
     className: (0, _classnames["default"])(inline ? 'inline' : 'block')
@@ -43,6 +44,7 @@ Columns.propTypes = {
   showIf: _propTypes["default"].bool,
   inline: _propTypes["default"].bool,
   children: _propTypes["default"].node,
+  className: _propTypes["default"].string,
   rowInline: _propTypes["default"].bool,
   spaceBetween: _propTypes["default"].bool
 };

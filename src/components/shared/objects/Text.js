@@ -5,7 +5,7 @@ import Vector from './Vector';
 
 export default class Text extends Vector {
 	static meta = {
-		icon: <Icon icon={'text'} size={30} />,
+		icon: <Icon icon={'text'} size={24} />,
 		initial: {
 			text: 'Hello',
 			rotate: 0,
@@ -16,6 +16,7 @@ export default class Text extends Vector {
 			fillOpacity: 1,
 			fontSize: 50,
 			fontFamily: 'Helvetica',
+			isHidden: false,
 		},
 	};
 
@@ -55,11 +56,13 @@ export default class Text extends Vector {
 			ref,
 			onMouseOver,
 			index,
+			isHidden,
 		} = this.getObjectAttributes();
 
 		return (
 			<text
 				style={this.getStyle()}
+				className={isHidden ? 'hidden' : ''}
 				textAnchor="middle"
 				fontSize={fontSize}
 				fontFamily={fontFamily}

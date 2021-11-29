@@ -30,7 +30,6 @@ const Column = ({
 					onChange={(e) => onChange(e.target.value)}
 				/>
 			)}
-			{/* {label && <div style={styles.inputHelper}>{label}</div>} */}
 		</div>
 	);
 };

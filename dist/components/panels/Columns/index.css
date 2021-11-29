@@ -13,10 +13,10 @@
 }
 .rdColumns .inline {
 	display: flex;
-	margin-top: 8px;
+	margin-top: 4px;
 }
 .rdColumns .block {
-	margin-top: 8px;
+	margin-top: 4px;
 }
 .rdColumns__inline {
 	display: flex;

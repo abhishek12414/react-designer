@@ -55,6 +55,7 @@ var Ellipse = /*#__PURE__*/function (_Vector) {
           strokeWidth = _this$getObjectAttrib.strokeWidth,
           stroke = _this$getObjectAttrib.stroke,
           blendMode = _this$getObjectAttrib.blendMode,
+          isHidden = _this$getObjectAttrib.isHidden,
           labelCoordinates = _this$getObjectAttrib.labelCoordinates,
           elementType = _this$getObjectAttrib.elementType,
           name = _this$getObjectAttrib.name,
@@ -68,6 +69,7 @@ var Ellipse = /*#__PURE__*/function (_Vector) {
 
       return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, isSelected && /*#__PURE__*/_react["default"].createElement("ellipse", {
         style: this.getStyle(),
+        className: isHidden ? 'hidden' : '',
         rx: width / 2,
         ry: height / 2,
         cx: x + width / 2,
@@ -83,6 +85,7 @@ var Ellipse = /*#__PURE__*/function (_Vector) {
         strokeMiterlimit: 8
       }), /*#__PURE__*/_react["default"].createElement("ellipse", {
         style: this.getStyle(),
+        className: isHidden ? 'hidden' : '',
         rx: width / 2,
         ry: height / 2,
         cx: x + width / 2,
@@ -98,6 +101,7 @@ var Ellipse = /*#__PURE__*/function (_Vector) {
         strokeDasharray: type == 'map' ? 0 : 4,
         onMouseOver: onMouseOver
       }), /*#__PURE__*/_react["default"].createElement(_Label["default"], {
+        className: isHidden ? 'hidden' : '',
         x: labelCoordinates.x,
         y: labelCoordinates.y,
         label: name
@@ -111,13 +115,14 @@ exports["default"] = Ellipse;
 (0, _defineProperty2["default"])(Ellipse, "meta", {
   icon: /*#__PURE__*/_react["default"].createElement(_Icon["default"], {
     icon: 'ellipse',
-    size: 30
+    size: 24
   }),
   initial: {
     fill: '#ffffff',
     fillOpacity: 0,
     strokeWidth: 2,
     stroke: '#000000',
+    isHidden: false,
     width: 5,
     height: 5,
     rotate: 0,

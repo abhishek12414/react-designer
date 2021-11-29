@@ -121,10 +121,12 @@ var Path = /*#__PURE__*/function (_Vector) {
           transform = _this$getObjectAttrib.transform,
           ref = _this$getObjectAttrib.ref,
           onMouseOver = _this$getObjectAttrib.onMouseOver,
-          index = _this$getObjectAttrib.index;
+          index = _this$getObjectAttrib.index,
+          isHidden = _this$getObjectAttrib.isHidden;
 
       return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, isSelected && /*#__PURE__*/_react["default"].createElement("path", {
         style: this.getStyle(object),
+        className: isHidden ? 'hidden' : '',
         d: this.buildPath(object) // common props
         ,
         fill: fill,
@@ -137,6 +139,7 @@ var Path = /*#__PURE__*/function (_Vector) {
         strokeMiterlimit: 8
       }), /*#__PURE__*/_react["default"].createElement("path", {
         style: this.getStyle(object),
+        className: isHidden ? 'hidden' : '',
         d: this.buildPath(object) // common props
         ,
         ref: ref,
@@ -149,6 +152,7 @@ var Path = /*#__PURE__*/function (_Vector) {
         strokeDasharray: type == 'map' ? 0 : 4,
         onMouseOver: onMouseOver
       }), /*#__PURE__*/_react["default"].createElement(_Label["default"], {
+        className: isHidden ? 'hidden' : '',
         x: labelCoordinates.x,
         y: labelCoordinates.y,
         label: name
@@ -160,12 +164,19 @@ var Path = /*#__PURE__*/function (_Vector) {
 
 exports["default"] = Path;
 (0, _defineProperty2["default"])(Path, "meta", {
+  icon: /*#__PURE__*/_react["default"].createElement(_Icon["default"], {
+    icon: 'polygon',
+    size: 24
+  }),
+  mode: _constants.modes.DRAW_PATH,
+  editor: _BezierEditor["default"],
   initial: (_initial = {
     fill: '#ffffff',
     fillOpacity: 0,
     strokeWidth: 2,
     stroke: '#000000',
     closed: false,
+    isHidden: false,
     rotate: 0,
     moveX: 0,
     moveY: 0,
@@ -173,11 +184,5 @@ exports["default"] = Path;
   }, (0, _defineProperty2["default"])(_initial, "strokeWidth", 1), (0, _defineProperty2["default"])(_initial, "labelCoordinates", {
     x: 30,
     y: 30
-  }), _initial),
-  mode: _constants.modes.DRAW_PATH,
-  icon: /*#__PURE__*/_react["default"].createElement(_Icon["default"], {
-    icon: 'polygon',
-    size: 30
-  }),
-  editor: _BezierEditor["default"]
+  }), _initial)
 });

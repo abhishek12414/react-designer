@@ -6,7 +6,7 @@ import Vector from './Vector';
 
 export default class Rect extends Vector {
 	static meta = {
-		icon: <Icon icon={'rect'} size={30} />,
+		icon: <Icon icon={'rect'} size={24} />,
 		initial: {
 			width: 5,
 			height: 5,
@@ -14,6 +14,7 @@ export default class Rect extends Vector {
 			fillOpacity: 0,
 			strokeWidth: 2,
 			stroke: '#000000',
+			isHidden: false,
 			// radius: 0,
 			blendMode: 'normal',
 			rotate: 0,
@@ -43,6 +44,7 @@ export default class Rect extends Vector {
 			ref,
 			onMouseOver,
 			index,
+			isHidden,
 		} = this.getObjectAttributes();
 
 		return (
@@ -50,6 +52,7 @@ export default class Rect extends Vector {
 				{isSelected && (
 					<rect
 						style={this.getStyle()}
+						className={isHidden ? 'hidden' : ''}
 						x={x}
 						y={y}
 						width={width}
@@ -67,6 +70,7 @@ export default class Rect extends Vector {
 				)}
 				<rect
 					style={this.getStyle()}
+					className={isHidden ? 'hidden' : ''}
 					x={x}
 					y={y}
 					width={width}
@@ -83,6 +87,7 @@ export default class Rect extends Vector {
 					onMouseOver={onMouseOver}
 				/>
 				<Label
+					className={isHidden ? 'hidden' : ''}
 					x={labelCoordinates.x}
 					y={labelCoordinates.y}
 					label={name || ''}

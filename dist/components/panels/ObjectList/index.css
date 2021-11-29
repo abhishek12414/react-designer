@@ -1,11 +1,41 @@
-.objectList .panelHeader {
-	display: flex;
-	align-items: center;
-	margin-bottom: 5px;
-	min-height: 24px;
+.rdObjectListContainer .objectList {
+	height: calc(100vh - 31px);
+	overflow-y: auto;
 }
 
-.objectList .propertyTitle {
-	font-size: 18px;
-	font-weight: 300;
+.rdObjectListContainer .objectList::-webkit-scrollbar {
+	/* display: none; */
+	width: 8px;
+	height: 8px;
+	overflow: auto;
+}
+
+.rdObjectListContainer .objectList::-webkit-scrollbar-button {
+	width: 0px;
+	height: 0px;
+}
+
+.rdObjectListContainer .objectList::-webkit-scrollbar-corner {
+	background: transparent;
+}
+
+.rdObjectListContainer .objectList::-webkit-scrollbar-thumb {
+	box-shadow: none;
+	border-style: solid;
+	border-color: transparent;
+	border-width: 4px;
+	border-radius: 8px;
+	background-color: rgb(218, 220, 224);
+}
+
+.rdObjectListContainer .objectList::-webkit-scrollbar-track {
+	margin: 0px 4px;
+	box-shadow: none;
+}
+
+.rdObjectListContainer .objectList::-webkit-scrollbar-track {
+	border-style: solid;
+	border-color: transparent;
+	border-width: 0px 0px 0px 4px;
+	background-clip: padding-box;
 }

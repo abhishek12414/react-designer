@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
 import cx from 'classnames';
-import _ from 'lodash';
+import has from 'lodash/has';
+import includes from 'lodash/includes';
+import mapValues from 'lodash/mapValues';
 import { HotKeys } from 'react-hotkeys';
 
 import './index.css';
 
-import { modes } from '../../constants';
+import { modes, SHAPES } from '../../constants';
 import * as actions from '../../actions';
-import { Text, Path, Rect, Ellipse, Image, Gateway } from '../shared/objects';
+import {
+	Text,
+	Path,
+	Rect,
+	Ellipse,
+	Image,
+	Gateway,
+	Circle,
+} from '../shared/objects';
 import PanelList from '../panels/PanelList';
 import Handler from '../Handler';
 import SVGRenderer from '../SVGRenderer';
@@ -23,6 +33,7 @@ class Designer extends Component {
 			polygon: Path,
 			image: Image,
 			gateway: Gateway,
+			circle: Circle,
 		},
 		snapToGrid: 1,
 		svgStyle: {},
@@ -42,6 +53,7 @@ class Designer extends Component {
 		selectedObjectIndex: null,
 		selectedTool: null,
 		type: 'map',
+		objectFilter: 'all',
 	};
 
 	keyMap = {
@@ -140,6 +152,7 @@ class Designer extends Component {
 			x: mouse.x,
 			y: mouse.y,
 			type,
+			idx: objects.length + 1,
 		};
 
 		onUpdate([...objects, object]);
@@ -165,6 +178,13 @@ class Designer extends Component {
 			y2: diffY + y2,
 			x: diffX + x,
 			y: diffY + y,
+
+			// x1: diffX + x,
+			// y1: diffY + y,
+			// x2: diffX + x,
+			// y2: diffY + y,
+			// x: diffX + x,
+			// y: diffY + y,
 		}));
 
 		return {
@@ -349,7 +369,7 @@ class Designer extends Component {
 			this.updateHandler(currentObjectIndex, object);
 		}
 
-		if (_.includes([modes.DRAG, modes.ROTATE, modes.SCALE], mode)) {
+		if (includes([modes.DRAG, modes.ROTATE, modes.SCALE], mode)) {
 			this.setState({
 				mode: modes.FREE,
 			});
@@ -483,7 +503,7 @@ class Designer extends Component {
 			closePath: () => this.setState({ mode: modes.FREE }),
 		};
 
-		return _.mapValues(handlers, (handler) => (event, key) => {
+		return mapValues(handlers, (handler) => (event, key) => {
 			if (event.target.tagName !== 'INPUT') {
 				event.preventDefault();
 				handler(event, key);
@@ -538,6 +558,7 @@ class Designer extends Component {
 			selectedObjectIndex,
 			selectedTool,
 			type,
+			objectFilter,
 		} = this.state;
 
 		let { objects, objectTypes, insertMenu: InsertMenuComponent } = this.props;
@@ -558,6 +579,10 @@ class Designer extends Component {
 			ObjectEditor = objectComponent.meta.editor;
 		}
 
+		const hasImage = !!objects?.filter(
+			({ elementType }) => elementType === SHAPES.image
+		)?.[0];
+
 		return (
 			<div className="reactDesigner">
 				<HotKeys
@@ -575,9 +600,11 @@ class Designer extends Component {
 							<InsertMenuComponent
 								type={type}
 								tools={objectTypes}
+								hasImage={hasImage}
 								currentTool={selectedTool}
 								onSelect={this.selectTool.bind(this)}
 								onTypeChange={(value) => this.onTypeChange(value)}
+								onAddImageClick={this.props.onAddImageClick}
 							/>
 						)}
 
@@ -607,10 +634,10 @@ class Designer extends Component {
 									<Handler
 										boundingBox={handler}
 										canResize={
-											_(currentObject).has('width') ||
-											_(currentObject).has('height')
+											has(currentObject, 'width') ||
+											has(currentObject, 'height')
 										}
-										// canRotate={_(currentObject).has('rotate')}
+										// canRotate={has(currentObject, 'rotate')}
 										onMouseLeave={this.hideHandler.bind(this)}
 										onDoubleClick={this.showEditor.bind(this)}
 										onDrag={this.startDrag.bind(this, modes.DRAG)}
@@ -623,31 +650,39 @@ class Designer extends Component {
 							</div>
 						</div>
 
-						{/* Right Panel: Displays text,
-					 styling and sizing tools */}
+						{/* Right Panel: Displays text, styling and sizing tools */}
 
 						<div className="propertiesPanelContainer">
 							{showPropertyPanel ? (
 								<PanelList
+									layoutDimension={{
+										width: this.props.width,
+										height: this.props.height,
+									}}
 									offset={this.getOffset()}
 									object={objectWithInitial}
+									objects={this.props.objects}
+									clusterList={this.props.clusterList}
 									onArrange={this.handleArrange.bind(this)}
 									onChange={this.handleObjectChange.bind(this)}
 									onDelete={this.removeCurrent.bind(this)}
 									objectComponent={objectComponent}
 									onObjectSelect={this.updateSelectedObjectIndex.bind(this)}
-									objects={this.props.objects}
 									resetCurrentSelection={this.resetCurrentSelection.bind(this)}
-									clusterList={this.props.clusterList}
 									onAddClusterClick={this.props.onAddClusterClick}
+									onImageEditClick={this.props.onImageEditClick}
 								/>
 							) : (
 								<ObjectList
+									objectFilter={objectFilter}
+									onObjectFilterChange={(objectFilter) =>
+										this.setState({ objectFilter })
+									}
 									objects={this.props.objects}
-									onObjectSelect={this.updateSelectedObjectIndex.bind(this)}
 									clusterList={this.props.clusterList}
 									onChange={this.updateObject.bind(this)}
 									onAddClusterClick={this.props.onAddClusterClick}
+									onObjectSelect={this.updateSelectedObjectIndex.bind(this)}
 								/>
 							)}
 						</div>

@@ -6,8 +6,9 @@ import './index.css';
 import PropertyGroup from '../PropertyGroup';
 import Columns from '../Columns';
 import Column from '../Column';
-import Button from '../../widgets/Button';
 import Icon from '../../shared/Icon';
+import Button from '../../widgets/Button';
+import Checkbox from '../../widgets/Checkbox';
 
 const ObjectItem = ({
 	name,
@@ -15,12 +16,11 @@ const ObjectItem = ({
 	type,
 	clusterList,
 	clusterId,
-	onClick,
+	onEditObject,
 	onChange,
 	onAddClusterClick,
+	isHidden,
 }) => {
-	// const { name, elementType, type, clusterList, clusterId } = props;
-
 	const clusterOptions = (
 		<React.Fragment>
 			<option value="">Select Cluster</option>,
@@ -38,18 +38,22 @@ const ObjectItem = ({
 			{elementType !== 'image' && (
 				<Columns label="Label" rowInline>
 					<Column name>
-						<p style={{ margin: 0, textTransform: 'capitalize' }}>
-							{name ?? ''}
-						</p>
+						<p style={{ margin: 0 }}>{name ?? ''}</p>
 					</Column>
 				</Columns>
 			)}
 			{type ? (
 				<Columns label="Type" rowInline>
-					<div style={{ display: 'flex', alignItems: 'center' }}>
+					<div
+						style={{
+							display: 'flex',
+							alignItems: 'center',
+							textTransform: 'capitalize',
+						}}
+					>
 						<Column>{type}</Column>
 						<Column>
-							<Icon icon={type} size={24} />
+							<Icon icon={type} size={24} style={{ width: 18, height: 18 }} />
 						</Column>
 					</div>
 				</Columns>
@@ -65,9 +69,7 @@ const ObjectItem = ({
 				<Columns label="Cluster" rowInline>
 					<Column>
 						<div style={{ display: 'flex' }}>
-							<Button style={'fabButton'} onClick={onAddClusterClick}>
-								+
-							</Button>
+							<Button onClick={onAddClusterClick}>+</Button>
 							<select
 								value={clusterId}
 								onChange={(e) => onChange({ clusterId: e.target.value })}
@@ -78,9 +80,23 @@ const ObjectItem = ({
 					</Column>
 				</Columns>
 			)}
+			<Columns label="Hide in map" rowInline>
+				<Checkbox
+					hasIconSwitch
+					name="isHidden"
+					value={isHidden}
+					onChange={onChange}
+				/>
+			</Columns>
 			<Columns label="Edit" rowInline>
 				<Column>
-					<Button onClick={onClick}>Edit</Button>
+					<Button title="Edit" onClick={onEditObject}>
+						<Icon
+							icon="pencil"
+							size={24}
+							style={{ width: 16, height: 16, fill: 'black' }}
+						/>
+					</Button>
 				</Column>
 			</Columns>
 		</PropertyGroup>
@@ -93,7 +109,8 @@ ObjectItem.propTypes = {
 	type: PropTypes.string,
 	clusterList: PropTypes.array.isRequired,
 	clusterId: PropTypes.string,
-	onClick: PropTypes.func.isRequired,
+	isHidden: PropTypes.bool,
+	onEditObject: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
 	onAddClusterClick: PropTypes.func.isRequired,
 };

@@ -10,6 +10,7 @@ const Columns = ({
 	label,
 	children,
 	spaceBetween,
+	className,
 }) => {
 	if (!showIf) {
 		return <div className={'empty'} />;
@@ -20,10 +21,11 @@ const Columns = ({
 			className={cx(
 				'rdColumns',
 				rowInline && 'rdColumns__inline',
-				spaceBetween && 'rdColumns__spaceBetween'
+				spaceBetween && 'rdColumns__spaceBetween',
+				className
 			)}
 		>
-			<label className="rdColumns__title">{label}</label>
+			{label && <label className="rdColumns__title">{label}</label>}
 			<div className={cx(inline ? 'inline' : 'block')}>{children}</div>
 		</div>
 	);
@@ -34,6 +36,7 @@ Columns.propTypes = {
 	showIf: PropTypes.bool,
 	inline: PropTypes.bool,
 	children: PropTypes.node,
+	className: PropTypes.string,
 	rowInline: PropTypes.bool,
 	spaceBetween: PropTypes.bool,
 };

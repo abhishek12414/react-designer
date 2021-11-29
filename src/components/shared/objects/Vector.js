@@ -1,6 +1,7 @@
 import { Component } from 'react';
 
 import {
+	BasicPropertyPanel,
 	SizePanel,
 	TextPanel,
 	StylePanel,
@@ -10,6 +11,7 @@ import {
 
 export default class Vector extends Component {
 	static panels = [
+		BasicPropertyPanel,
 		SizePanel,
 		TextPanel,
 		StylePanel,

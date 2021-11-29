@@ -52,9 +52,11 @@ var Image = /*#__PURE__*/function (_Vector) {
           transform = _this$getObjectAttrib.transform,
           ref = _this$getObjectAttrib.ref,
           onMouseOver = _this$getObjectAttrib.onMouseOver,
-          fillOpacity = _this$getObjectAttrib.fillOpacity;
+          fillOpacity = _this$getObjectAttrib.fillOpacity,
+          isHidden = _this$getObjectAttrib.isHidden;
 
       return /*#__PURE__*/_react["default"].createElement("image", {
+        className: isHidden ? 'hidden' : '',
         ref: ref,
         href: href,
         width: width,
@@ -72,12 +74,13 @@ exports["default"] = Image;
 (0, _defineProperty2["default"])(Image, "meta", {
   icon: /*#__PURE__*/_react["default"].createElement(_Icon["default"], {
     icon: 'image',
-    size: 30
+    size: 24
   }),
   initial: {
     width: 100,
     height: 100,
     fillOpacity: 1,
+    isHidden: false,
     // Just a simple base64-encoded outline
     href: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAhSURBVHgBtYmxDQAADII8lv9faBNH4yoJLAi4ppxgMZoPoxQrXYyeEfoAAAAASUVORK5CYII='
   }
