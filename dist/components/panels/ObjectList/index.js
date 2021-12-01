@@ -40,7 +40,9 @@ var ObjectList = function ObjectList(_ref) {
 
   var getObjects = function getObjects() {
     return objectFilter === 'all' ? objects : objects === null || objects === void 0 ? void 0 : objects.filter(function (obj) {
-      return obj.type === objectFilter;
+      var _obj$type;
+
+      return ((_obj$type = obj === null || obj === void 0 ? void 0 : obj.type) !== null && _obj$type !== void 0 ? _obj$type : obj === null || obj === void 0 ? void 0 : obj.elementType) === objectFilter;
     });
   };
 

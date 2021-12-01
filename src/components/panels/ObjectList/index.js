@@ -20,7 +20,9 @@ const ObjectList = ({
 	const getObjects = () => {
 		return objectFilter === 'all'
 			? objects
-			: objects?.filter((obj) => obj.type === objectFilter);
+			: objects?.filter(
+					({ type, elementType }) => (type ?? elementType) === objectFilter
+			  );
 	};
 
 	const getObjectIndex = (selectedObj, index) => {

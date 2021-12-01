@@ -26,6 +26,24 @@ export default {
 			type: 'map',
 			idx: 2,
 		},
+		{
+			isHidden: false,
+			rotate: 0,
+			x: 143,
+			y: 194,
+			z: 0,
+			name: '',
+			macId: '',
+			gatewayClusterType: '',
+			clusterId: '',
+			plot: {
+				x: 0,
+				y: 0,
+				z: 0,
+			},
+			elementType: 'gateway',
+			idx: 3,
+		},
 	],
 	dataSet11: [
 		{
