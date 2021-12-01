@@ -41,7 +41,7 @@ var Button = function Button(_ref) {
 
   return /*#__PURE__*/_react["default"].createElement("button", (0, _extends2["default"])({
     name: name,
-    className: (0, _classnames["default"])('button', className),
+    className: (0, _classnames["default"])('rdButton', className),
     onClick: _onClick,
     style: style
   }, props), children);

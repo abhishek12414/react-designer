@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 const SVGRenderer = ({
 	canvas,
 	objects,
-	svgStyle,
-	background,
 	objectRefs,
 	objectTypes,
-	backgroundImage,
 	selectedObjectIndex,
+	svgStyle,
+	background,
+	backgroundImage,
 	onRender,
 	onMouseOver,
 	onMouseDown,
@@ -43,12 +43,11 @@ const SVGRenderer = ({
 
 	return (
 		<svg
-			onMouseDown={onMouseDown}
 			ref={onRender}
+			style={style}
 			width={width}
 			height={height}
-			style={style}
-			// isroot={true}
+			onMouseDown={onMouseDown}
 		>
 			{objects.map(renderObject)}
 		</svg>

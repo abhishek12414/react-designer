@@ -4,25 +4,23 @@ import has from 'lodash/has';
 import includes from 'lodash/includes';
 import mapValues from 'lodash/mapValues';
 import { HotKeys } from 'react-hotkeys';
+import ContainerDimensions from 'react-container-dimensions';
 
 import './index.css';
 
 import { modes, SHAPES } from '../../constants';
 import * as actions from '../../actions';
-import {
-	Text,
-	Path,
-	Rect,
-	Ellipse,
-	Image,
-	Gateway,
-	Circle,
-} from '../shared/objects';
+import { Path, Rect, Ellipse, Image, Gateway, Circle } from '../shared/objects';
 import PanelList from '../panels/PanelList';
 import Handler from '../Handler';
 import SVGRenderer from '../SVGRenderer';
 import InsertMenu from '../panels/InsertMenu';
 import ObjectList from '../panels/ObjectList';
+import {
+	getTransformedLayout,
+	getTransformedObjects,
+} from '../../utils/layoutTransformation';
+import deepClone from '../../utils/deepClone';
 
 class Designer extends Component {
 	static defaultProps = {
@@ -54,6 +52,7 @@ class Designer extends Component {
 		selectedTool: null,
 		type: 'map',
 		objectFilter: 'all',
+		hasTransformed: false,
 	};
 
 	keyMap = {
@@ -353,18 +352,18 @@ class Designer extends Component {
 			let { objects } = this.props;
 			let object = objects[currentObjectIndex];
 			const offset = this.getOffset();
-			if (object.x < 0) {
-				object.x = 0;
-			}
-			if (object.y < 0) {
-				object.y = 0;
-			}
-			if (object.x + object.width > offset.width) {
-				object.x = offset.width - object.width;
-			}
-			if (object.y + object.height > offset.height) {
-				object.y = offset.height - object.height;
-			}
+			// if (object.x < 0) {
+			// 	object.x = 0;
+			// }
+			// if (object.y < 0) {
+			// 	object.y = 0;
+			// }
+			// if (object.x + object.width > offset.width) {
+			// 	object.x = offset.width - object.width;
+			// }
+			// if (object.y + object.height > offset.height) {
+			// 	object.y = offset.height - object.height;
+			// }
 			this.updateObject(currentObjectIndex, object);
 			this.updateHandler(currentObjectIndex, object);
 		}
@@ -521,31 +520,43 @@ class Designer extends Component {
 		this.setState({ type });
 	}
 
-	renderSVG() {
-		let canvas = this.getCanvas();
-		let {
-			background,
-			objects,
-			objectTypes,
-			backgroundImage,
-			backgroundSize,
-			backgroundRepeat,
-		} = this.props;
+	renderSVG(transformedLayout, transformedObjects) {
+		// let canvas = this.getCanvas();
+		let canvas = {
+			width: transformedLayout.layoutWidth,
+			height: transformedLayout.layoutHeight,
+			canvasOffsetX: 0,
+			canvasOffsetY: 0,
+		};
+		let { background, svgStyle, objects, objectTypes, backgroundImage } =
+			this.props;
+
+		if (!this.state.hasTransformed) {
+			transformedObjects = getTransformedObjects(
+				this.props.height,
+				this.props.width,
+				objects,
+				transformedLayout.layoutWidth,
+				transformedLayout.layoutHeight
+			);
+			this.setState({ hasTransformed: true, transformedLayout });
+			this.props?.onUpdate(transformedObjects);
+			this.props?.onTransformLayoutChange?.(transformedLayout);
+		}
 
 		return (
 			<SVGRenderer
-				background={background}
-				backgroundSize={backgroundSize}
-				backgroundImage={backgroundImage}
-				backgroundRepeat={backgroundRepeat}
 				canvas={canvas}
-				objects={objects}
-				onMouseOver={this.showHandler.bind(this)}
-				objectTypes={objectTypes}
+				objects={transformedObjects}
 				objectRefs={this.objectRefs}
-				onRender={(ref) => (this.svgElement = ref)}
-				onMouseDown={this.newObject.bind(this)}
+				objectTypes={objectTypes}
 				selectedObjectIndex={this.state.selectedObjectIndex}
+				svgStyle={svgStyle}
+				background={background}
+				backgroundImage={backgroundImage}
+				onRender={(ref) => (this.svgElement = ref)}
+				onMouseOver={this.showHandler.bind(this)}
+				onMouseDown={this.newObject.bind(this)}
 			/>
 		);
 	}
@@ -610,44 +621,58 @@ class Designer extends Component {
 
 						{/* Center Panel: Displays the preview */}
 						<div className="drawingContainer">
-							<div
-								className={'canvasContainer'}
-								style={{
-									width: canvasWidth,
-									height: canvasHeight,
+							<ContainerDimensions id="containerD">
+								{({ width, height }) => {
+									const transformedLayout = getTransformedLayout(
+										width,
+										height,
+										this.props.width,
+										this.props.height
+									);
+									let transformedObjects = deepClone(objects);
+
+									return (
+										<div
+											className={'canvasContainer'}
+											style={{
+												width: transformedLayout.layoutWidth,
+												height: transformedLayout.layoutHeight,
+											}}
+										>
+											{isEditMode && ObjectEditor && (
+												<ObjectEditor
+													object={currentObject}
+													offset={this.getOffset()}
+													onUpdate={(object) =>
+														this.updateObject(selectedObjectIndex, object)
+													}
+													onClose={() => this.setState({ mode: modes.FREE })}
+													width={width}
+													height={height}
+												/>
+											)}
+
+											{showHandler && (
+												<Handler
+													boundingBox={handler}
+													canResize={
+														has(currentObject, 'width') ||
+														has(currentObject, 'height')
+													}
+													// canRotate={has(currentObject, 'rotate')}
+													onMouseLeave={this.hideHandler.bind(this)}
+													onDoubleClick={this.showEditor.bind(this)}
+													onDrag={this.startDrag.bind(this, modes.DRAG)}
+													onResize={this.startDrag.bind(this, modes.SCALE)}
+													// onRotate={this.startDrag.bind(this, modes.ROTATE)}
+												/>
+											)}
+
+											{this.renderSVG(transformedLayout, transformedObjects)}
+										</div>
+									);
 								}}
-							>
-								{isEditMode && ObjectEditor && (
-									<ObjectEditor
-										object={currentObject}
-										offset={this.getOffset()}
-										onUpdate={(object) =>
-											this.updateObject(selectedObjectIndex, object)
-										}
-										onClose={() => this.setState({ mode: modes.FREE })}
-										width={width}
-										height={height}
-									/>
-								)}
-
-								{showHandler && (
-									<Handler
-										boundingBox={handler}
-										canResize={
-											has(currentObject, 'width') ||
-											has(currentObject, 'height')
-										}
-										// canRotate={has(currentObject, 'rotate')}
-										onMouseLeave={this.hideHandler.bind(this)}
-										onDoubleClick={this.showEditor.bind(this)}
-										onDrag={this.startDrag.bind(this, modes.DRAG)}
-										onResize={this.startDrag.bind(this, modes.SCALE)}
-										// onRotate={this.startDrag.bind(this, modes.ROTATE)}
-									/>
-								)}
-
-								{this.renderSVG()}
-							</div>
+							</ContainerDimensions>
 						</div>
 
 						{/* Right Panel: Displays text, styling and sizing tools */}
@@ -692,19 +717,5 @@ class Designer extends Component {
 		);
 	}
 }
-
-export const styles = {
-	container: {
-		position: 'relative',
-		display: 'flex',
-		flexDirection: 'row',
-	},
-	canvasContainer: {
-		position: 'relative',
-	},
-	keyboardManager: {
-		outline: 'none',
-	},
-};
 
 export default Designer;

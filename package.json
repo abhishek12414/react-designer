@@ -61,6 +61,7 @@
 		"classnames": "^2.2.6",
 		"lodash": ">=4.17.11",
 		"prop-types": "^15.7.2",
+		"react-container-dimensions": "^1.4.1",
 		"react-hotkeys": "^1.1.4",
 		"webfontloader": "^1.6.28"
 	},

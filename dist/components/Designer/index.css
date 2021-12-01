@@ -10,8 +10,9 @@
 }
 .reactDesigner .rdContainer .drawingContainer {
 	flex: 1;
-	height: 600px;
-	overflow: auto;
+	overflow: hidden;
+	/* height: 600px; */
+	/* overflow: auto; */
 }
 .reactDesigner .rdContainer .drawingContainer .canvasContainer {
 	margin: 0 auto;

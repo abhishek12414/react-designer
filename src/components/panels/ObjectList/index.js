@@ -20,17 +20,18 @@ const ObjectList = ({
 	const getObjects = () => {
 		return objectFilter === 'all'
 			? objects
-			: objects?.filter((obj) => obj.type === objectFilter);
+			: objects?.filter(
+					({ type, elementType }) => (type ?? elementType) === objectFilter
+			  );
 	};
 
 	const getObjectIndex = (selectedObj, index) => {
-		let objIndex = index;
 		if (selectedObj?._id) {
-			objIndex = objects?.findIndex((obj) => obj._id === selectedObj._id);
+			index = objects?.findIndex((obj) => obj._id === selectedObj._id);
 		} else if (selectedObj?.idx) {
-			objIndex = objects.findIndex((obj) => obj.idx === selectedObj.idx);
+			index = objects.findIndex((obj) => obj.idx === selectedObj.idx);
 		}
-		return objIndex;
+		return index;
 	};
 
 	return (

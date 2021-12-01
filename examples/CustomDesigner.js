@@ -4,20 +4,11 @@ import data from './data';
 
 const layout = {
 	width: 350,
-	height: 400,
+	height: 300,
 };
-const imgObj = {
-	href: 'http://localhost:3000/api/v2/file/6188e225c4e0e7005b77ffab',
-	// href: 'https://miro.medium.com/max/1000/1*P4Z6NIm0dHypW2NnXqinqg.jpeg',
-	width: layout.width,
-	height: layout.height,
-	elementType: 'image',
-	x: 0,
-	y: 0,
-	fillOpacity: 1,
-};
+
 const CustomDesigner = () => {
-	const [objects, setObjects] = useState([imgObj, ...data.dataSet1]);
+	const [objects, setObjects] = useState([...data.dataSet0]);
 
 	return (
 		<div>
@@ -34,10 +25,19 @@ const CustomDesigner = () => {
 					console.log(value);
 					setObjects(value);
 				}}
-				onDelete={(obj) => console.log('deleteObject', obj)}
-				onAddClusterClick={() => console.log('add new cluster')}
-				onImageEditClick={() => console.log('onImageEditClick')}
-				onAddImageClick={() => console.log('onAddImageClick')}
+				onDelete={(obj) => console.debug('>>>> deleteObject', obj)}
+				onAddClusterClick={(value) =>
+					console.debug('>>>> add new cluster', value)
+				}
+				onImageEditClick={(value) =>
+					console.debug('>>>> onImageEditClick', value)
+				}
+				onAddImageClick={(value) =>
+					console.debug('>>>> onAddImageClick', value)
+				}
+				onTransformLayoutChange={(value) =>
+					console.debug('>>>> onTransformLayoutChange', value)
+				}
 			/>
 		</div>
 	);

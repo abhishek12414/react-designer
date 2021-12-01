@@ -13,7 +13,7 @@ const Button = ({ className, children, name, onClick, style, ...props }) => {
 	return (
 		<button
 			name={name}
-			className={cx('button', className)}
+			className={cx('rdButton', className)}
 			onClick={_onClick}
 			style={style}
 			{...props}

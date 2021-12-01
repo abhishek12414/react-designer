@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 
 import './index.css';
 
-import PropertyGroup from '../PropertyGroup';
-import Columns from '../Columns';
 import Column from '../Column';
+import Columns from '../Columns';
 import Icon from '../../shared/Icon';
+import Select from '../../widgets/Select';
 import Button from '../../widgets/Button';
 import Checkbox from '../../widgets/Checkbox';
+import PropertyGroup from '../PropertyGroup';
 
 const ObjectItem = ({
 	name,
@@ -21,18 +22,6 @@ const ObjectItem = ({
 	onAddClusterClick,
 	isHidden,
 }) => {
-	const clusterOptions = (
-		<React.Fragment>
-			<option value="">Select Cluster</option>,
-			{clusterList.map((i) => (
-				<option key={i.value} value={i.value}>
-					{i.label}
-				</option>
-			))}
-			,
-		</React.Fragment>
-	);
-
 	return (
 		<PropertyGroup className="propertyGroup">
 			{elementType !== 'image' && (
@@ -70,12 +59,12 @@ const ObjectItem = ({
 					<Column>
 						<div style={{ display: 'flex' }}>
 							<Button onClick={onAddClusterClick}>+</Button>
-							<select
+							<Select
+								name="clusterId"
 								value={clusterId}
+								options={clusterList}
 								onChange={(e) => onChange({ clusterId: e.target.value })}
-							>
-								{clusterOptions}
-							</select>
+							/>
 						</div>
 					</Column>
 				</Columns>
