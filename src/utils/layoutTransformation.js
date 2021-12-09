@@ -44,6 +44,8 @@ export const getTransformedObjects = (
 	const transformedCoordinates = layoutCoordinates.map((item) => {
 		switch (item.elementType || item.type) {
 			case 'polygon':
+				item._x = +item.path[0].x;
+				item._y = +item.path[0].y;
 				item.path = item.path.map((key) => {
 					let coordinates = {};
 					coordinates.x = +(transformedWidth * (key.x1 ?? key.x)).toFixed(2);
@@ -56,18 +58,27 @@ export const getTransformedObjects = (
 				item.moveX = item.x;
 				item.moveY = item.y;
 				break;
+
 			case 'rect':
+				item._x = item.x;
+				item._y = layoutHeight - item.height - item.y;
 				item.x = +(transformedWidth * item.x).toFixed(2);
 				item.y = +(transformedHeight * item.y).toFixed(2);
 				item.width = +(transformedWidth * item.width).toFixed(2);
 				item.height = +(transformedHeight * item.height).toFixed(2);
 				break;
+
 			case 'circle':
+				item._x = item.x;
+				item._y = item.y;
 				item.x = +(transformedWidth * item.x).toFixed(2);
 				item.y = +(transformedHeight * item.y).toFixed(2);
 				item.radius = +(transformedHeight * item.radius).toFixed(2);
 				break;
+
 			case 'ellipse':
+				item._x = item.x;
+				item._y = item.y;
 				item.x = +(transformedWidth * item.x).toFixed(2);
 				item.y = +(transformedHeight * item.y).toFixed(2);
 				item.width = +(transformedWidth * item.width).toFixed(2);
@@ -80,12 +91,18 @@ export const getTransformedObjects = (
 				item.width = transformedLayoutWidth;
 				item.height = transformedLayoutHeight;
 				break;
+
 			case 'gateway':
+				item._x = item.x;
+				item._y = layoutHeight - 18 - item.y;
 				item.x = +(transformedWidth * item.x).toFixed(2);
 				item.y = +(transformedHeight * item.y).toFixed(2);
+				item.plot._x = item.plot.x;
+				item.plot._y = layoutHeight - 18 - item.plot.y;
 				item.plot.x = +(transformedWidth * item.plot.x).toFixed(2);
 				item.plot.y = +(transformedHeight * item.plot.y).toFixed(2);
 				break;
+
 			default:
 				return item;
 		}
@@ -96,6 +113,8 @@ export const getTransformedObjects = (
 			item?.labelCoordinates?.x &&
 			item?.labelCoordinates?.y
 		) {
+			item.labelCoordinates._x = item.labelCoordinates.x;
+			item.labelCoordinates._y = layoutHeight - item.labelCoordinates.y;
 			item.labelCoordinates.x = +(
 				transformedWidth * item.labelCoordinates.x
 			).toFixed(2);

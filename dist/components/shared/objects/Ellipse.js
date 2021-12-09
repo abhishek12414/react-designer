@@ -49,15 +49,12 @@ var Ellipse = /*#__PURE__*/function (_Vector) {
       var _this$getObjectAttrib = this.getObjectAttributes(),
           width = _this$getObjectAttrib.width,
           height = _this$getObjectAttrib.height,
-          rotate = _this$getObjectAttrib.rotate,
           fill = _this$getObjectAttrib.fill,
           fillOpacity = _this$getObjectAttrib.fillOpacity,
           strokeWidth = _this$getObjectAttrib.strokeWidth,
           stroke = _this$getObjectAttrib.stroke,
-          blendMode = _this$getObjectAttrib.blendMode,
           isHidden = _this$getObjectAttrib.isHidden,
           labelCoordinates = _this$getObjectAttrib.labelCoordinates,
-          elementType = _this$getObjectAttrib.elementType,
           name = _this$getObjectAttrib.name,
           x = _this$getObjectAttrib.x,
           y = _this$getObjectAttrib.y,
@@ -68,7 +65,6 @@ var Ellipse = /*#__PURE__*/function (_Vector) {
           index = _this$getObjectAttrib.index;
 
       return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, isSelected && /*#__PURE__*/_react["default"].createElement("ellipse", {
-        style: this.getStyle(),
         className: isHidden ? 'hidden' : '',
         rx: width / 2,
         ry: height / 2,
@@ -84,7 +80,6 @@ var Ellipse = /*#__PURE__*/function (_Vector) {
         strokeLinecap: "square",
         strokeMiterlimit: 8
       }), /*#__PURE__*/_react["default"].createElement("ellipse", {
-        style: this.getStyle(),
         className: isHidden ? 'hidden' : '',
         rx: width / 2,
         ry: height / 2,
@@ -126,10 +121,9 @@ exports["default"] = Ellipse;
     width: 5,
     height: 5,
     rotate: 0,
-    blendMode: 'normal',
     labelCoordinates: {
-      x: 30,
-      y: 30
+      x: 0,
+      y: 0
     }
   }
 });

@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import has from 'lodash/has';
 
+import './index.css';
+
 import { clusterOptions, TYPES } from '../../../constants';
 
 import Column from '../Column';
@@ -9,116 +11,146 @@ import Columns from '../Columns';
 import PropertyGroup from '../PropertyGroup';
 import Select from '../../widgets/Select';
 
-class GatewayPanel extends React.Component {
-	onPlotValueChange(key, value) {
-		const { onChange, object } = this.props;
-		onChange('plot', {
-			...object.plot,
-			[key]: value,
-		});
+const GatewayPanel = ({
+	object,
+	onChange,
+	layoutDimension,
+	transformedLayout,
+}) => {
+	const transformedDimension = {
+		transformWidth: transformedLayout.layoutWidth / layoutDimension.width,
+		transformHeight: transformedLayout.layoutHeight / layoutDimension.height,
+	};
+
+	if (object.elementType !== TYPES.GATEWAY) {
+		return null;
 	}
 
-	getMapCluster() {
-		const options = this.props.objects
-			.filter(({ type, name }) => type == 'map' && name !== '')
-			.map(({ name, _id }) => ({ label: name, value: _id || name }));
-		return options;
-	}
+	const onValueChange = (key, value) => {
+		let tValue;
+		switch (key) {
+			case '_x':
+				tValue = value * transformedDimension.transformWidth;
+				onChange({ [key]: value, x: tValue });
+				break;
 
-	render() {
-		let { object } = this.props;
-
-		if (object.elementType !== TYPES.GATEWAY) {
-			return null;
+			case '_y':
+				tValue =
+					transformedLayout.layoutHeight -
+					value * transformedDimension.transformHeight -
+					(object?.height ?? 0);
+				onChange({ [key]: value, y: tValue });
+				break;
+			default:
+				onChange({ [key]: value });
+				break;
 		}
+	};
 
-		return (
-			<PropertyGroup>
-				<Columns label="Mac ID">
-					{has(object, 'macId') && (
-						<Column
-							label="Mac ID"
-							value={object.macId}
-							onChange={(value) => this.props.onChange('macId', value)}
-						/>
-					)}
-				</Columns>
-				<Columns label="Cluster Type" rowInline>
-					<Column>
-						{has(object, 'gatewayClusterType') && (
-							<Select
-								name="gatewayClusterType"
-								value={object.gatewayClusterType}
-								options={clusterOptions}
-								onChange={(e) =>
-									this.props.onChange('gatewayClusterType', e.target.value)
-								}
-							/>
-						)}
-					</Column>
-				</Columns>
+	const onPlotValueChange = (key, value) => {
+		let tValue;
+		switch (key) {
+			case '_x':
+				tValue = value * transformedDimension.transformWidth;
+				onChange({ plot: { ...object.plot, [key]: value, x: tValue } });
+				break;
 
-				<Columns label="Physical Coords" inline>
-					{has(object, 'x') && (
-						<Column
-							label="x"
-							type="number"
-							value={object.x}
-							onChange={(value) => this.props.onChange('x', value)}
-						/>
-					)}
-					{has(object, 'y') && (
-						<Column
-							label="y"
-							type="number"
-							value={object.y}
-							onChange={(value) => this.props.onChange('y', value)}
-						/>
-					)}
-					{has(object, 'z') && (
-						<Column
-							label="z"
-							type="number"
-							value={object.z}
-							onChange={(value) => this.props.onChange('z', value)}
-						/>
-					)}
-				</Columns>
+			case '_y':
+				tValue =
+					transformedLayout.layoutHeight -
+					value * transformedDimension.transformHeight -
+					(object?.height ?? 0);
 
-				<Columns label="Plot Coords" inline>
-					{has(object.plot, 'x') && (
-						<Column
-							label="x"
-							type="number"
-							value={object.plot.x}
-							onChange={(value) => this.onPlotValueChange('x', value)}
-						/>
-					)}
-					{has(object.plot, 'y') && (
-						<Column
-							label="y"
-							type="number"
-							value={object.plot.y}
-							onChange={(value) => this.onPlotValueChange('y', value)}
-						/>
-					)}
-					{has(object.plot, 'z') && (
-						<Column
-							label="z"
-							type="number"
-							value={object.plot.z}
-							onChange={(value) => this.onPlotValueChange('z', value)}
-						/>
-					)}
-				</Columns>
-			</PropertyGroup>
-		);
-	}
-}
+				onChange({ plot: { ...object.plot, [key]: value, y: tValue } });
+				break;
+			default:
+				onChange({ plot: { ...object.plot, [key]: value } });
+				break;
+		}
+	};
+
+	return (
+		<PropertyGroup className="gatewayPanel">
+			<Columns label="Mac ID" showIf={has(object, 'macId')}>
+				<Column
+					label="Mac ID"
+					value={object.macId}
+					onChange={(value) => onChange({ macId: value })}
+				/>
+			</Columns>
+			<Columns
+				label="Cluster Type"
+				rowInline
+				showIf={has(object, 'gatewayClusterType')}
+			>
+				<Select
+					name="gatewayClusterType"
+					value={object.gatewayClusterType}
+					options={clusterOptions}
+					onChange={(e) => onChange({ gatewayClusterType: e.target.value })}
+				/>
+			</Columns>
+			<Columns label="Physical Coords" inline>
+				<Column
+					showIf={has(object, 'x')}
+					label="x"
+					type="number"
+					labelClass="label"
+					value={object._x}
+					onChange={(value) => onValueChange('_x', value)}
+				/>
+				<Column
+					showIf={has(object, 'y')}
+					label="y"
+					type="number"
+					labelClass="label"
+					value={object._y}
+					onChange={(value) => onValueChange('_y', value)}
+				/>
+				<Column
+					showIf={has(object, 'z')}
+					label="z"
+					type="number"
+					labelClass="label"
+					value={object._z}
+					onChange={(value) => onValueChange('_z', value)}
+				/>
+			</Columns>
+			<Columns label="Plot Coords" inline>
+				<Column
+					showIf={has(object.plot, 'x')}
+					label="x"
+					type="number"
+					labelClass="label"
+					value={object.plot._x}
+					onChange={(value) => onPlotValueChange('_x', value)}
+				/>
+				<Column
+					showIf={has(object.plot, 'y')}
+					label="y"
+					type="number"
+					labelClass="label"
+					value={object.plot._y}
+					onChange={(value) => onPlotValueChange('_y', value)}
+				/>
+				<Column
+					showIf={has(object.plot, 'z')}
+					label="z"
+					type="number"
+					labelClass="label"
+					value={object.plot._z}
+					onChange={(value) => onPlotValueChange('_z', value)}
+				/>
+			</Columns>
+		</PropertyGroup>
+	);
+};
 
 GatewayPanel.propTypes = {
 	object: PropTypes.object,
 	objects: PropTypes.array,
+	layoutDimension: PropTypes.object,
+	transformedLayout: PropTypes.object,
 	onChange: PropTypes.func.isRequired,
 };
 

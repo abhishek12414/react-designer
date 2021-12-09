@@ -15,10 +15,12 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 require("./index.css");
 
-var Input = function Input(_ref) {
-  var label = _ref.label,
+var RangePicker = function RangePicker(_ref) {
+  var min = _ref.min,
+      max = _ref.max,
+      step = _ref.step,
+      label = _ref.label,
       labelClass = _ref.labelClass,
-      type = _ref.type,
       disabled = _ref.disabled,
       className = _ref.className,
       name = _ref.name,
@@ -34,22 +36,22 @@ var Input = function Input(_ref) {
   }, label && /*#__PURE__*/_react["default"].createElement("span", {
     className: (0, _classnames["default"])('icon', labelClass)
   }, label), /*#__PURE__*/_react["default"].createElement("input", {
+    type: "range",
+    min: min,
+    max: max,
+    step: step,
     name: name,
-    type: type,
     value: value,
     className: (0, _classnames["default"])('input', disabled && 'disabled', className),
     onChange: onInputChange
   }));
 };
 
-Input.defaultProps = {
-  type: 'text',
-  name: '',
-  disabled: false
-};
-Input.propTypes = {
+RangePicker.propTypes = {
+  min: _propTypes["default"].number.isRequired,
+  max: _propTypes["default"].number.isRequired,
+  step: _propTypes["default"].number.isRequired,
   name: _propTypes["default"].string,
-  type: _propTypes["default"].string,
   label: _propTypes["default"].string,
   value: _propTypes["default"].oneOfType([_propTypes["default"].string, _propTypes["default"].number]),
   disabled: _propTypes["default"].bool,
@@ -57,5 +59,12 @@ Input.propTypes = {
   labelClass: _propTypes["default"].string,
   onChange: _propTypes["default"].func.isRequired
 };
-var _default = Input;
+RangePicker.defaultProps = {
+  name: '',
+  disabled: false,
+  min: 0,
+  max: 100,
+  step: 10
+};
+var _default = RangePicker;
 exports["default"] = _default;

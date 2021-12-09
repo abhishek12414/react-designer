@@ -19,13 +19,6 @@ export default class Vector extends Component {
 		ArrangePanel,
 	];
 
-	getStyle() {
-		let { object } = this.props;
-		return {
-			mixBlendMode: object.blendMode,
-		};
-	}
-
 	getTransformMatrix({ rotate, x, y, width, height }) {
 		if (rotate) {
 			let centerX = width / 2 + x;

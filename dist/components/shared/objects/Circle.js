@@ -64,7 +64,6 @@ var Circle = /*#__PURE__*/function (_Vector) {
           index = _this$getObjectAttrib.index;
 
       return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, isSelected && /*#__PURE__*/_react["default"].createElement("circle", {
-        style: this.getStyle(),
         className: isHidden ? 'hidden' : '',
         cx: x,
         cy: y,
@@ -79,7 +78,6 @@ var Circle = /*#__PURE__*/function (_Vector) {
         strokeLinecap: "square",
         strokeMiterlimit: 8
       }), /*#__PURE__*/_react["default"].createElement("circle", {
-        style: this.getStyle(),
         className: isHidden ? 'hidden' : '',
         cx: x,
         cy: y,
@@ -120,10 +118,9 @@ exports["default"] = Circle;
     x: 5,
     y: 5,
     radius: 10,
-    blendMode: 'normal',
     labelCoordinates: {
-      x: 30,
-      y: 30
+      x: 0,
+      y: 0
     }
   }
 });

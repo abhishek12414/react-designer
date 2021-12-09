@@ -21,6 +21,7 @@ import {
 	getTransformedObjects,
 } from '../../utils/layoutTransformation';
 import deepClone from '../../utils/deepClone';
+import getDragTransformedCoords from '../../utils/dragTransformCoords';
 
 class Designer extends Component {
 	static defaultProps = {
@@ -150,8 +151,10 @@ class Designer extends Component {
 			elementType: selectedTool,
 			x: mouse.x,
 			y: mouse.y,
+			_x: mouse.x,
+			_y: mouse.y,
 			type,
-			idx: objects.length + 1,
+			idx: new Date().getTime(),
 		};
 
 		onUpdate([...objects, object]);
@@ -302,6 +305,11 @@ class Designer extends Component {
 				objectRefs: this.objectRefs,
 			});
 
+			newObject = getDragTransformedCoords(
+				newObject,
+				this.getLayoutProperties()
+			);
+
 			this.updateObject(currentObjectIndex, newObject);
 			this.updateHandler(currentObjectIndex, newObject);
 		}
@@ -418,11 +426,9 @@ class Designer extends Component {
 		});
 	}
 
-	handleObjectChange(key, value) {
+	handleObjectChange(updatedObj) {
 		let { selectedObjectIndex } = this.state;
-		this.updateObject(selectedObjectIndex, {
-			[key]: value,
-		});
+		this.updateObject(selectedObjectIndex, updatedObj);
 	}
 
 	handleArrange(arrange) {
@@ -474,6 +480,20 @@ class Designer extends Component {
 		);
 	}
 
+	getLayoutProperties() {
+		const transformedDimension = {
+			zoneWidth: this.props.width,
+			zoneHeight: this.props.height,
+			layoutWidth: this.state.transformedLayout.layoutWidth,
+			layoutHeight: this.state.transformedLayout.layoutHeight,
+			transformWidth:
+				this.state.transformedLayout.layoutWidth / this.props.width,
+			transformHeight:
+				this.state.transformedLayout.layoutHeight / this.props.height,
+		};
+		return transformedDimension;
+	}
+
 	moveSelectedObject(attr, points, event, key) {
 		let { selectedObjectIndex } = this.state;
 		let { objects } = this.props;
@@ -485,9 +505,10 @@ class Designer extends Component {
 
 		let changes = {
 			...object,
-			[attr]: object[attr] + points,
+			[attr]: +(isNaN(object?.[attr]) ? 0 : object?.[attr]) + points,
 		};
 
+		changes = getDragTransformedCoords(changes, this.getLayoutProperties());
 		this.updateObject(selectedObjectIndex, changes);
 		this.updateHandler(selectedObjectIndex, changes);
 	}
@@ -684,6 +705,7 @@ class Designer extends Component {
 										width: this.props.width,
 										height: this.props.height,
 									}}
+									transformedLayout={this.state.transformedLayout}
 									offset={this.getOffset()}
 									object={objectWithInitial}
 									objects={this.props.objects}

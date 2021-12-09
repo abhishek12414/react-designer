@@ -63,6 +63,8 @@ var _layoutTransformation = require("../../utils/layoutTransformation");
 
 var _deepClone = _interopRequireDefault(require("../../utils/deepClone"));
 
+var _dragTransformCoords = _interopRequireDefault(require("../../utils/dragTransformCoords"));
+
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
@@ -218,8 +220,10 @@ var Designer = /*#__PURE__*/function (_Component) {
         elementType: selectedTool,
         x: mouse.x,
         y: mouse.y,
+        _x: mouse.x,
+        _y: mouse.y,
         type: type,
-        idx: objects.length + 1
+        idx: new Date().getTime()
       });
 
       onUpdate([].concat((0, _toConsumableArray2["default"])(objects), [object]));
@@ -386,6 +390,7 @@ var Designer = /*#__PURE__*/function (_Component) {
           objectIndex: currentObjectIndex,
           objectRefs: this.objectRefs
         });
+        newObject = (0, _dragTransformCoords["default"])(newObject, this.getLayoutProperties());
         this.updateObject(currentObjectIndex, newObject);
         this.updateHandler(currentObjectIndex, newObject);
       }
@@ -509,9 +514,9 @@ var Designer = /*#__PURE__*/function (_Component) {
     }
   }, {
     key: "handleObjectChange",
-    value: function handleObjectChange(key, value) {
+    value: function handleObjectChange(updatedObj) {
       var selectedObjectIndex = this.state.selectedObjectIndex;
-      this.updateObject(selectedObjectIndex, (0, _defineProperty2["default"])({}, key, value));
+      this.updateObject(selectedObjectIndex, updatedObj);
     }
   }, {
     key: "handleArrange",
@@ -574,6 +579,19 @@ var Designer = /*#__PURE__*/function (_Component) {
       });
     }
   }, {
+    key: "getLayoutProperties",
+    value: function getLayoutProperties() {
+      var transformedDimension = {
+        zoneWidth: this.props.width,
+        zoneHeight: this.props.height,
+        layoutWidth: this.state.transformedLayout.layoutWidth,
+        layoutHeight: this.state.transformedLayout.layoutHeight,
+        transformWidth: this.state.transformedLayout.layoutWidth / this.props.width,
+        transformHeight: this.state.transformedLayout.layoutHeight / this.props.height
+      };
+      return transformedDimension;
+    }
+  }, {
     key: "moveSelectedObject",
     value: function moveSelectedObject(attr, points, event, key) {
       var selectedObjectIndex = this.state.selectedObjectIndex;
@@ -584,8 +602,9 @@ var Designer = /*#__PURE__*/function (_Component) {
         points *= 10;
       }
 
-      var changes = _objectSpread(_objectSpread({}, object), {}, (0, _defineProperty2["default"])({}, attr, object[attr] + points));
+      var changes = _objectSpread(_objectSpread({}, object), {}, (0, _defineProperty2["default"])({}, attr, +(isNaN(object === null || object === void 0 ? void 0 : object[attr]) ? 0 : object === null || object === void 0 ? void 0 : object[attr]) + points));
 
+      changes = (0, _dragTransformCoords["default"])(changes, this.getLayoutProperties());
       this.updateObject(selectedObjectIndex, changes);
       this.updateHandler(selectedObjectIndex, changes);
     }
@@ -781,6 +800,7 @@ var Designer = /*#__PURE__*/function (_Component) {
           width: this.props.width,
           height: this.props.height
         },
+        transformedLayout: this.state.transformedLayout,
         offset: this.getOffset(),
         object: objectWithInitial,
         objects: this.props.objects,

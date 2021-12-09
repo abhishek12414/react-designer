@@ -22,6 +22,7 @@ var Column = function Column(_ref) {
       type = _ref.type,
       disabled = _ref.disabled,
       className = _ref.className,
+      labelClass = _ref.labelClass,
       children = _ref.children,
       value = _ref.value,
       label = _ref.label,
@@ -40,6 +41,7 @@ var Column = function Column(_ref) {
     label: label,
     value: value,
     disabled: disabled,
+    labelClass: labelClass,
     onChange: function onChange(e) {
       return _onChange(e.target.value);
     }
@@ -52,6 +54,7 @@ Column.propTypes = {
   disabled: _propTypes["default"].bool,
   children: _propTypes["default"].node,
   className: _propTypes["default"].string,
+  labelClass: _propTypes["default"].string,
   value: _propTypes["default"].oneOfType([_propTypes["default"].number, _propTypes["default"].string]),
   label: _propTypes["default"].string,
   onChange: _propTypes["default"].func

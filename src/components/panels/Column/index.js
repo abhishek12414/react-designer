@@ -10,6 +10,7 @@ const Column = ({
 	type,
 	disabled,
 	className,
+	labelClass,
 	children,
 	value,
 	label,
@@ -27,6 +28,7 @@ const Column = ({
 					label={label}
 					value={value}
 					disabled={disabled}
+					labelClass={labelClass}
 					onChange={(e) => onChange(e.target.value)}
 				/>
 			)}
@@ -40,6 +42,7 @@ Column.propTypes = {
 	disabled: PropTypes.bool,
 	children: PropTypes.node,
 	className: PropTypes.string,
+	labelClass: PropTypes.string,
 	value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	label: PropTypes.string,
 	onChange: PropTypes.func,

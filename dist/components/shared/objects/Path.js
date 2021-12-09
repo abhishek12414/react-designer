@@ -125,7 +125,6 @@ var Path = /*#__PURE__*/function (_Vector) {
           isHidden = _this$getObjectAttrib.isHidden;
 
       return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, isSelected && /*#__PURE__*/_react["default"].createElement("path", {
-        style: this.getStyle(object),
         className: isHidden ? 'hidden' : '',
         d: this.buildPath(object) // common props
         ,
@@ -138,7 +137,6 @@ var Path = /*#__PURE__*/function (_Vector) {
         strokeLinecap: "square",
         strokeMiterlimit: 8
       }), /*#__PURE__*/_react["default"].createElement("path", {
-        style: this.getStyle(object),
         className: isHidden ? 'hidden' : '',
         d: this.buildPath(object) // common props
         ,
@@ -182,7 +180,7 @@ exports["default"] = Path;
     moveY: 0,
     path: []
   }, (0, _defineProperty2["default"])(_initial, "strokeWidth", 1), (0, _defineProperty2["default"])(_initial, "labelCoordinates", {
-    x: 30,
-    y: 30
+    x: 0,
+    y: 0
   }), _initial)
 });

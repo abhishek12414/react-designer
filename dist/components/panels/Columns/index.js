@@ -25,9 +25,7 @@ var Columns = function Columns(_ref) {
       className = _ref.className;
 
   if (!showIf) {
-    return /*#__PURE__*/_react["default"].createElement("div", {
-      className: 'empty'
-    });
+    return null;
   }
 
   return /*#__PURE__*/_react["default"].createElement("div", {

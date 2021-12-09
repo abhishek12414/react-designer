@@ -23,7 +23,7 @@ export default class Path extends Vector {
 			moveY: 0,
 			path: [],
 			strokeWidth: 1,
-			labelCoordinates: { x: 30, y: 30 },
+			labelCoordinates: { x: 0, y: 0 },
 		},
 	};
 
@@ -92,7 +92,6 @@ export default class Path extends Vector {
 			<>
 				{isSelected && (
 					<path
-						style={this.getStyle(object)}
 						className={isHidden ? 'hidden' : ''}
 						d={this.buildPath(object)}
 						// common props
@@ -107,7 +106,6 @@ export default class Path extends Vector {
 					/>
 				)}
 				<path
-					style={this.getStyle(object)}
 					className={isHidden ? 'hidden' : ''}
 					d={this.buildPath(object)}
 					// common props

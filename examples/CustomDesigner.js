@@ -7,39 +7,41 @@ const layout = {
 	height: 300,
 };
 
+const IS_LOG_ENABLE = false;
+
+const logMe = (...props) => {
+	if (IS_LOG_ENABLE) {
+		console.debug(...props);
+	}
+};
+
 const CustomDesigner = () => {
 	const [objects, setObjects] = useState([...data.dataSet0]);
 
 	return (
-		<div>
-			<Designer
-				width={layout.width}
-				height={layout.height}
-				// background={'#ece2be'}
-				objects={objects}
-				clusterList={[
-					{ label: 'a', value: 'a' },
-					{ label: 'b', value: 'b' },
-				]}
-				onUpdate={(value) => {
-					console.log(value);
-					setObjects(value);
-				}}
-				onDelete={(obj) => console.debug('>>>> deleteObject', obj)}
-				onAddClusterClick={(value) =>
-					console.debug('>>>> add new cluster', value)
-				}
-				onImageEditClick={(value) =>
-					console.debug('>>>> onImageEditClick', value)
-				}
-				onAddImageClick={(value) =>
-					console.debug('>>>> onAddImageClick', value)
-				}
-				onTransformLayoutChange={(value) =>
-					console.debug('>>>> onTransformLayoutChange', value)
-				}
-			/>
-		</div>
+		<Designer
+			width={layout.width}
+			height={layout.height}
+			background={'#ece2be'}
+			objects={objects}
+			clusterList={[
+				{ label: 'a', value: 'a' },
+				{ label: 'b', value: 'b' },
+			]}
+			onUpdate={(value) => {
+				logMe(value);
+				setObjects(value);
+			}}
+			onDelete={(obj) => {
+				logMe('>>>> deleteObject', obj);
+			}}
+			onAddClusterClick={(value) => logMe('>>>> add new cluster', value)}
+			onImageEditClick={(value) => logMe('>>>> onImageEditClick', value)}
+			onAddImageClick={(value) => logMe('>>>> onAddImageClick', value)}
+			onTransformLayoutChange={(value) =>
+				logMe('>>>> onTransformLayoutChange', value)
+			}
+		/>
 	);
 };
 

@@ -8,17 +8,24 @@ export default class Rect extends Vector {
 	static meta = {
 		icon: <Icon icon={'rect'} size={24} />,
 		initial: {
-			width: 5,
-			height: 5,
 			fill: '#ffffff',
 			fillOpacity: 0,
 			strokeWidth: 2,
 			stroke: '#000000',
 			isHidden: false,
 			// radius: 0,
-			blendMode: 'normal',
+			width: 5,
+			height: 5,
+			x: 0,
+			y: 0,
 			rotate: 0,
-			labelCoordinates: { x: 30, y: 30 },
+			labelCoordinates: { x: 0, y: 0 },
+			// userCoords
+			_width: 0,
+			_height: 0,
+			_x: 0,
+			_y: 0,
+			_labelCoordinates: { x: 30, y: 30 },
 		},
 	};
 
@@ -32,7 +39,6 @@ export default class Rect extends Vector {
 			strokeWidth,
 			stroke,
 			radius,
-			blendMode,
 			rotate,
 			labelCoordinates,
 			elementType,
@@ -51,7 +57,6 @@ export default class Rect extends Vector {
 			<>
 				{isSelected && (
 					<rect
-						style={this.getStyle()}
 						className={isHidden ? 'hidden' : ''}
 						x={x}
 						y={y}
@@ -69,7 +74,6 @@ export default class Rect extends Vector {
 					/>
 				)}
 				<rect
-					style={this.getStyle()}
 					className={isHidden ? 'hidden' : ''}
 					x={x}
 					y={y}

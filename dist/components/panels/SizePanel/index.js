@@ -2,12 +2,16 @@
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
+var _typeof = require("@babel/runtime/helpers/typeof");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
+var _react = _interopRequireWildcard(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
@@ -23,63 +27,104 @@ var _deepClone = _interopRequireDefault(require("../../../utils/deepClone"));
 
 require("./index.css");
 
-var SizePanel = function SizePanel(_ref) {
-  var object = _ref.object,
-      _onChange = _ref.onChange;
+var _constants = require("../../../constants");
 
-  if (object.elementType === 'image') {
-    return null;
-  }
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var SizePanel = function SizePanel(_ref) {
+  var _object$_x, _object$_y, _object$width, _object$height2;
+
+  var object = _ref.object,
+      _onChange3 = _ref.onChange,
+      layoutDimension = _ref.layoutDimension,
+      transformedLayout = _ref.transformedLayout;
+  var transformedDimension = {
+    transformWidth: transformedLayout.layoutWidth / layoutDimension.width,
+    transformHeight: transformedLayout.layoutHeight / layoutDimension.height
+  };
 
   var onPlotChange = function onPlotChange(key, index, value) {
     var path = (0, _deepClone["default"])(object.path);
     path[index][key] = value;
 
-    _onChange('path', path);
+    _onChange3({
+      path: path
+    });
+  };
+
+  var onValueChange = function onValueChange(key, value) {
+    var _onChange, _object$height, _onChange2;
+
+    var tValue;
+
+    switch (key) {
+      case '_x':
+        tValue = +(value * transformedDimension.transformWidth).toFixed(2);
+
+        _onChange3((_onChange = {}, (0, _defineProperty2["default"])(_onChange, key, value), (0, _defineProperty2["default"])(_onChange, "x", tValue), _onChange));
+
+        break;
+
+      case '_y':
+        tValue = +(transformedLayout.layoutHeight - value * transformedDimension.transformHeight - ((_object$height = object === null || object === void 0 ? void 0 : object.height) !== null && _object$height !== void 0 ? _object$height : 0)).toFixed(2);
+
+        _onChange3((_onChange2 = {}, (0, _defineProperty2["default"])(_onChange2, key, value), (0, _defineProperty2["default"])(_onChange2, "y", tValue), _onChange2));
+
+        break;
+
+      default:
+        break;
+    }
   };
 
   return /*#__PURE__*/_react["default"].createElement(_PropertyGroup["default"], {
     object: object,
     className: "sizePanel"
-  }, /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, (0, _has["default"])(object, 'width', 'height') && /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
-    label: "Size",
-    inline: true
-  }, /*#__PURE__*/_react["default"].createElement(_Column["default"], {
-    label: "W",
-    type: "number",
-    showIf: (0, _has["default"])(object, 'width'),
-    value: object.width,
-    onChange: function onChange(value) {
-      return _onChange('width', +value);
-    }
-  }), /*#__PURE__*/_react["default"].createElement(_Column["default"], {
-    label: "H",
-    type: "number",
-    showIf: (0, _has["default"])(object, 'height'),
-    value: object.height,
-    onChange: function onChange(value) {
-      return _onChange('height', +value);
-    }
-  })), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
+  }, /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
     label: "Position",
     inline: true
   }, /*#__PURE__*/_react["default"].createElement(_Column["default"], {
     label: "X",
     type: "number",
     showIf: (0, _has["default"])(object, 'x'),
-    value: object.x,
+    value: (_object$_x = object._x) !== null && _object$_x !== void 0 ? _object$_x : '',
     readOnly: true,
     onChange: function onChange(value) {
-      return _onChange('x', +value);
+      return onValueChange('_x', +value);
     }
   }), /*#__PURE__*/_react["default"].createElement(_Column["default"], {
     label: "Y",
     type: "number",
     showIf: (0, _has["default"])(object, 'y'),
-    value: object.y,
+    value: (_object$_y = object._y) !== null && _object$_y !== void 0 ? _object$_y : '',
     readOnly: true,
     onChange: function onChange(value) {
-      return _onChange('y', +value);
+      return onValueChange('_y', +value);
+    }
+  })), (0, _has["default"])(object, 'width', 'height') && object.elementType !== _constants.TYPES.GATEWAY && /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
+    label: "Size",
+    inline: true
+  }, /*#__PURE__*/_react["default"].createElement(_Column["default"], {
+    label: "W",
+    type: "number",
+    showIf: (0, _has["default"])(object, 'width'),
+    value: (_object$width = object.width) !== null && _object$width !== void 0 ? _object$width : '',
+    onChange: function onChange(value) {
+      return _onChange3({
+        width: +value
+      });
+    }
+  }), /*#__PURE__*/_react["default"].createElement(_Column["default"], {
+    label: "H",
+    type: "number",
+    showIf: (0, _has["default"])(object, 'height'),
+    value: (_object$height2 = object.height) !== null && _object$height2 !== void 0 ? _object$height2 : '',
+    onChange: function onChange(value) {
+      return _onChange3({
+        height: +value
+      });
     }
   })), (0, _has["default"])(object, 'radius') && /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
     label: "Radius",
@@ -88,13 +133,17 @@ var SizePanel = function SizePanel(_ref) {
     type: "number",
     value: object.radius,
     onChange: function onChange(value) {
-      return _onChange('radius', +value);
+      return _onChange3({
+        radius: +value
+      });
     }
-  }))));
+  })));
 };
 
 SizePanel.propTypes = {
   object: _propTypes["default"].object,
+  layoutDimension: _propTypes["default"].object,
+  transformedLayout: _propTypes["default"].object,
   onChange: _propTypes["default"].func.isRequired
 };
 var _default = SizePanel;

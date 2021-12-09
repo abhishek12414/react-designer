@@ -15,8 +15,7 @@ export default class Circle extends Vector {
 			x: 5,
 			y: 5,
 			radius: 10,
-			blendMode: 'normal',
-			labelCoordinates: { x: 30, y: 30 },
+			labelCoordinates: { x: 0, y: 0 },
 		},
 	};
 
@@ -44,7 +43,6 @@ export default class Circle extends Vector {
 			<>
 				{isSelected && (
 					<circle
-						style={this.getStyle()}
 						className={isHidden ? 'hidden' : ''}
 						cx={x}
 						cy={y}
@@ -61,7 +59,6 @@ export default class Circle extends Vector {
 					/>
 				)}
 				<circle
-					style={this.getStyle()}
 					className={isHidden ? 'hidden' : ''}
 					cx={x}
 					cy={y}

@@ -9,6 +9,8 @@ export default class Gateway extends Vector {
 		icon: <Icon icon={'wifi'} size={24} />,
 		initial: {
 			isHidden: false,
+			width: 18,
+			height: 18,
 			rotate: 0,
 			x: 0,
 			y: 0,
@@ -24,12 +26,6 @@ export default class Gateway extends Vector {
 			},
 		},
 	};
-
-	getStyle() {
-		return {
-			...super.getStyle(),
-		};
-	}
 
 	getTransformMatrix({ rotate, x, y }) {
 		return `rotate(${rotate} ${x} ${y})`;
@@ -53,7 +49,6 @@ export default class Gateway extends Vector {
 		return (
 			<>
 				<image
-					style={this.getStyle()}
 					className={isHidden ? 'hidden' : ''}
 					width={18}
 					height={18}

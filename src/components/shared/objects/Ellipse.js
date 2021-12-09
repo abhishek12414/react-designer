@@ -16,8 +16,7 @@ export default class Ellipse extends Vector {
 			width: 5,
 			height: 5,
 			rotate: 0,
-			blendMode: 'normal',
-			labelCoordinates: { x: 30, y: 30 },
+			labelCoordinates: { x: 0, y: 0 },
 		},
 	};
 
@@ -26,15 +25,12 @@ export default class Ellipse extends Vector {
 		const {
 			width,
 			height,
-			rotate,
 			fill,
 			fillOpacity,
 			strokeWidth,
 			stroke,
-			blendMode,
 			isHidden,
 			labelCoordinates,
-			elementType,
 			name,
 			x,
 			y,
@@ -49,7 +45,6 @@ export default class Ellipse extends Vector {
 			<>
 				{isSelected && (
 					<ellipse
-						style={this.getStyle()}
 						className={isHidden ? 'hidden' : ''}
 						rx={width / 2}
 						ry={height / 2}
@@ -67,7 +62,6 @@ export default class Ellipse extends Vector {
 					/>
 				)}
 				<ellipse
-					style={this.getStyle()}
 					className={isHidden ? 'hidden' : ''}
 					rx={width / 2}
 					ry={height / 2}
