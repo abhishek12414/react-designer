@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import has from 'lodash/has';
 
@@ -15,12 +15,52 @@ const BasicPropertyPanel = ({
 	onChange,
 	onDelete,
 	onAddClusterClick,
+	layoutDimension,
+	transformedLayout,
 }) => {
+	const transformedDimension = {
+		transformWidth: transformedLayout.layoutWidth / layoutDimension.width,
+		transformHeight: transformedLayout.layoutHeight / layoutDimension.height,
+	};
+
+	// const onLabelPosChange = (key, value) => {
+	// 	onChange({
+	// 		labelCoordinates: {
+	// 			...object.labelCoordinates,
+	// 			[key]: value,
+	// 		},
+	// 	});
+	// };
+
 	const onLabelPosChange = (key, value) => {
-		onChange('labelCoordinates', {
-			...object.labelCoordinates,
-			[key]: value,
-		});
+		let tValue;
+		switch (key) {
+			case '_x':
+				tValue = value * transformedDimension.transformWidth;
+				onChange({
+					labelCoordinates: {
+						...object.labelCoordinates,
+						[key]: value,
+						x: tValue,
+					},
+				});
+				break;
+
+			case '_y':
+				tValue =
+					transformedLayout.layoutHeight -
+					value * transformedDimension.transformHeight;
+				onChange({
+					labelCoordinates: {
+						...object.labelCoordinates,
+						[key]: value,
+						y: tValue,
+					},
+				});
+				break;
+			default:
+				break;
+		}
 	};
 
 	if (object.elementType === 'image') {
@@ -33,7 +73,7 @@ const BasicPropertyPanel = ({
 				<Column
 					label="Name"
 					value={object.name || ''}
-					onChange={(value) => onChange('name', value)}
+					onChange={(value) => onChange({ name: value })}
 				/>
 				{has(object.labelCoordinates, 'x', 'y') && (
 					<div style={{ display: 'flex' }}>
@@ -41,10 +81,30 @@ const BasicPropertyPanel = ({
 							label="X"
 							type="number"
 							showIf={has(object.labelCoordinates, 'x')}
+							value={object.labelCoordinates._x || ''}
+							onChange={(value) => onLabelPosChange('_x', value)}
+						/>
+						<Column
+							label="Y"
+							type="number"
+							showIf={has(object.labelCoordinates, 'y')}
+							value={object.labelCoordinates._y || ''}
+							onChange={(value) => onLabelPosChange('_y', value)}
+						/>
+					</div>
+				)}
+				{/* {has(object.labelCoordinates, 'x', 'y') && (
+					<div style={{ display: 'flex' }}>
+						<Column
+							disabled
+							label="X"
+							type="number"
+							showIf={has(object.labelCoordinates, 'x')}
 							value={object.labelCoordinates.x}
 							onChange={(value) => onLabelPosChange('x', value)}
 						/>
 						<Column
+							disabled
 							label="Y"
 							type="number"
 							showIf={has(object.labelCoordinates, 'y')}
@@ -52,7 +112,7 @@ const BasicPropertyPanel = ({
 							onChange={(value) => onLabelPosChange('y', value)}
 						/>
 					</div>
-				)}
+				)} */}
 			</Columns>
 			<Columns label="Shape" rowInline>
 				<p style={{ margin: 0, textTransform: 'capitalize' }}>
@@ -78,7 +138,7 @@ const BasicPropertyPanel = ({
 						<Select
 							options={clusterList}
 							value={object?.clusterId || ''}
-							onChange={(e) => onChange('clusterId', e.target.value)}
+							onChange={(e) => onChange({ clusterId: e.target.value })}
 						/>
 					</div>
 				</Column>
@@ -92,6 +152,8 @@ BasicPropertyPanel.propTypes = {
 	onDelete: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
 	clusterList: PropTypes.array,
+	layoutDimension: PropTypes.object,
+	transformedLayout: PropTypes.object,
 	onAddClusterClick: PropTypes.func.isRequired,
 };
 

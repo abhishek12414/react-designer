@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.modes = exports.fontFamilies = exports.clusterOptions = exports.buildingBlock = exports.blendModes = exports.TYPES = exports.SHAPES = void 0;
+exports.modes = exports.fontFamilies = exports.clusterOptions = exports.buildingBlock = exports.TYPES = exports.SHAPES = void 0;
 var FREE = 0;
 var DRAG = 1;
 var SCALE = 2;
@@ -28,12 +28,14 @@ var TYPES = Object.freeze({
 });
 exports.TYPES = TYPES;
 var SHAPES = Object.freeze({
+  // shapes
   arc: 'arc',
   circle: 'circle',
   ellipse: 'ellipse',
   polygon: 'polygon',
   polyline: 'polyline',
   rect: 'rect',
+  // others
   gateway: 'gateway',
   image: 'image'
 });
@@ -44,8 +46,6 @@ var buildingBlock = Object.freeze({
 exports.buildingBlock = buildingBlock;
 var clusterOptions = ['standalone', 'cluster'];
 exports.clusterOptions = clusterOptions;
-var blendModes = ['normal', 'multiply', 'screen', 'overlay', 'darken', 'lighten', 'color-dodge', 'color-burn', 'hard-light', 'soft-light', 'difference', 'exclusion', 'hue', 'saturation', 'color', 'luminosity'];
-exports.blendModes = blendModes;
 var fontFamilies = [{
   name: 'Alegreya Sans',
   family: 'Alegreya Sans'

@@ -26,13 +26,12 @@ const ObjectList = ({
 	};
 
 	const getObjectIndex = (selectedObj, index) => {
-		let objIndex = index;
 		if (selectedObj?._id) {
-			objIndex = objects?.findIndex((obj) => obj._id === selectedObj._id);
+			index = objects?.findIndex((obj) => obj._id === selectedObj._id);
 		} else if (selectedObj?.idx) {
-			objIndex = objects.findIndex((obj) => obj.idx === selectedObj.idx);
+			index = objects.findIndex((obj) => obj.idx === selectedObj.idx);
 		}
-		return objIndex;
+		return index;
 	};
 
 	return (

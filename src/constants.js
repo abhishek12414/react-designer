@@ -23,12 +23,14 @@ export const TYPES = Object.freeze({
 });
 
 export const SHAPES = Object.freeze({
+	// shapes
 	arc: 'arc',
 	circle: 'circle',
 	ellipse: 'ellipse',
 	polygon: 'polygon',
 	polyline: 'polyline',
 	rect: 'rect',
+	// others
 	gateway: 'gateway',
 	image: 'image',
 });
@@ -38,25 +40,6 @@ export const buildingBlock = Object.freeze({
 });
 
 export const clusterOptions = ['standalone', 'cluster'];
-
-export const blendModes = [
-	'normal',
-	'multiply',
-	'screen',
-	'overlay',
-	'darken',
-	'lighten',
-	'color-dodge',
-	'color-burn',
-	'hard-light',
-	'soft-light',
-	'difference',
-	'exclusion',
-	'hue',
-	'saturation',
-	'color',
-	'luminosity',
-];
 
 export const fontFamilies = [
 	{ name: 'Alegreya Sans', family: 'Alegreya Sans' },

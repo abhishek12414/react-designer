@@ -13,7 +13,7 @@ const Columns = ({
 	className,
 }) => {
 	if (!showIf) {
-		return <div className={'empty'} />;
+		return null;
 	}
 
 	return (

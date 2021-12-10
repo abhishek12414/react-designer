@@ -39,27 +39,25 @@ var ObjectList = function ObjectList(_ref) {
       rest = (0, _objectWithoutProperties2["default"])(_ref, _excluded);
 
   var getObjects = function getObjects() {
-    return objectFilter === 'all' ? objects : objects === null || objects === void 0 ? void 0 : objects.filter(function (obj) {
-      var _obj$type;
-
-      return ((_obj$type = obj === null || obj === void 0 ? void 0 : obj.type) !== null && _obj$type !== void 0 ? _obj$type : obj === null || obj === void 0 ? void 0 : obj.elementType) === objectFilter;
+    return objectFilter === 'all' ? objects : objects === null || objects === void 0 ? void 0 : objects.filter(function (_ref2) {
+      var type = _ref2.type,
+          elementType = _ref2.elementType;
+      return (type !== null && type !== void 0 ? type : elementType) === objectFilter;
     });
   };
 
   var getObjectIndex = function getObjectIndex(selectedObj, index) {
-    var objIndex = index;
-
     if (selectedObj !== null && selectedObj !== void 0 && selectedObj._id) {
-      objIndex = objects === null || objects === void 0 ? void 0 : objects.findIndex(function (obj) {
+      index = objects === null || objects === void 0 ? void 0 : objects.findIndex(function (obj) {
         return obj._id === selectedObj._id;
       });
     } else if (selectedObj !== null && selectedObj !== void 0 && selectedObj.idx) {
-      objIndex = objects.findIndex(function (obj) {
+      index = objects.findIndex(function (obj) {
         return obj.idx === selectedObj.idx;
       });
     }
 
-    return objIndex;
+    return index;
   };
 
   return /*#__PURE__*/_react["default"].createElement("div", {
@@ -71,10 +69,10 @@ var ObjectList = function ObjectList(_ref) {
   }), /*#__PURE__*/_react["default"].createElement("div", {
     className: "objectList"
   }, (_getObjects = getObjects()) === null || _getObjects === void 0 ? void 0 : _getObjects.map(function (obj, index) {
-    var _ref2, _obj$_id;
+    var _ref3, _obj$_id;
 
     return /*#__PURE__*/_react["default"].createElement(_ObjectItem["default"], (0, _extends2["default"])({
-      key: (_ref2 = (_obj$_id = obj === null || obj === void 0 ? void 0 : obj._id) !== null && _obj$_id !== void 0 ? _obj$_id : obj === null || obj === void 0 ? void 0 : obj.idx) !== null && _ref2 !== void 0 ? _ref2 : index
+      key: (_ref3 = (_obj$_id = obj === null || obj === void 0 ? void 0 : obj._id) !== null && _obj$_id !== void 0 ? _obj$_id : obj === null || obj === void 0 ? void 0 : obj.idx) !== null && _ref3 !== void 0 ? _ref3 : index
     }, obj, rest, {
       onEditObject: function onEditObject() {
         return onObjectSelect(getObjectIndex(obj, index));

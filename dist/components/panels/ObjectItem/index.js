@@ -13,17 +13,19 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 require("./index.css");
 
-var _PropertyGroup = _interopRequireDefault(require("../PropertyGroup"));
+var _Column = _interopRequireDefault(require("../Column"));
 
 var _Columns = _interopRequireDefault(require("../Columns"));
 
-var _Column = _interopRequireDefault(require("../Column"));
-
 var _Icon = _interopRequireDefault(require("../../shared/Icon"));
+
+var _Select = _interopRequireDefault(require("../../widgets/Select"));
 
 var _Button = _interopRequireDefault(require("../../widgets/Button"));
 
 var _Checkbox = _interopRequireDefault(require("../../widgets/Checkbox"));
+
+var _PropertyGroup = _interopRequireDefault(require("../PropertyGroup"));
 
 var ObjectItem = function ObjectItem(_ref) {
   var name = _ref.name,
@@ -35,16 +37,6 @@ var ObjectItem = function ObjectItem(_ref) {
       _onChange = _ref.onChange,
       onAddClusterClick = _ref.onAddClusterClick,
       isHidden = _ref.isHidden;
-
-  var clusterOptions = /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("option", {
-    value: ""
-  }, "Select Cluster"), ",", clusterList.map(function (i) {
-    return /*#__PURE__*/_react["default"].createElement("option", {
-      key: i.value,
-      value: i.value
-    }, i.label);
-  }), ",");
-
   return /*#__PURE__*/_react["default"].createElement(_PropertyGroup["default"], {
     className: "propertyGroup"
   }, elementType !== 'image' && /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
@@ -91,14 +83,16 @@ var ObjectItem = function ObjectItem(_ref) {
     }
   }, /*#__PURE__*/_react["default"].createElement(_Button["default"], {
     onClick: onAddClusterClick
-  }, "+"), /*#__PURE__*/_react["default"].createElement("select", {
+  }, "+"), /*#__PURE__*/_react["default"].createElement(_Select["default"], {
+    name: "clusterId",
     value: clusterId,
+    options: clusterList,
     onChange: function onChange(e) {
       return _onChange({
         clusterId: e.target.value
       });
     }
-  }, clusterOptions)))), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
+  })))), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
     label: "Hide in map",
     rowInline: true
   }, /*#__PURE__*/_react["default"].createElement(_Checkbox["default"], {

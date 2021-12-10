@@ -54,7 +54,6 @@ var Rect = /*#__PURE__*/function (_Vector) {
           strokeWidth = _this$getObjectAttrib.strokeWidth,
           stroke = _this$getObjectAttrib.stroke,
           radius = _this$getObjectAttrib.radius,
-          blendMode = _this$getObjectAttrib.blendMode,
           rotate = _this$getObjectAttrib.rotate,
           labelCoordinates = _this$getObjectAttrib.labelCoordinates,
           elementType = _this$getObjectAttrib.elementType,
@@ -69,7 +68,6 @@ var Rect = /*#__PURE__*/function (_Vector) {
           isHidden = _this$getObjectAttrib.isHidden;
 
       return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, isSelected && /*#__PURE__*/_react["default"].createElement("rect", {
-        style: this.getStyle(),
         className: isHidden ? 'hidden' : '',
         x: x,
         y: y,
@@ -85,7 +83,6 @@ var Rect = /*#__PURE__*/function (_Vector) {
         strokeLinecap: "square",
         strokeMiterlimit: 8
       }), /*#__PURE__*/_react["default"].createElement("rect", {
-        style: this.getStyle(),
         className: isHidden ? 'hidden' : '',
         x: x,
         y: y,
@@ -119,17 +116,27 @@ exports["default"] = Rect;
     size: 24
   }),
   initial: {
-    width: 5,
-    height: 5,
     fill: '#ffffff',
     fillOpacity: 0,
     strokeWidth: 2,
     stroke: '#000000',
     isHidden: false,
     // radius: 0,
-    blendMode: 'normal',
+    width: 5,
+    height: 5,
+    x: 0,
+    y: 0,
     rotate: 0,
     labelCoordinates: {
+      x: 0,
+      y: 0
+    },
+    // userCoords
+    _width: 0,
+    _height: 0,
+    _x: 0,
+    _y: 0,
+    _labelCoordinates: {
       x: 30,
       y: 30
     }

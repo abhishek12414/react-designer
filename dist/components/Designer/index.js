@@ -7,7 +7,7 @@ var _typeof = require("@babel/runtime/helpers/typeof");
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.styles = exports["default"] = void 0;
+exports["default"] = void 0;
 
 var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 
@@ -39,6 +39,8 @@ var _mapValues = _interopRequireDefault(require("lodash/mapValues"));
 
 var _reactHotkeys = require("react-hotkeys");
 
+var _reactContainerDimensions = _interopRequireDefault(require("react-container-dimensions"));
+
 require("./index.css");
 
 var _constants = require("../../constants");
@@ -56,6 +58,12 @@ var _SVGRenderer = _interopRequireDefault(require("../SVGRenderer"));
 var _InsertMenu = _interopRequireDefault(require("../panels/InsertMenu"));
 
 var _ObjectList = _interopRequireDefault(require("../panels/ObjectList"));
+
+var _layoutTransformation = require("../../utils/layoutTransformation");
+
+var _deepClone = _interopRequireDefault(require("../../utils/deepClone"));
+
+var _dragTransformCoords = _interopRequireDefault(require("../../utils/dragTransformCoords"));
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -97,7 +105,8 @@ var Designer = /*#__PURE__*/function (_Component) {
       selectedObjectIndex: null,
       selectedTool: null,
       type: 'map',
-      objectFilter: 'all'
+      objectFilter: 'all',
+      hasTransformed: false
     });
     (0, _defineProperty2["default"])((0, _assertThisInitialized2["default"])(_this), "keyMap", {
       removeObject: ['del', 'backspace'],
@@ -211,8 +220,10 @@ var Designer = /*#__PURE__*/function (_Component) {
         elementType: selectedTool,
         x: mouse.x,
         y: mouse.y,
+        _x: mouse.x,
+        _y: mouse.y,
         type: type,
-        idx: objects.length + 1
+        idx: new Date().getTime()
       });
 
       onUpdate([].concat((0, _toConsumableArray2["default"])(objects), [object]));
@@ -379,6 +390,7 @@ var Designer = /*#__PURE__*/function (_Component) {
           objectIndex: currentObjectIndex,
           objectRefs: this.objectRefs
         });
+        newObject = (0, _dragTransformCoords["default"])(newObject, this.getLayoutProperties());
         this.updateObject(currentObjectIndex, newObject);
         this.updateHandler(currentObjectIndex, newObject);
       }
@@ -425,23 +437,18 @@ var Designer = /*#__PURE__*/function (_Component) {
       if (mode === _constants.modes.DRAG) {
         var objects = this.props.objects;
         var object = objects[currentObjectIndex];
-        var offset = this.getOffset();
-
-        if (object.x < 0) {
-          object.x = 0;
-        }
-
-        if (object.y < 0) {
-          object.y = 0;
-        }
-
-        if (object.x + object.width > offset.width) {
-          object.x = offset.width - object.width;
-        }
-
-        if (object.y + object.height > offset.height) {
-          object.y = offset.height - object.height;
-        }
+        var offset = this.getOffset(); // if (object.x < 0) {
+        // 	object.x = 0;
+        // }
+        // if (object.y < 0) {
+        // 	object.y = 0;
+        // }
+        // if (object.x + object.width > offset.width) {
+        // 	object.x = offset.width - object.width;
+        // }
+        // if (object.y + object.height > offset.height) {
+        // 	object.y = offset.height - object.height;
+        // }
 
         this.updateObject(currentObjectIndex, object);
         this.updateHandler(currentObjectIndex, object);
@@ -507,9 +514,9 @@ var Designer = /*#__PURE__*/function (_Component) {
     }
   }, {
     key: "handleObjectChange",
-    value: function handleObjectChange(key, value) {
+    value: function handleObjectChange(updatedObj) {
       var selectedObjectIndex = this.state.selectedObjectIndex;
-      this.updateObject(selectedObjectIndex, (0, _defineProperty2["default"])({}, key, value));
+      this.updateObject(selectedObjectIndex, updatedObj);
     }
   }, {
     key: "handleArrange",
@@ -572,6 +579,19 @@ var Designer = /*#__PURE__*/function (_Component) {
       });
     }
   }, {
+    key: "getLayoutProperties",
+    value: function getLayoutProperties() {
+      var transformedDimension = {
+        zoneWidth: this.props.width,
+        zoneHeight: this.props.height,
+        layoutWidth: this.state.transformedLayout.layoutWidth,
+        layoutHeight: this.state.transformedLayout.layoutHeight,
+        transformWidth: this.state.transformedLayout.layoutWidth / this.props.width,
+        transformHeight: this.state.transformedLayout.layoutHeight / this.props.height
+      };
+      return transformedDimension;
+    }
+  }, {
     key: "moveSelectedObject",
     value: function moveSelectedObject(attr, points, event, key) {
       var selectedObjectIndex = this.state.selectedObjectIndex;
@@ -582,8 +602,9 @@ var Designer = /*#__PURE__*/function (_Component) {
         points *= 10;
       }
 
-      var changes = _objectSpread(_objectSpread({}, object), {}, (0, _defineProperty2["default"])({}, attr, object[attr] + points));
+      var changes = _objectSpread(_objectSpread({}, object), {}, (0, _defineProperty2["default"])({}, attr, +(isNaN(object === null || object === void 0 ? void 0 : object[attr]) ? 0 : object === null || object === void 0 ? void 0 : object[attr]) + points));
 
+      changes = (0, _dragTransformCoords["default"])(changes, this.getLayoutProperties());
       this.updateObject(selectedObjectIndex, changes);
       this.updateHandler(selectedObjectIndex, changes);
     }
@@ -629,32 +650,49 @@ var Designer = /*#__PURE__*/function (_Component) {
     }
   }, {
     key: "renderSVG",
-    value: function renderSVG() {
+    value: function renderSVG(transformedLayout, transformedObjects) {
       var _this7 = this;
 
-      var canvas = this.getCanvas();
+      // let canvas = this.getCanvas();
+      var canvas = {
+        width: transformedLayout.layoutWidth,
+        height: transformedLayout.layoutHeight,
+        canvasOffsetX: 0,
+        canvasOffsetY: 0
+      };
       var _this$props5 = this.props,
           background = _this$props5.background,
+          svgStyle = _this$props5.svgStyle,
           objects = _this$props5.objects,
           objectTypes = _this$props5.objectTypes,
-          backgroundImage = _this$props5.backgroundImage,
-          backgroundSize = _this$props5.backgroundSize,
-          backgroundRepeat = _this$props5.backgroundRepeat;
+          backgroundImage = _this$props5.backgroundImage;
+
+      if (!this.state.hasTransformed) {
+        var _this$props6, _this$props7, _this$props7$onTransf;
+
+        transformedObjects = (0, _layoutTransformation.getTransformedObjects)(this.props.height, this.props.width, objects, transformedLayout.layoutWidth, transformedLayout.layoutHeight);
+        this.setState({
+          hasTransformed: true,
+          transformedLayout: transformedLayout
+        });
+        (_this$props6 = this.props) === null || _this$props6 === void 0 ? void 0 : _this$props6.onUpdate(transformedObjects);
+        (_this$props7 = this.props) === null || _this$props7 === void 0 ? void 0 : (_this$props7$onTransf = _this$props7.onTransformLayoutChange) === null || _this$props7$onTransf === void 0 ? void 0 : _this$props7$onTransf.call(_this$props7, transformedLayout);
+      }
+
       return /*#__PURE__*/_react["default"].createElement(_SVGRenderer["default"], {
-        background: background,
-        backgroundSize: backgroundSize,
-        backgroundImage: backgroundImage,
-        backgroundRepeat: backgroundRepeat,
         canvas: canvas,
-        objects: objects,
-        onMouseOver: this.showHandler.bind(this),
-        objectTypes: objectTypes,
+        objects: transformedObjects,
         objectRefs: this.objectRefs,
+        objectTypes: objectTypes,
+        selectedObjectIndex: this.state.selectedObjectIndex,
+        svgStyle: svgStyle,
+        background: background,
+        backgroundImage: backgroundImage,
         onRender: function onRender(ref) {
           return _this7.svgElement = ref;
         },
-        onMouseDown: this.newObject.bind(this),
-        selectedObjectIndex: this.state.selectedObjectIndex
+        onMouseOver: this.showHandler.bind(this),
+        onMouseDown: this.newObject.bind(this)
       });
     }
   }, {
@@ -671,10 +709,10 @@ var Designer = /*#__PURE__*/function (_Component) {
           selectedTool = _this$state4.selectedTool,
           type = _this$state4.type,
           objectFilter = _this$state4.objectFilter;
-      var _this$props6 = this.props,
-          objects = _this$props6.objects,
-          objectTypes = _this$props6.objectTypes,
-          InsertMenuComponent = _this$props6.insertMenu;
+      var _this$props8 = this.props,
+          objects = _this$props8.objects,
+          objectTypes = _this$props8.objectTypes,
+          InsertMenuComponent = _this$props8.insertMenu;
       var currentObject = objects === null || objects === void 0 ? void 0 : objects[selectedObjectIndex],
           isEditMode = mode === _constants.modes.EDIT_OBJECT,
           showPropertyPanel = selectedObjectIndex !== null;
@@ -719,41 +757,50 @@ var Designer = /*#__PURE__*/function (_Component) {
         onAddImageClick: this.props.onAddImageClick
       }), /*#__PURE__*/_react["default"].createElement("div", {
         className: "drawingContainer"
-      }, /*#__PURE__*/_react["default"].createElement("div", {
-        className: 'canvasContainer',
-        style: {
-          width: canvasWidth,
-          height: canvasHeight
-        }
-      }, isEditMode && ObjectEditor && /*#__PURE__*/_react["default"].createElement(ObjectEditor, {
-        object: currentObject,
-        offset: this.getOffset(),
-        onUpdate: function onUpdate(object) {
-          return _this8.updateObject(selectedObjectIndex, object);
-        },
-        onClose: function onClose() {
-          return _this8.setState({
-            mode: _constants.modes.FREE
-          });
-        },
-        width: width,
-        height: height
-      }), showHandler && /*#__PURE__*/_react["default"].createElement(_Handler["default"], {
-        boundingBox: handler,
-        canResize: (0, _has["default"])(currentObject, 'width') || (0, _has["default"])(currentObject, 'height') // canRotate={has(currentObject, 'rotate')}
-        ,
-        onMouseLeave: this.hideHandler.bind(this),
-        onDoubleClick: this.showEditor.bind(this),
-        onDrag: this.startDrag.bind(this, _constants.modes.DRAG),
-        onResize: this.startDrag.bind(this, _constants.modes.SCALE) // onRotate={this.startDrag.bind(this, modes.ROTATE)}
+      }, /*#__PURE__*/_react["default"].createElement(_reactContainerDimensions["default"], {
+        id: "containerD"
+      }, function (_ref5) {
+        var width = _ref5.width,
+            height = _ref5.height;
+        var transformedLayout = (0, _layoutTransformation.getTransformedLayout)(width, height, _this8.props.width, _this8.props.height);
+        var transformedObjects = (0, _deepClone["default"])(objects);
+        return /*#__PURE__*/_react["default"].createElement("div", {
+          className: 'canvasContainer',
+          style: {
+            width: transformedLayout.layoutWidth,
+            height: transformedLayout.layoutHeight
+          }
+        }, isEditMode && ObjectEditor && /*#__PURE__*/_react["default"].createElement(ObjectEditor, {
+          object: currentObject,
+          offset: _this8.getOffset(),
+          onUpdate: function onUpdate(object) {
+            return _this8.updateObject(selectedObjectIndex, object);
+          },
+          onClose: function onClose() {
+            return _this8.setState({
+              mode: _constants.modes.FREE
+            });
+          },
+          width: width,
+          height: height
+        }), showHandler && /*#__PURE__*/_react["default"].createElement(_Handler["default"], {
+          boundingBox: handler,
+          canResize: (0, _has["default"])(currentObject, 'width') || (0, _has["default"])(currentObject, 'height') // canRotate={has(currentObject, 'rotate')}
+          ,
+          onMouseLeave: _this8.hideHandler.bind(_this8),
+          onDoubleClick: _this8.showEditor.bind(_this8),
+          onDrag: _this8.startDrag.bind(_this8, _constants.modes.DRAG),
+          onResize: _this8.startDrag.bind(_this8, _constants.modes.SCALE) // onRotate={this.startDrag.bind(this, modes.ROTATE)}
 
-      }), this.renderSVG())), /*#__PURE__*/_react["default"].createElement("div", {
+        }), _this8.renderSVG(transformedLayout, transformedObjects));
+      })), /*#__PURE__*/_react["default"].createElement("div", {
         className: "propertiesPanelContainer"
       }, showPropertyPanel ? /*#__PURE__*/_react["default"].createElement(_PanelList["default"], {
         layoutDimension: {
           width: this.props.width,
           height: this.props.height
         },
+        transformedLayout: this.state.transformedLayout,
         offset: this.getOffset(),
         object: objectWithInitial,
         objects: this.props.objects,
@@ -798,19 +845,5 @@ var Designer = /*#__PURE__*/function (_Component) {
   svgStyle: {},
   insertMenu: _InsertMenu["default"]
 });
-var styles = {
-  container: {
-    position: 'relative',
-    display: 'flex',
-    flexDirection: 'row'
-  },
-  canvasContainer: {
-    position: 'relative'
-  },
-  keyboardManager: {
-    outline: 'none'
-  }
-};
-exports.styles = styles;
 var _default = Designer;
 exports["default"] = _default;

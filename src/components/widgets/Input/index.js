@@ -4,14 +4,23 @@ import PropTypes from 'prop-types';
 
 import './index.css';
 
-const Input = ({ label, type, disabled, className, name, value, onChange }) => {
+const Input = ({
+	label,
+	labelClass,
+	type,
+	disabled,
+	className,
+	name,
+	value,
+	onChange,
+}) => {
 	const onInputChange = (e) => {
 		!disabled && onChange(e);
 	};
 
 	return (
 		<label className="inputContainer">
-			{label && <span className="icon">{label}</span>}
+			{label && <span className={cx('icon', labelClass)}>{label}</span>}
 			<input
 				name={name}
 				type={type}
@@ -36,6 +45,7 @@ Input.propTypes = {
 	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	disabled: PropTypes.bool,
 	className: PropTypes.string,
+	labelClass: PropTypes.string,
 	onChange: PropTypes.func.isRequired,
 };
 

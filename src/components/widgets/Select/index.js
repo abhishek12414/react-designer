@@ -32,7 +32,7 @@ const Select = ({ className, options, name, value, onChange, ...rest }) => {
 	return (
 		<select
 			name={name}
-			className={cx('select', className)}
+			className={cx('rdSelect', className)}
 			value={value}
 			onChange={onChange}
 			{...rest}

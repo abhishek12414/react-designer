@@ -4,42 +4,44 @@ import data from './data';
 
 const layout = {
 	width: 350,
-	height: 400,
+	height: 300,
 };
-const imgObj = {
-	href: 'http://localhost:3000/api/v2/file/6188e225c4e0e7005b77ffab',
-	// href: 'https://miro.medium.com/max/1000/1*P4Z6NIm0dHypW2NnXqinqg.jpeg',
-	width: layout.width,
-	height: layout.height,
-	elementType: 'image',
-	x: 0,
-	y: 0,
-	fillOpacity: 1,
+
+const IS_LOG_ENABLE = false;
+
+const logMe = (...props) => {
+	if (IS_LOG_ENABLE) {
+		console.debug(...props);
+	}
 };
+
 const CustomDesigner = () => {
-	const [objects, setObjects] = useState([imgObj, ...data.dataSet1]);
+	const [objects, setObjects] = useState([...data.dataSet0]);
 
 	return (
-		<div>
-			<Designer
-				width={layout.width}
-				height={layout.height}
-				// background={'#ece2be'}
-				objects={objects}
-				clusterList={[
-					{ label: 'a', value: 'a' },
-					{ label: 'b', value: 'b' },
-				]}
-				onUpdate={(value) => {
-					console.log(value);
-					setObjects(value);
-				}}
-				onDelete={(obj) => console.log('deleteObject', obj)}
-				onAddClusterClick={() => console.log('add new cluster')}
-				onImageEditClick={() => console.log('onImageEditClick')}
-				onAddImageClick={() => console.log('onAddImageClick')}
-			/>
-		</div>
+		<Designer
+			width={layout.width}
+			height={layout.height}
+			background={'#ece2be'}
+			objects={objects}
+			clusterList={[
+				{ label: 'a', value: 'a' },
+				{ label: 'b', value: 'b' },
+			]}
+			onUpdate={(value) => {
+				logMe(value);
+				setObjects(value);
+			}}
+			onDelete={(obj) => {
+				logMe('>>>> deleteObject', obj);
+			}}
+			onAddClusterClick={(value) => logMe('>>>> add new cluster', value)}
+			onImageEditClick={(value) => logMe('>>>> onImageEditClick', value)}
+			onAddImageClick={(value) => logMe('>>>> onAddImageClick', value)}
+			onTransformLayoutChange={(value) =>
+				logMe('>>>> onTransformLayoutChange', value)
+			}
+		/>
 	);
 };
 

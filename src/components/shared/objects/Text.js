@@ -23,12 +23,10 @@ export default class Text extends Vector {
 	getStyle() {
 		let object = this.props.object;
 		return {
-			...super.getStyle(),
 			dominantBaseline: 'central',
 			fontWeight: object.fontWeight,
 			fontStyle: object.fontStyle,
 			textDecoration: object.textDecoration,
-			mixBlendMode: object.blendMode,
 			WebkitUserSelect: 'none',
 		};
 	}

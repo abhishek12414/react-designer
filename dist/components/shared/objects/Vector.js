@@ -46,14 +46,6 @@ var Vector = /*#__PURE__*/function (_Component) {
   }
 
   (0, _createClass2["default"])(Vector, [{
-    key: "getStyle",
-    value: function getStyle() {
-      var object = this.props.object;
-      return {
-        mixBlendMode: object.blendMode
-      };
-    }
-  }, {
     key: "getTransformMatrix",
     value: function getTransformMatrix(_ref) {
       var rotate = _ref.rotate,

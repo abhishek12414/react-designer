@@ -57,7 +57,7 @@ var Select = function Select(_ref) {
 
   return /*#__PURE__*/_react["default"].createElement("select", (0, _extends2["default"])({
     name: name,
-    className: (0, _classnames["default"])('select', className),
+    className: (0, _classnames["default"])('rdSelect', className),
     value: value,
     onChange: onChange
   }, rest), getOptions());
