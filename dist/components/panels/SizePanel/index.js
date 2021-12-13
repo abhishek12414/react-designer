@@ -79,6 +79,10 @@ var SizePanel = function SizePanel(_ref) {
     }
   };
 
+  if (object.elementType === 'image') {
+    return null;
+  }
+
   return /*#__PURE__*/_react["default"].createElement(_PropertyGroup["default"], {
     object: object,
     className: "sizePanel"
