@@ -48,6 +48,10 @@ const SizePanel = ({
 		}
 	};
 
+	if (object.elementType === 'image') {
+		return null;
+	}
+
 	return (
 		<PropertyGroup object={object} className="sizePanel">
 			{/* <Columns label="Position" inline>
