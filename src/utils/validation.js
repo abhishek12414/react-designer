@@ -4,6 +4,11 @@ const regExForMacId = /^[a-fA-F0-9]*$/;
 
 export const validateObject = (object) => {
 	let errorObj = {};
+
+	if (object?.fillOpacity < 0 || object?.fillOpacity > 1) {
+		errorObj.fillOpacity = 'Opacity is invalid';
+	}
+
 	if (object.type === TYPES.TRACK) {
 		if (!object?.clusterId) {
 			errorObj.clusterId = 'ClusterId is required';
@@ -41,6 +46,8 @@ export const validateObject = (object) => {
 			errorObj._y = 'Plot Y is required';
 		}
 	}
+
+	console.log(">>> e", errorObj);
 
 	return errorObj;
 };

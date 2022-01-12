@@ -14,10 +14,15 @@ const Input = ({
 	value,
 	error,
 	onChange,
+	min,
+	max,
+	step,
 }) => {
 	const onInputChange = (e) => {
 		!disabled && onChange(e);
 	};
+
+	const numberInputProps = type === 'number' ? { min, max, step } : {};
 
 	return (
 		<label className={cx('inputContainer', error && 'error')}>
@@ -28,6 +33,7 @@ const Input = ({
 				value={value}
 				className={cx('input', disabled && 'disabled', className)}
 				onChange={onInputChange}
+				{...numberInputProps}
 			/>
 		</label>
 	);
@@ -40,6 +46,9 @@ Input.defaultProps = {
 };
 
 Input.propTypes = {
+	min: PropTypes.number,
+	max: PropTypes.number,
+	step: PropTypes.number,
 	name: PropTypes.string,
 	type: PropTypes.string,
 	label: PropTypes.string,
