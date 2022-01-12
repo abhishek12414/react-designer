@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import has from 'lodash/has';
 
@@ -8,9 +8,11 @@ import PropertyGroup from './PropertyGroup';
 import Button from '../widgets/Button';
 import Select from '../widgets/Select';
 import Icon from '../shared/Icon';
+import { getOptions } from '../../utils/optionUtils';
 
 const BasicPropertyPanel = ({
 	clusterList,
+	clusterListTrack,
 	object,
 	onChange,
 	onDelete,
@@ -22,6 +24,13 @@ const BasicPropertyPanel = ({
 		transformWidth: transformedLayout.layoutWidth / layoutDimension.width,
 		transformHeight: transformedLayout.layoutHeight / layoutDimension.height,
 	};
+
+	const selectOptions = getOptions(
+		object.type,
+		object.clusterId,
+		clusterListTrack,
+		clusterList
+	);
 
 	// const onLabelPosChange = (key, value) => {
 	// 	onChange({
@@ -137,7 +146,7 @@ const BasicPropertyPanel = ({
 					<div style={{ display: 'flex' }}>
 						<Button onClick={onAddClusterClick}>+</Button>
 						<Select
-							options={clusterList}
+							options={selectOptions}
 							value={object?.clusterId || ''}
 							error={object?.errors?.clusterId}
 							onChange={(e) => onChange({ clusterId: e.target.value })}
@@ -154,6 +163,7 @@ BasicPropertyPanel.propTypes = {
 	onDelete: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
 	clusterList: PropTypes.array,
+	clusterListTrack: PropTypes.array,
 	layoutDimension: PropTypes.object,
 	transformedLayout: PropTypes.object,
 	onAddClusterClick: PropTypes.func.isRequired,
@@ -161,6 +171,7 @@ BasicPropertyPanel.propTypes = {
 
 BasicPropertyPanel.defaultProps = {
 	clusterList: [],
+	clusterListTrack: [],
 };
 
 export default BasicPropertyPanel;

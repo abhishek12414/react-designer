@@ -27,6 +27,10 @@ const CustomDesigner = () => {
 				{ label: 'a', value: 'a' },
 				{ label: 'b', value: 'b' },
 			]}
+			clusterListTrack={[
+				{ label: 'Track 1', value: 'track1' },
+				{ label: 'Track 2', value: 'track2' },
+			]}
 			onUpdate={(value) => {
 				logMe(value);
 				setObjects(value);

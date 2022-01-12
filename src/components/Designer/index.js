@@ -735,6 +735,7 @@ class Designer extends Component {
 									object={objectWithInitial}
 									objects={this.props.objects}
 									clusterList={this.props.clusterList}
+									clusterListTrack={this.props.clusterListTrack}
 									onArrange={this.handleArrange.bind(this)}
 									onChange={this.handleObjectChange.bind(this)}
 									onDelete={this.removeCurrent.bind(this)}
@@ -752,6 +753,7 @@ class Designer extends Component {
 									}
 									objects={this.props.objects}
 									clusterList={this.props.clusterList}
+									clusterListTrack={this.props.clusterListTrack}
 									onChange={this.updateObject.bind(this)}
 									onAddClusterClick={this.props.onAddClusterClick}
 									onObjectSelect={this.updateSelectedObjectIndex.bind(this)}
