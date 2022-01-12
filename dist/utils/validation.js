@@ -12,6 +12,10 @@ var regExForMacId = /^[a-fA-F0-9]*$/;
 var validateObject = function validateObject(object) {
   var errorObj = {};
 
+  if ((object === null || object === void 0 ? void 0 : object.fillOpacity) < 0 || (object === null || object === void 0 ? void 0 : object.fillOpacity) > 1) {
+    errorObj.fillOpacity = 'Opacity is invalid';
+  }
+
   if (object.type === _constants.TYPES.TRACK) {
     if (!(object !== null && object !== void 0 && object.clusterId)) {
       errorObj.clusterId = 'ClusterId is required';

@@ -25,7 +25,11 @@ var _constants = require("../../constants");
 
 var _Icon = _interopRequireDefault(require("../shared/Icon"));
 
+var _Input = _interopRequireDefault(require("../widgets/Input"));
+
 var StylePanel = function StylePanel(_ref) {
+  var _object$errors;
+
   var object = _ref.object,
       _onChange = _ref.onChange,
       onDelete = _ref.onDelete,
@@ -51,18 +55,22 @@ var StylePanel = function StylePanel(_ref) {
     label: "Opacity",
     rowInline: true,
     showIf: (0, _has["default"])(object, 'fillOpacity')
-  }, /*#__PURE__*/_react["default"].createElement(_Column["default"], {
+  }, /*#__PURE__*/_react["default"].createElement(_Column["default"], null, /*#__PURE__*/_react["default"].createElement(_Input["default"], {
     type: "number",
     value: object.fillOpacity,
     style: {
       width: 30
     },
-    onChange: function onChange(value) {
+    min: 0,
+    max: 1,
+    step: .1,
+    error: object === null || object === void 0 ? void 0 : (_object$errors = object.errors) === null || _object$errors === void 0 ? void 0 : _object$errors.fillOpacity,
+    onChange: function onChange(e) {
       return _onChange({
-        fillOpacity: value
+        fillOpacity: +e.target.value
       });
     }
-  })), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
+  }))), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
     label: "Action",
     rowInline: true,
     inline: true,

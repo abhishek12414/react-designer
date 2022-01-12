@@ -7,6 +7,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/extends"));
+
 var _react = _interopRequireDefault(require("react"));
 
 var _classnames = _interopRequireDefault(require("classnames"));
@@ -24,23 +26,31 @@ var Input = function Input(_ref) {
       name = _ref.name,
       value = _ref.value,
       error = _ref.error,
-      onChange = _ref.onChange;
+      onChange = _ref.onChange,
+      min = _ref.min,
+      max = _ref.max,
+      step = _ref.step;
 
   var onInputChange = function onInputChange(e) {
     !disabled && onChange(e);
   };
 
+  var numberInputProps = type === 'number' ? {
+    min: min,
+    max: max,
+    step: step
+  } : {};
   return /*#__PURE__*/_react["default"].createElement("label", {
     className: (0, _classnames["default"])('inputContainer', error && 'error')
   }, label && /*#__PURE__*/_react["default"].createElement("span", {
     className: (0, _classnames["default"])('icon', labelClass)
-  }, label), /*#__PURE__*/_react["default"].createElement("input", {
+  }, label), /*#__PURE__*/_react["default"].createElement("input", (0, _extends2["default"])({
     name: name,
     type: type,
     value: value,
     className: (0, _classnames["default"])('input', disabled && 'disabled', className),
     onChange: onInputChange
-  }));
+  }, numberInputProps)));
 };
 
 Input.defaultProps = {
@@ -49,6 +59,9 @@ Input.defaultProps = {
   disabled: false
 };
 Input.propTypes = {
+  min: _propTypes["default"].number,
+  max: _propTypes["default"].number,
+  step: _propTypes["default"].number,
   name: _propTypes["default"].string,
   type: _propTypes["default"].string,
   label: _propTypes["default"].string,
