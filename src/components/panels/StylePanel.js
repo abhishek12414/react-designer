@@ -8,6 +8,7 @@ import Column from './Column';
 import Button from '../widgets/Button';
 import { TYPES } from '../../constants';
 import Icon from '../shared/Icon';
+import Input from '../widgets/Input';
 
 const StylePanel = ({ object, onChange, onDelete, onImageEditClick }) => {
 	if (object.elementType === TYPES.GATEWAY) {
@@ -24,12 +25,18 @@ const StylePanel = ({ object, onChange, onDelete, onImageEditClick }) => {
 				/>
 			</Columns>
 			<Columns label="Opacity" rowInline showIf={has(object, 'fillOpacity')}>
-				<Column
-					type="number"
-					value={object.fillOpacity}
-					style={{ width: 30 }}
-					onChange={(value) => onChange({ fillOpacity: value })}
-				/>
+				<Column>
+					<Input
+						type="number"
+						value={object.fillOpacity}
+						style={{ width: 30 }}
+						min={0}
+						max={1}
+						step={.1}
+						error={object?.errors?.fillOpacity}
+						onChange={(e) => onChange({ fillOpacity: +e.target.value })}
+					/>
+				</Column>
 			</Columns>
 			<Columns label="Action" rowInline inline showIf={has(object, 'href')}>
 				<Button title="Edit" onClick={() => onImageEditClick()}>
