@@ -47,7 +47,5 @@ export const validateObject = (object) => {
 		}
 	}
 
-	console.log(">>> e", errorObj);
-
 	return errorObj;
 };
