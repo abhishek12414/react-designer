@@ -18,8 +18,8 @@ var _default = function _default(_ref) {
       startPoint = _ref.startPoint,
       mouse = _ref.mouse;
   return _objectSpread(_objectSpread({}, object), {}, {
-    x: mouse.x - (startPoint.clientX - startPoint.objectX),
-    y: mouse.y - (startPoint.clientY - startPoint.objectY)
+    x: +(mouse.x - (startPoint.clientX - startPoint.objectX)).toFixed(2),
+    y: +(mouse.y - (startPoint.clientY - startPoint.objectY)).toFixed(2)
   });
 };
 

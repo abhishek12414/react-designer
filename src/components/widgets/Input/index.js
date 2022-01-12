@@ -12,6 +12,7 @@ const Input = ({
 	className,
 	name,
 	value,
+	error,
 	onChange,
 }) => {
 	const onInputChange = (e) => {
@@ -19,7 +20,7 @@ const Input = ({
 	};
 
 	return (
-		<label className="inputContainer">
+		<label className={cx('inputContainer', error && 'error')}>
 			{label && <span className={cx('icon', labelClass)}>{label}</span>}
 			<input
 				name={name}
@@ -43,6 +44,7 @@ Input.propTypes = {
 	type: PropTypes.string,
 	label: PropTypes.string,
 	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	error: PropTypes.string,
 	disabled: PropTypes.bool,
 	className: PropTypes.string,
 	labelClass: PropTypes.string,

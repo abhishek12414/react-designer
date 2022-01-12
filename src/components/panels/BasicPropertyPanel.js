@@ -138,6 +138,7 @@ const BasicPropertyPanel = ({
 						<Select
 							options={clusterList}
 							value={object?.clusterId || ''}
+							error={object?.errors?.clusterId}
 							onChange={(e) => onChange({ clusterId: e.target.value })}
 						/>
 					</div>

@@ -26,7 +26,8 @@ var Column = function Column(_ref) {
       children = _ref.children,
       value = _ref.value,
       label = _ref.label,
-      _onChange = _ref.onChange;
+      _onChange = _ref.onChange,
+      error = _ref.error;
 
   if (!showIf) {
     return /*#__PURE__*/_react["default"].createElement("div", {
@@ -40,6 +41,7 @@ var Column = function Column(_ref) {
     type: type,
     label: label,
     value: value,
+    error: error,
     disabled: disabled,
     labelClass: labelClass,
     onChange: function onChange(e) {
@@ -57,6 +59,7 @@ Column.propTypes = {
   labelClass: _propTypes["default"].string,
   value: _propTypes["default"].oneOfType([_propTypes["default"].number, _propTypes["default"].string]),
   label: _propTypes["default"].string,
+  error: _propTypes["default"].string,
   onChange: _propTypes["default"].func
 };
 Column.defaultProps = {

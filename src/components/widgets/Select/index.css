@@ -1,4 +1,9 @@
 .rdSelect {
 	padding: 3px 3px 3px 5px;
 	width: 100%;
+	background-color: #fff;
+}
+
+.rdSelect.error {
+	border: 1px solid #ff0000;
 }

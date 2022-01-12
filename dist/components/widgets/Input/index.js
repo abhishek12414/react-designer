@@ -23,6 +23,7 @@ var Input = function Input(_ref) {
       className = _ref.className,
       name = _ref.name,
       value = _ref.value,
+      error = _ref.error,
       onChange = _ref.onChange;
 
   var onInputChange = function onInputChange(e) {
@@ -30,7 +31,7 @@ var Input = function Input(_ref) {
   };
 
   return /*#__PURE__*/_react["default"].createElement("label", {
-    className: "inputContainer"
+    className: (0, _classnames["default"])('inputContainer', error && 'error')
   }, label && /*#__PURE__*/_react["default"].createElement("span", {
     className: (0, _classnames["default"])('icon', labelClass)
   }, label), /*#__PURE__*/_react["default"].createElement("input", {
@@ -52,6 +53,7 @@ Input.propTypes = {
   type: _propTypes["default"].string,
   label: _propTypes["default"].string,
   value: _propTypes["default"].oneOfType([_propTypes["default"].string, _propTypes["default"].number]),
+  error: _propTypes["default"].string,
   disabled: _propTypes["default"].bool,
   className: _propTypes["default"].string,
   labelClass: _propTypes["default"].string,

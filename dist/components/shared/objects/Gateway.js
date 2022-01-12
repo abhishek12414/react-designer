@@ -71,6 +71,13 @@ var Gateway = /*#__PURE__*/function (_Vector) {
         className: isHidden ? 'hidden' : '',
         width: 18,
         height: 18,
+        href: _track["default"],
+        x: plot.x,
+        y: plot.y
+      }), /*#__PURE__*/_react["default"].createElement("image", {
+        className: isHidden ? 'hidden' : '',
+        width: 18,
+        height: 18,
         href: _wifi["default"],
         x: x,
         y: y // common props
@@ -79,13 +86,6 @@ var Gateway = /*#__PURE__*/function (_Vector) {
         onMouseOver: onMouseOver,
         transform: transform,
         index: index
-      }), /*#__PURE__*/_react["default"].createElement("image", {
-        className: isHidden ? 'hidden' : '',
-        width: 18,
-        height: 18,
-        href: _track["default"],
-        x: plot.x,
-        y: plot.y
       }));
     }
   }]);

@@ -22,7 +22,6 @@ const CustomDesigner = () => {
 		<Designer
 			width={layout.width}
 			height={layout.height}
-			background={'#ece2be'}
 			objects={objects}
 			clusterList={[
 				{ label: 'a', value: 'a' },

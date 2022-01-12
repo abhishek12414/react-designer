@@ -32,6 +32,8 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var GatewayPanel = function GatewayPanel(_ref) {
+  var _object$errors, _object$errors2, _object$plot$_x, _object$plot$_y, _object$plot$_z;
+
   var object = _ref.object,
       _onChange4 = _ref.onChange,
       layoutDimension = _ref.layoutDimension,
@@ -52,14 +54,14 @@ var GatewayPanel = function GatewayPanel(_ref) {
 
     switch (key) {
       case '_x':
-        tValue = value * transformedDimension.transformWidth;
+        tValue = +(value * transformedDimension.transformWidth).toFixed(2);
 
         _onChange4((_onChange = {}, (0, _defineProperty2["default"])(_onChange, key, value), (0, _defineProperty2["default"])(_onChange, "x", tValue), _onChange));
 
         break;
 
       case '_y':
-        tValue = transformedLayout.layoutHeight - value * transformedDimension.transformHeight - ((_object$height = object === null || object === void 0 ? void 0 : object.height) !== null && _object$height !== void 0 ? _object$height : 0);
+        tValue = +(transformedLayout.layoutHeight - value * transformedDimension.transformHeight - ((_object$height = object === null || object === void 0 ? void 0 : object.height) !== null && _object$height !== void 0 ? _object$height : 0)).toFixed(2);
 
         _onChange4((_onChange2 = {}, (0, _defineProperty2["default"])(_onChange2, key, value), (0, _defineProperty2["default"])(_onChange2, "y", tValue), _onChange2));
 
@@ -79,7 +81,7 @@ var GatewayPanel = function GatewayPanel(_ref) {
 
     switch (key) {
       case '_x':
-        tValue = value * transformedDimension.transformWidth;
+        tValue = +(value * transformedDimension.transformWidth).toFixed(2);
 
         _onChange4({
           plot: _objectSpread(_objectSpread({}, object.plot), {}, (_objectSpread2 = {}, (0, _defineProperty2["default"])(_objectSpread2, key, value), (0, _defineProperty2["default"])(_objectSpread2, "x", tValue), _objectSpread2))
@@ -88,7 +90,7 @@ var GatewayPanel = function GatewayPanel(_ref) {
         break;
 
       case '_y':
-        tValue = transformedLayout.layoutHeight - value * transformedDimension.transformHeight - ((_object$height2 = object === null || object === void 0 ? void 0 : object.height) !== null && _object$height2 !== void 0 ? _object$height2 : 0);
+        tValue = +(transformedLayout.layoutHeight - value * transformedDimension.transformHeight - ((_object$height2 = object === null || object === void 0 ? void 0 : object.height) !== null && _object$height2 !== void 0 ? _object$height2 : 0)).toFixed(2);
 
         _onChange4({
           plot: _objectSpread(_objectSpread({}, object.plot), {}, (_objectSpread3 = {}, (0, _defineProperty2["default"])(_objectSpread3, key, value), (0, _defineProperty2["default"])(_objectSpread3, "y", tValue), _objectSpread3))
@@ -108,31 +110,33 @@ var GatewayPanel = function GatewayPanel(_ref) {
   return /*#__PURE__*/_react["default"].createElement(_PropertyGroup["default"], {
     className: "gatewayPanel"
   }, /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
-    label: "Mac ID",
+    label: "Mac ID*",
     showIf: (0, _has["default"])(object, 'macId')
   }, /*#__PURE__*/_react["default"].createElement(_Column["default"], {
-    label: "Mac ID",
+    label: "Mac",
     value: object.macId,
     onChange: function onChange(value) {
       return _onChange4({
         macId: value
       });
-    }
+    },
+    error: object === null || object === void 0 ? void 0 : (_object$errors = object.errors) === null || _object$errors === void 0 ? void 0 : _object$errors.macId
   })), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
-    label: "Cluster Type",
+    label: "Cluster Type*",
     rowInline: true,
     showIf: (0, _has["default"])(object, 'gatewayClusterType')
   }, /*#__PURE__*/_react["default"].createElement(_Select["default"], {
     name: "gatewayClusterType",
     value: object.gatewayClusterType,
     options: _constants.clusterOptions,
+    error: object === null || object === void 0 ? void 0 : (_object$errors2 = object.errors) === null || _object$errors2 === void 0 ? void 0 : _object$errors2.gatewayClusterType,
     onChange: function onChange(e) {
       return _onChange4({
         gatewayClusterType: e.target.value
       });
     }
   })), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
-    label: "Physical Coords",
+    label: "Physical Coords*",
     inline: true
   }, /*#__PURE__*/_react["default"].createElement(_Column["default"], {
     showIf: (0, _has["default"])(object, 'x'),
@@ -141,7 +145,7 @@ var GatewayPanel = function GatewayPanel(_ref) {
     labelClass: "label",
     value: object._x,
     onChange: function onChange(value) {
-      return onValueChange('_x', value);
+      return onValueChange('_x', +value);
     }
   }), /*#__PURE__*/_react["default"].createElement(_Column["default"], {
     showIf: (0, _has["default"])(object, 'y'),
@@ -150,7 +154,7 @@ var GatewayPanel = function GatewayPanel(_ref) {
     labelClass: "label",
     value: object._y,
     onChange: function onChange(value) {
-      return onValueChange('_y', value);
+      return onValueChange('_y', +value);
     }
   }), /*#__PURE__*/_react["default"].createElement(_Column["default"], {
     showIf: (0, _has["default"])(object, 'z'),
@@ -159,37 +163,37 @@ var GatewayPanel = function GatewayPanel(_ref) {
     labelClass: "label",
     value: object._z,
     onChange: function onChange(value) {
-      return onValueChange('_z', value);
+      return onValueChange('_z', +value);
     }
   })), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
-    label: "Plot Coords",
+    label: "Plot Coords*",
     inline: true
   }, /*#__PURE__*/_react["default"].createElement(_Column["default"], {
     showIf: (0, _has["default"])(object.plot, 'x'),
     label: "x",
     type: "number",
     labelClass: "label",
-    value: object.plot._x,
+    value: (_object$plot$_x = object.plot._x) !== null && _object$plot$_x !== void 0 ? _object$plot$_x : '',
     onChange: function onChange(value) {
-      return onPlotValueChange('_x', value);
+      return onPlotValueChange('_x', +value);
     }
   }), /*#__PURE__*/_react["default"].createElement(_Column["default"], {
     showIf: (0, _has["default"])(object.plot, 'y'),
     label: "y",
     type: "number",
     labelClass: "label",
-    value: object.plot._y,
+    value: (_object$plot$_y = object.plot._y) !== null && _object$plot$_y !== void 0 ? _object$plot$_y : '',
     onChange: function onChange(value) {
-      return onPlotValueChange('_y', value);
+      return onPlotValueChange('_y', +value);
     }
   }), /*#__PURE__*/_react["default"].createElement(_Column["default"], {
     showIf: (0, _has["default"])(object.plot, 'z'),
     label: "z",
     type: "number",
     labelClass: "label",
-    value: object.plot._z,
+    value: (_object$plot$_z = object.plot._z) !== null && _object$plot$_z !== void 0 ? _object$plot$_z : '',
     onChange: function onChange(value) {
-      return onPlotValueChange('_z', value);
+      return onPlotValueChange('_z', +value);
     }
   })));
 };

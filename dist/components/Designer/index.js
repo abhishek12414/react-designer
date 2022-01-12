@@ -61,6 +61,8 @@ var _ObjectList = _interopRequireDefault(require("../panels/ObjectList"));
 
 var _layoutTransformation = require("../../utils/layoutTransformation");
 
+var _utils = require("../../utils");
+
 var _deepClone = _interopRequireDefault(require("../../utils/deepClone"));
 
 var _dragTransformCoords = _interopRequireDefault(require("../../utils/dragTransformCoords"));
@@ -220,11 +222,20 @@ var Designer = /*#__PURE__*/function (_Component) {
         elementType: selectedTool,
         x: mouse.x,
         y: mouse.y,
-        _x: mouse.x,
-        _y: mouse.y,
         type: type,
         idx: new Date().getTime()
       });
+
+      object = (0, _dragTransformCoords["default"])(object, this.getLayoutProperties());
+
+      if (object.elementType === _constants.TYPES.GATEWAY) {
+        object.plot = _objectSpread(_objectSpread({}, object.plot), {}, {
+          x: object.x,
+          y: object.y,
+          _x: object._x,
+          _y: object._y
+        });
+      }
 
       onUpdate([].concat((0, _toConsumableArray2["default"])(objects), [object]));
       this.setState({
@@ -281,6 +292,8 @@ var Designer = /*#__PURE__*/function (_Component) {
         if (index === objectIndex) {
           var newObject = _objectSpread(_objectSpread({}, object), changes);
 
+          var errors = (0, _utils.validateObject)(newObject);
+          newObject.errors = errors;
           return updatePath ? _this2.updatePath(newObject) : newObject;
         } else {
           return object;
@@ -500,7 +513,21 @@ var Designer = /*#__PURE__*/function (_Component) {
         canvasOffsetX: (canvasWidth - width) / 2,
         canvasOffsetY: (canvasHeight - height) / 2
       };
-    }
+    } // Insert menu tab change (map, track, gateway)
+
+  }, {
+    key: "onTypeChange",
+    value: function onTypeChange(type) {
+      this.setState({
+        type: type,
+        selectedTool: null,
+        mode: _constants.modes.FREE,
+        currentObjectIndex: null,
+        showHandler: false,
+        handler: null
+      });
+    } // Insert menu tool change (rect, polygon, gateway)
+
   }, {
     key: "selectTool",
     value: function selectTool(tool) {
@@ -642,13 +669,6 @@ var Designer = /*#__PURE__*/function (_Component) {
       });
     }
   }, {
-    key: "onTypeChange",
-    value: function onTypeChange(type) {
-      this.setState({
-        type: type
-      });
-    }
-  }, {
     key: "renderSVG",
     value: function renderSVG(transformedLayout, transformedObjects) {
       var _this7 = this;
@@ -708,7 +728,8 @@ var Designer = /*#__PURE__*/function (_Component) {
           selectedObjectIndex = _this$state4.selectedObjectIndex,
           selectedTool = _this$state4.selectedTool,
           type = _this$state4.type,
-          objectFilter = _this$state4.objectFilter;
+          objectFilter = _this$state4.objectFilter,
+          currentObjectIndex = _this$state4.currentObjectIndex;
       var _this$props8 = this.props,
           objects = _this$props8.objects,
           objectTypes = _this$props8.objectTypes,
@@ -735,6 +756,13 @@ var Designer = /*#__PURE__*/function (_Component) {
         var elementType = _ref4.elementType;
         return elementType === _constants.SHAPES.image;
       })) !== null && _objects$filter !== void 0 && _objects$filter[0]);
+      var hoveredObject = objects[currentObjectIndex];
+      var canResize = (0, _has["default"])(hoveredObject, 'width') || (0, _has["default"])(hoveredObject, 'height');
+
+      if ((hoveredObject === null || hoveredObject === void 0 ? void 0 : hoveredObject.elementType) === _constants.TYPES.GATEWAY) {
+        canResize = false;
+      }
+
       return /*#__PURE__*/_react["default"].createElement("div", {
         className: "reactDesigner"
       }, /*#__PURE__*/_react["default"].createElement(_reactHotkeys.HotKeys, {
@@ -785,7 +813,7 @@ var Designer = /*#__PURE__*/function (_Component) {
           height: height
         }), showHandler && /*#__PURE__*/_react["default"].createElement(_Handler["default"], {
           boundingBox: handler,
-          canResize: (0, _has["default"])(currentObject, 'width') || (0, _has["default"])(currentObject, 'height') // canRotate={has(currentObject, 'rotate')}
+          canResize: canResize // canRotate={has(currentObject, 'rotate')}
           ,
           onMouseLeave: _this8.hideHandler.bind(_this8),
           onDoubleClick: _this8.showEditor.bind(_this8),

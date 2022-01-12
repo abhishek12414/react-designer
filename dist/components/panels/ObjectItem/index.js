@@ -36,7 +36,9 @@ var ObjectItem = function ObjectItem(_ref) {
       onEditObject = _ref.onEditObject,
       _onChange = _ref.onChange,
       onAddClusterClick = _ref.onAddClusterClick,
-      isHidden = _ref.isHidden;
+      isHidden = _ref.isHidden,
+      errors = _ref.errors;
+  var errorsLength = Object.keys(errors).length;
   return /*#__PURE__*/_react["default"].createElement(_PropertyGroup["default"], {
     className: "propertyGroup"
   }, elementType !== 'image' && /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
@@ -87,6 +89,7 @@ var ObjectItem = function ObjectItem(_ref) {
     name: "clusterId",
     value: clusterId,
     options: clusterList,
+    error: errors === null || errors === void 0 ? void 0 : errors.clusterId,
     onChange: function onChange(e) {
       return _onChange({
         clusterId: e.target.value
@@ -103,7 +106,9 @@ var ObjectItem = function ObjectItem(_ref) {
   })), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
     label: "Edit",
     rowInline: true
-  }, /*#__PURE__*/_react["default"].createElement(_Column["default"], null, /*#__PURE__*/_react["default"].createElement(_Button["default"], {
+  }, /*#__PURE__*/_react["default"].createElement(_Column["default"], {
+    className: "error_row"
+  }, /*#__PURE__*/_react["default"].createElement(_Button["default"], {
     title: "Edit",
     onClick: onEditObject
   }, /*#__PURE__*/_react["default"].createElement(_Icon["default"], {
@@ -113,6 +118,17 @@ var ObjectItem = function ObjectItem(_ref) {
       width: 16,
       height: 16,
       fill: 'black'
+    }
+  })), errorsLength > 0 && /*#__PURE__*/_react["default"].createElement("div", {
+    className: "info",
+    title: "Error count ".concat(errorsLength)
+  }, /*#__PURE__*/_react["default"].createElement(_Icon["default"], {
+    icon: "error",
+    size: 24,
+    style: {
+      width: 18,
+      height: 18,
+      fill: 'red'
     }
   })))));
 };
@@ -124,9 +140,13 @@ ObjectItem.propTypes = {
   clusterList: _propTypes["default"].array.isRequired,
   clusterId: _propTypes["default"].string,
   isHidden: _propTypes["default"].bool,
+  errors: _propTypes["default"].object,
   onEditObject: _propTypes["default"].func.isRequired,
   onChange: _propTypes["default"].func.isRequired,
   onAddClusterClick: _propTypes["default"].func.isRequired
+};
+ObjectItem.defaultProps = {
+  errors: {}
 };
 var _default = ObjectItem;
 exports["default"] = _default;

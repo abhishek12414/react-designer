@@ -19,8 +19,12 @@ export const getTransformedLayout = (width, height, zoneWidth, zoneHeight) => {
 	}
 
 	return {
+		zoneWidth: width,
+		zoneHeight: height,
 		layoutWidth,
 		layoutHeight,
+		transformWidth: +(layoutWidth / width).toFixed(2),
+		transformHeight: +(layoutHeight / height).toFixed(2),
 		svgLeftDistance,
 		svgTopDistance,
 	};

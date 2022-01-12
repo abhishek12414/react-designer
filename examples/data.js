@@ -1,14 +1,14 @@
 export default {
 	dataSet0: [
-		{
-			href: 'http://localhost:3000/api/v2/file/6188e225c4e0e7005b77ffab',
-			width: 850,
-			height: 423,
-			elementType: 'image',
-			x: 0,
-			y: 0,
-			fillOpacity: 1,
-		},
+		// {
+		// 	href: 'http://127.0.0.1:8080/fp.png',
+		// 	width: 850,
+		// 	height: 423,
+		// 	elementType: 'image',
+		// 	x: 0,
+		// 	y: 0,
+		// 	fillOpacity: 1,
+		// },
 		// {
 		// 	href: 'http://localhost:3000/api/v2/file/6188e225c4e0e7005b77ffab',
 		// 	width: 350,

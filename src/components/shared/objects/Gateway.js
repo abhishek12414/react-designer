@@ -52,6 +52,14 @@ export default class Gateway extends Vector {
 					className={isHidden ? 'hidden' : ''}
 					width={18}
 					height={18}
+					href={trackSvg}
+					x={plot.x}
+					y={plot.y}
+				/>
+				<image
+					className={isHidden ? 'hidden' : ''}
+					width={18}
+					height={18}
 					href={gatewaySVG}
 					x={x}
 					y={y}
@@ -60,14 +68,6 @@ export default class Gateway extends Vector {
 					onMouseOver={onMouseOver}
 					transform={transform}
 					index={index}
-				/>
-				<image
-					className={isHidden ? 'hidden' : ''}
-					width={18}
-					height={18}
-					href={trackSvg}
-					x={plot.x}
-					y={plot.y}
 				/>
 			</>
 		);

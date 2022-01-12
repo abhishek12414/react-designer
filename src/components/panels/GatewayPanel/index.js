@@ -30,15 +30,15 @@ const GatewayPanel = ({
 		let tValue;
 		switch (key) {
 			case '_x':
-				tValue = value * transformedDimension.transformWidth;
+				tValue = +(value * transformedDimension.transformWidth).toFixed(2);
 				onChange({ [key]: value, x: tValue });
 				break;
-
 			case '_y':
-				tValue =
+				tValue = +(
 					transformedLayout.layoutHeight -
 					value * transformedDimension.transformHeight -
-					(object?.height ?? 0);
+					(object?.height ?? 0)
+				).toFixed(2);
 				onChange({ [key]: value, y: tValue });
 				break;
 			default:
@@ -51,15 +51,15 @@ const GatewayPanel = ({
 		let tValue;
 		switch (key) {
 			case '_x':
-				tValue = value * transformedDimension.transformWidth;
+				tValue = +(value * transformedDimension.transformWidth).toFixed(2);
 				onChange({ plot: { ...object.plot, [key]: value, x: tValue } });
 				break;
-
 			case '_y':
-				tValue =
+				tValue = +(
 					transformedLayout.layoutHeight -
 					value * transformedDimension.transformHeight -
-					(object?.height ?? 0);
+					(object?.height ?? 0)
+				).toFixed(2);
 
 				onChange({ plot: { ...object.plot, [key]: value, y: tValue } });
 				break;
@@ -71,15 +71,16 @@ const GatewayPanel = ({
 
 	return (
 		<PropertyGroup className="gatewayPanel">
-			<Columns label="Mac ID" showIf={has(object, 'macId')}>
+			<Columns label="Mac ID*" showIf={has(object, 'macId')}>
 				<Column
-					label="Mac ID"
+					label="Mac"
 					value={object.macId}
 					onChange={(value) => onChange({ macId: value })}
+					error={object?.errors?.macId}
 				/>
 			</Columns>
 			<Columns
-				label="Cluster Type"
+				label="Cluster Type*"
 				rowInline
 				showIf={has(object, 'gatewayClusterType')}
 			>
@@ -87,17 +88,18 @@ const GatewayPanel = ({
 					name="gatewayClusterType"
 					value={object.gatewayClusterType}
 					options={clusterOptions}
+					error={object?.errors?.gatewayClusterType}
 					onChange={(e) => onChange({ gatewayClusterType: e.target.value })}
 				/>
 			</Columns>
-			<Columns label="Physical Coords" inline>
+			<Columns label="Physical Coords*" inline>
 				<Column
 					showIf={has(object, 'x')}
 					label="x"
 					type="number"
 					labelClass="label"
 					value={object._x}
-					onChange={(value) => onValueChange('_x', value)}
+					onChange={(value) => onValueChange('_x', +value)}
 				/>
 				<Column
 					showIf={has(object, 'y')}
@@ -105,7 +107,7 @@ const GatewayPanel = ({
 					type="number"
 					labelClass="label"
 					value={object._y}
-					onChange={(value) => onValueChange('_y', value)}
+					onChange={(value) => onValueChange('_y', +value)}
 				/>
 				<Column
 					showIf={has(object, 'z')}
@@ -113,33 +115,33 @@ const GatewayPanel = ({
 					type="number"
 					labelClass="label"
 					value={object._z}
-					onChange={(value) => onValueChange('_z', value)}
+					onChange={(value) => onValueChange('_z', +value)}
 				/>
 			</Columns>
-			<Columns label="Plot Coords" inline>
+			<Columns label="Plot Coords*" inline>
 				<Column
 					showIf={has(object.plot, 'x')}
 					label="x"
 					type="number"
 					labelClass="label"
-					value={object.plot._x}
-					onChange={(value) => onPlotValueChange('_x', value)}
+					value={object.plot._x ?? ''}
+					onChange={(value) => onPlotValueChange('_x', +value)}
 				/>
 				<Column
 					showIf={has(object.plot, 'y')}
 					label="y"
 					type="number"
 					labelClass="label"
-					value={object.plot._y}
-					onChange={(value) => onPlotValueChange('_y', value)}
+					value={object.plot._y ?? ''}
+					onChange={(value) => onPlotValueChange('_y', +value)}
 				/>
 				<Column
 					showIf={has(object.plot, 'z')}
 					label="z"
 					type="number"
 					labelClass="label"
-					value={object.plot._z}
-					onChange={(value) => onPlotValueChange('_z', value)}
+					value={object.plot._z ?? ''}
+					onChange={(value) => onPlotValueChange('_z', +value)}
 				/>
 			</Columns>
 		</PropertyGroup>
