@@ -25,6 +25,10 @@ var validateObject = function validateObject(object) {
   if (object.type === _constants.TYPES.GATEWAY) {
     var _object$plot;
 
+    if (!(object !== null && object !== void 0 && object.name)) {
+      errorObj.name = 'Cluster Name is required';
+    }
+
     if (!(object !== null && object !== void 0 && object.clusterId)) {
       errorObj.clusterId = 'ClusterId is required';
     }

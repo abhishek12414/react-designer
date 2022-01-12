@@ -16,6 +16,10 @@ export const validateObject = (object) => {
 	}
 
 	if (object.type === TYPES.GATEWAY) {
+		if (!object?.name) {
+			errorObj.name = 'Cluster Name is required';
+		}
+
 		if (!object?.clusterId) {
 			errorObj.clusterId = 'ClusterId is required';
 		}

@@ -73,6 +73,7 @@ const BasicPropertyPanel = ({
 				<Column
 					label="Name"
 					value={object.name || ''}
+					error={object?.errors?.name}
 					onChange={(value) => onChange({ name: value })}
 				/>
 				{has(object.labelCoordinates, 'x', 'y') && (

@@ -38,7 +38,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var BasicPropertyPanel = function BasicPropertyPanel(_ref) {
-  var _object$errors;
+  var _object$errors, _object$errors2;
 
   var clusterList = _ref.clusterList,
       object = _ref.object,
@@ -99,6 +99,7 @@ var BasicPropertyPanel = function BasicPropertyPanel(_ref) {
   }, /*#__PURE__*/_react["default"].createElement(_Column["default"], {
     label: "Name",
     value: object.name || '',
+    error: object === null || object === void 0 ? void 0 : (_object$errors = object.errors) === null || _object$errors === void 0 ? void 0 : _object$errors.name,
     onChange: function onChange(value) {
       return _onChange({
         name: value
@@ -166,7 +167,7 @@ var BasicPropertyPanel = function BasicPropertyPanel(_ref) {
   }, "+"), /*#__PURE__*/_react["default"].createElement(_Select["default"], {
     options: clusterList,
     value: (object === null || object === void 0 ? void 0 : object.clusterId) || '',
-    error: object === null || object === void 0 ? void 0 : (_object$errors = object.errors) === null || _object$errors === void 0 ? void 0 : _object$errors.clusterId,
+    error: object === null || object === void 0 ? void 0 : (_object$errors2 = object.errors) === null || _object$errors2 === void 0 ? void 0 : _object$errors2.clusterId,
     onChange: function onChange(e) {
       return _onChange({
         clusterId: e.target.value
