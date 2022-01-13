@@ -28,8 +28,12 @@ var getTransformedLayout = function getTransformedLayout(width, height, zoneWidt
   }
 
   return {
+    zoneWidth: width,
+    zoneHeight: height,
     layoutWidth: layoutWidth,
     layoutHeight: layoutHeight,
+    transformWidth: +(layoutWidth / width).toFixed(2),
+    transformHeight: +(layoutHeight / height).toFixed(2),
     svgLeftDistance: svgLeftDistance,
     svgTopDistance: svgTopDistance
   };

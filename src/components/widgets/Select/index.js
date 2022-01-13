@@ -4,7 +4,15 @@ import PropTypes from 'prop-types';
 
 import './index.css';
 
-const Select = ({ className, options, name, value, onChange, ...rest }) => {
+const Select = ({
+	className,
+	options,
+	name,
+	value,
+	onChange,
+	error,
+	...rest
+}) => {
 	const getOptions = () => {
 		let clusterOptions = [];
 		if (typeof options[0] === 'string') {
@@ -32,7 +40,7 @@ const Select = ({ className, options, name, value, onChange, ...rest }) => {
 	return (
 		<select
 			name={name}
-			className={cx('rdSelect', className)}
+			className={cx('rdSelect', className, error && 'error')}
 			value={value}
 			onChange={onChange}
 			{...rest}
@@ -46,6 +54,7 @@ Select.propTypes = {
 	name: PropTypes.string,
 	value: PropTypes.string,
 	options: PropTypes.array,
+	error: PropTypes.string,
 	className: PropTypes.string,
 	onChange: PropTypes.func.isRequired,
 };

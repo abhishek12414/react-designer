@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import has from 'lodash/has';
 
@@ -44,6 +44,7 @@ const SizePanel = ({
 				onChange({ [key]: value, y: tValue });
 				break;
 			default:
+				onChange({ [key]: value });
 				break;
 		}
 	};

@@ -2,8 +2,6 @@
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-var _typeof = require("@babel/runtime/helpers/typeof");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -11,7 +9,7 @@ exports["default"] = void 0;
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
-var _react = _interopRequireWildcard(require("react"));
+var _react = _interopRequireDefault(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
@@ -29,15 +27,11 @@ require("./index.css");
 
 var _constants = require("../../../constants");
 
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
 var SizePanel = function SizePanel(_ref) {
   var _object$_x, _object$_y, _object$width, _object$height2;
 
   var object = _ref.object,
-      _onChange3 = _ref.onChange,
+      _onChange4 = _ref.onChange,
       layoutDimension = _ref.layoutDimension,
       transformedLayout = _ref.transformedLayout;
   var transformedDimension = {
@@ -49,7 +43,7 @@ var SizePanel = function SizePanel(_ref) {
     var path = (0, _deepClone["default"])(object.path);
     path[index][key] = value;
 
-    _onChange3({
+    _onChange4({
       path: path
     });
   };
@@ -63,18 +57,20 @@ var SizePanel = function SizePanel(_ref) {
       case '_x':
         tValue = +(value * transformedDimension.transformWidth).toFixed(2);
 
-        _onChange3((_onChange = {}, (0, _defineProperty2["default"])(_onChange, key, value), (0, _defineProperty2["default"])(_onChange, "x", tValue), _onChange));
+        _onChange4((_onChange = {}, (0, _defineProperty2["default"])(_onChange, key, value), (0, _defineProperty2["default"])(_onChange, "x", tValue), _onChange));
 
         break;
 
       case '_y':
         tValue = +(transformedLayout.layoutHeight - value * transformedDimension.transformHeight - ((_object$height = object === null || object === void 0 ? void 0 : object.height) !== null && _object$height !== void 0 ? _object$height : 0)).toFixed(2);
 
-        _onChange3((_onChange2 = {}, (0, _defineProperty2["default"])(_onChange2, key, value), (0, _defineProperty2["default"])(_onChange2, "y", tValue), _onChange2));
+        _onChange4((_onChange2 = {}, (0, _defineProperty2["default"])(_onChange2, key, value), (0, _defineProperty2["default"])(_onChange2, "y", tValue), _onChange2));
 
         break;
 
       default:
+        _onChange4((0, _defineProperty2["default"])({}, key, value));
+
         break;
     }
   };
@@ -116,7 +112,7 @@ var SizePanel = function SizePanel(_ref) {
     showIf: (0, _has["default"])(object, 'width'),
     value: (_object$width = object.width) !== null && _object$width !== void 0 ? _object$width : '',
     onChange: function onChange(value) {
-      return _onChange3({
+      return _onChange4({
         width: +value
       });
     }
@@ -126,7 +122,7 @@ var SizePanel = function SizePanel(_ref) {
     showIf: (0, _has["default"])(object, 'height'),
     value: (_object$height2 = object.height) !== null && _object$height2 !== void 0 ? _object$height2 : '',
     onChange: function onChange(value) {
-      return _onChange3({
+      return _onChange4({
         height: +value
       });
     }
@@ -137,7 +133,7 @@ var SizePanel = function SizePanel(_ref) {
     type: "number",
     value: object.radius,
     onChange: function onChange(value) {
-      return _onChange3({
+      return _onChange4({
         radius: +value
       });
     }

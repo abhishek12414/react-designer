@@ -8,7 +8,7 @@ import ContainerDimensions from 'react-container-dimensions';
 
 import './index.css';
 
-import { modes, SHAPES } from '../../constants';
+import { modes, SHAPES, TYPES } from '../../constants';
 import * as actions from '../../actions';
 import { Path, Rect, Ellipse, Image, Gateway, Circle } from '../shared/objects';
 import PanelList from '../panels/PanelList';
@@ -20,6 +20,7 @@ import {
 	getTransformedLayout,
 	getTransformedObjects,
 } from '../../utils/layoutTransformation';
+import { validateObject } from '../../utils';
 import deepClone from '../../utils/deepClone';
 import getDragTransformedCoords from '../../utils/dragTransformCoords';
 
@@ -151,11 +152,21 @@ class Designer extends Component {
 			elementType: selectedTool,
 			x: mouse.x,
 			y: mouse.y,
-			_x: mouse.x,
-			_y: mouse.y,
 			type,
 			idx: new Date().getTime(),
 		};
+
+		object = getDragTransformedCoords(object, this.getLayoutProperties());
+
+		if (object.elementType === TYPES.GATEWAY) {
+			object.plot = {
+				...object.plot,
+				x: object.x,
+				y: object.y,
+				_x: object._x,
+				_y: object._y,
+			};
+		}
 
 		onUpdate([...objects, object]);
 
@@ -206,7 +217,8 @@ class Designer extends Component {
 						...object,
 						...changes,
 					};
-
+					let errors = validateObject(newObject);
+					newObject.errors = errors;
 					return updatePath ? this.updatePath(newObject) : newObject;
 				} else {
 					return object;
@@ -416,6 +428,19 @@ class Designer extends Component {
 		};
 	}
 
+	// Insert menu tab change (map, track, gateway)
+	onTypeChange(type) {
+		this.setState({
+			type,
+			selectedTool: null,
+			mode: modes.FREE,
+			currentObjectIndex: null,
+			showHandler: false,
+			handler: null,
+		});
+	}
+
+	// Insert menu tool change (rect, polygon, gateway)
 	selectTool(tool) {
 		this.setState({
 			selectedTool: tool,
@@ -537,10 +562,6 @@ class Designer extends Component {
 		});
 	}
 
-	onTypeChange(type) {
-		this.setState({ type });
-	}
-
 	renderSVG(transformedLayout, transformedObjects) {
 		// let canvas = this.getCanvas();
 		let canvas = {
@@ -591,6 +612,7 @@ class Designer extends Component {
 			selectedTool,
 			type,
 			objectFilter,
+			currentObjectIndex,
 		} = this.state;
 
 		let { objects, objectTypes, insertMenu: InsertMenuComponent } = this.props;
@@ -614,6 +636,12 @@ class Designer extends Component {
 		const hasImage = !!objects?.filter(
 			({ elementType }) => elementType === SHAPES.image
 		)?.[0];
+
+		const hoveredObject = objects[currentObjectIndex];
+		let canResize = has(hoveredObject, 'width') || has(hoveredObject, 'height');
+		if (hoveredObject?.elementType === TYPES.GATEWAY) {
+			canResize = false;
+		}
 
 		return (
 			<div className="reactDesigner">
@@ -676,10 +704,7 @@ class Designer extends Component {
 											{showHandler && (
 												<Handler
 													boundingBox={handler}
-													canResize={
-														has(currentObject, 'width') ||
-														has(currentObject, 'height')
-													}
+													canResize={canResize}
 													// canRotate={has(currentObject, 'rotate')}
 													onMouseLeave={this.hideHandler.bind(this)}
 													onDoubleClick={this.showEditor.bind(this)}
@@ -710,6 +735,7 @@ class Designer extends Component {
 									object={objectWithInitial}
 									objects={this.props.objects}
 									clusterList={this.props.clusterList}
+									clusterListTrack={this.props.clusterListTrack}
 									onArrange={this.handleArrange.bind(this)}
 									onChange={this.handleObjectChange.bind(this)}
 									onDelete={this.removeCurrent.bind(this)}
@@ -727,6 +753,7 @@ class Designer extends Component {
 									}
 									objects={this.props.objects}
 									clusterList={this.props.clusterList}
+									clusterListTrack={this.props.clusterListTrack}
 									onChange={this.updateObject.bind(this)}
 									onAddClusterClick={this.props.onAddClusterClick}
 									onObjectSelect={this.updateSelectedObjectIndex.bind(this)}

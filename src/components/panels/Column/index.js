@@ -15,6 +15,7 @@ const Column = ({
 	value,
 	label,
 	onChange,
+	error,
 }) => {
 	if (!showIf) {
 		return <div className={'empty'} />;
@@ -27,6 +28,7 @@ const Column = ({
 					type={type}
 					label={label}
 					value={value}
+					error={error}
 					disabled={disabled}
 					labelClass={labelClass}
 					onChange={(e) => onChange(e.target.value)}
@@ -45,6 +47,7 @@ Column.propTypes = {
 	labelClass: PropTypes.string,
 	value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	label: PropTypes.string,
+	error: PropTypes.string,
 	onChange: PropTypes.func,
 };
 

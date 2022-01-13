@@ -2,8 +2,6 @@
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-var _typeof = require("@babel/runtime/helpers/typeof");
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -11,7 +9,7 @@ exports["default"] = void 0;
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
-var _react = _interopRequireWildcard(require("react"));
+var _react = _interopRequireDefault(require("react"));
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
 
@@ -29,16 +27,17 @@ var _Select = _interopRequireDefault(require("../widgets/Select"));
 
 var _Icon = _interopRequireDefault(require("../shared/Icon"));
 
-function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
-
-function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+var _optionUtils = require("../../utils/optionUtils");
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var BasicPropertyPanel = function BasicPropertyPanel(_ref) {
+  var _object$errors, _object$errors2;
+
   var clusterList = _ref.clusterList,
+      clusterListTrack = _ref.clusterListTrack,
       object = _ref.object,
       _onChange = _ref.onChange,
       onDelete = _ref.onDelete,
@@ -48,7 +47,8 @@ var BasicPropertyPanel = function BasicPropertyPanel(_ref) {
   var transformedDimension = {
     transformWidth: transformedLayout.layoutWidth / layoutDimension.width,
     transformHeight: transformedLayout.layoutHeight / layoutDimension.height
-  }; // const onLabelPosChange = (key, value) => {
+  };
+  var selectOptions = (0, _optionUtils.getOptions)(object.type, object.clusterId, clusterListTrack, clusterList); // const onLabelPosChange = (key, value) => {
   // 	onChange({
   // 		labelCoordinates: {
   // 			...object.labelCoordinates,
@@ -97,6 +97,7 @@ var BasicPropertyPanel = function BasicPropertyPanel(_ref) {
   }, /*#__PURE__*/_react["default"].createElement(_Column["default"], {
     label: "Name",
     value: object.name || '',
+    error: object === null || object === void 0 ? void 0 : (_object$errors = object.errors) === null || _object$errors === void 0 ? void 0 : _object$errors.name,
     onChange: function onChange(value) {
       return _onChange({
         name: value
@@ -162,8 +163,9 @@ var BasicPropertyPanel = function BasicPropertyPanel(_ref) {
   }, /*#__PURE__*/_react["default"].createElement(_Button["default"], {
     onClick: onAddClusterClick
   }, "+"), /*#__PURE__*/_react["default"].createElement(_Select["default"], {
-    options: clusterList,
+    options: selectOptions,
     value: (object === null || object === void 0 ? void 0 : object.clusterId) || '',
+    error: object === null || object === void 0 ? void 0 : (_object$errors2 = object.errors) === null || _object$errors2 === void 0 ? void 0 : _object$errors2.clusterId,
     onChange: function onChange(e) {
       return _onChange({
         clusterId: e.target.value
@@ -177,12 +179,14 @@ BasicPropertyPanel.propTypes = {
   onDelete: _propTypes["default"].func.isRequired,
   onChange: _propTypes["default"].func.isRequired,
   clusterList: _propTypes["default"].array,
+  clusterListTrack: _propTypes["default"].array,
   layoutDimension: _propTypes["default"].object,
   transformedLayout: _propTypes["default"].object,
   onAddClusterClick: _propTypes["default"].func.isRequired
 };
 BasicPropertyPanel.defaultProps = {
-  clusterList: []
+  clusterList: [],
+  clusterListTrack: []
 };
 var _default = BasicPropertyPanel;
 exports["default"] = _default;

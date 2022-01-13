@@ -10,3 +10,12 @@
 	border: 0;
 	margin-right: 5px;
 }
+
+.propertyGroup .error_row {
+	display: flex;
+	align-items: center;
+}
+
+.propertyGroup .error_row .info{
+	margin-left: 8px;
+}

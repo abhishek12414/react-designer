@@ -10,18 +10,29 @@ import Select from '../../widgets/Select';
 import Button from '../../widgets/Button';
 import Checkbox from '../../widgets/Checkbox';
 import PropertyGroup from '../PropertyGroup';
+import { getOptions } from '../../../utils/optionUtils';
 
 const ObjectItem = ({
 	name,
 	elementType,
 	type,
 	clusterList,
+	clusterListTrack,
 	clusterId,
 	onEditObject,
 	onChange,
 	onAddClusterClick,
 	isHidden,
+	errors,
 }) => {
+	const selectOptions = getOptions(
+		type,
+		clusterId,
+		clusterListTrack,
+		clusterList
+	);
+
+	let errorsLength = Object.keys(errors).length;
 	return (
 		<PropertyGroup className="propertyGroup">
 			{elementType !== 'image' && (
@@ -62,7 +73,8 @@ const ObjectItem = ({
 							<Select
 								name="clusterId"
 								value={clusterId}
-								options={clusterList}
+								options={selectOptions}
+								error={errors?.clusterId}
 								onChange={(e) => onChange({ clusterId: e.target.value })}
 							/>
 						</div>
@@ -78,7 +90,7 @@ const ObjectItem = ({
 				/>
 			</Columns>
 			<Columns label="Edit" rowInline>
-				<Column>
+				<Column className="error_row">
 					<Button title="Edit" onClick={onEditObject}>
 						<Icon
 							icon="pencil"
@@ -86,6 +98,15 @@ const ObjectItem = ({
 							style={{ width: 16, height: 16, fill: 'black' }}
 						/>
 					</Button>
+					{errorsLength > 0 && (
+						<div className="info" title={`Error count ${errorsLength}`}>
+							<Icon
+								icon="error"
+								size={24}
+								style={{ width: 18, height: 18, fill: 'red' }}
+							/>
+						</div>
+					)}
 				</Column>
 			</Columns>
 		</PropertyGroup>
@@ -97,11 +118,17 @@ ObjectItem.propTypes = {
 	elementType: PropTypes.string.isRequired,
 	type: PropTypes.string,
 	clusterList: PropTypes.array.isRequired,
+	clusterListTrack: PropTypes.array.isRequired,
 	clusterId: PropTypes.string,
 	isHidden: PropTypes.bool,
+	errors: PropTypes.object,
 	onEditObject: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
 	onAddClusterClick: PropTypes.func.isRequired,
+};
+
+ObjectItem.defaultProps = {
+	errors: {},
 };
 
 export default ObjectItem;

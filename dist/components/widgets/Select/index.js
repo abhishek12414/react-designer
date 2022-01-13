@@ -19,7 +19,7 @@ var _propTypes = _interopRequireDefault(require("prop-types"));
 
 require("./index.css");
 
-var _excluded = ["className", "options", "name", "value", "onChange"];
+var _excluded = ["className", "options", "name", "value", "onChange", "error"];
 
 var Select = function Select(_ref) {
   var className = _ref.className,
@@ -27,6 +27,7 @@ var Select = function Select(_ref) {
       name = _ref.name,
       value = _ref.value,
       onChange = _ref.onChange,
+      error = _ref.error,
       rest = (0, _objectWithoutProperties2["default"])(_ref, _excluded);
 
   var getOptions = function getOptions() {
@@ -57,7 +58,7 @@ var Select = function Select(_ref) {
 
   return /*#__PURE__*/_react["default"].createElement("select", (0, _extends2["default"])({
     name: name,
-    className: (0, _classnames["default"])('rdSelect', className),
+    className: (0, _classnames["default"])('rdSelect', className, error && 'error'),
     value: value,
     onChange: onChange
   }, rest), getOptions());
@@ -67,6 +68,7 @@ Select.propTypes = {
   name: _propTypes["default"].string,
   value: _propTypes["default"].string,
   options: _propTypes["default"].array,
+  error: _propTypes["default"].string,
   className: _propTypes["default"].string,
   onChange: _propTypes["default"].func.isRequired
 };

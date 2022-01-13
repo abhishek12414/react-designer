@@ -10,6 +10,9 @@
 .inputContainer:focus-within {
 	border: 1px solid #18a0fb;
 }
+.inputContainer.error{
+	border: 1px solid red;
+}
 .inputContainer .icon {
 	min-width: 32px;
 	height: 28px;
@@ -39,8 +42,9 @@
 	background-color: #f1f1f1;
 	user-select: none;
 }
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;

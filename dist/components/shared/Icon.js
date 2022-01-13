@@ -32,16 +32,6 @@ var Icon = function Icon(_ref) {
           d: "M21 19v-14c0-1.1-.9-2-2-2h-14c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-12.5-5.5l2.5 3.01 3.5-4.51 4.5 6h-14l3.5-4.5z"
         }));
 
-      case 'my-icon':
-        return /*#__PURE__*/_react["default"].createElement("g", null, /*#__PURE__*/_react["default"].createElement("path", {
-          d: "M7.41 7.84l4.59 4.58 4.59-4.58 1.41 1.41-6 6-6-6z"
-        }));
-
-      case 'another-icon':
-        return /*#__PURE__*/_react["default"].createElement("g", null, /*#__PURE__*/_react["default"].createElement("path", {
-          d: "M7.41 15.41l4.59-4.58 4.59 4.58 1.41-1.41-6-6-6 6z"
-        }));
-
       case 'format-bold':
         return /*#__PURE__*/_react["default"].createElement("g", null, /*#__PURE__*/_react["default"].createElement("path", {
           d: "M15.6 10.79c.97-.67 1.65-1.77 1.65-2.79 0-2.26-1.75-4-4-4h-6.25v14h7.04c2.09 0 3.71-1.7 3.71-3.79 0-1.52-.86-2.82-2.15-3.42zm-5.6-4.29h3c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-3v-3zm3.5 9h-3.5v-3h3.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5z"
@@ -222,6 +212,16 @@ var Icon = function Icon(_ref) {
       case 'delete':
         return /*#__PURE__*/_react["default"].createElement("path", {
           d: "M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5-1-1h-5l-1 1H5v2h14V4z"
+        });
+
+      case 'error-outline':
+        return /*#__PURE__*/_react["default"].createElement("path", {
+          d: "M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+        });
+
+      case 'error':
+        return /*#__PURE__*/_react["default"].createElement("path", {
+          d: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"
         });
 
       default:
