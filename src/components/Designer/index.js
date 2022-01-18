@@ -168,6 +168,9 @@ class Designer extends Component {
 			};
 		}
 
+		let errors = validateObject(object);
+		object.errors = errors;
+
 		onUpdate([...objects, object]);
 
 		this.setState({

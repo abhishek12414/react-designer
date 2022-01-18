@@ -237,6 +237,8 @@ var Designer = /*#__PURE__*/function (_Component) {
         });
       }
 
+      var errors = (0, _utils.validateObject)(object);
+      object.errors = errors;
       onUpdate([].concat((0, _toConsumableArray2["default"])(objects), [object]));
       this.setState({
         currentObjectIndex: objects.length,

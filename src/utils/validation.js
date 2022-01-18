@@ -15,7 +15,7 @@ export const validateObject = (object) => {
 		}
 	}
 
-	if (object.type === TYPES.GATEWAY) {
+	if (object.type === TYPES.GATEWAY || object.elementType === TYPES.GATEWAY) {
 		if (!object?.name) {
 			errorObj.name = 'Cluster Name is required';
 		}
