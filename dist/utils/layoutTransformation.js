@@ -72,7 +72,7 @@ var getTransformedObjects = function getTransformedObjects(layoutHeight, layoutW
 
       case 'rect':
         item._x = item.x;
-        item._y = layoutHeight - item.height - item.y;
+        item._y = +(layoutHeight - item.height - item.y).toFixed(2);
         item.x = +(transformedWidth * item.x).toFixed(2);
         item.y = +(transformedHeight * item.y).toFixed(2);
         item.width = +(transformedWidth * item.width).toFixed(2);
@@ -81,9 +81,10 @@ var getTransformedObjects = function getTransformedObjects(layoutHeight, layoutW
 
       case 'circle':
         item._x = item.x;
-        item._y = item.y;
+        item._y = +(layoutHeight - item.y).toFixed(2);
         item.x = +(transformedWidth * item.x).toFixed(2);
         item.y = +(transformedHeight * item.y).toFixed(2);
+        item._radius = item.radius;
         item.radius = +(transformedHeight * item.radius).toFixed(2);
         break;
 
@@ -105,11 +106,11 @@ var getTransformedObjects = function getTransformedObjects(layoutHeight, layoutW
 
       case 'gateway':
         item._x = item.x;
-        item._y = layoutHeight - 18 - item.y;
+        item._y = +(layoutHeight - 18 - item.y).toFixed(2);
         item.x = +(transformedWidth * item.x).toFixed(2);
         item.y = +(transformedHeight * item.y).toFixed(2);
         item.plot._x = item.plot.x;
-        item.plot._y = layoutHeight - 18 - item.plot.y;
+        item.plot._y = +(layoutHeight - 18 - item.plot.y).toFixed(2);
         item.plot.x = +(transformedWidth * item.plot.x).toFixed(2);
         item.plot.y = +(transformedHeight * item.plot.y).toFixed(2);
         break;
@@ -120,7 +121,7 @@ var getTransformedObjects = function getTransformedObjects(layoutHeight, layoutW
 
     if (layoutWidth && layoutHeight && item !== null && item !== void 0 && (_item$labelCoordinate = item.labelCoordinates) !== null && _item$labelCoordinate !== void 0 && _item$labelCoordinate.x && item !== null && item !== void 0 && (_item$labelCoordinate2 = item.labelCoordinates) !== null && _item$labelCoordinate2 !== void 0 && _item$labelCoordinate2.y) {
       item.labelCoordinates._x = item.labelCoordinates.x;
-      item.labelCoordinates._y = layoutHeight - item.labelCoordinates.y;
+      item.labelCoordinates._y = +(layoutHeight - item.labelCoordinates.y).toFixed(2);
       item.labelCoordinates.x = +(transformedWidth * item.labelCoordinates.x).toFixed(2);
       item.labelCoordinates.y = +(transformedHeight * item.labelCoordinates.y).toFixed(2);
     }

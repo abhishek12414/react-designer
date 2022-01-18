@@ -168,6 +168,17 @@ class Designer extends Component {
 			};
 		}
 
+		if (object.elementType === SHAPES.circle) {
+			const transformedDimension = this.getLayoutProperties();
+			object._radius = object.radius;
+			object.radius = +(
+				object.radius * transformedDimension.transformHeight
+			).toFixed(2);
+		}
+
+		let errors = validateObject(object);
+		object.errors = errors;
+
 		onUpdate([...objects, object]);
 
 		this.setState({

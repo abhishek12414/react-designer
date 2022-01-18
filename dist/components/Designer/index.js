@@ -237,6 +237,14 @@ var Designer = /*#__PURE__*/function (_Component) {
         });
       }
 
+      if (object.elementType === _constants.SHAPES.circle) {
+        var transformedDimension = this.getLayoutProperties();
+        object._radius = object.radius;
+        object.radius = +(object.radius * transformedDimension.transformHeight).toFixed(2);
+      }
+
+      var errors = (0, _utils.validateObject)(object);
+      object.errors = errors;
       onUpdate([].concat((0, _toConsumableArray2["default"])(objects), [object]));
       this.setState({
         currentObjectIndex: objects.length,

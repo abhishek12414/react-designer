@@ -31,7 +31,7 @@ var SizePanel = function SizePanel(_ref) {
   var _object$_x, _object$_y, _object$width, _object$height2;
 
   var object = _ref.object,
-      _onChange4 = _ref.onChange,
+      _onChange5 = _ref.onChange,
       layoutDimension = _ref.layoutDimension,
       transformedLayout = _ref.transformedLayout;
   var transformedDimension = {
@@ -43,13 +43,13 @@ var SizePanel = function SizePanel(_ref) {
     var path = (0, _deepClone["default"])(object.path);
     path[index][key] = value;
 
-    _onChange4({
+    _onChange5({
       path: path
     });
   };
 
   var onValueChange = function onValueChange(key, value) {
-    var _onChange, _object$height, _onChange2;
+    var _onChange, _object$height, _onChange2, _onChange3;
 
     var tValue;
 
@@ -57,19 +57,26 @@ var SizePanel = function SizePanel(_ref) {
       case '_x':
         tValue = +(value * transformedDimension.transformWidth).toFixed(2);
 
-        _onChange4((_onChange = {}, (0, _defineProperty2["default"])(_onChange, key, value), (0, _defineProperty2["default"])(_onChange, "x", tValue), _onChange));
+        _onChange5((_onChange = {}, (0, _defineProperty2["default"])(_onChange, key, value), (0, _defineProperty2["default"])(_onChange, "x", tValue), _onChange));
 
         break;
 
       case '_y':
         tValue = +(transformedLayout.layoutHeight - value * transformedDimension.transformHeight - ((_object$height = object === null || object === void 0 ? void 0 : object.height) !== null && _object$height !== void 0 ? _object$height : 0)).toFixed(2);
 
-        _onChange4((_onChange2 = {}, (0, _defineProperty2["default"])(_onChange2, key, value), (0, _defineProperty2["default"])(_onChange2, "y", tValue), _onChange2));
+        _onChange5((_onChange2 = {}, (0, _defineProperty2["default"])(_onChange2, key, value), (0, _defineProperty2["default"])(_onChange2, "y", tValue), _onChange2));
+
+        break;
+
+      case '_radius':
+        tValue = +(value * transformedDimension.transformHeight).toFixed(2);
+
+        _onChange5((_onChange3 = {}, (0, _defineProperty2["default"])(_onChange3, key, value), (0, _defineProperty2["default"])(_onChange3, "radius", tValue), _onChange3));
 
         break;
 
       default:
-        _onChange4((0, _defineProperty2["default"])({}, key, value));
+        _onChange5((0, _defineProperty2["default"])({}, key, value));
 
         break;
     }
@@ -112,7 +119,7 @@ var SizePanel = function SizePanel(_ref) {
     showIf: (0, _has["default"])(object, 'width'),
     value: (_object$width = object.width) !== null && _object$width !== void 0 ? _object$width : '',
     onChange: function onChange(value) {
-      return _onChange4({
+      return _onChange5({
         width: +value
       });
     }
@@ -122,7 +129,7 @@ var SizePanel = function SizePanel(_ref) {
     showIf: (0, _has["default"])(object, 'height'),
     value: (_object$height2 = object.height) !== null && _object$height2 !== void 0 ? _object$height2 : '',
     onChange: function onChange(value) {
-      return _onChange4({
+      return _onChange5({
         height: +value
       });
     }
@@ -131,12 +138,11 @@ var SizePanel = function SizePanel(_ref) {
     rowInline: true
   }, /*#__PURE__*/_react["default"].createElement(_Column["default"], {
     type: "number",
-    value: object.radius,
+    value: object._radius,
     onChange: function onChange(value) {
-      return _onChange4({
-        radius: +value
-      });
-    }
+      return onValueChange('_radius', +value);
+    } // onChange={(value) => onChange({ radius: +value })}
+
   })));
 };
 
