@@ -43,6 +43,12 @@ const SizePanel = ({
 				).toFixed(2);
 				onChange({ [key]: value, y: tValue });
 				break;
+
+			case '_radius':
+				tValue = +(value * transformedDimension.transformHeight).toFixed(2);
+				onChange({ [key]: value, radius: tValue });
+				break;
+
 			default:
 				onChange({ [key]: value });
 				break;
@@ -115,8 +121,9 @@ const SizePanel = ({
 				<Columns label="Radius" rowInline>
 					<Column
 						type="number"
-						value={object.radius}
-						onChange={(value) => onChange({ radius: +value })}
+						value={object._radius}
+						onChange={(value) => onValueChange('_radius', +value)}
+						// onChange={(value) => onChange({ radius: +value })}
 					/>
 				</Columns>
 			)}
