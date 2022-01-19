@@ -3,6 +3,7 @@ import Icon from '../Icon';
 import { Vector } from '.';
 import trackSvg from '../../../assets/svg/track.svg';
 import gatewaySVG from '../../../assets/svg/wifi.svg';
+import { hardwareTypes } from '../../../constants';
 
 export default class Gateway extends Vector {
 	static meta = {
@@ -16,9 +17,11 @@ export default class Gateway extends Vector {
 			y: 0,
 			z: 0,
 			name: '',
-			macId: '',
 			gatewayClusterType: '',
 			clusterId: '',
+			hardwareType: hardwareTypes.BLE,
+			identifierKey: '',
+			identifierValue: '',
 			plot: {
 				x: 0,
 				y: 0,
@@ -33,13 +36,13 @@ export default class Gateway extends Vector {
 
 	render() {
 		const {
-			rotate,
 			x,
 			y,
 			plot,
-			elementType,
-			type,
-			transform,
+			// rotate,
+			// elementType,
+			// type,
+			// transform,
 			ref,
 			onMouseOver,
 			index,
@@ -66,7 +69,7 @@ export default class Gateway extends Vector {
 					// common props
 					ref={ref}
 					onMouseOver={onMouseOver}
-					transform={transform}
+					// transform={transform}
 					index={index}
 				/>
 			</>

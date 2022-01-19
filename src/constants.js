@@ -41,6 +41,13 @@ export const buildingBlock = Object.freeze({
 
 export const clusterOptions = ['standalone', 'cluster'];
 
+export const identifierKeys = ['macId', 'devEUI'];
+
+export const hardwareTypes = {
+	BLE: 'BLE',
+	LoRaBLE: 'LoRaBLE',
+};
+
 export const fontFamilies = [
 	{ name: 'Alegreya Sans', family: 'Alegreya Sans' },
 	{ name: 'Alegreya', family: 'Alegreya' },
