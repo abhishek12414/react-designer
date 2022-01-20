@@ -4,7 +4,7 @@ import has from 'lodash/has';
 
 import './index.css';
 
-import { clusterOptions, TYPES } from '../../../constants';
+import { clusterOptions, identifierKeys, TYPES } from '../../../constants';
 
 import Column from '../Column';
 import Columns from '../Columns';
@@ -71,13 +71,8 @@ const GatewayPanel = ({
 
 	return (
 		<PropertyGroup className="gatewayPanel">
-			<Columns label="Mac ID*" showIf={has(object, 'macId')}>
-				<Column
-					label="Mac"
-					value={object.macId}
-					onChange={(value) => onChange({ macId: value })}
-					error={object?.errors?.macId}
-				/>
+			<Columns label="Hardware Type" rowInline>
+				<p style={{ margin: 0 }}>{object.hardwareType}</p>
 			</Columns>
 			<Columns
 				label="Cluster Type*"
@@ -90,6 +85,26 @@ const GatewayPanel = ({
 					options={clusterOptions}
 					error={object?.errors?.gatewayClusterType}
 					onChange={(e) => onChange({ gatewayClusterType: e.target.value })}
+				/>
+			</Columns>
+			<Columns label="Identifier Key*" rowInline>
+				<Select
+					name="identifierKey"
+					value={object.identifierKey}
+					options={identifierKeys}
+					error={object?.errors?.identifierKey}
+					onChange={(e) => onChange({ identifierKey: e.target.value })}
+				/>
+			</Columns>
+			<Columns
+				label="Identifier Value*"
+				showIf={has(object, 'identifierValue')}
+			>
+				<Column
+					label=""
+					value={object.identifierValue}
+					onChange={(value) => onChange({ identifierValue: value })}
+					error={object?.errors?.identifierValue}
 				/>
 			</Columns>
 			<Columns label="Physical Coords*" inline>

@@ -29,6 +29,8 @@ var _track = _interopRequireDefault(require("../../../assets/svg/track.svg"));
 
 var _wifi = _interopRequireDefault(require("../../../assets/svg/wifi.svg"));
 
+var _constants = require("../../../constants");
+
 function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = (0, _getPrototypeOf2["default"])(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = (0, _getPrototypeOf2["default"])(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return (0, _possibleConstructorReturn2["default"])(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
@@ -55,13 +57,9 @@ var Gateway = /*#__PURE__*/function (_Vector) {
     key: "render",
     value: function render() {
       var _this$getObjectAttrib = this.getObjectAttributes(),
-          rotate = _this$getObjectAttrib.rotate,
           x = _this$getObjectAttrib.x,
           y = _this$getObjectAttrib.y,
           plot = _this$getObjectAttrib.plot,
-          elementType = _this$getObjectAttrib.elementType,
-          type = _this$getObjectAttrib.type,
-          transform = _this$getObjectAttrib.transform,
           ref = _this$getObjectAttrib.ref,
           onMouseOver = _this$getObjectAttrib.onMouseOver,
           index = _this$getObjectAttrib.index,
@@ -83,8 +81,8 @@ var Gateway = /*#__PURE__*/function (_Vector) {
         y: y // common props
         ,
         ref: ref,
-        onMouseOver: onMouseOver,
-        transform: transform,
+        onMouseOver: onMouseOver // transform={transform}
+        ,
         index: index
       }));
     }
@@ -107,9 +105,11 @@ exports["default"] = Gateway;
     y: 0,
     z: 0,
     name: '',
-    macId: '',
     gatewayClusterType: '',
     clusterId: '',
+    hardwareType: _constants.hardwareTypes.BLE,
+    identifierKey: '',
+    identifierValue: '',
     plot: {
       x: 0,
       y: 0,

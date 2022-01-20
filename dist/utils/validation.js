@@ -33,10 +33,16 @@ var validateObject = function validateObject(object) {
       errorObj.clusterId = 'ClusterId is required';
     }
 
-    if (!(object !== null && object !== void 0 && object.macId)) {
-      errorObj.macId = 'MacId is required';
-    } else if (!regExForMacId.test(object.macId)) {
-      errorObj.macId = 'MacId is invalid';
+    if (!(object !== null && object !== void 0 && object.identifierKey)) {
+      errorObj.identifierKey = 'Identifier Key is required';
+    }
+
+    if (!(object !== null && object !== void 0 && object.identifierValue)) {
+      var _object$identifierKey;
+
+      errorObj.identifierValue = "".concat((_object$identifierKey = object.identifierKey) !== null && _object$identifierKey !== void 0 ? _object$identifierKey : 'Identifier Value', " is required");
+    } else if ((object === null || object === void 0 ? void 0 : object.identifierKey) === 'macId' && !regExForMacId.test(object.identifierValue)) {
+      errorObj.identifierValue = 'MacId is invalid';
     }
 
     if (!(object !== null && object !== void 0 && object.gatewayClusterType)) {

@@ -24,10 +24,19 @@ export const validateObject = (object) => {
 			errorObj.clusterId = 'ClusterId is required';
 		}
 
-		if (!object?.macId) {
-			errorObj.macId = 'MacId is required';
-		} else if (!regExForMacId.test(object.macId)) {
-			errorObj.macId = 'MacId is invalid';
+		if (!object?.identifierKey) {
+			errorObj.identifierKey = 'Identifier Key is required';
+		}
+
+		if (!object?.identifierValue) {
+			errorObj.identifierValue = `${
+				object.identifierKey ?? 'Identifier Value'
+			} is required`;
+		} else if (
+			object?.identifierKey === 'macId' &&
+			!regExForMacId.test(object.identifierValue)
+		) {
+			errorObj.identifierValue = 'MacId is invalid';
 		}
 
 		if (!object?.gatewayClusterType) {
