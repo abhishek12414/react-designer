@@ -32,7 +32,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2["default"])(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 var GatewayPanel = function GatewayPanel(_ref) {
-  var _object$errors, _object$errors2, _object$errors3, _object$plot$_x, _object$plot$_y, _object$plot$_z;
+  var _object$errors, _object$errors2, _object$errors3, _object$errors4, _object$plot$_x, _object$plot$_y, _object$plot$_z;
 
   var object = _ref.object,
       _onChange4 = _ref.onChange,
@@ -110,13 +110,20 @@ var GatewayPanel = function GatewayPanel(_ref) {
   return /*#__PURE__*/_react["default"].createElement(_PropertyGroup["default"], {
     className: "gatewayPanel"
   }, /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
-    label: "Hardware Type",
-    rowInline: true
-  }, /*#__PURE__*/_react["default"].createElement("p", {
-    style: {
-      margin: 0
+    label: "Hardware Type*",
+    rowInline: true,
+    showIf: (0, _has["default"])(object, 'hardwareType')
+  }, /*#__PURE__*/_react["default"].createElement(_Select["default"], {
+    name: "hardwareType",
+    value: object.hardwareType,
+    options: _constants.hardwareOptions,
+    error: object === null || object === void 0 ? void 0 : (_object$errors = object.errors) === null || _object$errors === void 0 ? void 0 : _object$errors.hardwareType,
+    onChange: function onChange(e) {
+      return _onChange4({
+        hardwareType: e.target.value
+      });
     }
-  }, object.hardwareType)), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
+  })), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
     label: "Cluster Type*",
     rowInline: true,
     showIf: (0, _has["default"])(object, 'gatewayClusterType')
@@ -124,7 +131,7 @@ var GatewayPanel = function GatewayPanel(_ref) {
     name: "gatewayClusterType",
     value: object.gatewayClusterType,
     options: _constants.clusterOptions,
-    error: object === null || object === void 0 ? void 0 : (_object$errors = object.errors) === null || _object$errors === void 0 ? void 0 : _object$errors.gatewayClusterType,
+    error: object === null || object === void 0 ? void 0 : (_object$errors2 = object.errors) === null || _object$errors2 === void 0 ? void 0 : _object$errors2.gatewayClusterType,
     onChange: function onChange(e) {
       return _onChange4({
         gatewayClusterType: e.target.value
@@ -137,7 +144,7 @@ var GatewayPanel = function GatewayPanel(_ref) {
     name: "identifierKey",
     value: object.identifierKey,
     options: _constants.identifierKeys,
-    error: object === null || object === void 0 ? void 0 : (_object$errors2 = object.errors) === null || _object$errors2 === void 0 ? void 0 : _object$errors2.identifierKey,
+    error: object === null || object === void 0 ? void 0 : (_object$errors3 = object.errors) === null || _object$errors3 === void 0 ? void 0 : _object$errors3.identifierKey,
     onChange: function onChange(e) {
       return _onChange4({
         identifierKey: e.target.value
@@ -154,7 +161,7 @@ var GatewayPanel = function GatewayPanel(_ref) {
         identifierValue: value
       });
     },
-    error: object === null || object === void 0 ? void 0 : (_object$errors3 = object.errors) === null || _object$errors3 === void 0 ? void 0 : _object$errors3.identifierValue
+    error: object === null || object === void 0 ? void 0 : (_object$errors4 = object.errors) === null || _object$errors4 === void 0 ? void 0 : _object$errors4.identifierValue
   })), /*#__PURE__*/_react["default"].createElement(_Columns["default"], {
     label: "Physical Coords*",
     inline: true

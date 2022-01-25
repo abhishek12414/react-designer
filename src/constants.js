@@ -39,14 +39,10 @@ export const buildingBlock = Object.freeze({
 	WIFI: 'wifi',
 });
 
+export const hardwareOptions = ['BLE', 'LoRaBLE'];
 export const clusterOptions = ['standalone', 'cluster'];
 
 export const identifierKeys = ['macId', 'devEUI'];
-
-export const hardwareTypes = {
-	BLE: 'BLE',
-	LoRaBLE: 'LoRaBLE',
-};
 
 export const fontFamilies = [
 	{ name: 'Alegreya Sans', family: 'Alegreya Sans' },

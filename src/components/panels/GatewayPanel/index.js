@@ -4,7 +4,12 @@ import has from 'lodash/has';
 
 import './index.css';
 
-import { clusterOptions, identifierKeys, TYPES } from '../../../constants';
+import {
+	clusterOptions,
+	hardwareOptions,
+	identifierKeys,
+	TYPES,
+} from '../../../constants';
 
 import Column from '../Column';
 import Columns from '../Columns';
@@ -71,8 +76,18 @@ const GatewayPanel = ({
 
 	return (
 		<PropertyGroup className="gatewayPanel">
-			<Columns label="Hardware Type" rowInline>
-				<p style={{ margin: 0 }}>{object.hardwareType}</p>
+			<Columns
+				label="Hardware Type*"
+				rowInline
+				showIf={has(object, 'hardwareType')}
+			>
+				<Select
+					name="hardwareType"
+					value={object.hardwareType}
+					options={hardwareOptions}
+					error={object?.errors?.hardwareType}
+					onChange={(e) => onChange({ hardwareType: e.target.value })}
+				/>
 			</Columns>
 			<Columns
 				label="Cluster Type*"

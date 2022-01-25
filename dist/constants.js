@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.modes = exports.identifierKeys = exports.hardwareTypes = exports.fontFamilies = exports.clusterOptions = exports.buildingBlock = exports.TYPES = exports.SHAPES = void 0;
+exports.modes = exports.identifierKeys = exports.hardwareOptions = exports.fontFamilies = exports.clusterOptions = exports.buildingBlock = exports.TYPES = exports.SHAPES = void 0;
 var FREE = 0;
 var DRAG = 1;
 var SCALE = 2;
@@ -44,15 +44,12 @@ var buildingBlock = Object.freeze({
   WIFI: 'wifi'
 });
 exports.buildingBlock = buildingBlock;
+var hardwareOptions = ['BLE', 'LoRaBLE'];
+exports.hardwareOptions = hardwareOptions;
 var clusterOptions = ['standalone', 'cluster'];
 exports.clusterOptions = clusterOptions;
 var identifierKeys = ['macId', 'devEUI'];
 exports.identifierKeys = identifierKeys;
-var hardwareTypes = {
-  BLE: 'BLE',
-  LoRaBLE: 'LoRaBLE'
-};
-exports.hardwareTypes = hardwareTypes;
 var fontFamilies = [{
   name: 'Alegreya Sans',
   family: 'Alegreya Sans'

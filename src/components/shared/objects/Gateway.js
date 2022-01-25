@@ -3,7 +3,6 @@ import Icon from '../Icon';
 import { Vector } from '.';
 import trackSvg from '../../../assets/svg/track.svg';
 import gatewaySVG from '../../../assets/svg/wifi.svg';
-import { hardwareTypes } from '../../../constants';
 
 export default class Gateway extends Vector {
 	static meta = {
@@ -19,7 +18,7 @@ export default class Gateway extends Vector {
 			name: '',
 			gatewayClusterType: '',
 			clusterId: '',
-			hardwareType: hardwareTypes.BLE,
+			hardwareType: '',
 			identifierKey: '',
 			identifierValue: '',
 			plot: {
