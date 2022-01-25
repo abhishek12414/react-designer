@@ -29,6 +29,10 @@ var validateObject = function validateObject(object) {
       errorObj.name = 'Cluster Name is required';
     }
 
+    if (!(object !== null && object !== void 0 && object.hardwareType)) {
+      errorObj.hardwareType = 'HardwareType is required';
+    }
+
     if (!(object !== null && object !== void 0 && object.clusterId)) {
       errorObj.clusterId = 'ClusterId is required';
     }
