@@ -50,18 +50,20 @@ var GatewayPanel = function GatewayPanel(_ref) {
   var onValueChange = function onValueChange(key, value) {
     var _onChange, _object$height, _onChange2;
 
+    var transformWidth = transformedDimension.transformWidth,
+        transformHeight = transformedDimension.transformHeight;
     var tValue;
 
     switch (key) {
       case '_x':
-        tValue = +(value * transformedDimension.transformWidth).toFixed(2);
+        tValue = +(transformWidth * value).toFixed(2);
 
         _onChange4((_onChange = {}, (0, _defineProperty2["default"])(_onChange, key, value), (0, _defineProperty2["default"])(_onChange, "x", tValue), _onChange));
 
         break;
 
       case '_y':
-        tValue = +(transformedLayout.layoutHeight - value * transformedDimension.transformHeight - ((_object$height = object === null || object === void 0 ? void 0 : object.height) !== null && _object$height !== void 0 ? _object$height : 0)).toFixed(2);
+        tValue = +(transformedLayout.layoutHeight - transformHeight * value) - ((_object$height = object === null || object === void 0 ? void 0 : object.height) !== null && _object$height !== void 0 ? _object$height : 0).toFixed(2);
 
         _onChange4((_onChange2 = {}, (0, _defineProperty2["default"])(_onChange2, key, value), (0, _defineProperty2["default"])(_onChange2, "y", tValue), _onChange2));
 

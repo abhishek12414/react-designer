@@ -32,18 +32,17 @@ const GatewayPanel = ({
 	}
 
 	const onValueChange = (key, value) => {
+		const { transformWidth, transformHeight } = transformedDimension;
 		let tValue;
 		switch (key) {
 			case '_x':
-				tValue = +(value * transformedDimension.transformWidth).toFixed(2);
+				tValue = +(transformWidth * value).toFixed(2);
 				onChange({ [key]: value, x: tValue });
 				break;
 			case '_y':
-				tValue = +(
-					transformedLayout.layoutHeight -
-					value * transformedDimension.transformHeight -
-					(object?.height ?? 0)
-				).toFixed(2);
+				tValue =
+					+(transformedLayout.layoutHeight - transformHeight * value) -
+					(object?.height ?? 0).toFixed(2);
 				onChange({ [key]: value, y: tValue });
 				break;
 			default:

@@ -106,13 +106,13 @@ var getTransformedObjects = function getTransformedObjects(layoutHeight, layoutW
 
       case 'gateway':
         item._x = item.x;
-        item._y = +(layoutHeight - 18 - item.y).toFixed(2);
+        item._y = +(layoutHeight - item.y).toFixed(2);
         item.x = +(transformedWidth * item.x).toFixed(2);
-        item.y = +(transformedHeight * item.y).toFixed(2);
+        item.y = +(transformedHeight * item.y - 18).toFixed(2);
         item.plot._x = item.plot.x;
-        item.plot._y = +(layoutHeight - 18 - item.plot.y).toFixed(2);
+        item.plot._y = +(layoutHeight - item.plot.y).toFixed(2);
         item.plot.x = +(transformedWidth * item.plot.x).toFixed(2);
-        item.plot.y = +(transformedHeight * item.plot.y).toFixed(2);
+        item.plot.y = +(transformedHeight * item.plot.y - 18).toFixed(2);
         break;
 
       default:
